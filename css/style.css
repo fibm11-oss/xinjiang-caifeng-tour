@@ -702,7 +702,7 @@ tbody tr:last-child {
         transform: translateX(-50%);
     }
     .mobile-menu-btn {
-        display: flex;
+        display: flex !important;
         position: absolute;
         left: 16px;
     }

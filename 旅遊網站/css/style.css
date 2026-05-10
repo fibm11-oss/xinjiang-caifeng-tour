@@ -1,0 +1,983 @@
+/* ========== 全局設定 ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #c8102e;
+    --primary-dark: #a00d24;
+    --primary-light: #e83e4d;
+    --secondary: #1a4a7a;
+    --secondary-light: #2a6a9a;
+    --accent: #f5a623;
+    --accent-light: #f8c15a;
+    --bg: #ffffff;
+    --bg-light: #f7f8fa;
+    --bg-warm: #fef9f3;
+    --text: #222222;
+    --text-light: #666666;
+    --text-muted: #999999;
+    --border: #e0e0e0;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --shadow: 0 2px 16px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+    --shadow-lg: 0 12px 48px rgba(0,0,0,0.12);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: "Microsoft JhengHei", "PingFang TC", "Helvetica Neue", Arial, sans-serif;
+    color: var(--text);
+    line-height: 1.7;
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* ========== 按鈕 ========== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 34px;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(200,16,46,0.3);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(200,16,46,0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    backdrop-filter: blur(4px);
+}
+
+.btn-secondary:hover {
+    background: #fff;
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.btn-text {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 4px 0;
+    position: relative;
+}
+
+.btn-text::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s;
+}
+
+.btn-text:hover::after {
+    width: 100%;
+}
+
+/* ========== 區塊標題 ========== */
+.section-title {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: var(--secondary);
+    letter-spacing: -0.5px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 17px;
+    margin-bottom: 52px;
+    line-height: 1.6;
+}
+
+/* ========== 頂部導航 ========== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.97);
+    box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: var(--transition);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--primary);
+    letter-spacing: -0.5px;
+    transition: var(--transition);
+}
+
+.logo:hover {
+    opacity: 0.8;
+}
+
+.logo span {
+    color: var(--secondary);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+}
+
+.nav-menu a {
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(200,16,46,0.25);
+}
+
+/* ========== Hero ========== */
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 640px;
+    background:
+        linear-gradient(135deg, rgba(26,74,122,0.72), rgba(200,16,46,0.52)),
+        url("../images/hero-xinjiang.svg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding-top: 68px;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to top, rgba(255,255,255,0.15), transparent);
+    pointer-events: none;
+}
+
+.hero-overlay {
+    display: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 820px;
+    padding: 0 24px;
+    animation: heroFadeIn 1s ease-out;
+}
+
+@keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 {
+    font-size: 60px;
+    font-weight: 900;
+    margin-bottom: 14px;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    letter-spacing: 3px;
+    opacity: 0.95;
+}
+
+.hero-desc {
+    font-size: 18px;
+    margin-bottom: 40px;
+    opacity: 0.92;
+    line-height: 1.9;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ========== 子頁首圖（page-hero） ========== */
+.page-hero {
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding-top: 68px;
+    margin-bottom: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to top, var(--bg-light), transparent);
+    pointer-events: none;
+}
+
+.page-hero h1 {
+    font-size: 46px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.35);
+    letter-spacing: -0.5px;
+}
+
+.page-hero p {
+    font-size: 18px;
+    opacity: 0.92;
+    font-size: 17px;
+}
+
+/* ========== 服務特色 ========== */
+.features {
+    padding: 88px 0;
+    background: var(--bg-light);
+    position: relative;
+}
+
+.features::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: var(--bg-light);
+    border-radius: 0 0 50% 50%;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    position: relative;
+}
+
+.feature-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 44px 32px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(200,16,46,0.15);
+}
+
+.feature-icon {
+    font-size: 52px;
+    margin-bottom: 22px;
+    display: block;
+}
+
+.feature-card h3 {
+    font-size: 21px;
+    margin-bottom: 14px;
+    color: var(--secondary);
+    font-weight: 700;
+}
+
+.feature-card p {
+    color: var(--text-light);
+    font-size: 15px;
+    line-height: 1.85;
+}
+
+/* ========== 推薦理由（景點亮點） ========== */
+.why-us {
+    padding: 88px 0;
+    background: #fff;
+}
+
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+}
+
+.highlight-item {
+    background: var(--bg-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    padding-bottom: 22px;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.highlight-item:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+.highlight-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.highlight-item:hover img {
+    transform: scale(1.05);
+}
+
+.highlight-item h4 {
+    font-size: 18px;
+    padding: 18px 18px 10px;
+    color: var(--secondary);
+    font-weight: 700;
+}
+
+.highlight-item p {
+    font-size: 14px;
+    color: var(--text-light);
+    padding: 0 18px;
+    line-height: 1.65;
+}
+
+/* ========== 精選行程 ========== */
+.tours {
+    padding: 88px 0;
+    background: var(--bg-light);
+}
+
+.tours-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+}
+
+.tour-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.tour-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+.tour-image {
+    height: 220px;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+.tour-image h3 {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    line-height: 1.4;
+}
+
+.tour-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: var(--accent);
+    color: #fff;
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(245,166,35,0.4);
+}
+
+.tour-info {
+    padding: 22px 24px 26px;
+}
+
+.tour-info p {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 14px;
+    line-height: 1.75;
+}
+
+/* ========== 景點車程表格 ========== */
+.distance-table {
+    padding: 88px 0;
+    background: #fff;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+thead {
+    background: var(--secondary);
+    color: #fff;
+}
+
+th, td {
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 15px;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+}
+
+tbody tr:hover {
+    background: #f0f6ff;
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* ========== FAQ ========== */
+.faq {
+    padding: 88px 0;
+    background: var(--bg-light);
+}
+
+.faq-list {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.faq-item {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 26px 30px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary);
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.faq-item h4 {
+    font-size: 17px;
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.faq-item p {
+    color: var(--text-light);
+    font-size: 15px;
+    line-height: 1.85;
+}
+
+/* ========== 頁尾 ========== */
+.footer {
+    background: var(--secondary);
+    color: #fff;
+    padding: 68px 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.3fr;
+    gap: 48px;
+    padding-bottom: 48px;
+}
+
+.footer-col h3 {
+    font-size: 24px;
+    margin-bottom: 18px;
+    font-weight: 800;
+}
+
+.footer-col h4 {
+    font-size: 17px;
+    margin-bottom: 18px;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.footer-col p {
+    font-size: 14px;
+    line-height: 1.9;
+    opacity: 0.85;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col li {
+    margin-bottom: 12px;
+}
+
+.footer-col a {
+    color: rgba(255,255,255,0.8);
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer-col a:hover {
+    color: var(--accent);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding: 22px 0;
+    text-align: center;
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+/* ========== 響應式設計 ========== */
+
+/* 平板：1024px 以下 */
+@media (max-width: 1024px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .highlights-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    .tours-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+    }
+    .hero h1 {
+        font-size: 44px;
+    }
+    .section-title {
+        font-size: 28px;
+    }
+}
+
+/* 手機橫向與小平板：768px 以下 */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        flex-direction: column;
+        padding: 16px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        z-index: 999;
+        gap: 4px;
+    }
+    .nav-menu.active {
+        display: flex;
+    }
+    .nav-menu a {
+        padding: 12px 20px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+    .mobile-menu-btn {
+        display: flex;
+    }
+    .hero {
+        min-height: 560px;
+    }
+    .hero h1 {
+        font-size: 36px;
+    }
+    .hero-subtitle {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+    .hero-desc {
+        font-size: 16px;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .page-hero {
+        height: 260px;
+    }
+    .page-hero h1 {
+        font-size: 34px;
+    }
+    .highlights-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .section-title {
+        font-size: 26px;
+    }
+    .section-subtitle {
+        font-size: 15px;
+        margin-bottom: 36px;
+    }
+    .features, .why-us, .tours, .distance-table, .faq {
+        padding: 60px 0;
+    }
+    /* 行程詳情頁面：改為單欄排列 */
+    .route-detail > div {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+    .route-detail img {
+        height: 240px !important;
+    }
+    /* 包車服務頁面：改為單欄排列 */
+    .container > div > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+    }
+    /* 聯絡我們頁面：改為單欄排列 */
+    .container > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+}
+
+/* 大手機：480px 以下 */
+@media (max-width: 480px) {
+    .nav-container {
+        height: 58px;
+        padding: 0 16px;
+    }
+    .logo {
+        font-size: 22px;
+    }
+    .hero {
+        min-height: 100vh;
+        padding-top: 58px;
+    }
+    .hero h1 {
+        font-size: 30px;
+        letter-spacing: 0;
+    }
+    .hero-subtitle {
+        font-size: 16px;
+        letter-spacing: 0.5px;
+    }
+    .hero-desc {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+    .page-hero {
+        height: 200px;
+        padding-top: 58px;
+    }
+    .page-hero h1 {
+        font-size: 28px;
+    }
+    .page-hero p {
+        font-size: 14px;
+    }
+    .section-title {
+        font-size: 22px;
+    }
+    .section-subtitle {
+        font-size: 14px;
+        margin-bottom: 28px;
+    }
+    .feature-card {
+        padding: 32px 24px;
+    }
+    .feature-icon {
+        font-size: 42px;
+    }
+    .feature-card h3 {
+        font-size: 18px;
+    }
+    .highlight-item img {
+        height: 160px;
+    }
+    .highlight-item h4 {
+        font-size: 16px;
+        padding: 14px 14px 8px;
+    }
+    .highlight-item p {
+        font-size: 13px;
+        padding: 0 14px;
+    }
+    .tour-image {
+        height: 180px !important;
+        padding: 16px !important;
+    }
+    .tour-info {
+        padding: 18px 20px 22px !important;
+    }
+    .tour-info h3 {
+        font-size: 18px;
+    }
+    .tour-info p {
+        font-size: 13px;
+    }
+    .faq-item {
+        padding: 20px 22px;
+    }
+    .faq-item h4 {
+        font-size: 15px;
+    }
+    .faq-item p {
+        font-size: 14px;
+    }
+    .table-wrapper {
+        font-size: 13px;
+    }
+    th, td {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+    .footer-col h3 {
+        font-size: 20px;
+    }
+    .footer-col h4 {
+        font-size: 15px;
+    }
+    .footer-col p, .footer-col a {
+        font-size: 13px;
+    }
+    .btn {
+        padding: 11px 24px;
+        font-size: 14px;
+    }
+    .btn-primary {
+        padding: 14px 32px;
+        font-size: 15px;
+    }
+}
+
+/* 極小螢幕：360px 以下 */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 26px;
+    }
+    .section-title {
+        font-size: 20px;
+    }
+    .page-hero h1 {
+        font-size: 24px;
+    }
+    .logo {
+        font-size: 20px;
+    }
+    .container {
+        padding: 0 16px;
+    }
+}
+
+/* ========== 手機版選單按鈕 ========== */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 24px;
+    height: 2.5px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ========== 表格響應式包裝 ========== */
+.table-wrapper {
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-wrapper table {
+    min-width: 600px;
+}
+
+/* ========== 表單響應式 ========== */
+@media (max-width: 768px) {
+    div[style*="grid-template-columns:1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+        font-size: 16px; /* 防止 iOS 自動縮放 */
+    }
+}
+
+/* ========== 圖片優化 ========== */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.tour-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.tour-image img {
+    transition: transform 0.5s;
+}
+
+/* ========== 回到頂部按鈕行動優化 ========== */
+@media (max-width: 480px) {
+    #backToTop {
+        bottom: 20px !important;
+        right: 20px !important;
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 18px !important;
+    }
+}
+
+/* ========== 動畫效能優化 ========== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

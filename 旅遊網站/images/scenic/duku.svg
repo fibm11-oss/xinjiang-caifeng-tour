@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <rect width="800" height="600" fill="#2c3e50"/>
+  <!-- Road -->
+  <path d="M0,400 Q200,350 400,300 Q600,250 800,200" stroke="#7f8c8d" stroke-width="40" fill="none"/>
+  <path d="M0,400 Q200,350 400,300 Q600,250 800,200" stroke="#ecf0f1" stroke-width="2" stroke-dasharray="20,10" fill="none"/>
+  <!-- Mountains left -->
+  <polygon points="0,350 100,200 200,320 300,250 400,300" fill="#bdc3c7"/>
+  <polygon points="0,350 100,200 200,320" fill="#ecf0f1" opacity="0.5"/>
+  <!-- Mountains right -->
+  <polygon points="400,300 500,180 600,250 700,200 800,220 800,600 400,600" fill="#95a5a6"/>
+  <polygon points="500,180 600,250 550,240" fill="#bdc3c7" opacity="0.5"/>
+  <!-- Snow on peaks -->
+  <polygon points="80,200 120,210 100,200" fill="#fff" opacity="0.8"/>
+  <polygon points="480,180 520,190 500,180" fill="#fff" opacity="0.8"/>
+  <polygon points="680,200 720,210 700,200" fill="#fff" opacity="0.8"/>
+  <!-- Car (simple) -->
+  <rect x="350" y="285" width="50" height="20" fill="#e74c3c" rx="5"/>
+  <rect x="360" y="275" width="30" height="15" fill="#e74c3c" rx="3"/>
+  <circle cx="360" cy="310" r="8" fill="#2c3e50"/>
+  <circle cx="390" cy="310" r="8" fill="#2c3e50"/>
+  <!-- Pine trees -->
+  <polygon points="50,400 70,350 90,400" fill="#27ae60"/>
+  <rect x="65" y="400" width="10" height="20" fill="#795548"/>
+  <polygon points="700,220 720,170 740,220" fill="#27ae60"/>
+  <rect x="715" y="220" width="10" height="20" fill="#795548"/>
+  <text x="400" y="500" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="24" fill="#fff" opacity="0.9">獨庫公路 Duku Highway</text>
+</svg>

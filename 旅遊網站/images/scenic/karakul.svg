@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5276;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#3498db;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="lakeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5276;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#0d3b66;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#skyGrad)"/>
+  <!-- Snow mountains -->
+  <polygon points="0,300 150,100 300,250 450,80 600,200 800,120 800,600 0,600" fill="#ecf0f1"/>
+  <polygon points="150,100 300,250 220,230" fill="#fff" opacity="0.7"/>
+  <polygon points="450,80 600,200 520,180" fill="#fff" opacity="0.7"/>
+  <!-- Lake Karakul -->
+  <ellipse cx="400" cy="480" rx="400" ry="100" fill="url(#lakeGrad)"/>
+  <!-- Mountain reflection in lake -->
+  <polygon points="100,480 200,380 300,460 400,350 500,460 600,380 700,480" fill="#bdc3c7" opacity="0.3"/>
+  <!-- Grazing animals (simple) -->
+  <text x="200" y="520" font-size="20">🐑</text>
+  <text x="600" y="530" font-size="18">🐑</text>
+  <text x="650" y="525" font-size="18">🐑</text>
+  <text x="400" y="100" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="22" fill="#fff" opacity="0.9">喀拉庫勒湖 Karakul Lake</text>
+  <text x="400" y="130" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="16" fill="#fff" opacity="0.7">慕士塔格峰 Muztagh Ata</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a4a7a;stop-opacity:0.85"/>
+      <stop offset="100%" style="stop-color:#c8102e;stop-opacity:0.65"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="500" fill="url(#bg)"/>
+  <!-- Mountain range -->
+  <polygon points="0,300 100,200 250,280 400,150 600,220 800,130 1000,200 1200,180 1200,500 0,500" fill="#bdc3c7" opacity="0.6"/>
+  <polygon points="0,350 150,250 300,330 500,180 700,270 900,190 1200,240 1200,500 0,500" fill="#ecf0f1" opacity="0.5"/>
+  <!-- Snow caps -->
+  <polygon points="80,200 120,210 100,200" fill="#fff" opacity="0.9"/>
+  <polygon points="380,150 420,165 400,150" fill="#fff" opacity="0.9"/>
+  <polygon points="780,130 820,145 800,130" fill="#fff" opacity="0.9"/>
+  <!-- Lake -->
+  <ellipse cx="600" cy="420" rx="450" ry="60" fill="#3498db" opacity="0.5"/>
+  <!-- Route path (simplified) -->
+  <path d="M100,380 Q300,320 500,350 Q700,280 900,330 Q1000,300 1100,320" 
+        stroke="#f1c40f" stroke-width="4" fill="none" stroke-dasharray="10,5" opacity="0.8"/>
+  <!-- Pin markers -->
+  <circle cx="100" cy="380" r="8" fill="#e74c3c"/>
+  <circle cx="500" cy="350" r="8" fill="#e74c3c"/>
+  <circle cx="900" cy="330" r="8" fill="#e74c3c"/>
+  <circle cx="1100" cy="320" r="8" fill="#e74c3c"/>
+  <text x="600" y="100" text-anchor="middle" font-family="Arial,sans-serif" font-size="38" font-weight="bold" fill="#fff" opacity="0.95">推荐行程 Tour Routes</text>
+</svg>

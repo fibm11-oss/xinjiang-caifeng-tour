@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="tianchiGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#1a5276;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="#87ceeb"/>
+  <polygon points="0,400 150,250 300,350 500,200 700,300 800,280 800,600 0,600" fill="#ecf0f1"/>
+  <ellipse cx="400" cy="480" rx="350" ry="80" fill="url(#tianchiGrad)"/>
+  <polygon points="0,400 150,250 300,350 500,200 700,300 800,280 800,400 0,450" fill="#ecf0f1" opacity="0.7"/>
+  <text x="400" y="150" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="26" fill="#fff" opacity="0.9">天山天池 Tianchi Lake</text>
+  <!-- Trees -->
+  <circle cx="100" cy="470" r="15" fill="#27ae60"/>
+  <rect x="95" y="470" width="10" height="30" fill="#795548"/>
+  <circle cx="700" cy="460" r="18" fill="#27ae60"/>
+  <rect x="695" y="460" width="10" height="35" fill="#795548"/>
+</svg>

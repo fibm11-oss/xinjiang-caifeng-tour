@@ -1,0 +1,569 @@
+/* ========== 全局設定 ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #c8102e;
+    --primary-dark: #a00d24;
+    --secondary: #1a4a7a;
+    --accent: #f5a623;
+    --bg: #ffffff;
+    --bg-light: #f7f8fa;
+    --text: #222222;
+    --text-light: #666;
+    --border: #e0e0e0;
+    --radius: 8px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --shadow-hover: 0 6px 24px rgba(0,0,0,0.12);
+}
+
+body {
+    font-family: "Microsoft JhengHei", "PingFang TC", "Helvetica Neue", Arial, sans-serif;
+    color: var(--text);
+    line-height: 1.7;
+    background: var(--bg);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* ========== 按鈕 ========== */
+.btn {
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(200,16,46,0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.btn-secondary:hover {
+    background: #fff;
+    color: var(--primary);
+}
+
+.btn-text {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.btn-text:hover {
+    text-decoration: underline;
+}
+
+/* ========== 區塊標題 ========== */
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--secondary);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 16px;
+    margin-bottom: 48px;
+}
+
+/* ========== 頂部導航 ========== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.97);
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+    backdrop-filter: blur(8px);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.logo span {
+    color: var(--secondary);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 8px;
+}
+
+.nav-menu a {
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    transition: all 0.2s;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* ========== Hero ========== */
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    background:
+        linear-gradient(135deg, rgba(26,74,122,0.75), rgba(200,16,46,0.55)),
+        url("../images/hero-xinjiang.webp") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding-top: 64px;
+}
+
+.hero-overlay {
+    display: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 24px;
+}
+
+.hero h1 {
+    font-size: 56px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.3);
+}
+
+.hero-subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+}
+
+.hero-desc {
+    font-size: 17px;
+    margin-bottom: 36px;
+    opacity: 0.92;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ========== 子頁首圖（page-hero） ========== */
+.page-hero {
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding-top: 64px;
+    margin-bottom: 0;
+}
+
+.page-hero h1 {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+.page-hero p {
+    font-size: 17px;
+    opacity: 0.9;
+}
+
+/* ========== 服務特色 ========== */
+.features {
+    padding: 80px 0;
+    background: var(--bg-light);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.feature-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 40px 28px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.feature-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: var(--secondary);
+}
+
+.feature-card p {
+    color: var(--text-light);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* ========== 推薦理由（景點亮點） ========== */
+.why-us {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.highlight-item {
+    background: var(--bg-light);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+    padding-bottom: 20px;
+}
+
+.highlight-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.highlight-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.highlight-item h4 {
+    font-size: 17px;
+    padding: 16px 16px 8px;
+    color: var(--secondary);
+}
+
+.highlight-item p {
+    font-size: 13px;
+    color: var(--text-light);
+    padding: 0 16px;
+    line-height: 1.6;
+}
+
+/* ========== 精選行程 ========== */
+.tours {
+    padding: 80px 0;
+    background: var(--bg-light);
+}
+
+.tours-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+.tour-card {
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+}
+
+.tour-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.tour-image {
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    position: relative;
+}
+
+.tour-image h3 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+}
+
+.tour-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--accent);
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.tour-info {
+    padding: 20px;
+}
+
+.tour-info p {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+/* ========== 景點車程表格 ========== */
+.distance-table {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+thead {
+    background: var(--secondary);
+    color: #fff;
+}
+
+th, td {
+    padding: 14px 18px;
+    text-align: left;
+    font-size: 15px;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+}
+
+tbody tr:hover {
+    background: #f0f6ff;
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* ========== FAQ ========== */
+.faq {
+    padding: 80px 0;
+    background: var(--bg-light);
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-item {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    box-shadow: var(--shadow);
+}
+
+.faq-item h4 {
+    font-size: 17px;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.faq-item p {
+    color: var(--text-light);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* ========== 頁尾 ========== */
+.footer {
+    background: var(--secondary);
+    color: #fff;
+    padding: 60px 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+.footer-col h3 {
+    font-size: 22px;
+    margin-bottom: 16px;
+}
+
+.footer-col h4 {
+    font-size: 16px;
+    margin-bottom: 16px;
+    color: var(--accent);
+}
+
+.footer-col p {
+    font-size: 14px;
+    line-height: 1.8;
+    opacity: 0.85;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col li {
+    margin-bottom: 10px;
+}
+
+.footer-col a {
+    color: rgba(255,255,255,0.8);
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer-col a:hover {
+    color: var(--accent);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+/* ========== 響應式 ========== */
+@media (max-width: 900px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    .highlights-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .tours-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .hero h1 {
+        font-size: 36px;
+    }
+    .hero-subtitle {
+        font-size: 18px;
+    }
+    .section-title {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 600px) {
+    .highlights-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    .nav-menu {
+        gap: 2px;
+    }
+    .nav-menu a {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+    .hero h1 {
+        font-size: 28px;
+    }
+}

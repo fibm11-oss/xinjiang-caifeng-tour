@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="lakeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2980b9;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1a5276;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="mtGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecf0f1;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#bdc3c7;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="#87ceeb"/>
+  <polygon points="0,350 200,200 400,300 600,150 800,250 800,600 0,600" fill="url(#mtGrad)"/>
+  <ellipse cx="400" cy="450" rx="400" ry="120" fill="url(#lakeGrad)"/>
+  <rect x="0" y="560" width="800" height="40" fill="#27ae60"/>
+  <text x="400" y="100" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="28" fill="#fff" opacity="0.8">賽里木湖 Sayram Lake</text>
+</svg>

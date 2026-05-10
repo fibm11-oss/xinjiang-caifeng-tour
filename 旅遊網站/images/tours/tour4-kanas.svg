@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9b59b6;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#3498db;stop-opacity:0.9"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <!-- Snow mountains -->
+  <polygon points="0,350 150,200 300,300 500,180 700,280 800,250 800,500 0,500" fill="#ecf0f1" opacity="0.8"/>
+  <!-- Pine trees -->
+  <polygon points="100,400 120,330 140,400" fill="#27ae60"/>
+  <rect x="115" y="400" width="10" height="25" fill="#795548"/>
+  <polygon points="250,380 270,310 290,380" fill="#2ecc71"/>
+  <rect x="265" y="380" width="10" height="25" fill="#795548"/>
+  <polygon points="550,390 570,320 590,390" fill="#27ae60"/>
+  <rect x="565" y="390" width="10" height="25" fill="#795548"/>
+  <polygon points="700,370 720,300 740,370" fill="#2ecc71"/>
+  <rect x="715" y="370" width="10" height="25" fill="#795548"/>
+  <!-- Lake -->
+  <ellipse cx="400" cy="440" rx="300" ry="40" fill="#3498db" opacity="0.7"/>
+  <text x="400" y="200" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="34" font-weight="bold" fill="#fff" stroke="#000" stroke-width="1" opacity="0.95">北疆喀納斯8日</text>
+  <text x="400" y="245" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="17" fill="#fff" opacity="0.85">喀納斯湖 · 禾木村 · 魔鬼城</text>
+</svg>

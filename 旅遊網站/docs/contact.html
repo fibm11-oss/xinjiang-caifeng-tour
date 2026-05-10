@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聯絡我們｜新疆采風</title>
+    <meta name="description" content="聯絡新疆采風－微信、Email、或直接填寫諮詢表單，我們將在24小時內回覆您。">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="logo">新疆<span>采風</span></a>
+        <ul class="nav-menu">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="routes.html">推薦行程</a></li>
+            <li><a href="car-rental.html">包車服務</a></li>
+            <li><a href="contact.html" class="active">聯絡我們</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="page-hero" style="background:linear-gradient(135deg,rgba(26,74,122,0.85),rgba(200,16,46,0.65)),#1a4a7a;">
+    <h1>聯絡我們</h1>
+    <p>有任何問題或需求，歡迎隨時與我們聯絡</p>
+</section>
+
+<div class="container" style="padding:60px 24px;">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+
+        <!-- 左側：聯絡資訊 -->
+        <div>
+            <h2 style="font-size:24px;color:#1a4a7a;margin-bottom:24px;">聯絡方式</h2>
+
+            <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:40px;">
+                <div style="display:flex;align-items:center;gap:16px;">
+                    <div style="width:48px;height:48px;background:#f0f6ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">📱</div>
+                    <div>
+                        <strong style="color:#333;display:block;margin-bottom:2px;">微信掃碼諮詢</strong>
+                        <span style="color:#c8102e;font-size:16px;font-weight:700;">XJCaifeng</span>
+                        <p style="color:#888;font-size:13px;margin-top:2px;">加微信，發送「新疆旅遊」獲取專屬方案</p>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:16px;">
+                    <div style="width:48px;height:48px;background:#f0f6ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">📧</div>
+                    <div>
+                        <strong style="color:#333;display:block;margin-bottom:2px;">電子郵件</strong>
+                        <span style="color:#1a4a7a;font-size:15px;">info@xjcaifeng.com</span>
+                        <p style="color:#888;font-size:13px;margin-top:2px;">24小時內回覆</p>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:16px;">
+                    <div style="width:48px;height:48px;background:#f0f6ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🕐</div>
+                    <div>
+                        <strong style="color:#333;display:block;margin-bottom:2px;">服務時間</strong>
+                        <span style="color:#333;font-size:15px;">全年無休 09:00–22:00</span>
+                        <p style="color:#888;font-size:13px;margin-top:2px;">緊急聯絡24小時待命</p>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:16px;">
+                    <div style="width:48px;height:48px;background:#f0f6ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">📍</div>
+                    <div>
+                        <strong style="color:#333;display:block;margin-bottom:2px;">服務範圍</strong>
+                        <span style="color:#333;font-size:15px;">新疆全境（北疆・南疆・伊犁・喀什）</span>
+                        <p style="color:#888;font-size:13px;margin-top:2px;">烏魯木齊機場接送、跨城市包車</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 微信 QR Code 提示 -->
+            <div style="background:linear-gradient(135deg,#1a4a7a,#c8102e);border-radius:12px;padding:32px;text-align:center;color:#fff;">
+                <div style="font-size:48px;margin-bottom:12px;">📱</div>
+                <h3 style="font-size:18px;margin-bottom:8px;">微信掃碼，立即諮詢</h3>
+                <p style="font-size:14px;opacity:0.85;margin-bottom:16px;">添加微信 <strong>XJCaifeng</strong><br>發送「新疆旅遊」，獲取免費行程規劃</p>
+                <div style="background:rgba(255,255,255,0.15);border-radius:8px;padding:12px;font-size:13px;line-height:1.8;">
+                    💡 免費服務：行程規劃・報價估算・路線建議
+                </div>
+            </div>
+        </div>
+
+        <!-- 右側：諮詢表單 -->
+        <div>
+            <h2 style="font-size:24px;color:#1a4a7a;margin-bottom:24px;">填寫諮詢表單</h2>
+            <form id="contactForm" style="display:flex;flex-direction:column;gap:16px;" onsubmit="handleSubmit(event)">
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">您的稱呼 *</label>
+                    <input type="text" id="name" required placeholder="例如：王先生 / 李小姐" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'">
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                    <div>
+                        <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">聯絡微信</label>
+                        <input type="text" id="wechat" placeholder="選填，方便我們加您" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'">
+                    </div>
+                    <div>
+                        <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">電子郵件</label>
+                        <input type="email" id="email" placeholder="選填" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'">
+                    </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                    <div>
+                        <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">預計出發時間</label>
+                        <input type="text" id="departure" placeholder="例如：2026年7月" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'">
+                    </div>
+                    <div>
+                        <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">旅行天數</label>
+                        <select id="days" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;background:#fff;transition:border 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'">
+                            <option value="">請選擇</option>
+                            <option>5-7天</option>
+                            <option>8-10天</option>
+                            <option>11-14天</option>
+                            <option>15天以上</option>
+                            <option>尚未確定</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                    <div>
+                        <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">人數</label>
+                        <input type="text" id="people" placeholder="例如：2大1小" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'">
+                    </div>
+                    <div>
+                        <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">感興趣的路線</label>
+                        <select id="route" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;background:#fff;transition:border 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'">
+                            <option value="">請選擇</option>
+                            <option>伊犁草原・賽里木湖</option>
+                            <option>北疆喀纳斯・禾木</option>
+                            <option>南疆絲路・喀什古城</option>
+                            <option>獨庫公路全线</option>
+                            <option>尚未確定，需要建議</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">預算參考（每人）</label>
+                    <select id="budget" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;background:#fff;transition:border 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'">
+                        <option value="">請選擇</option>
+                        <option>5,000元以下</option>
+                        <option>5,000–8,000元</option>
+                        <option>8,000–12,000元</option>
+                        <option>12,000元以上</option>
+                        <option>尚無預算概念</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">其他需求或備註</label>
+                    <textarea id="message" rows="4" placeholder="例如：想拍攝星空、有長輩同行需要舒適行程、素食需求..." style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;resize:vertical;transition:border 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;padding:16px;font-size:17px;margin-top:8px;">送出諮詢表單</button>
+            </form>
+            <p style="color:#888;font-size:13px;text-align:center;margin-top:12px;">我們將在 24 小時內透過微信或 Email 回覆您</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- FAQ 簡短版 -->
+<section style="background:#f7f8fa;padding:60px 0;">
+    <div class="container">
+        <h2 class="section-title">常見問題快速解答</h2>
+        <p class="section-subtitle">更多問題請參閱<a href="index.html#faq" style="color:#c8102e;">首頁 FAQ</a> 或直接与我們聯絡</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;">
+            <div style="background:#fff;border-radius:12px;padding:24px;">
+                <h4 style="color:#c8102e;font-size:15px;margin-bottom:8px;">包車需要提前幾天預約？</h4>
+                <p style="color:#666;font-size:14px;line-height:1.7;">旺季（6-9月）建議提前 15-30 天，淡季提前 7-10 天即可。也可臨時詢問是否有空車。</p>
+            </div>
+            <div style="background:#fff;border-radius:12px;padding:24px;">
+                <h4 style="color:#c8102e;font-size:15px;margin-bottom:8px;">可以代訂住宿和門票嗎？</h4>
+                <p style="color:#666;font-size:14px;line-height:1.7;">可以，我們不收取任何服務費，僅按實際價格代訂，並提供套餐優惠方案。</p>
+            </div>
+            <div style="background:#fff;border-radius:12px;padding:24px;">
+                <h4 style="color:#c8102e;font-size:15px;margin-bottom:8px;">獨庫公路什麼時候開放？</h4>
+                <p style="color:#666;font-size:14px;line-height:1.7;">通常 6 月初至 10 月初開放，視當年天氣與融雪情況而定，我們會提前通知最新路況。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>新疆采風</h3>
+                <p>專業新疆包車旅遊服務，帶您深入探索天山南北。</p>
+            </div>
+            <div class="footer-col">
+                <h4>快速連結</h4>
+                <ul>
+                    <li><a href="index.html">首頁</a></li>
+                    <li><a href="routes.html">推薦行程</a></li>
+                    <li><a href="car-rental.html">包車服務</a></li>
+                    <li><a href="contact.html">聯絡我們</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>精選路線</h4>
+                <ul>
+                    <li><a href="routes.html#tour1">伊犁河谷10日</a></li>
+                    <li><a href="routes.html#tour2">草原深度8日</a></li>
+                    <li><a href="routes.html#tour3">南疆絲路9日</a></li>
+                    <li><a href="routes.html#tour4">北疆喀纳斯8日</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>聯絡資訊</h4>
+                <p>📱 微信：XJCaifeng</p>
+                <p>📧 Email：info@xjcaifeng.com</p>
+                <p>🕐 服務時間：全年無休 09:00-22:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+    e.preventDefault();
+    var name = document.getElementById('name').value;
+    if (!name) {
+        alert('請填寫您的稱呼');
+        return;
+    }
+    // 模擬送出成功
+    document.getElementById('contactForm').style.display = 'none';
+    var thankYou = document.createElement('div');
+    thankYou.style.cssText = 'text-align:center;padding:40px;background:#f0faf0;border-radius:12px;';
+    thankYou.innerHTML = '<div style="font-size:48px;margin-bottom:16px;">✅</div><h3 style="color:#2e7d32;font-size:22px;margin-bottom:12px;">諮詢表單已送出！</h3><p style="color:#666;font-size:15px;line-height:1.8;">感謝您的諮詢，我們將在 <strong>24 小時內</strong>透過微信或 Email 與您聯絡。<br>如需緊急諮詢，請直接加微信 <strong>XJCaifeng</strong>。</p>';
+    document.getElementById('contactForm').parentNode.appendChild(thankYou);
+}
+</script>
+
+</body>
+</html>

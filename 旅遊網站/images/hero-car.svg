@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a4a7a;stop-opacity:0.85"/>
+      <stop offset="100%" style="stop-color:#c8102e;stop-opacity:0.65"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="500" fill="url(#bg)"/>
+  <!-- Road -->
+  <path d="M0,350 Q300,280 600,320 Q900,250 1200,300" stroke="#7f8c8d" stroke-width="30" fill="none" opacity="0.7"/>
+  <path d="M0,350 Q300,280 600,320 Q900,250 1200,300" stroke="#ecf0f1" stroke-width="2" stroke-dasharray="15,8" fill="none" opacity="0.8"/>
+  <!-- Car -->
+  <rect x="550" y="295" width="60" height="25" fill="#e74c3c" rx="5"/>
+  <rect x="560" y="282" width="40" height="18" fill="#e74c3c" rx="3"/>
+  <circle cx="560" cy="325" r="10" fill="#2c3e50"/>
+  <circle cx="595" cy="325" r="10" fill="#2c3e50"/>
+  <!-- Mountains -->
+  <polygon points="0,300 200,150 400,280 600,120 800,250 1000,180 1200,220 1200,500 0,500" fill="#bdc3c7" opacity="0.5"/>
+  <polygon points="200,150 400,280 300,260" fill="#fff" opacity="0.6"/>
+  <polygon points="600,120 800,250 700,230" fill="#fff" opacity="0.6"/>
+  <text x="600" y="100" text-anchor="middle" font-family="Arial,sans-serif" font-size="32" font-weight="bold" fill="#fff" opacity="0.9">包车服务 Car Rental</text>
+</svg>

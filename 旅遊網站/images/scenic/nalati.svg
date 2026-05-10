@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <rect width="800" height="600" fill="#87ceeb"/>
+  <rect x="0" y="300" width="800" height="300" fill="#27ae60"/>
+  <rect x="0" y="280" width="800" height="40" fill="#2ecc71"/>
+  <circle cx="650" cy="100" r="50" fill="#f39c12" opacity="0.8"/>
+  <text x="400" y="200" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="24" fill="#fff" opacity="0.9">那拉提草原 Nalati Grassland</text>
+  <!-- Grass details -->
+  <line x1="100" y1="350" x2="110" y2="320" stroke="#1e8449" stroke-width="2"/>
+  <line x1="200" y1="340" x2="210" y2="310" stroke="#1e8449" stroke-width="2"/>
+  <line x1="600" y1="360" x2="610" y2="330" stroke="#1e8449" stroke-width="2"/>
+  <line x1="700" y1="345" x2="710" y2="315" stroke="#1e8449" stroke-width="2"/>
+  <!-- Horses (simple) -->
+  <text x="300" y="420" font-size="40">🐎</text>
+  <text x="500" y="410" font-size="35">🐎</text>
+</svg>

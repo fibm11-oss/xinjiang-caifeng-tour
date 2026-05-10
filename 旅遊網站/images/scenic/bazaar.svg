@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <rect width="800" height="600" fill="#e67e22"/>
+  <!-- Market stalls -->
+  <rect x="50" y="200" width="120" height="80" fill="#c0392b" rx="3"/>
+  <path d="M50,200 Q110,160 170,200" fill="#e74c3c"/>
+  <rect x="200" y="180" width="130" height="100" fill="#c0392b" rx="3"/>
+  <path d="M200,180 Q265,140 335,180" fill="#e74c3c"/>
+  <rect x="380" y="190" width="110" height="90" fill="#c0392b" rx="3"/>
+  <path d="M380,190 Q435,150 490,190" fill="#e74c3c"/>
+  <rect x="550" y="185" width="140" height="95" fill="#c0392b" rx="3"/>
+  <path d="M550,185 Q620,145 690,185" fill="#e74c3c"/>
+  <rect x="50" y="420" width="150" height="80" fill="#c0392b" rx="3"/>
+  <path d="M50,420 Q125,380 200,420" fill="#e74c3c"/>
+  <rect x="250" y="410" width="120" height="90" fill="#c0392b" rx="3"/>
+  <path d="M250,410 Q310,370 370,410" fill="#e74c3c"/>
+  <rect x="450" y="415" width="130" height="85" fill="#c0392b" rx="3"/>
+  <path d="M450,415 Q515,375 580,415" fill="#e74c3c"/>
+  <!-- People -->
+  <text x="120" y="320" font-size="25">👨</text>
+  <text x="300" y="340" font-size="25">👩</text>
+  <text x="500" y="330" font-size="25">👨👩</text>
+  <!-- Goods (simplified) -->
+  <rect x="80" y="240" width="15" height="25" fill="#f1c40f" rx="2"/>
+  <rect x="280" y="230" width="18" height="30" fill="#e74c3c" rx="2"/>
+  <circle cx="420" cy="250" r="12" fill="#2ecc71"/>
+  <text x="400" y="550" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="24" fill="#fff" opacity="0.9">國際大巴紮 International Bazaar</text>
+</svg>

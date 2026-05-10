@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sandGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f39c12;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#d68910;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#sandGrad)"/>
+  <!-- Sand dunes -->
+  <path d="M0,300 Q200,200 400,280 Q600,180 800,250 L800,600 L0,600 Z" fill="#e67e22" opacity="0.5"/>
+  <path d="M0,400 Q200,320 400,380 Q600,300 800,350 L800,600 L0,600 Z" fill="#f1c40f" opacity="0.4"/>
+  <path d="M0,500 Q200,450 400,480 Q600,430 800,460 L800,600 L0,600 Z" fill="#d4ac0e" opacity="0.6"/>
+  <!-- Camel caravan -->
+  <text x="300" y="370" font-size="35">🐫</text>
+  <text x="350" y="365" font-size="30">🐫</text>
+  <text x="400" y="360" font-size="28">🐫</text>
+  <!-- Sun -->
+  <circle cx="650" cy="100" r="50" fill="#e74c3c" opacity="0.8"/>
+  <circle cx="650" cy="100" r="35" fill="#f39c12" opacity="0.9"/>
+  <!-- Sand texture -->
+  <line x1="50" y1="550" x2="150" y2="545" stroke="#c0850a" stroke-width="1" opacity="0.4"/>
+  <line x1="250" y1="560" x2="380" y2="555" stroke="#c0850a" stroke-width="1" opacity="0.4"/>
+  <line x1="500" y1="545" x2="650" y2="540" stroke="#c0850a" stroke-width="1" opacity="0.4"/>
+  <text x="400" y="250" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="26" fill="#fff" opacity="0.9">塔克拉瑪干沙漠</text>
+  <text x="400" y="285" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="20" fill="#fff" opacity="0.8">Taklamakan Desert</text>
+</svg>

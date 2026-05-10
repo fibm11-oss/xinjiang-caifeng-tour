@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="70%">
+      <stop offset="0%" style="stop-color:#1a4a7a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a90d9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="snow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0e8f0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="lake" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#1a5276;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  <!-- Sky -->
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <!-- Stars -->
+  <circle cx="100" cy="80" r="1.5" fill="#fff" opacity="0.8"/>
+  <circle cx="300" cy="120" r="1" fill="#fff" opacity="0.6"/>
+  <circle cx="500" cy="60" r="1.8" fill="#fff" opacity="0.7"/>
+  <circle cx="700" cy="100" r="1.2" fill="#fff" opacity="0.9"/>
+  <circle cx="900" cy="70" r="1.5" fill="#fff" opacity="0.6"/>
+  <circle cx="1100" cy="90" r="1" fill="#fff" opacity="0.8"/>
+  <circle cx="200" cy="150" r="1" fill="#fff" opacity="0.5"/>
+  <circle cx="800" cy="140" r="1.5" fill="#fff" opacity="0.7"/>
+  <!-- Snow Mountains -->
+  <polygon points="0,500 200,300 400,450 600,250 800,400 1000,280 1200,350 1200,800 0,800" fill="url(#snow)"/>
+  <!-- Mountain shading -->
+  <polygon points="200,300 400,450 300,450" fill="#d0d8e0" opacity="0.5"/>
+  <polygon points="600,250 800,400 700,380" fill="#d0d8e0" opacity="0.5"/>
+  <polygon points="1000,280 1200,350 1100,340" fill="#d0d8e0" opacity="0.5"/>
+  <!-- Lake (Sayram Lake) -->
+  <ellipse cx="600" cy="620" rx="500" ry="100" fill="url(#lake)"/>
+  <!-- Lake reflection -->
+  <polygon points="200,620 400,620 350,680 250,680" fill="#1a5276" opacity="0.3"/>
+  <polygon points="700,620 900,620 850,680 750,680" fill="#1a5276" opacity="0.3"/>
+  <!-- Grass foreground -->
+  <rect x="0" y="720" width="1200" height="80" fill="#2d5016" opacity="0.6"/>
+  <rect x="0" y="740" width="1200" height="60" fill="#1a3a0a" opacity="0.5"/>
+  <!-- Sun/Moon glow -->
+  <circle cx="950" cy="180" r="40" fill="#f5a623" opacity="0.3"/>
+  <circle cx="950" cy="180" r="25" fill="#f5a623" opacity="0.5"/>
+  <!-- Clouds -->
+  <ellipse cx="300" cy="200" rx="80" ry="25" fill="#fff" opacity="0.2"/>
+  <ellipse cx="350" cy="195" rx="60" ry="20" fill="#fff" opacity="0.15"/>
+  <ellipse cx="900" cy="250" rx="100" ry="30" fill="#fff" opacity="0.2"/>
+  <ellipse cx="950" cy="245" rx="70" ry="25" fill="#fff" opacity="0.15"/>
+</svg>

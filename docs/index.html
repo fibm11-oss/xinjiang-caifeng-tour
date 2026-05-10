@@ -3,31 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新疆采風｜新疆包車旅遊・定制小包團</title>
+    <title>新疆采風｜新疆包車旅遊・定制包車</title>
     <meta name="description" content="新疆采風－專業新疆包車旅遊服務，提供北疆喀纳斯、伊犁草原、南疆丝路深度行程，專屬司機+私人導遊，量身打造難忘旅程。">
+    <meta name="keywords" content="新疆旅遊,包車旅遊,喀纳斯,伊犁草原,絲路,專車專導,深度旅遊">
+    <meta name="author" content="新疆采風">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xjcaifeng.com/">
+    <meta property="og:title" content="新疆采風｜新疆包車旅遊・定制包車">
+    <meta property="og:description" content="專業新疆包車旅遊服務，提供北疆喀纳斯、伊犁草原、南疆丝路深度行程，專屬司機+私人導遊，量身打造難忘旅程。">
+    <meta property="og:image" content="https://xjcaifeng.com/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://xjcaifeng.com/">
+    <meta property="twitter:title" content="新疆采風｜新疆包車旅遊・定制包車">
+    <meta property="twitter:description" content="專業新疆包車旅遊服務，提供北疆喀纳斯、伊犁草原、南疆丝路深度行程，專屬司機+私人導遊，量身打造難忘旅程。">
+    <meta property="twitter:image" content="https://xjcaifeng.com/images/og-image.jpg">
+
+    <!-- 預載入關鍵資源 -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="images/hero-xinjiang.svg" as="image">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#c8102e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="新疆采風">
+    <link rel="apple-touch-icon" href="images/favicon.svg">
+
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- 結構化數據 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TravelAgency",
+        "name": "新疆采風",
+        "description": "專業新疆包車旅遊服務，提供北疆喀纳斯、伊犁草原、南疆丝路深度行程",
+        "url": "https://xjcaifeng.com",
+        "logo": "https://xjcaifeng.com/images/logo.svg",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "",
+            "contactType": "customer service",
+            "availableLanguage": "Chinese",
+            "contactOption": "TollFree"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "CN",
+            "addressRegion": "新疆"
+        },
+        "sameAs": [
+            "https://line.me/R/ti/p/@xjcaifeng"
+        ],
+        "offers": {
+            "@type": "Offer",
+            "description": "新疆包車旅遊服務，包含專屬司機和私人導遊"
+        }
+    }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        @keyframes fadeInUp {
+            from { opacity:0; transform:translateY(40px); }
+            to { opacity:1; transform:translateY(0); }
+        }
+        .fade-in { animation: fadeInUp 0.7s ease-out both; }
+
+        /* 載入動畫 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+        .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
+    <!-- 載入動畫 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- 跳過連結（無障礙性） -->
+    <a href="#main-content" class="skip-link">跳至主要內容</a>
 
 <!-- 頂部導航 -->
-<nav class="navbar">
+<nav class="navbar" role="navigation" aria-label="主導航">
     <div class="nav-container">
-        <a href="index.html" class="logo">新疆<span>采風</span></a>
-        <ul class="nav-menu">
-            <li><a href="index.html" class="active">首頁</a></li>
-            <li><a href="routes.html">推薦行程</a></li>
-            <li><a href="car-rental.html">包車服務</a></li>
-            <li><a href="contact.html">聯絡我們</a></li>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="開啟行動選單" aria-expanded="false" aria-controls="navMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
+        <a href="index.html" class="logo" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+        <ul class="nav-menu" id="navMenu" role="menubar" aria-label="網站導航選單">
+            <li role="none"><a href="index.html" class="active" role="menuitem" aria-current="page">首頁</a></li>
+            <li role="none"><a href="routes.html" role="menuitem">推薦行程</a></li>
+            <li role="none"><a href="car-rental.html" role="menuitem">包車服務</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">聯絡我們</a></li>
         </ul>
     </div>
 </nav>
 
 <!-- Hero 區塊 -->
-<section class="hero">
+<section class="hero" id="main-content">
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <h1>新疆包車定制遊</h1>
-        <p class="hero-subtitle">客製化小包團・團體旅遊</p>
+        <p class="hero-subtitle">客製化包車・私人導遊</p>
         <p class="hero-desc">根據您的預算與天數，量身打造專屬新疆行程<br>北疆風光・南疆人文・全程專車專導</p>
         <div class="hero-buttons">
             <a href="routes.html" class="btn btn-primary">查看推薦行程</a>
@@ -59,198 +171,35 @@
     </div>
 </section>
 
-<!-- 推薦理由 -->
-<section class="why-us">
-    <div class="container">
-        <h2 class="section-title">為什麼選擇新疆采風包車？</h2>
-        <p class="section-subtitle">新疆是中國最遼闊、最多樣化的旅遊目的地，包車是最能深入體驗的方式</p>
-        <div class="highlights-grid">
-            <div class="highlight-item">
-                <img src="images/scenic/sayram-lake.webp" alt="賽里木湖" onerror="this.style.display='none'">
-                <h4>賽里木湖</h4>
-                <p>大西洋最後一滴眼淚，藍得讓人屏息的高山湖泊</p>
-            </div>
-            <div class="highlight-item">
-                <img src="images/scenic/nalati.webp" alt="那拉提草原" onerror="this.style.display='none'">
-                <h4>那拉提草原</h4>
-                <p>空中草原，夏季野花遍地，哈薩克牧場風情濃厚</p>
-            </div>
-            <div class="highlight-item">
-                <img src="images/scenic/kashgar.webp" alt="喀什古城" onerror="this.style.display='none'">
-                <h4>喀什古城</h4>
-                <p>絲路重鎮，維吾爾文化活化石，千年不改的異域風情</p>
-            </div>
-            <div class="highlight-item">
-                <img src="images/scenic/tianchi.webp" alt="天山天池" onerror="this.style.display='none'">
-                <h4>天山天池</h4>
-                <p>傳說中西王母的瑤池，雪山映照碧水，人間仙境</p>
-            </div>
-            <div class="highlight-item">
-                <img src="images/scenic/duku.webp" alt="獨庫公路" onerror="this.style.display='none'">
-                <h4>獨庫公路</h4>
-                <p>中國最美公路，一日四季，貫穿天山南北的景觀大道</p>
-            </div>
-            <div class="highlight-item">
-                <img src="images/scenic/karakul.webp" alt="喀拉庫勒湖" onerror="this.style.display='none'">
-                <h4>喀拉庫勒湖</h4>
-                <p>「黑湖」倒映慕士塔格峰，帕米爾高原上的夢幻之境</p>
-            </div>
-            <div class="highlight-item">
-                <img src="images/scenic/taklamakan.webp" alt="塔克拉瑪干沙漠" onerror="this.style.display='none'">
-                <h4>塔克拉瑪干沙漠</h4>
-                <p>中國最大沙漠，絲路遺址散落其中，壯闊而神秘</p>
-            </div>
-            <div class="highlight-item">
-                <img src="images/scenic/bazaar.webp" alt="國際大巴紮" onerror="this.style.display='none'">
-                <h4>國際大巴紮</h4>
-                <p>新疆之窗，集美食、乾果、手工藝品於一體的熱鬧市集</p>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- 精選行程 -->
 <section class="tours">
     <div class="container">
-        <h2 class="section-title">新疆小包團｜客製化包車行程</h2>
-        <p class="section-subtitle">精選最經典的新疆路線，亦可依您的需求自由調整</p>
+        <h2 class="section-title">精選行程推薦</h2>
+        <p class="section-subtitle">為您精選最經典的新疆路線，亦可依需求自由調整</p>
         <div class="tours-grid">
-            <div class="tour-card">
-                <div class="tour-image" style="background:linear-gradient(135deg,#4a90d9,#357abd);">
-                    <span class="tour-badge">熱門</span>
-                    <h3>新疆伊犁河谷自駕10日遊</h3>
+                <div class="tour-card">
+                    <div class="tour-image" style="background-image:url('images/tours/tour1-ili-10days.svg');">
+                        <span class="tour-badge">熱門</span>
+                    </div>
+                    <div class="tour-info">
+                        <h3>新疆伊犁河谷自駕10日遊</h3>
+                        <p>賽里木湖環湖・那拉提草原・喀拉峻草原・巴音布魯克・獨庫公路全線通行</p>
+                        <a href="routes.html#tour1" class="btn-text">查看行程介紹 →</a>
+                    </div>
                 </div>
-                <div class="tour-info">
-                    <p>賽里木湖環湖・那拉提草原・喀拉峻草原・巴音布魯克・獨庫公路全线通行</p>
-                    <a href="routes.html#tour1" class="btn-text">查看行程介紹 →</a>
+                <div class="tour-card">
+                    <div class="tour-image" style="background-image:url('images/tours/tour2-grassland.svg');">
+                        <span class="tour-badge">推薦</span>
+                    </div>
+                    <div class="tour-info">
+                        <h3>新疆伊犁草原8日深度之旅</h3>
+                        <p>伊犁河谷全景・薰衣草花田（6-7月）・昭蘇草原・特克斯八卦城</p>
+                        <a href="routes.html#tour2" class="btn-text">查看行程介紹 →</a>
+                    </div>
                 </div>
-            </div>
-            <div class="tour-card">
-                <div class="tour-image" style="background:linear-gradient(135deg,#e8a345,#d4943a);">
-                    <span class="tour-badge">推薦</span>
-                    <h3>新疆伊犁草原8日深度之旅</h3>
-                </div>
-                <div class="tour-info">
-                    <p>伊犁河谷全景・薰衣草花田（6-7月）・昭蘇草原・特克斯八卦城</p>
-                    <a href="routes.html#tour2" class="btn-text">查看行程介紹 →</a>
-                </div>
-            </div>
-            <div class="tour-card">
-                <div class="tour-image" style="background:linear-gradient(135deg,#5cb85c,#4cae4c);">
-                    <span class="tour-badge">人文</span>
-                    <h3>南疆絲路秘境9日深度之旅</h3>
-                </div>
-                <div class="tour-info">
-                    <p>喀什古城・帕米爾高原・慕士塔格峰・塔克拉瑪干沙漠公路・和田玉龍喀什河</p>
-                    <a href="routes.html#tour3" class="btn-text">查看行程介紹 →</a>
-                </div>
-            </div>
-            <div class="tour-card">
-                <div class="tour-image" style="background:linear-gradient(135deg,#9b59b6,#8e44ad);">
-                    <span class="tour-badge">經典</span>
-                    <h3>北疆喀納斯8日深度旅行</h3>
-                </div>
-                <div class="tour-info">
-                    <p>喀納斯湖・禾木村・白哈巴・五彩灘・魔鬼城・烏爾禾胡楊林</p>
-                    <a href="routes.html#tour4" class="btn-text">查看行程介紹 →</a>
-                </div>
-            </div>
         </div>
         <div class="text-center" style="margin-top:2rem;">
             <a href="routes.html" class="btn btn-primary">查看全部行程</a>
-        </div>
-    </div>
-</section>
-
-<!-- 熱門景點車程參考 -->
-<section class="distance-table">
-    <div class="container">
-        <h2 class="section-title">新疆熱門景點車程參考</h2>
-        <p class="section-subtitle">以烏魯木齊為起點，規劃最順暢的包車路線</p>
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>景點</th>
-                        <th>所在區域</th>
-                        <th>車程時間（約）</th>
-                        <th>距離（約）</th>
-                        <th>特色</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>天山天池</td>
-                        <td>昌吉州</td>
-                        <td>1.5 小時</td>
-                        <td>120 km</td>
-                        <td>雪山湖泊，一日遊首選</td>
-                    </tr>
-                    <tr>
-                        <td>國際大巴紮</td>
-                        <td>烏魯木齊</td>
-                        <td>市區</td>
-                        <td>—</td>
-                        <td>新疆美食與特產集散地</td>
-                    </tr>
-                    <tr>
-                        <td>獨山子大峽谷</td>
-                        <td>克拉瑪依</td>
-                        <td>3 小時</td>
-                        <td>250 km</td>
-                        <td>億年侵蝕奇觀，震撼壯闊</td>
-                    </tr>
-                    <tr>
-                        <td>賽里木湖</td>
-                        <td>博州</td>
-                        <td>6 小時</td>
-                        <td>550 km</td>
-                        <td>藍冰與花海，四季皆美</td>
-                    </tr>
-                    <tr>
-                        <td>果子溝大橋</td>
-                        <td>伊犁</td>
-                        <td>6.5 小時</td>
-                        <td>560 km</td>
-                        <td>新疆最美大橋，薰衣草沿途盛開</td>
-                    </tr>
-                    <tr>
-                        <td>那拉提草原</td>
-                        <td>伊犁</td>
-                        <td>8 小時</td>
-                        <td>680 km</td>
-                        <td>空中草原，夏季必訪</td>
-                    </tr>
-                    <tr>
-                        <td>瓊庫什台</td>
-                        <td>伊犁</td>
-                        <td>9 小時</td>
-                        <td>720 km</td>
-                        <td>天山深處的原始牧村</td>
-                    </tr>
-                    <tr>
-                        <td>喀什古城</td>
-                        <td>喀什</td>
-                        <td>飛機 2hr / 火車 12hr</td>
-                        <td>1500 km</td>
-                        <td>南疆靈魂，维吾爾文化中心</td>
-                    </tr>
-                    <tr>
-                        <td>喀拉庫勒湖</td>
-                        <td>克州（帕米爾）</td>
-                        <td>飛機+車 4hr</td>
-                        <td>—</td>
-                        <td>慕士塔格峰倒映，高原聖湖</td>
-                    </tr>
-                    <tr>
-                        <td>塔克拉瑪干沙漠</td>
-                        <td>阿克蘇/和田</td>
-                        <td>火車/飛機轉乘</td>
-                        <td>—</td>
-                        <td>沙漠公路穿越，絲路終極體驗</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </section>
@@ -276,18 +225,6 @@
                 <h4>Q: 新疆旅遊需要幾天？</h4>
                 <p>北疆環線建議 8-10 天；南北疆聯遊建議 12-15 天；若時間有限，可選擇伊犁 6-7 天或喀什周邊 5-6 天。</p>
             </div>
-            <div class="faq-item">
-                <h4>Q: 新疆旅遊會有高原反應嗎？</h4>
-                <p>大部分景點海拔在 1000-2000 公尺，不會有明顯高反。唯獨帕米爾高原（喀拉庫勒湖一帶）海拔約 3600 公尺，建議提前準備紅景天或氧氣瓶。</p>
-            </div>
-            <div class="faq-item">
-                <h4>Q: 新疆吃的會不會不習慣？</h4>
-                <p>新疆飲食豐富多元，有清真菜、維吾爾美食（烤羊肉串、抓飯、大盤雞、烤包子），亦有漢式餐廳。我們可根據您的口味調整用餐安排。</p>
-            </div>
-            <div class="faq-item">
-                <h4>Q: 新疆旅遊需要注意什麼？</h4>
-                <p>晝夜溫差大，即使是夏天也要帶外套；防曬必備（紫外線極強）；尊重當地穆斯林文化，進入清真寺注意服裝；邊境地區（喀什、白哈巴）需提前辦理邊防證。</p>
-            </div>
         </div>
     </div>
 </section>
@@ -298,7 +235,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h3>新疆采風</h3>
-                <p>專業新疆包車旅遊服務，帶您深入探索天山南北，感受絲路文化與壯闊自然。</p>
+                <p>專業新疆包車旅遊服務，帶您深入探索天山南北，感受丝路文化與壯闊自然。</p>
             </div>
             <div class="footer-col">
                 <h4>快速連結</h4>
@@ -314,13 +251,13 @@
                 <ul>
                     <li><a href="routes.html#tour1">伊犁河谷10日</a></li>
                     <li><a href="routes.html#tour2">草原深度8日</a></li>
-                    <li><a href="routes.html#tour3">南疆絲路9日</a></li>
+                    <li><a href="routes.html#tour3">南疆丝路9日</a></li>
                     <li><a href="routes.html#tour4">北疆喀納斯8日</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>聯絡資訊</h4>
-                <p>📱 微信：XJCaifeng</p>
+                <p>📱 LINE：XJCaifeng</p>
                 <p>📧 Email：info@xjcaifeng.com</p>
                 <p>🕐 服務時間：全年無休，09:00-22:00</p>
             </div>
@@ -330,6 +267,10 @@
         </div>
     </div>
 </footer>
+
+<!-- 回到頂部按鈕 -->
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到頂部">↑</button>
+<script>window.addEventListener('load', function(){setTimeout(function(){var overlay = document.getElementById('loadingOverlay');if(overlay){overlay.classList.add('hidden');setTimeout(function(){overlay.style.display = 'none';}, 300);}}, 500);});function toggleMenu(){var menu = document.getElementById('navMenu');var btn = document.querySelector('.mobile-menu-btn');if(menu && btn){var isExpanded = menu.classList.contains('active');menu.classList.toggle('active');btn.classList.toggle('active');btn.setAttribute('aria-expanded', !isExpanded);}}document.addEventListener('keydown', function(e){if(e.key === 'Escape'){var menu = document.getElementById('navMenu');var btn = document.querySelector('.mobile-menu-btn');if(menu && menu.classList.contains('active')){menu.classList.remove('active');if(btn){btn.classList.remove('active');btn.setAttribute('aria-expanded', 'false');}}}});document.addEventListener('DOMContentLoaded', function(){var menu = document.getElementById('navMenu');if(menu){var links = menu.querySelectorAll('a');links.forEach(function(link){link.addEventListener('click', function(){menu.classList.remove('active');var btn = document.querySelector('.mobile-menu-btn');if(btn){btn.classList.remove('active');btn.setAttribute('aria-expanded', 'false');}});});}window.addEventListener('error', function(e){console.error('JavaScript 錯誤:', e.error);});window.addEventListener('online', function(){console.log('網路連線恢復');});window.addEventListener('offline', function(){console.log('網路連線中斷');});});var fadeEls = document.querySelectorAll('.feature-card, .tour-card, .faq-item');if('IntersectionObserver' in window && fadeEls.length > 0){var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(!prefersReducedMotion){var observer = new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.style.animation = 'fadeInUp 0.7s ease-out both';observer.unobserve(entry.target);}});},{threshold: 0.12});fadeEls.forEach(function(el){observer.observe(el);});}else{fadeEls.forEach(function(el){el.style.opacity = '1';el.style.transform = 'translateY(0)';});}}var backBtn = document.getElementById('backToTop');if(backBtn){backBtn.style.cssText = 'position:fixed;bottom:32px;right:32px;z-index:9999;background:#c8102e;color:#fff;border:none;border-radius:50%;width:52px;height:52px;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(200,16,46,0.35);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;display:flex;align-items:center;justify-content:center;';backBtn.setAttribute('aria-label', '回到頁面頂部');backBtn.innerHTML = '↑';window.addEventListener('scroll', function(){if(window.scrollY > 400){backBtn.style.opacity = '1';backBtn.style.pointerEvents = 'auto';}else{backBtn.style.opacity = '0';backBtn.style.pointerEvents = 'none';}});backBtn.addEventListener('click', function(){window.scrollTo({top: 0, behavior: 'smooth'});});backBtn.addEventListener('mouseenter', function(){this.style.transform = 'scale(1.1)';});backBtn.addEventListener('mouseleave', function(){this.style.transform = 'scale(1)';});backBtn.addEventListener('keydown', function(e){if(e.key === 'Enter' || e.key === ' '){e.preventDefault();this.click();}});}if('performance' in window && 'PerformanceObserver' in window){try{var observer = new PerformanceObserver(function(list){list.getEntries().forEach(function(entry){if(entry.entryType === 'largest-contentful-paint'){console.log('LCP:', entry.startTime);}});});observer.observe({entryTypes: ['largest-contentful-paint']});}catch(e){console.log('Performance monitoring not supported');}}</script>
 
 </body>
 </html>

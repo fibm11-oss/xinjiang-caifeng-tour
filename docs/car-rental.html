@@ -5,23 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>包車服務｜新疆采風</title>
     <meta name="description" content="新疆采風包車服務－提供7座商務車、越野車、9-13座商務車，專業司機全程服務，安全舒適。">
+    <meta name="keywords" content="新疆包車,租車服務,越野車,商務車,專車專導,司機服務">
+    <meta name="author" content="新疆采風">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xjcaifeng.com/car-rental.html">
+    <meta property="og:title" content="包車服務｜新疆采風">
+    <meta property="og:description" content="新疆采風包車服務－提供7座商務車、越野車、9-13座商務車，專業司機全程服務，安全舒適。">
+    <meta property="og:image" content="https://xjcaifeng.com/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://xjcaifeng.com/car-rental.html">
+    <meta property="twitter:title" content="包車服務｜新疆采風">
+    <meta property="twitter:description" content="新疆采風包車服務－提供7座商務車、越野車、9-13座商務車，專業司機全程服務，安全舒適。">
+    <meta property="twitter:image" content="https://xjcaifeng.com/images/og-image.jpg">
+
+    <!-- 預載入關鍵資源 -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#c8102e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="新疆采風">
+    <link rel="apple-touch-icon" href="images/favicon.svg">
+
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- 結構化數據 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "新疆采風包車服務",
+        "description": "專業司機・舒適車輛・全程無憂",
+        "provider": {
+            "@type": "Organization",
+            "name": "新疆采風"
+        },
+        "url": "https://xjcaifeng.com/car-rental.html"
+    }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+
+        /* 載入動畫 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+        .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
+    <!-- 載入動畫 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
 
-<nav class="navbar">
+    <!-- 跳過連結（無障礙性） -->
+    <a href="#main-content" class="skip-link">跳至主要內容</a>
+
+<!-- 頂部導航 -->
+<nav class="navbar" role="navigation" aria-label="主導航">
     <div class="nav-container">
-        <a href="index.html" class="logo">新疆<span>采風</span></a>
-        <ul class="nav-menu">
-            <li><a href="index.html">首頁</a></li>
-            <li><a href="routes.html">推薦行程</a></li>
-            <li><a href="car-rental.html" class="active">包車服務</a></li>
-            <li><a href="contact.html">聯絡我們</a></li>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="開啟行動選單" aria-expanded="false" aria-controls="navMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
+        <a href="index.html" class="logo" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+        <ul class="nav-menu" id="navMenu" role="menubar" aria-label="網站導航選單">
+            <li role="none"><a href="index.html" role="menuitem">首頁</a></li>
+            <li role="none"><a href="routes.html" role="menuitem">推薦行程</a></li>
+            <li role="none"><a href="car-rental.html" class="active" role="menuitem" aria-current="page">包車服務</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">聯絡我們</a></li>
         </ul>
     </div>
 </nav>
 
-<section class="page-hero" style="background:linear-gradient(rgba(26,74,122,0.8),rgba(200,16,46,0.6)),url('images/hero-car.webp') center/cover;">
+<section class="page-hero" id="main-content" style="background:linear-gradient(rgba(26,74,122,0.55),rgba(200,16,46,0.45)),url('images/hero-car.svg') center/cover;">
     <h1>包車服務</h1>
     <p>專業司機・舒適車輛・全程無憂</p>
 </section>
@@ -50,8 +141,8 @@
             </div>
             <div style="background:#f7f8fa;border-radius:12px;padding:36px 28px;">
                 <div style="font-size:40px;margin-bottom:16px;">💬</div>
-                <h3 style="font-size:20px;color:#1a4a7a;margin-bottom:12px;">即時微信支援</h3>
-                <p style="color:#666;line-height:1.8;">出發前成立專屬微信群組，隨時協助處理問題。行程中如有任何需求，第一時間有人回應。</p>
+                <h3 style="font-size:20px;color:#1a4a7a;margin-bottom:12px;">即時 LINE 支援</h3>
+                <p style="color:#666;line-height:1.8;">出發前成立專屬 LINE 群組，隨時協助處理問題。行程中如有任何需求，第一時間有人回應。</p>
             </div>
         </div>
     </section>
@@ -63,12 +154,13 @@
 
         <!-- 越野車 / SUV -->
         <div style="margin-bottom:48px;">
-            <h3 style="font-size:22px;color:#c8102e;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid #eee;">🚙 越野車 / SUV（適合北疆、獨庫公路）</h3>
+            <h3 style="font-size:22px;color:#c8102e;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid #eee;">🚙 越野車 / SUV</h3>
+            <p style="color:#666;margin-bottom:20px;">適合北疆、獨庫公路</p>
             <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
                 <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-                    <div style="background:linear-gradient(135deg,#2d5016,#4caf50);height:160px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;">坦克300 / 豐田陸巡</div>
+                    <div style="background:linear-gradient(135deg,#2d5016,#4caf50);height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;line-height:1.6;">坦克300<br>豐田陸巡</div>
                     <div style="padding:20px;">
-                        <p style="color:#666;font-size:14px;margin-bottom:12px;">適合2-3人，北疆自駕感首選。底盤高、通過性佳，獨庫公路、伊昭公路行走穩定。</p>
+                        <p style="color:#666;font-size:14px;margin-bottom:12px;">適合2-3人，北疆感首選。底盤高、通過性佳，獨庫公路、伊昭公路行走穩定。</p>
                         <div style="display:flex;gap:8px;flex-wrap:wrap;">
                             <span style="background:#f0f6ff;color:#1a4a7a;padding:4px 12px;border-radius:20px;font-size:12px;">2-3人</span>
                             <span style="background:#f0f6ff;color:#1a4a7a;padding:4px 12px;border-radius:20px;font-size:12px;">2-3件行李</span>
@@ -77,7 +169,7 @@
                     </div>
                 </div>
                 <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-                    <div style="background:linear-gradient(135deg,#555,#333);height:160px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;">漢蘭達 / 普拉多</div>
+                    <div style="background:linear-gradient(135deg,#555,#333);height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;line-height:1.6;">漢蘭達<br>普拉多</div>
                     <div style="padding:20px;">
                         <p style="color:#666;font-size:14px;margin-bottom:12px;">適合2-4人，舒適性與通過性兼具，長途乘坐不易疲勞，適合家庭出遊。</p>
                         <div style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -90,28 +182,29 @@
             </div>
         </div>
 
-        <!-- 7座商務車 -->
+        <!-- 七座商務車 -->
         <div style="margin-bottom:48px;">
-            <h3 style="font-size:22px;color:#c8102e;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid #eee;">🚐 7座商務車（適合2-4人舒適遊）</h3>
+            <h3 style="font-size:22px;color:#c8102e;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid #eee;">🚐 七座商務車</h3>
+            <p style="color:#666;margin-bottom:20px;">適合4-5人舒適遊</p>
             <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
                 <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-                    <div style="background:linear-gradient(135deg,#1a4a7a,#2a6a9a);height:160px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;">別克GL8 / 騰勢D9</div>
+                    <div style="background:linear-gradient(135deg,#1a4a7a,#2a6a9a);height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;line-height:1.6;">別克GL8<br>騰勢D9</div>
                     <div style="padding:20px;">
                         <p style="color:#666;font-size:14px;margin-bottom:12px;">中國最受歡迎的商務車，座椅舒適、行李空間充足，長途旅行首選。</p>
                         <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                            <span style="background:#fff0f3;color:#c8102e;padding:4px 12px;border-radius:20px;font-size:12px;">2-4人</span>
-                            <span style="background:#fff0f3;color:#c8102e;padding:4px 12px;border-radius:20px;font-size:12px;">2-4件行李</span>
+                            <span style="background:#fff0f3;color:#c8102e;padding:4px 12px;border-radius:20px;font-size:12px;">4-5人</span>
+                            <span style="background:#fff0f3;color:#c8102e;padding:4px 12px;border-radius:20px;font-size:12px;">4-5件行李</span>
                             <span style="background:#fff0f3;color:#c8102e;padding:4px 12px;border-radius:20px;font-size:12px;">豪華舒適</span>
                         </div>
                     </div>
                 </div>
                 <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-                    <div style="background:linear-gradient(135deg,#5c2d91,#7b4dba);height:160px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;">豐田賽納 / 嵐圖夢想家</div>
+                    <div style="background:linear-gradient(135deg,#5c2d91,#7b4dba);height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;line-height:1.6;">豐田賽那<br>嵐圖夢想家</div>
                     <div style="padding:20px;">
                         <p style="color:#666;font-size:14px;margin-bottom:12px;">經典豪華MPV，乘坐空間寬裕，適合家庭親子出遊或長輩同行。</p>
                         <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                            <span style="background:#fff0f3;color:#c8102e;padding:4px 12px;border-radius:20px;font-size:12px;">2-4人</span>
-                            <span style="background:#fff0f3;color:#c8102e;padding:4px 12px;border-radius:20px;font-size:12px;">2-4件行李</span>
+                            <span style="background:#fff0f3;color:#c8102e;padding:4px 12px;border-radius:20px;font-size:12px;">4-5人</span>
+                            <span style="background:#fff0f3;color:#c8102e;padding:4px 12px;border-radius:20px;font-size:12px;">4-5件行李</span>
                             <span style="background:#fff0f3;color:#c8102e;padding:4px 12px;border-radius:20px;font-size:12px;">座位寬敞</span>
                         </div>
                     </div>
@@ -121,7 +214,8 @@
 
         <!-- 9-13座小巴 -->
         <div>
-            <h3 style="font-size:22px;color:#c8102e;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid #eee;">🚌 9-13座商務小巴（適合6-10人團體）</h3>
+            <h3 style="font-size:22px;color:#c8102e;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid #eee;">🚌 9-13座商務小巴</h3>
+            <p style="color:#666;margin-bottom:20px;">適合6-10人團體</p>
             <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
                 <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
                     <div style="background:linear-gradient(135deg,#e8a345,#d4943a);height:160px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;">9座商務車（福特全順/福田）</div>
@@ -181,10 +275,17 @@
                 </div>
             </div>
             <div style="display:flex;align-items:flex-start;gap:12px;">
-                <span style="color:#f5a623;font-size:20px;flex-shrink:0;">📌</span>
+                <span style="color:#4caf50;font-size:20px;flex-shrink:0;">✅</span>
                 <div>
-                    <strong style="color:#333;">不含司機食宿</strong>
-                    <p style="color:#666;font-size:14px;">南疆/長途行程需補貼司機食宿，詳情請諮詢</p>
+                    <strong style="color:#333;">24小時 LINE 支援</strong>
+                    <p style="color:#666;font-size:14px;">成立專屬群組，即時協助</p>
+                </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+                <span style="color:#4caf50;font-size:20px;flex-shrink:0;">✅</span>
+                <div>
+                    <strong style="color:#333;">含司機食宿</strong>
+                    <p style="color:#666;font-size:14px;">長途行程需補貼司機食宿，費用已包含</p>
                 </div>
             </div>
             <div style="display:flex;align-items:flex-start;gap:12px;">
@@ -233,7 +334,7 @@
             </div>
             <div class="footer-col">
                 <h4>聯絡資訊</h4>
-                <p>📱 微信：XJCaifeng</p>
+                <p>📱 LINE：XJCaifeng</p>
                 <p>📧 Email：info@xjcaifeng.com</p>
             </div>
         </div>
@@ -242,6 +343,144 @@
         </div>
     </div>
 </footer>
+
+<!-- 回到頂部按鈕 -->
+<button id="backToTop" aria-label="回到頁面頂部">↑</button>
+<script>
+// 載入完成後隱藏載入動畫
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        var overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+            overlay.classList.add('hidden');
+            setTimeout(function() {
+                overlay.style.display = 'none';
+            }, 300);
+        }
+    }, 500);
+});
+
+// 手機版選單切換（支援無障礙性）
+function toggleMenu() {
+    var menu = document.getElementById('navMenu');
+    var btn = document.querySelector('.mobile-menu-btn');
+    if (menu && btn) {
+        var isExpanded = menu.classList.contains('active');
+        menu.classList.toggle('active');
+        btn.classList.toggle('active');
+        btn.setAttribute('aria-expanded', !isExpanded);
+    }
+}
+
+// 鍵盤導航支援
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        var menu = document.getElementById('navMenu');
+        var btn = document.querySelector('.mobile-menu-btn');
+        if (menu && menu.classList.contains('active')) {
+            menu.classList.remove('active');
+            if (btn) {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+    }
+});
+
+// 點擊選單連結後自動關閉選單
+document.addEventListener('DOMContentLoaded', function() {
+    var menu = document.getElementById('navMenu');
+    if (menu) {
+        var links = menu.querySelectorAll('a');
+        links.forEach(function(link) {
+            link.addEventListener('click', function() {
+                menu.classList.remove('active');
+                var btn = document.querySelector('.mobile-menu-btn');
+                if (btn) {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    }
+
+    // 添加錯誤處理
+    window.addEventListener('error', function(e) {
+        console.error('JavaScript 錯誤:', e.error);
+    });
+
+    // 添加離線檢測
+    window.addEventListener('online', function() {
+        console.log('網路連線恢復');
+    });
+
+    window.addEventListener('offline', function() {
+        console.log('網路連線中斷');
+    });
+});
+
+// 回到頂部按鈕（支援無障礙性）
+var backBtn = document.getElementById('backToTop');
+if (backBtn) {
+    backBtn.style.cssText = 'position:fixed;bottom:32px;right:32px;z-index:9999;background:#c8102e;color:#fff;border:none;border-radius:50%;width:52px;height:52px;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(200,16,46,0.35);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;display:flex;align-items:center;justify-content:center;';
+    backBtn.setAttribute('aria-label', '回到頁面頂部');
+    backBtn.innerHTML = '↑';
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+            backBtn.style.opacity = '1';
+            backBtn.style.pointerEvents = 'auto';
+        } else {
+            backBtn.style.opacity = '0';
+            backBtn.style.pointerEvents = 'none';
+        }
+    });
+
+    backBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    backBtn.addEventListener('mouseenter', function() { this.style.transform = 'scale(1.1)'; });
+    backBtn.addEventListener('mouseleave', function() { this.style.transform = 'scale(1)'; });
+
+    // 鍵盤支援
+    backBtn.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+        }
+    });
+}
+
+// 性能監控
+if ('performance' in window && 'PerformanceObserver' in window) {
+    try {
+        var observer = new PerformanceObserver(function(list) {
+            list.getEntries().forEach(function(entry) {
+                if (entry.entryType === 'largest-contentful-paint') {
+                    console.log('LCP:', entry.startTime);
+                }
+            });
+        });
+        observer.observe({ entryTypes: ['largest-contentful-paint'] });
+    } catch (e) {
+        console.log('Performance monitoring not supported');
+    }
+}
+
+// PWA 支援
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+                console.log('ServiceWorker 註冊成功');
+            })
+            .catch(function(error) {
+                console.log('ServiceWorker 註冊失敗:', error);
+            });
+    });
+}
+</script>
 
 </body>
 </html>

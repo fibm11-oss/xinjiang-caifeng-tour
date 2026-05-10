@@ -5,23 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>聯絡我們｜新疆采風</title>
     <meta name="description" content="聯絡新疆采風－微信、Email、或直接填寫諮詢表單，我們將在24小時內回覆您。">
+    <meta name="keywords" content="聯絡方式,諮詢,微信聯絡,Email聯絡,新疆旅遊諮詢">
+    <meta name="author" content="新疆采風">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xjcaifeng.com/contact.html">
+    <meta property="og:title" content="聯絡我們｜新疆采風">
+    <meta property="og:description" content="聯絡新疆采風－微信、Email、或直接填寫諮詢表單，我們將在24小時內回覆您。">
+    <meta property="og:image" content="https://xjcaifeng.com/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://xjcaifeng.com/contact.html">
+    <meta property="twitter:title" content="聯絡我們｜新疆采風">
+    <meta property="twitter:description" content="聯絡新疆采風－微信、Email、或直接填寫諮詢表單，我們將在24小時內回覆您。">
+    <meta property="twitter:image" content="https://xjcaifeng.com/images/og-image.jpg">
+
+    <!-- 預載入關鍵資源 -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#c8102e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="新疆采風">
+    <link rel="apple-touch-icon" href="images/favicon.svg">
+
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- 結構化數據 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "聯絡新疆采風",
+        "description": "聯絡新疆采風－微信、Email、或直接填寫諮詢表單",
+        "url": "https://xjcaifeng.com/contact.html",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "新疆采風",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "",
+                "contactType": "customer service",
+                "availableLanguage": "Chinese"
+            }
+        }
+    }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+
+        /* 載入動畫 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+        .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
+    <!-- 載入動畫 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
 
-<nav class="navbar">
+    <!-- 跳過連結（無障礙性） -->
+    <a href="#main-content" class="skip-link">跳至主要內容</a>
+
+<!-- 頂部導航 -->
+<nav class="navbar" role="navigation" aria-label="主導航">
     <div class="nav-container">
-        <a href="index.html" class="logo">新疆<span>采風</span></a>
-        <ul class="nav-menu">
-            <li><a href="index.html">首頁</a></li>
-            <li><a href="routes.html">推薦行程</a></li>
-            <li><a href="car-rental.html">包車服務</a></li>
-            <li><a href="contact.html" class="active">聯絡我們</a></li>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="開啟行動選單" aria-expanded="false" aria-controls="navMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
+        <a href="index.html" class="logo" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+        <ul class="nav-menu" id="navMenu" role="menubar" aria-label="網站導航選單">
+            <li role="none"><a href="index.html" role="menuitem">首頁</a></li>
+            <li role="none"><a href="routes.html" role="menuitem">推薦行程</a></li>
+            <li role="none"><a href="car-rental.html" role="menuitem">包車服務</a></li>
+            <li role="none"><a href="contact.html" class="active" role="menuitem" aria-current="page">聯絡我們</a></li>
         </ul>
     </div>
 </nav>
 
-<section class="page-hero" style="background:linear-gradient(135deg,rgba(26,74,122,0.85),rgba(200,16,46,0.65)),#1a4a7a;">
+<section class="page-hero" id="main-content" style="background:linear-gradient(135deg,rgba(26,74,122,0.75),rgba(200,16,46,0.55)),url('../images/hero-xinjiang.svg') center/cover;">
     <h1>聯絡我們</h1>
     <p>有任何問題或需求，歡迎隨時與我們聯絡</p>
 </section>
@@ -38,9 +135,9 @@
                 <div style="display:flex;align-items:center;gap:16px;">
                     <div style="width:48px;height:48px;background:#f0f6ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">📱</div>
                     <div>
-                        <strong style="color:#333;display:block;margin-bottom:2px;">微信掃碼諮詢</strong>
+                        <strong style="color:#333;display:block;margin-bottom:2px;">LINE 諮詢</strong>
                         <span style="color:#c8102e;font-size:16px;font-weight:700;">XJCaifeng</span>
-                        <p style="color:#888;font-size:13px;margin-top:2px;">加微信，發送「新疆旅遊」獲取專屬方案</p>
+                        <p style="color:#888;font-size:13px;margin-top:2px;">加 LINE，發送「新疆旅遊」獲取專屬方案</p>
                     </div>
                 </div>
                 <div style="display:flex;align-items:flex-start;gap:16px;">
@@ -72,8 +169,8 @@
             <!-- 微信 QR Code 提示 -->
             <div style="background:linear-gradient(135deg,#1a4a7a,#c8102e);border-radius:12px;padding:32px;text-align:center;color:#fff;">
                 <div style="font-size:48px;margin-bottom:12px;">📱</div>
-                <h3 style="font-size:18px;margin-bottom:8px;">微信掃碼，立即諮詢</h3>
-                <p style="font-size:14px;opacity:0.85;margin-bottom:16px;">添加微信 <strong>XJCaifeng</strong><br>發送「新疆旅遊」，獲取免費行程規劃</p>
+                <h3 style="font-size:18px;margin-bottom:8px;">LINE 諮詢，立即諮詢</h3>
+                <p style="font-size:14px;opacity:0.85;margin-bottom:16px;">添加 LINE <strong>XJCaifeng</strong><br>發送「新疆旅遊」，獲取免費行程規劃</p>
                 <div style="background:rgba(255,255,255,0.15);border-radius:8px;padding:12px;font-size:13px;line-height:1.8;">
                     💡 免費服務：行程規劃・報價估算・路線建議
                 </div>
@@ -86,12 +183,12 @@
             <form id="contactForm" style="display:flex;flex-direction:column;gap:16px;" onsubmit="handleSubmit(event)">
                 <div>
                     <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">您的稱呼 *</label>
-                    <input type="text" id="name" required placeholder="例如：王先生 / 李小姐" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'">
+                    <input type="text" id="name" required placeholder="例如：王先生 / 李小姐" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'">
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
                     <div>
-                        <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">聯絡微信</label>
-                        <input type="text" id="wechat" placeholder="選填，方便我們加您" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'">
+                        <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">LINE ID</label>
+                        <input type="text" id="line" placeholder="選填，方便我們加您" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'">
                     </div>
                     <div>
                         <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">電子郵件</label>
@@ -204,7 +301,7 @@
             </div>
             <div class="footer-col">
                 <h4>聯絡資訊</h4>
-                <p>📱 微信：XJCaifeng</p>
+                <p>📱 LINE：XJCaifeng</p>
                 <p>📧 Email：info@xjcaifeng.com</p>
                 <p>🕐 服務時間：全年無休 09:00-22:00</p>
             </div>
@@ -231,6 +328,145 @@ function handleSubmit(e) {
     document.getElementById('contactForm').parentNode.appendChild(thankYou);
 }
 </script>
+
+<script>
+// 載入完成後隱藏載入動畫
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        var overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+            overlay.classList.add('hidden');
+            setTimeout(function() {
+                overlay.style.display = 'none';
+            }, 300);
+        }
+    }, 500);
+});
+
+// 手機版選單切換（支援無障礙性）
+function toggleMenu() {
+    var menu = document.getElementById('navMenu');
+    var btn = document.querySelector('.mobile-menu-btn');
+    if (menu && btn) {
+        var isExpanded = menu.classList.contains('active');
+        menu.classList.toggle('active');
+        btn.classList.toggle('active');
+        btn.setAttribute('aria-expanded', !isExpanded);
+    }
+}
+
+// 鍵盤導航支援
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        var menu = document.getElementById('navMenu');
+        var btn = document.querySelector('.mobile-menu-btn');
+        if (menu && menu.classList.contains('active')) {
+            menu.classList.remove('active');
+            if (btn) {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+    }
+});
+
+// 點擊選單連結後自動關閉選單
+document.addEventListener('DOMContentLoaded', function() {
+    var menu = document.getElementById('navMenu');
+    if (menu) {
+        var links = menu.querySelectorAll('a');
+        links.forEach(function(link) {
+            link.addEventListener('click', function() {
+                menu.classList.remove('active');
+                var btn = document.querySelector('.mobile-menu-btn');
+                if (btn) {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    }
+
+    // 添加錯誤處理
+    window.addEventListener('error', function(e) {
+        console.error('JavaScript 錯誤:', e.error);
+    });
+
+    // 添加離線檢測
+    window.addEventListener('online', function() {
+        console.log('網路連線恢復');
+    });
+
+    window.addEventListener('offline', function() {
+        console.log('網路連線中斷');
+    });
+});
+
+// 回到頂部按鈕（支援無障礙性）
+var backBtn = document.getElementById('backToTop');
+if (backBtn) {
+    backBtn.style.cssText = 'position:fixed;bottom:32px;right:32px;z-index:9999;background:#c8102e;color:#fff;border:none;border-radius:50%;width:52px;height:52px;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(200,16,46,0.35);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;display:flex;align-items:center;justify-content:center;';
+    backBtn.setAttribute('aria-label', '回到頁面頂部');
+    backBtn.innerHTML = '↑';
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+            backBtn.style.opacity = '1';
+            backBtn.style.pointerEvents = 'auto';
+        } else {
+            backBtn.style.opacity = '0';
+            backBtn.style.pointerEvents = 'none';
+        }
+    });
+
+    backBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    backBtn.addEventListener('mouseenter', function() { this.style.transform = 'scale(1.1)'; });
+    backBtn.addEventListener('mouseleave', function() { this.style.transform = 'scale(1)'; });
+
+    // 鍵盤支援
+    backBtn.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+        }
+    });
+}
+
+// 性能監控
+if ('performance' in window && 'PerformanceObserver' in window) {
+    try {
+        var observer = new PerformanceObserver(function(list) {
+            list.getEntries().forEach(function(entry) {
+                if (entry.entryType === 'largest-contentful-paint') {
+                    console.log('LCP:', entry.startTime);
+                }
+            });
+        });
+        observer.observe({ entryTypes: ['largest-contentful-paint'] });
+    } catch (e) {
+        console.log('Performance monitoring not supported');
+    }
+}
+
+// PWA 支援
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+                console.log('ServiceWorker 註冊成功');
+            })
+            .catch(function(error) {
+                console.log('ServiceWorker 註冊失敗:', error);
+            });
+    });
+}
+</script>
+
+<!-- 回到頂部按鈕 -->
+<button id="backToTop" aria-label="回到頁面頂部">↑</button>
 
 </body>
 </html>

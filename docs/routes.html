@@ -5,23 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>推薦行程｜新疆采風</title>
     <meta name="description" content="新疆采風精選行程－伊犁河谷、北疆喀纳斯、南疆丝路、草原深度旅遊，可依需求客製化調整。">
+    <meta name="keywords" content="新疆行程,旅遊路線,伊犁河谷,喀纳斯,絲路,草原旅遊,深度旅遊">
+    <meta name="author" content="新疆采風">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xjcaifeng.com/routes.html">
+    <meta property="og:title" content="推薦行程｜新疆采風">
+    <meta property="og:description" content="新疆采風精選行程－伊犁河谷、北疆喀纳斯、南疆丝路、草原深度旅遊，可依需求客製化調整。">
+    <meta property="og:image" content="https://xjcaifeng.com/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://xjcaifeng.com/routes.html">
+    <meta property="twitter:title" content="推薦行程｜新疆采風">
+    <meta property="twitter:description" content="新疆采風精選行程－伊犁河谷、北疆喀纳斯、南疆丝路、草原深度旅遊，可依需求客製化調整。">
+    <meta property="twitter:image" content="https://xjcaifeng.com/images/og-image.jpg">
+
+    <!-- 預載入關鍵資源 -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#c8102e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="新疆采風">
+    <link rel="apple-touch-icon" href="images/favicon.svg">
+
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- 結構化數據 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "新疆采風推薦行程",
+        "description": "精選新疆最經典的旅遊路線",
+        "url": "https://xjcaifeng.com/routes.html"
+    }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+
+        /* 載入動畫 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+        .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
+    <!-- 載入動畫 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
 
-<nav class="navbar">
+    <!-- 跳過連結（無障礙性） -->
+    <a href="#main-content" class="skip-link">跳至主要內容</a>
+
+<!-- 頂部導航 -->
+<nav class="navbar" role="navigation" aria-label="主導航">
     <div class="nav-container">
-        <a href="index.html" class="logo">新疆<span>采風</span></a>
-        <ul class="nav-menu">
-            <li><a href="index.html">首頁</a></li>
-            <li><a href="routes.html" class="active">推薦行程</a></li>
-            <li><a href="car-rental.html">包車服務</a></li>
-            <li><a href="contact.html">聯絡我們</a></li>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="開啟行動選單" aria-expanded="false" aria-controls="navMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
+        <a href="index.html" class="logo" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+        <ul class="nav-menu" id="navMenu" role="menubar" aria-label="網站導航選單">
+            <li role="none"><a href="index.html" role="menuitem">首頁</a></li>
+            <li role="none"><a href="routes.html" class="active" role="menuitem" aria-current="page">推薦行程</a></li>
+            <li role="none"><a href="car-rental.html" role="menuitem">包車服務</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">聯絡我們</a></li>
         </ul>
     </div>
 </nav>
 
-<section class="page-hero" style="background:linear-gradient(135deg,rgba(26,74,122,0.8),rgba(200,16,46,0.6)),url('images/hero-routes.webp') center/cover;">
+<section class="page-hero" id="main-content" style="background:linear-gradient(rgba(26,74,122,0.55),rgba(200,16,46,0.45)),url('images/hero-routes.svg') center/cover;">
     <h1>推薦行程</h1>
     <p>精選新疆最經典路線，亦可依您的需求自由調整</p>
 </section>
@@ -31,8 +118,8 @@
     <!-- 行程 1 -->
     <div class="route-detail" id="tour1" style="margin-bottom:64px;">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:40px;">
-            <div style="background:linear-gradient(135deg,#4a90d9,#357abd);border-radius:12px;height:320px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:700;padding:32px;text-align:center;">
-                🏔️ 伊犁河谷自駕10日遊<br><span style="font-size:14px;font-weight:400;opacity:0.85;display:block;margin-top:12px;">6-9月最佳・草原花海・賽里木湖</span>
+            <div style="border-radius:12px;height:320px;overflow:hidden;box-shadow:var(--shadow);">
+                <img src="images/tours/tour1-ili-10days.svg" alt="伊犁河谷自驾10日游" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <div>
                 <h2 style="font-size:24px;color:#1a4a7a;margin-bottom:16px;">伊犁河谷自駕10日遊</h2>
@@ -62,8 +149,8 @@
     <!-- 行程 2 -->
     <div class="route-detail" id="tour2" style="margin-bottom:64px;">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:40px;">
-            <div style="background:linear-gradient(135deg,#e8a345,#d4943a);border-radius:12px;height:320px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:700;padding:32px;text-align:center;">
-                🌿 伊犁草原8日深度之旅<br><span style="font-size:14px;font-weight:400;opacity:0.85;display:block;margin-top:12px;">薰衣草季（6-7月）限定・草原深度</span>
+            <div style="border-radius:12px;height:320px;overflow:hidden;box-shadow:var(--shadow);">
+                <img src="images/tours/tour2-grassland.svg" alt="伊犁草原8日深度之旅" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <div>
                 <h2 style="font-size:24px;color:#1a4a7a;margin-bottom:16px;">伊犁草原8日深度之旅</h2>
@@ -92,8 +179,8 @@
     <!-- 行程 3 -->
     <div class="route-detail" id="tour3" style="margin-bottom:64px;">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:40px;">
-            <div style="background:linear-gradient(135deg,#5cb85c,#4cae4c);border-radius:12px;height:320px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:700;padding:32px;text-align:center;">
-                🕌 南疆絲路秘境9日<br><span style="font-size:14px;font-weight:400;opacity:0.85;display:block;margin-top:12px;">喀什古城・帕米爾高原・沙漠公路</span>
+            <div style="border-radius:12px;height:320px;overflow:hidden;box-shadow:var(--shadow);">
+                <img src="images/tours/tour3-south-xj.svg" alt="南疆丝路秘境9日" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <div>
                 <h2 style="font-size:24px;color:#1a4a7a;margin-bottom:16px;">南疆絲路秘境9日深度之旅</h2>
@@ -123,8 +210,8 @@
     <!-- 行程 4 -->
     <div class="route-detail" id="tour4">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
-            <div style="background:linear-gradient(135deg,#9b59b6,#8e44ad);border-radius:12px;height:320px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:700;padding:32px;text-align:center;">
-                🍁 北疆喀納斯8日<br><span style="font-size:14px;font-weight:400;opacity:0.85;display:block;margin-top:12px;">9月金秋限定・喀納斯湖・禾木晨霧</span>
+            <div style="border-radius:12px;height:320px;overflow:hidden;box-shadow:var(--shadow);">
+                <img src="images/tours/tour4-kanas.svg" alt="北疆喀纳斯8日" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <div>
                 <h2 style="font-size:24px;color:#1a4a7a;margin-bottom:16px;">北疆喀納斯8日深度旅行</h2>
@@ -189,7 +276,7 @@
             </div>
             <div class="footer-col">
                 <h4>聯絡資訊</h4>
-                <p>📱 微信：XJCaifeng</p>
+                <p>📱 LINE：XJCaifeng</p>
                 <p>📧 Email：info@xjcaifeng.com</p>
             </div>
         </div>
@@ -198,6 +285,166 @@
         </div>
     </div>
 </footer>
+
+<!-- 回到頂部按鈕 -->
+<button id="backToTop" aria-label="回到頁面頂部">↑</button>
+<script>
+// 載入完成後隱藏載入動畫
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        var overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+            overlay.classList.add('hidden');
+            setTimeout(function() {
+                overlay.style.display = 'none';
+            }, 300);
+        }
+    }, 500);
+});
+
+// 手機版選單切換（支援無障礙性）
+function toggleMenu() {
+    var menu = document.getElementById('navMenu');
+    var btn = document.querySelector('.mobile-menu-btn');
+    if (menu && btn) {
+        var isExpanded = menu.classList.contains('active');
+        menu.classList.toggle('active');
+        btn.classList.toggle('active');
+        btn.setAttribute('aria-expanded', !isExpanded);
+    }
+}
+
+// 鍵盤導航支援
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        var menu = document.getElementById('navMenu');
+        var btn = document.querySelector('.mobile-menu-btn');
+        if (menu && menu.classList.contains('active')) {
+            menu.classList.remove('active');
+            if (btn) {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+    }
+});
+
+// 點擊選單連結後自動關閉選單
+document.addEventListener('DOMContentLoaded', function() {
+    var menu = document.getElementById('navMenu');
+    if (menu) {
+        var links = menu.querySelectorAll('a');
+        links.forEach(function(link) {
+            link.addEventListener('click', function() {
+                menu.classList.remove('active');
+                var btn = document.querySelector('.mobile-menu-btn');
+                if (btn) {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    }
+
+    // 添加錯誤處理
+    window.addEventListener('error', function(e) {
+        console.error('JavaScript 錯誤:', e.error);
+    });
+
+    // 添加離線檢測
+    window.addEventListener('online', function() {
+        console.log('網路連線恢復');
+    });
+
+    window.addEventListener('offline', function() {
+        console.log('網路連線中斷');
+    });
+});
+
+// 捲動淡入動畫（支援 prefers-reduced-motion）
+var fadeEls = document.querySelectorAll('.route-detail');
+if ('IntersectionObserver' in window && fadeEls.length > 0) {
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.7s ease-out both';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        fadeEls.forEach(function(el) { observer.observe(el); });
+    } else {
+        fadeEls.forEach(function(el) {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        });
+    }
+}
+
+// 回到頂部按鈕（支援無障礙性）
+var backBtn = document.getElementById('backToTop');
+if (backBtn) {
+    backBtn.style.cssText = 'position:fixed;bottom:32px;right:32px;z-index:9999;background:#c8102e;color:#fff;border:none;border-radius:50%;width:52px;height:52px;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(200,16,46,0.35);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;display:flex;align-items:center;justify-content:center;';
+    backBtn.setAttribute('aria-label', '回到頁面頂部');
+    backBtn.innerHTML = '↑';
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+            backBtn.style.opacity = '1';
+            backBtn.style.pointerEvents = 'auto';
+        } else {
+            backBtn.style.opacity = '0';
+            backBtn.style.pointerEvents = 'none';
+        }
+    });
+
+    backBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    backBtn.addEventListener('mouseenter', function() { this.style.transform = 'scale(1.1)'; });
+    backBtn.addEventListener('mouseleave', function() { this.style.transform = 'scale(1)'; });
+
+    // 鍵盤支援
+    backBtn.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+        }
+    });
+}
+
+// 性能監控
+if ('performance' in window && 'PerformanceObserver' in window) {
+    try {
+        var observer = new PerformanceObserver(function(list) {
+            list.getEntries().forEach(function(entry) {
+                if (entry.entryType === 'largest-contentful-paint') {
+                    console.log('LCP:', entry.startTime);
+                }
+            });
+        });
+        observer.observe({ entryTypes: ['largest-contentful-paint'] });
+    } catch (e) {
+        console.log('Performance monitoring not supported');
+    }
+}
+
+// PWA 支援
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+                console.log('ServiceWorker 註冊成功');
+            })
+            .catch(function(error) {
+                console.log('ServiceWorker 註冊失敗:', error);
+            });
+    });
+}
+</script>
 
 </body>
 </html>

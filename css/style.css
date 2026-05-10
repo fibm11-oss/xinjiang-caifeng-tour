@@ -670,6 +670,20 @@ tbody tr:last-child {
 
 /* 手機橫向與小平板：768px 以下 */
 @media (max-width: 768px) {
+    .nav-container {
+        position: relative;
+        justify-content: center;
+    }
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .mobile-menu-btn {
+        display: flex;
+        position: absolute;
+        left: 16px;
+    }
     .nav-menu {
         display: none;
         position: fixed;
@@ -697,7 +711,8 @@ tbody tr:last-child {
         display: flex;
     }
     .hero {
-        min-height: 560px;
+        min-height: 100vh;
+        padding-top: 68px;
     }
     .hero h1 {
         font-size: 36px;
@@ -708,10 +723,12 @@ tbody tr:last-child {
     }
     .hero-desc {
         font-size: 16px;
+        margin-bottom: 28px;
     }
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 12px;
     }
     .page-hero {
         height: 260px;
@@ -729,13 +746,14 @@ tbody tr:last-child {
     }
     .section-title {
         font-size: 26px;
+        margin-bottom: 8px;
     }
     .section-subtitle {
         font-size: 15px;
-        margin-bottom: 36px;
+        margin-bottom: 28px;
     }
     .features, .why-us, .tours, .distance-table, .faq {
-        padding: 60px 0;
+        padding: 48px 0;
     }
     /* 行程詳情頁面：改為單欄排列 */
     .route-detail > div {
@@ -800,16 +818,22 @@ tbody tr:last-child {
     }
     .section-subtitle {
         font-size: 14px;
-        margin-bottom: 28px;
+        margin-bottom: 24px;
     }
     .feature-card {
-        padding: 32px 24px;
+        padding: 24px 20px;
     }
     .feature-icon {
         font-size: 42px;
+        margin-bottom: 12px;
     }
     .feature-card h3 {
         font-size: 18px;
+        margin-bottom: 8px;
+    }
+    .feature-card p {
+        font-size: 14px;
+        line-height: 1.6;
     }
     .highlight-item img {
         height: 160px;
@@ -836,13 +860,15 @@ tbody tr:last-child {
         font-size: 13px;
     }
     .faq-item {
-        padding: 20px 22px;
+        padding: 18px 20px;
     }
     .faq-item h4 {
         font-size: 15px;
+        margin-bottom: 8px;
     }
     .faq-item p {
         font-size: 14px;
+        line-height: 1.6;
     }
     .table-wrapper {
         font-size: 13px;

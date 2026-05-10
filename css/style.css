@@ -248,27 +248,29 @@ img {
 }
 
 .hero h1 {
-    font-size: 60px;
+    font-size: 72px;
     font-weight: 900;
-    margin-bottom: 14px;
-    text-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    margin-bottom: 16px;
+    text-shadow: 0 6px 32px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.45);
     letter-spacing: -1px;
     line-height: 1.2;
 }
 
 .hero-subtitle {
-    font-size: 26px;
-    font-weight: 600;
-    margin-bottom: 18px;
-    letter-spacing: 3px;
-    opacity: 0.95;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+    opacity: 0.97;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
 }
 
 .hero-desc {
-    font-size: 18px;
-    margin-bottom: 40px;
-    opacity: 0.92;
-    line-height: 1.9;
+    font-size: 22px;
+    margin-bottom: 48px;
+    opacity: 0.95;
+    line-height: 2;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
 }
 
 .hero-buttons {
@@ -468,9 +470,9 @@ img {
 
 .tour-image h3 {
     color: #fff;
-    font-size: 22px;
-    font-weight: 700;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    font-size: 28px;
+    font-weight: 800;
+    text-shadow: 0 3px 16px rgba(0,0,0,0.65), 0 1px 4px rgba(0,0,0,0.45);
     line-height: 1.4;
 }
 
@@ -480,11 +482,12 @@ img {
     right: 18px;
     background: var(--accent);
     color: #fff;
-    padding: 5px 16px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 700;
-    box-shadow: 0 2px 8px rgba(245,166,35,0.4);
+    padding: 6px 20px;
+    border-radius: 24px;
+    font-size: 15px;
+    font-weight: 800;
+    box-shadow: 0 3px 12px rgba(245,166,35,0.5);
+    letter-spacing: 0.5px;
 }
 
 .tour-info {
@@ -661,10 +664,21 @@ tbody tr:last-child {
         gap: 36px;
     }
     .hero h1 {
-        font-size: 44px;
+        font-size: 52px;
+    }
+    .hero-subtitle {
+        font-size: 26px;
+        letter-spacing: 3px;
+    }
+    .hero-desc {
+        font-size: 18px;
+        margin-bottom: 36px;
+    }
+    .tour-image h3 {
+        font-size: 24px;
     }
     .section-title {
-        font-size: 28px;
+        font-size: 30px;
     }
 }
 
@@ -715,15 +729,18 @@ tbody tr:last-child {
         padding-top: 68px;
     }
     .hero h1 {
-        font-size: 36px;
+        font-size: 42px;
     }
     .hero-subtitle {
-        font-size: 20px;
-        letter-spacing: 1px;
+        font-size: 24px;
+        letter-spacing: 2px;
     }
     .hero-desc {
-        font-size: 16px;
-        margin-bottom: 28px;
+        font-size: 17px;
+        margin-bottom: 32px;
+    }
+    .tour-image h3 {
+        font-size: 22px;
     }
     .hero-buttons {
         flex-direction: column;
@@ -788,16 +805,19 @@ tbody tr:last-child {
         padding-top: 58px;
     }
     .hero h1 {
-        font-size: 30px;
+        font-size: 34px;
         letter-spacing: 0;
     }
     .hero-subtitle {
-        font-size: 16px;
-        letter-spacing: 0.5px;
+        font-size: 18px;
+        letter-spacing: 1px;
     }
     .hero-desc {
-        font-size: 14px;
-        line-height: 1.7;
+        font-size: 15px;
+        line-height: 1.8;
+    }
+    .tour-image h3 {
+        font-size: 20px;
     }
     .hero-buttons .btn {
         width: 100%;

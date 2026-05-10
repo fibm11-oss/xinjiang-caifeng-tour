@@ -494,6 +494,14 @@ img {
     padding: 22px 24px 26px;
 }
 
+.tour-info h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
 .tour-info p {
     color: var(--text-light);
     font-size: 14px;
@@ -721,9 +729,6 @@ tbody tr:last-child {
         font-size: 16px;
         border-radius: 8px;
     }
-    .mobile-menu-btn {
-        display: flex;
-    }
     .hero {
         min-height: 100vh;
         padding-top: 68px;
@@ -741,6 +746,9 @@ tbody tr:last-child {
     }
     .tour-image h3 {
         font-size: 22px;
+    }
+    .tour-info h3 {
+        font-size: 20px;
     }
     .hero-buttons {
         flex-direction: column;

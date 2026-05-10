@@ -1,0 +1,21 @@
+{
+    "name": "新疆采風 - 新疆包車旅遊",
+    "short_name": "新疆采風",
+    "description": "專業新疆包車旅遊服務，提供北疆喀纳斯、伊犁草原、南疆丝路深度行程",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#c8102e",
+    "orientation": "portrait-primary",
+    "categories": ["travel", "business"],
+    "lang": "zh-TW",
+    "icons": [
+        {
+            "src": "/images/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}</content>
+<parameter name="filePath">c:\Users\tivol\Desktop\旅遊網站\manifest.json

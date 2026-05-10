@@ -16,6 +16,6 @@
   <path d="M300,230 Q340,200 380,230" fill="#c0392b"/>
   <rect x="550" y="240" width="70" height="90" fill="#c0392b" rx="3"/>
   <path d="M550,240 Q585,215 620,240" fill="#e67e22"/>
-  <text x="400" y="180" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="34" font-weight="bold" fill="#fff" stroke="#000" stroke-width="1" opacity="0.95">南疆絲路秘境9日</text>
-  <text x="400" y="225" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="17" fill="#fff" opacity="0.85">喀什古城 · 帕米爾高原 · 沙漠公路</text>
+  <text x="400" y="180" text-anchor="middle" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans TC',sans-serif" font-size="34" font-weight="bold" fill="#fff" stroke="#000" stroke-width="1" opacity="0.95">南疆絲路秘境9日</text>
+  <text x="400" y="225" text-anchor="middle" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans TC',sans-serif" font-size="17" fill="#fff" opacity="0.85">喀什古城 · 帕米爾高原 · 沙漠公路</text>
 </svg>

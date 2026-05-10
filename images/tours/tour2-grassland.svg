@@ -9,8 +9,8 @@
   <circle cx="650" cy="100" r="35" fill="#9b59b6" opacity="0.6"/>
   <rect x="0" y="300" width="800" height="200" fill="#27ae60" opacity="0.8"/>
   <rect x="0" y="280" width="800" height="30" fill="#2ecc71" opacity="0.6"/>
-  <text x="400" y="150" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="34" font-weight="bold" fill="#fff" stroke="#000" stroke-width="1" opacity="0.95">伊犁草原8日深度之旅</text>
-  <text x="400" y="200" text-anchor="middle" font-family="'Microsoft YaHei','PingFang TC','Noto Sans TC',sans-serif" font-size="17" fill="#fff" opacity="0.85">那拉提 · 喀拉峻 · 薰衣草基地</text>
+  <text x="400" y="150" text-anchor="middle" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans TC',sans-serif" font-size="34" font-weight="bold" fill="#fff" stroke="#000" stroke-width="1" opacity="0.95">伊犁草原8日深度之旅</text>
+  <text x="400" y="200" text-anchor="middle" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans TC',sans-serif" font-size="17" fill="#fff" opacity="0.85">那拉提 · 喀拉峻 · 薰衣草基地</text>
   <!-- Flowers -->
   <text x="150" y="350" font-size="30">🌸</text>
   <text x="300" y="340" font-size="28">🌺</text>

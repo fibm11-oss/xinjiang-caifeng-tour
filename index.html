@@ -5,8 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新疆采風｜新疆包車旅遊・定制包車</title>
     <meta name="description" content="新疆采風－專業新疆包車旅遊服務，提供北疆喀纳斯、伊犁草原、南疆丝路深度行程，專屬司機+私人導遊，量身打造難忘旅程。">
+    <meta name="keywords" content="新疆旅遊,包車旅遊,喀纳斯,伊犁草原,絲路,專車專導,深度旅遊">
+    <meta name="author" content="新疆采風">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xjcaifeng.com/">
+    <meta property="og:title" content="新疆采風｜新疆包車旅遊・定制包車">
+    <meta property="og:description" content="專業新疆包車旅遊服務，提供北疆喀纳斯、伊犁草原、南疆丝路深度行程，專屬司機+私人導遊，量身打造難忘旅程。">
+    <meta property="og:image" content="https://xjcaifeng.com/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://xjcaifeng.com/">
+    <meta property="twitter:title" content="新疆采風｜新疆包車旅遊・定制包車">
+    <meta property="twitter:description" content="專業新疆包車旅遊服務，提供北疆喀纳斯、伊犁草原、南疆丝路深度行程，專屬司機+私人導遊，量身打造難忘旅程。">
+    <meta property="twitter:image" content="https://xjcaifeng.com/images/og-image.jpg">
+
+    <!-- 預載入關鍵資源 -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="images/hero-xinjiang.svg" as="image">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#c8102e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="新疆采風">
+    <link rel="apple-touch-icon" href="images/favicon.svg">
+
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- 結構化數據 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TravelAgency",
+        "name": "新疆采風",
+        "description": "專業新疆包車旅遊服務，提供北疆喀纳斯、伊犁草原、南疆丝路深度行程",
+        "url": "https://xjcaifeng.com",
+        "logo": "https://xjcaifeng.com/images/logo.svg",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "",
+            "contactType": "customer service",
+            "availableLanguage": "Chinese",
+            "contactOption": "TollFree"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "CN",
+            "addressRegion": "新疆"
+        },
+        "sameAs": [
+            "https://line.me/R/ti/p/@xjcaifeng"
+        ],
+        "offers": {
+            "@type": "Offer",
+            "description": "新疆包車旅遊服務，包含專屬司機和私人導遊"
+        }
+    }
+    </script>
+
     <style>
         html { scroll-behavior: smooth; }
         @keyframes fadeInUp {
@@ -14,30 +77,65 @@
             to { opacity:1; transform:translateY(0); }
         }
         .fade-in { animation: fadeInUp 0.7s ease-out both; }
+
+        /* 載入動畫 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+        .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
+    <!-- 載入動畫 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- 跳過連結（無障礙性） -->
+    <a href="#main-content" class="skip-link">跳至主要內容</a>
 
 <!-- 頂部導航 -->
-<nav class="navbar">
+<nav class="navbar" role="navigation" aria-label="主導航">
     <div class="nav-container">
-        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="選單">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="開啟行動選單" aria-expanded="false" aria-controls="navMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
         </button>
-        <a href="index.html" class="logo">新疆<span>采風</span></a>
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="index.html" class="active">首頁</a></li>
-            <li><a href="routes.html">推薦行程</a></li>
-            <li><a href="car-rental.html">包車服務</a></li>
-            <li><a href="contact.html">聯絡我們</a></li>
+        <a href="index.html" class="logo" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+        <ul class="nav-menu" id="navMenu" role="menubar" aria-label="網站導航選單">
+            <li role="none"><a href="index.html" class="active" role="menuitem" aria-current="page">首頁</a></li>
+            <li role="none"><a href="routes.html" role="menuitem">推薦行程</a></li>
+            <li role="none"><a href="car-rental.html" role="menuitem">包車服務</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">聯絡我們</a></li>
         </ul>
     </div>
 </nav>
 
 <!-- Hero 區塊 -->
-<section class="hero">
+<section class="hero" id="main-content">
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <h1>新疆包車定制遊</h1>
@@ -172,55 +270,7 @@
 
 <!-- 回到頂部按鈕 -->
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到頂部">↑</button>
-<script>
-// 手機版選單切換
-function toggleMenu() {
-    var menu = document.getElementById('navMenu');
-    var btn = document.querySelector('.mobile-menu-btn');
-    if (menu && btn) {
-        menu.classList.toggle('active');
-        btn.classList.toggle('active');
-    }
-}
-
-// 點擊選單連結後自動關閉選單
-document.addEventListener('DOMContentLoaded', function() {
-    var menu = document.getElementById('navMenu');
-    if (menu) {
-        var links = menu.querySelectorAll('a');
-        links.forEach(function(link) {
-            link.addEventListener('click', function() {
-                menu.classList.remove('active');
-                var btn = document.querySelector('.mobile-menu-btn');
-                if (btn) btn.classList.remove('active');
-            });
-        });
-    }
-});
-
-// 捲動淡入動畫
-var fadeEls = document.querySelectorAll('.feature-card, .tour-card, .faq-item');
-if ('IntersectionObserver' in window && fadeEls.length > 0) {
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) { entry.target.style.animation = 'fadeInUp 0.7s ease-out both'; observer.unobserve(entry.target); }
-        });
-    }, { threshold: 0.12 });
-    fadeEls.forEach(function(el) { observer.observe(el); });
-}
-
-// 回到頂部按鈕
-var backBtn = document.getElementById('backToTop');
-if (backBtn) {
-    backBtn.style.cssText = 'position:fixed;bottom:32px;right:32px;z-index:9999;background:#c8102e;color:#fff;border:none;border-radius:50%;width:52px;height:52px;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(200,16,46,0.35);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;display:flex;align-items:center;justify-content:center;';
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 400) { backBtn.style.opacity = '1'; backBtn.style.pointerEvents = 'auto'; }
-        else { backBtn.style.opacity = '0'; backBtn.style.pointerEvents = 'none'; }
-    });
-    backBtn.addEventListener('mouseenter', function() { this.style.transform = 'scale(1.1)'; });
-    backBtn.addEventListener('mouseleave', function() { this.style.transform = 'scale(1)'; });
-}
-</script>
+<script>window.addEventListener('load', function(){setTimeout(function(){var overlay = document.getElementById('loadingOverlay');if(overlay){overlay.classList.add('hidden');setTimeout(function(){overlay.style.display = 'none';}, 300);}}, 500);});function toggleMenu(){var menu = document.getElementById('navMenu');var btn = document.querySelector('.mobile-menu-btn');if(menu && btn){var isExpanded = menu.classList.contains('active');menu.classList.toggle('active');btn.classList.toggle('active');btn.setAttribute('aria-expanded', !isExpanded);}}document.addEventListener('keydown', function(e){if(e.key === 'Escape'){var menu = document.getElementById('navMenu');var btn = document.querySelector('.mobile-menu-btn');if(menu && menu.classList.contains('active')){menu.classList.remove('active');if(btn){btn.classList.remove('active');btn.setAttribute('aria-expanded', 'false');}}}});document.addEventListener('DOMContentLoaded', function(){var menu = document.getElementById('navMenu');if(menu){var links = menu.querySelectorAll('a');links.forEach(function(link){link.addEventListener('click', function(){menu.classList.remove('active');var btn = document.querySelector('.mobile-menu-btn');if(btn){btn.classList.remove('active');btn.setAttribute('aria-expanded', 'false');}});});}window.addEventListener('error', function(e){console.error('JavaScript 錯誤:', e.error);});window.addEventListener('online', function(){console.log('網路連線恢復');});window.addEventListener('offline', function(){console.log('網路連線中斷');});});var fadeEls = document.querySelectorAll('.feature-card, .tour-card, .faq-item');if('IntersectionObserver' in window && fadeEls.length > 0){var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(!prefersReducedMotion){var observer = new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.style.animation = 'fadeInUp 0.7s ease-out both';observer.unobserve(entry.target);}});},{threshold: 0.12});fadeEls.forEach(function(el){observer.observe(el);});}else{fadeEls.forEach(function(el){el.style.opacity = '1';el.style.transform = 'translateY(0)';});}}var backBtn = document.getElementById('backToTop');if(backBtn){backBtn.style.cssText = 'position:fixed;bottom:32px;right:32px;z-index:9999;background:#c8102e;color:#fff;border:none;border-radius:50%;width:52px;height:52px;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(200,16,46,0.35);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;display:flex;align-items:center;justify-content:center;';backBtn.setAttribute('aria-label', '回到頁面頂部');backBtn.innerHTML = '↑';window.addEventListener('scroll', function(){if(window.scrollY > 400){backBtn.style.opacity = '1';backBtn.style.pointerEvents = 'auto';}else{backBtn.style.opacity = '0';backBtn.style.pointerEvents = 'none';}});backBtn.addEventListener('click', function(){window.scrollTo({top: 0, behavior: 'smooth'});});backBtn.addEventListener('mouseenter', function(){this.style.transform = 'scale(1.1)';});backBtn.addEventListener('mouseleave', function(){this.style.transform = 'scale(1)';});backBtn.addEventListener('keydown', function(e){if(e.key === 'Enter' || e.key === ' '){e.preventDefault();this.click();}});}if('performance' in window && 'PerformanceObserver' in window){try{var observer = new PerformanceObserver(function(list){list.getEntries().forEach(function(entry){if(entry.entryType === 'largest-contentful-paint'){console.log('LCP:', entry.startTime);}});});observer.observe({entryTypes: ['largest-contentful-paint']});}catch(e){console.log('Performance monitoring not supported');}}</script>
 
 </body>
 </html>

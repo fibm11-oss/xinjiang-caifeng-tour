@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# 允許所有主要頁面
+Allow: /index.html
+Allow: /routes.html
+Allow: /car-rental.html
+Allow: /contact.html
+
+# 允許 CSS 和 JS
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# 禁止訪問某些目錄
+Disallow: /docs/
+Disallow: /*.backup
+Disallow: /*.bak
+
+# 網站地圖
+Sitemap: https://xjcaifeng.com/sitemap.xml</content>
+<parameter name="filePath">c:\Users\tivol\Desktop\旅遊網站\robots.txt

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新疆＋上海轉機完整行程表｜新疆采風</title>
+    <meta name="description" content="新疆采風真實行程參考－11天北疆深度之旅，涵蓋喀納斯、禾木、伊犁、獨庫公路等經典路線，含航班、包車、住宿完整規劃。">
+    <meta name="author" content="新疆采風">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xjcaifeng.com/itinerary.html">
+    <meta property="og:title" content="新疆＋上海轉機完整行程表｜新疆采風">
+    <meta property="og:description" content="11天北疆深度之旅，涵蓋喀納斯、禾木、伊犁、獨庫公路等經典路線。">
+
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#c8102e">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+
+        .loading-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg); display: flex; align-items: center;
+            justify-content: center; z-index: 9999; transition: opacity 0.3s ease;
+        }
+        .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+        .loading-spinner {
+            width: 50px; height: 50px; border: 3px solid var(--border);
+            border-top: 3px solid var(--primary); border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* ===== 行程頁面專屬樣式 ===== */
+        .itinerary-section {
+            padding: 60px 0;
+        }
+        .itinerary-section:first-of-type {
+            padding-top: 80px;
+        }
+
+        .itinerary-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 48px;
+            padding: 0 24px;
+        }
+        .itinerary-intro h2 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        .itinerary-intro .route-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 18px 0 0;
+        }
+        .itinerary-intro .route-tags span {
+            background: var(--bg-light);
+            color: var(--secondary);
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+
+        /* Day cards 改用網站設計語彙 */
+        .day-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            margin-bottom: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .day-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+        .day-header {
+            display: flex;
+            align-items: center;
+            padding: 16px 28px;
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border);
+            gap: 20px;
+        }
+        .day-header .date-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--secondary);
+            color: #fff;
+            border-radius: var(--radius);
+            padding: 6px 16px;
+            min-width: 64px;
+        }
+        .day-header .date-badge .day { font-size: 24px; font-weight: 800; line-height: 1.2; }
+        .day-header .date-badge .weekday { font-size: 13px; opacity: 0.9; }
+        .day-header .day-summary { flex: 1; font-size: 16px; line-height: 1.5; color: var(--text); }
+        .day-header .day-summary strong { color: var(--secondary); }
+        .day-header .drive-time {
+            background: #fff3e0;
+            color: #e65100;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 5px 16px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .day-body { padding: 22px 28px; }
+        .day-body .activity {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 5px 0;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-light);
+        }
+        .day-body .activity .emoji { font-size: 17px; min-width: 24px; text-align: center; }
+        .day-body .activity strong { color: var(--text); }
+
+        .day-body .tags-row {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .day-body .tag {
+            display: inline-block;
+            font-size: 12px;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        .tag-flight { background: #e3f2fd; color: #1565c0; }
+        .tag-drive { background: #fff3e0; color: #e65100; }
+        .tag-sight { background: #e8f5e9; color: #2e7d32; }
+        .tag-hotel { background: #f3e5f5; color: #7b1fa2; }
+        .tag-train { background: #e0f7fa; color: #00838f; }
+
+        .day-body .accommodation {
+            margin-top: 14px;
+            padding: 12px 16px;
+            background: var(--bg-light);
+            border-radius: var(--radius);
+            border-left: 3px solid #7b1fa2;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        .day-body .accommodation strong { color: var(--text); }
+
+        /* Flight overview card */
+        .flight-overview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 28px 32px;
+            background: linear-gradient(135deg, var(--bg-light), #fff);
+            border-radius: var(--radius-lg);
+            border: 2px dashed var(--border);
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+        }
+        .flight-overview .airport {
+            text-align: center;
+        }
+        .flight-overview .airport .code {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+        .flight-overview .airport .city {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+        .flight-overview .path {
+            text-align: center;
+            min-width: 160px;
+        }
+        .flight-overview .path .line-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .flight-overview .path .line-wrap .airplane {
+            font-size: 20px;
+            animation: fly 2s ease-in-out infinite;
+        }
+        @keyframes fly {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
+        }
+        .flight-overview .path .line-wrap .dash {
+            flex: 1;
+            height: 2px;
+            border-top: 2px dashed var(--primary);
+            max-width: 80px;
+        }
+        .flight-overview .path .duration {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        /* Summary table */
+        .summary-wrapper {
+            overflow-x: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .summary-wrapper table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 550px;
+        }
+        .summary-wrapper thead { background: var(--secondary); color: #fff; }
+        .summary-wrapper th { padding: 14px 20px; font-size: 15px; font-weight: 700; text-align: center; }
+        .summary-wrapper td {
+            padding: 12px 20px;
+            font-size: 14px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .summary-wrapper tbody tr:hover { background: #f0f6ff; }
+        .summary-wrapper tbody tr:last-child td { border-bottom: none; }
+        .summary-wrapper .total-row { background: #fff8e1; font-weight: 700; }
+        .summary-wrapper .total-row td { color: #e65100; border-top: 2px solid var(--accent); }
+
+        .notes-box {
+            background: var(--bg-light);
+            border-left: 4px solid var(--accent);
+            padding: 18px 24px;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin-top: 28px;
+        }
+        .notes-box h4 { font-size: 15px; color: #e65100; margin-bottom: 8px; }
+        .notes-box p { font-size: 14px; color: var(--text-light); line-height: 1.7; }
+        .notes-box ul { list-style: none; padding: 0; margin: 8px 0 0; }
+        .notes-box li {
+            font-size: 14px; color: var(--text-light); padding: 3px 0 3px 18px;
+            position: relative; line-height: 1.6;
+        }
+        .notes-box li::before { content: '•'; position: absolute; left: 4px; color: var(--accent); font-weight: bold; }
+
+        /* CTA banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            text-align: center;
+            color: #fff;
+            margin-top: 48px;
+        }
+        .cta-banner h3 { font-size: 26px; font-weight: 800; margin-bottom: 10px; }
+        .cta-banner p { font-size: 16px; opacity: 0.9; margin-bottom: 24px; }
+
+        @media (max-width: 768px) {
+            .day-header { flex-wrap: wrap; gap: 10px; }
+            .day-header .date-badge { min-width: 54px; }
+            .day-header .date-badge .day { font-size: 20px; }
+            .day-body { padding: 16px 18px; }
+            .flight-overview { padding: 20px; }
+            .flight-overview .airport .code { font-size: 24px; }
+            .itinerary-intro h2 { font-size: 26px; }
+            .cta-banner { padding: 28px 20px; }
+            .cta-banner h3 { font-size: 22px; }
+        }
+        @media (max-width: 480px) {
+            .day-body .activity { font-size: 14px; }
+            .day-header .day-summary { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 載入動畫 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- 跳過連結 -->
+    <a href="#main-content" class="skip-link">跳至主要內容</a>
+
+    <!-- ===== 頂部導航 ===== -->
+    <nav class="navbar" role="navigation" aria-label="主導航">
+        <div class="nav-container">
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="開啟行動選單" aria-expanded="false" aria-controls="navMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </button>
+            <a href="index.html" class="logo" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+            <ul class="nav-menu" id="navMenu" role="menubar" aria-label="網站導航選單">
+                <li role="none"><a href="index.html" role="menuitem">首頁</a></li>
+                <li role="none"><a href="routes.html" role="menuitem">推薦行程</a></li>
+                <li role="none"><a href="car-rental.html" role="menuitem">包車服務</a></li>
+                <li role="none"><a href="itinerary.html" class="active" role="menuitem" aria-current="page">行程範例</a></li>
+                <li role="none"><a href="contact.html" role="menuitem">聯絡我們</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===== Page Hero ===== -->
+    <section class="page-hero" id="main-content" style="background:linear-gradient(135deg,rgba(26,74,122,0.78),rgba(200,16,46,0.56)),url('images/hero-xinjiang.svg') center/cover no-repeat;">
+        <h1>🗺 新疆＋上海轉機</h1>
+        <p>完整行程範例 ・ 11 天北疆深度之旅</p>
+    </section>
+
+    <!-- ===== 行程內容 ===== -->
+    <section class="itinerary-section">
+        <div class="container">
+
+            <!-- 行程簡介 -->
+            <div class="itinerary-intro">
+                <h2>2026年6月21日 — 7月1日</h2>
+                <p style="color:var(--text-light);font-size:16px;max-width:600px;margin:0 auto;">
+                    一趟從台北出發、途經上海轉機，深入北疆經典路線的 11 天完整旅程。<br>
+                    喀納斯的晨霧、禾木村的日落、獨庫公路的壯闊——全部收錄。
+                </p>
+                <div class="route-tags">
+                    <span>📍 阿勒泰</span>
+                    <span>🏘️ 禾木村</span>
+                    <span>🏔️ 喀納斯</span>
+                    <span>🌿 伊犁</span>
+                    <span>🛤️ 獨庫公路</span>
+                    <span>🏙️ 烏魯木齊</span>
+                </div>
+            </div>
+
+            <!-- 航班總覽 -->
+            <div class="flight-overview">
+                <div class="airport">
+                    <div class="code">TPE</div>
+                    <div class="city">台北桃園</div>
+                </div>
+                <div class="path">
+                    <div class="line-wrap">
+                        <span class="dash"></span>
+                        <span class="airplane">✈</span>
+                        <span class="dash"></span>
+                    </div>
+                    <div class="duration">經上海轉機</div>
+                </div>
+                <div class="airport">
+                    <div class="code">AAT</div>
+                    <div class="city">阿勒泰</div>
+                </div>
+                <div class="path">
+                    <div class="line-wrap">
+                        <span class="dash"></span>
+                        <span class="airplane">🚗</span>
+                        <span class="dash"></span>
+                    </div>
+                    <div class="duration">包車環線</div>
+                </div>
+                <div class="airport">
+                    <div class="code">URC</div>
+                    <div class="city">烏魯木齊</div>
+                </div>
+                <div class="path">
+                    <div class="line-wrap">
+                        <span class="dash"></span>
+                        <span class="airplane">✈</span>
+                        <span class="dash"></span>
+                    </div>
+                    <div class="duration">返程</div>
+                </div>
+                <div class="airport">
+                    <div class="code">TSA</div>
+                    <div class="city">台北松山</div>
+                </div>
+            </div>
+
+            <!-- ===== Day 1: 6/21 ===== -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">21</span><span class="weekday">日</span></div>
+                    <div class="day-summary"><strong>台北 → 上海浦東</strong> ・ 過夜轉機</div>
+                    <span class="drive-time">🚗 0 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">✈️</span> <strong>航班 MU506：</strong>台北桃園 (18:40) → 上海浦東 (20:40)</div>
+                    <div class="activity"><span class="emoji">🔄</span> 過夜轉機，需重新託運行李</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>上海浦東機場附近</div>
+                    <div class="tags-row">
+                        <span class="tag tag-flight">✈ 航班</span>
+                        <span class="tag tag-hotel">🏨 機場酒店</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 2: 6/22 ===== -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">22</span><span class="weekday">一</span></div>
+                    <div class="day-summary"><strong>上海浦東 → 阿勒泰 → 布爾津</strong></div>
+                    <span class="drive-time">🚗 2.0 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">✈️</span> <strong>航班 MU6673：</strong>上海浦東 (09:20) → 阿勒泰 (15:05)</div>
+                    <div class="activity"><span class="emoji">🚗</span> 抵達阿勒泰後取車／包車前往布爾津</div>
+                    <div class="activity"><span class="emoji">🌙</span> 晚上漫遊 <strong>河堤夜市</strong>（布爾津知名夜市）</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>布爾津</div>
+                    <div class="tags-row">
+                        <span class="tag tag-flight">✈ 航班</span>
+                        <span class="tag tag-drive">🚗 包車 2hr</span>
+                        <span class="tag tag-sight">🌙 河堤夜市</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 3: 6/23 ===== -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">23</span><span class="weekday">二</span></div>
+                    <div class="day-summary"><strong>布爾津 → 禾木村</strong></div>
+                    <span class="drive-time">🚗 4.0 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🚗</span> 布爾津驅車前往禾木村（車程約 4hr）</div>
+                    <div class="activity"><span class="emoji">🏘️</span> 禾木村景點：<strong>禾木橋、白樺林</strong></div>
+                    <div class="activity"><span class="emoji">🌅</span> 登上 <strong>哈登平台</strong> 觀賞禾木村經典日落</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>禾木小木屋（特色木屋民宿）</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 車程 4hr</span>
+                        <span class="tag tag-sight">🏘️ 禾木村</span>
+                        <span class="tag tag-sight">🌅 日落平台</span>
+                        <span class="tag tag-hotel">🏡 小木屋</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 4: 6/24 ===== -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">24</span><span class="weekday">三</span></div>
+                    <div class="day-summary"><strong>禾木晨霧 → 喀納斯景區</strong></div>
+                    <span class="drive-time">🚗 1.5 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🌫️</span> 早起觀賞 <strong>禾木晨霧</strong>（禾木標誌性景觀）</div>
+                    <div class="activity"><span class="emoji">🚗</span> 驅車前往喀納斯景區（車程約 1.5hr）</div>
+                    <div class="activity"><span class="emoji">🏔️</span> 喀納斯景區徒步：<strong>觀魚台、神仙灣、月亮灣、臥龍灣</strong></div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>喀納斯老村／賈登峪</div>
+                    <div class="tags-row">
+                        <span class="tag tag-sight">🌫️ 禾木晨霧</span>
+                        <span class="tag tag-drive">🚗 車程 1.5hr</span>
+                        <span class="tag tag-sight">🏔️ 喀納斯</span>
+                        <span class="tag tag-hotel">🏨 景區住宿</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 5: 6/25 ===== -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">25</span><span class="weekday">四</span></div>
+                    <div class="day-summary"><strong>喀納斯湖 → 布爾津 → 阿勒泰市區</strong></div>
+                    <span class="drive-time">🚗 4.0 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🏞️</span> <strong>喀納斯湖</strong> 自由活動（可遊船或湖邊漫步）</div>
+                    <div class="activity"><span class="emoji">🍽️</span> 布爾津午餐（品嚐新疆特色料理）</div>
+                    <div class="activity"><span class="emoji">🏙️</span> 前往阿勒泰市區，參觀 <strong>駝峰公園</strong></div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>阿勒泰市區</div>
+                    <div class="tags-row">
+                        <span class="tag tag-sight">🏞️ 喀納斯湖</span>
+                        <span class="tag tag-drive">🚗 車程 4hr</span>
+                        <span class="tag tag-hotel">🏨 市區酒店</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 6: 6/26 ===== -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">26</span><span class="weekday">五</span></div>
+                    <div class="day-summary"><strong>阿勒泰 → 伊寧</strong></div>
+                    <span class="drive-time">✈ 1hr 10min</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">✈️</span> <strong>航班 G54970：</strong>阿勒泰 (12:15) → 伊寧 (13:35)</div>
+                    <div class="activity"><span class="emoji">🏘️</span> 下午漫遊 <strong>六星街</strong>（伊寧特色街區）</div>
+                    <div class="activity"><span class="emoji">🌅</span> <strong>伊犁河大橋日落</strong> — 伊寧經典日落景點</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>伊寧市區</div>
+                    <div class="tags-row">
+                        <span class="tag tag-flight">✈ 航班</span>
+                        <span class="tag tag-sight">🏘️ 六星街</span>
+                        <span class="tag tag-sight">🌅 伊犁河日落</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 7: 6/27 ===== -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">27</span><span class="weekday">六</span></div>
+                    <div class="day-summary"><strong>伊寧 → 唐布拉草原 → 那拉提鎮</strong></div>
+                    <span class="drive-time">🚗 4.5 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🚗</span> 伊寧出發前往唐布拉草原</div>
+                    <div class="activity"><span class="emoji">🛤️</span> 唐布拉 <strong>百里畫廊</strong> — 新疆最美公路景觀之一</div>
+                    <div class="activity"><span class="emoji">🏞️</span> <strong>仙女湖</strong>（可騎馬或徒步前往）</div>
+                    <div class="activity"><span class="emoji">🚗</span> 傍晚抵達那拉提鎮</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>那拉提鎮</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 車程 4.5hr</span>
+                        <span class="tag tag-sight">🛤️ 百里畫廊</span>
+                        <span class="tag tag-sight">🏞️ 仙女湖</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 8: 6/28 ===== -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">28</span><span class="weekday">日</span></div>
+                    <div class="day-summary"><strong>獨庫公路北段 → 奎屯</strong> ⭐ 精華路段</div>
+                    <span class="drive-time">🚗 5.0 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🚗</span> 穿越 <strong>獨庫公路北段</strong> — 新疆最美景觀公路</div>
+                    <div class="activity"><span class="emoji">🏔️</span> 途經：<strong>喬爾瑪、哈希勒根達坂、天瀑</strong></div>
+                    <div class="activity"><span class="emoji">🌲</span> 峽谷、雪山、森林交織的壯麗景觀，一路驚嘆</div>
+                    <div class="activity"><span class="emoji">🚗</span> 傍晚抵達奎屯</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>奎屯市區</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 車程 5hr</span>
+                        <span class="tag tag-sight">🏔️ 獨庫公路</span>
+                        <span class="tag tag-sight">❄️ 哈希勒根達坂</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 9: 6/29 ===== -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">29</span><span class="weekday">一</span></div>
+                    <div class="day-summary"><strong>奎屯 → 烏魯木齊（包車）</strong></div>
+                    <span class="drive-time">🚗 3.0 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🚗</span> 奎屯 → 烏魯木齊，<strong>包車前往</strong>（車程約 2.5 小時）</div>
+                    <div class="activity"><span class="emoji">🏙️</span> 下午遊覽：<strong>國際大巴扎</strong>（中亞最大集市）</div>
+                    <div class="activity"><span class="emoji">🌳</span> <strong>紅山公園</strong> — 烏魯木齊城市地標</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>烏魯木齊機場附近</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 包車 2.5hr</span>
+                        <span class="tag tag-sight">🏙️ 國際大巴扎</span>
+                        <span class="tag tag-sight">🌳 紅山公園</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 10: 6/30 ===== -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">30</span><span class="weekday">二</span></div>
+                    <div class="day-summary"><strong>烏魯木齊 → 上海浦東 → 上海市區</strong></div>
+                    <span class="drive-time">🚗 0.5 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🚗</span> 上午：市區 → 烏魯木齊機場（車程 0.5hr）</div>
+                    <div class="activity"><span class="emoji">✈️</span> <strong>航班 MU5688：</strong>烏魯木齊 (11:05) → 上海浦東 (15:50)</div>
+                    <div class="activity"><span class="emoji">🌆</span> 晚上可進上海市區：<strong>外灘、南京路步行街</strong></div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>上海浦東或市區</div>
+                    <div class="tags-row">
+                        <span class="tag tag-flight">✈ 航班</span>
+                        <span class="tag tag-sight">🌆 外灘夜景</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 11: 7/1 ===== -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">1</span><span class="weekday">三</span></div>
+                    <div class="day-summary"><strong>上海浦東 → 台北松山</strong> ・ 返家</div>
+                    <span class="drive-time">🚗 0 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">✈️</span> <strong>航班 FM801：</strong>上海浦東 (09:10) → 台北松山 (11:00)</div>
+                    <div class="activity"><span class="emoji">🏠</span> 返家！結束 11 天精彩旅程</div>
+                    <div class="tags-row">
+                        <span class="tag tag-flight">✈ 回程航班</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 用車時長統計 ===== -->
+            <div class="itinerary-intro" style="margin-top:48px;">
+                <h2>📊 每日用車時長統計</h2>
+                <p style="color:var(--text-light);font-size:15px;">包車／自駕實際駕駛時間（不含飛機、火車、市區短途計程車）</p>
+            </div>
+            <div class="summary-wrapper">
+                <table>
+                    <thead>
+                        <tr><th>日期</th><th>行程區段</th><th>用車時長</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>6/22</td><td>阿勒泰 → 布爾津</td><td>2.0 小時</td></tr>
+                        <tr><td>6/23</td><td>布爾津 → 禾木村</td><td>4.0 小時</td></tr>
+                        <tr><td>6/24</td><td>禾木 → 喀納斯景區</td><td>1.5 小時</td></tr>
+                        <tr><td>6/25</td><td>喀納斯 → 布爾津 → 阿勒泰</td><td>4.0 小時</td></tr>
+                        <tr><td>6/26</td><td>阿勒泰市區</td><td>0.5 小時</td></tr>
+                        <tr><td>6/27</td><td>伊寧 → 唐布拉 → 那拉提</td><td>4.5 小時</td></tr>
+                        <tr><td>6/28</td><td>獨庫公路北段（那拉提→奎屯）</td><td>5.0 小時</td></tr>
+                        <tr><td>6/29</td><td>奎屯 → 烏魯木齊（包車）</td><td>3.0 小時</td></tr>
+                        <tr><td>6/30</td><td>烏魯木齊市區 → 機場</td><td>0.5 小時</td></tr>
+                        <tr class="total-row"><td colspan="2"><strong>合計用車時長</strong></td><td><strong>22.0 小時</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 備註 -->
+            <div class="notes-box">
+                <h4>📌 行程說明</h4>
+                <p>用車時長僅包含包車／自駕實際駕駛時間，不含飛機、火車、市區短途計程車。行程可依實際需求調整。</p>
+                <ul>
+                    <li>北疆 6 月氣候宜人，草原全綠，白天約 25-30°C，夜間約 15-20°C</li>
+                    <li>獨庫公路通常在 6 月初全線通車，6 月底是最佳通行時段</li>
+                    <li>建議提前預訂包車服務，旺季車輛供不應求</li>
+                </ul>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-banner">
+                <h3>也想規劃屬於您的新疆之旅？</h3>
+                <p>我們的專業團隊可為您量身打造客製化行程，專屬司機＋私人導遊，讓您輕鬆暢遊新疆。</p>
+                <a href="contact.html" class="btn btn-primary">立即諮詢</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== 頁尾 ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>新疆采風</h3>
+                    <p>專業新疆包車旅遊服務，帶您深入探索天山南北，感受絲路文化與壯闊自然。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速連結</h4>
+                    <ul>
+                        <li><a href="index.html">首頁</a></li>
+                        <li><a href="routes.html">推薦行程</a></li>
+                        <li><a href="car-rental.html">包車服務</a></li>
+                        <li><a href="itinerary.html">行程範例</a></li>
+                        <li><a href="contact.html">聯絡我們</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>精選路線</h4>
+                    <ul>
+                        <li><a href="routes.html#tour1">伊犁河谷10日</a></li>
+                        <li><a href="routes.html#tour2">草原深度8日</a></li>
+                        <li><a href="routes.html#tour3">南疆絲路9日</a></li>
+                        <li><a href="routes.html#tour4">北疆喀納斯8日</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>聯絡資訊</h4>
+                    <p>📱 LINE：XJCaifeng</p>
+                    <p>📧 Email：info@xjcaifeng.com</p>
+                    <p>🕐 服務時間：全年無休，09:00-22:00</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到頂部 -->
+    <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到頂部">↑</button>
+
+    <script>
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            var overlay = document.getElementById('loadingOverlay');
+            if (overlay) {
+                overlay.classList.add('hidden');
+                setTimeout(function() { overlay.style.display = 'none'; }, 300);
+            }
+        }, 500);
+    });
+
+    function toggleMenu() {
+        var menu = document.getElementById('navMenu');
+        var btn = document.querySelector('.mobile-menu-btn');
+        if (menu && btn) {
+            var isExpanded = menu.classList.contains('active');
+            menu.classList.toggle('active');
+            btn.classList.toggle('active');
+            btn.setAttribute('aria-expanded', !isExpanded);
+        }
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            var menu = document.getElementById('navMenu');
+            var btn = document.querySelector('.mobile-menu-btn');
+            if (menu && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+                if (btn) { btn.classList.remove('active'); btn.setAttribute('aria-expanded', 'false'); }
+            }
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var menu = document.getElementById('navMenu');
+        if (menu) {
+            var links = menu.querySelectorAll('a');
+            links.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    menu.classList.remove('active');
+                    var btn = document.querySelector('.mobile-menu-btn');
+                    if (btn) { btn.classList.remove('active'); btn.setAttribute('aria-expanded', 'false'); }
+                });
+            });
+        }
+    });
+    </script>
+</body>
+</html>

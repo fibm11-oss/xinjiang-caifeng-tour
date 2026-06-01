@@ -13,10 +13,23 @@
     <meta property="og:title" content="新疆＋上海轉機完整行程表｜新疆采風">
     <meta property="og:description" content="11天北疆深度之旅，涵蓋喀納斯、禾木、伊犁、獨庫公路等經典路線。">
 
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://xjcaifeng.com/itinerary.html">
+    <meta property="twitter:title" content="新疆＋上海轉機完整行程表｜新疆采風">
+    <meta property="twitter:description" content="11天北疆深度之旅，涵蓋喀納斯、禾木、伊犁、獨庫公路等經典路線。">
+
     <link rel="preload" href="css/style.css" as="style">
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="images/favicon-16.png" type="image/png" sizes="16x16">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#c8102e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="新疆采風">
+    <link rel="apple-touch-icon" href="images/favicon-192.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="images/favicon-512.png" sizes="512x512">
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -288,7 +301,7 @@
         }
     </style>
 </head>
-<body>
+<body data-analytics data-baidu-id="YOUR_BAIDU_ID" data-ga-id="YOUR_GA_ID">
     <!-- 載入動畫 -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
@@ -312,6 +325,7 @@
                 <li role="none"><a href="car-rental.html" role="menuitem">包車服務</a></li>
                 <li role="none"><a href="itinerary.html" class="active" role="menuitem" aria-current="page">行程範例</a></li>
                 <li role="none"><a href="contact.html" role="menuitem">聯絡我們</a></li>
+                <li role="none"><a href="blog/xinjiang-travel-guide.html" role="menuitem">旅遊攻略</a></li>
             </ul>
         </div>
     </nav>
@@ -607,7 +621,7 @@
             <!-- ===== 用車時長統計 ===== -->
             <div class="itinerary-intro" style="margin-top:48px;">
                 <h2>📊 每日用車時長統計</h2>
-                <p style="color:var(--text-light);font-size:15px;">包車／自駕實際駕駛時間（不含飛機、火車、市區短途計程車）</p>
+                <p style="color:var(--text-light);font-size:15px;">包車實際駕駛時間（不含飛機、火車、市區短途計程車）</p>
             </div>
             <div class="summary-wrapper">
                 <table>
@@ -632,7 +646,7 @@
             <!-- 備註 -->
             <div class="notes-box">
                 <h4>📌 行程說明</h4>
-                <p>用車時長僅包含包車／自駕實際駕駛時間，不含飛機、火車、市區短途計程車。行程可依實際需求調整。</p>
+                <p>用車時長僅包含包車實際駕駛時間，不含飛機、火車、市區短途計程車。行程可依實際需求調整。</p>
                 <ul>
                     <li>北疆 6 月氣候宜人，草原全綠，白天約 25-30°C，夜間約 15-20°C</li>
                     <li>獨庫公路通常在 6 月初全線通車，6 月底是最佳通行時段</li>
@@ -666,6 +680,15 @@
                         <li><a href="car-rental.html">包車服務</a></li>
                         <li><a href="itinerary.html">行程範例</a></li>
                         <li><a href="contact.html">聯絡我們</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>旅遊攻略</h4>
+                    <ul>
+                        <li><a href="blog/xinjiang-four-seasons.html">新疆四季旅遊攻略</a></li>
+                        <li><a href="blog/xinjiang-travel-guide.html">新疆旅遊攻略</a></li>
+                        <li><a href="blog/beijiang-vs-nanjiang.html">北疆vs南疆</a></li>
+                        <li><a href="blog/dubai-gonglu-guide.html">獨庫公路攻略</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -740,5 +763,11 @@
         }
     });
     </script>
+
+<script src="js/app.js"></script>
+<script src="js/promotion.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/sitemap.js"></script>
+
 </body>
 </html>

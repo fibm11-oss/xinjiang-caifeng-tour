@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120">
+  <defs>
+    <linearGradient id="red-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#c8102e"/>
+      <stop offset="100%" style="stop-color:#e83e4d"/>
+    </linearGradient>
+    <linearGradient id="blue-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1a4a7a"/>
+      <stop offset="100%" style="stop-color:#2a6a9a"/>
+    </linearGradient>
+  </defs>
+  <!-- 背景 -->
+  <rect width="400" height="120" rx="12" fill="#fff"/>
+  <!-- Icon - 山與路 -->
+  <g transform="translate(20,20)">
+    <polygon points="40,60 20,80 60,80" fill="#c8102e" opacity="0.9"/>
+    <polygon points="70,50 40,80 100,80" fill="#1a4a7a" opacity="0.9"/>
+    <polygon points="110,55 80,80 140,80" fill="#f5a623" opacity="0.9"/>
+    <rect x="60" y="68" width="10" height="12" fill="#2e7d32" rx="2" opacity="0.8"/>
+  </g>
+  <!-- 文字：新疆 -->
+  <text x="180" y="58" font-family="'Microsoft JhengHei','PingFang TC',sans-serif" font-size="44" font-weight="900" fill="#c8102e">新疆</text>
+  <!-- 文字：采風 -->
+  <text x="290" y="58" font-family="'Microsoft JhengHei','PingFang TC',sans-serif" font-size="44" font-weight="900" fill="#1a4a7a">采風</text>
+  <!-- 標語 -->
+  <text x="180" y="92" font-family="'Microsoft JhengHei','PingFang TC',sans-serif" font-size="16" fill="#666" letter-spacing="2">新疆包車旅遊・專業服務</text>
+</svg>

@@ -19,6 +19,11 @@ const siteMap = {
         title: '聯絡我們 - 新疆采風',
         description: '有任何問題歡迎聯絡',
         keywords: ['聯絡方式', '諮詢', '新疆旅遊諮詢']
+    },
+    '/itinerary.html': {
+        title: '行程範例 - 新疆采風',
+        description: '11天北疆深度之旅，喀納斯、禾木、伊犁、獨庫公路',
+        keywords: ['行程範例', '北疆旅遊', '新疆行程']
     }
 };
 

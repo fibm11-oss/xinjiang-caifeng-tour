@@ -60,5 +60,23 @@
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://xjcaifeng.com/blog/urumqi-citywalk.html</loc>
+        <lastmod>2026-06-02</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://xjcaifeng.com/blog/yining-citywalk.html</loc>
+        <lastmod>2026-06-02</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://xjcaifeng.com/blog/burqin-citywalk.html</loc>
+        <lastmod>2026-06-02</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
 </urlset></content>
 <parameter name="filePath">c:\Users\tivol\Desktop\旅遊網站\sitemap.xml

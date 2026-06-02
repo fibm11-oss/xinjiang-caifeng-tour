@@ -42,6 +42,9 @@ const urlsToCache = [
     '/blog/xinjiang-travel-guide.html',
     '/blog/beijiang-vs-nanjiang.html',
     '/blog/dubai-gonglu-guide.html'
+    '/blog/urumqi-citywalk.html',
+    '/blog/yining-citywalk.html',
+    '/blog/burqin-citywalk.html'
 ];
 
 // 安裝服務工作線程

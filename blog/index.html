@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新疆旅遊攻略總覽｜新疆采風</title>
+    <meta name="description" content="新疆采風旅遊攻略總覽：四季攻略、北疆vs南疆比較、獨庫公路指南、完整旅遊規劃。">
+    <meta name="author" content="新疆采風">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xjcaifeng.com/blog/">
+    <meta property="og:title" content="新疆旅遊攻略總覽｜新疆采風">
+    <meta property="og:description" content="新疆旅遊攻略總覽：四季攻略、北疆vs南疆、獨庫公路指南、旅遊全攻略。">
+    <meta property="og:image" content="https://xjcaifeng.com/images/og-image.svg">
+
+    <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../images/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="../images/favicon-16.png" type="image/png" sizes="16x16">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#c8102e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="新疆采風">
+    <link rel="apple-touch-icon" href="../images/favicon-192.png" sizes="192x192">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+
+        /* 攻略索引頁面樣式 */
+        .blog-index { padding: 100px 24px 60px; max-width: 1100px; margin: 0 auto; }
+
+        .blog-index h1 {
+            font-size: 38px; color: var(--secondary);
+            text-align: center; margin-bottom: 10px; font-weight: 800;
+        }
+        .blog-index .subtitle {
+            text-align: center; color: var(--text-light);
+            font-size: 18px; margin-bottom: 48px; line-height: 1.7;
+        }
+        .blog-index .subtitle::after {
+            content: ''; display: block; width: 48px; height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px; margin: 16px auto 0;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            margin-bottom: 60px;
+        }
+
+        .blog-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #f0f0f0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+        }
+
+        .blog-card-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .blog-card-body {
+            padding: 24px 26px 28px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-body .category {
+            font-size: 12px;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .blog-card-body h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            line-height: 1.35;
+        }
+
+        .blog-card-body p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .blog-card-body .meta {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .blog-card-body .read-more {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: gap 0.2s;
+        }
+
+        .blog-card-body .read-more:hover { gap: 8px; }
+
+        @media (max-width: 768px) {
+            .blog-grid { grid-template-columns: 1fr; gap: 20px; }
+            .blog-index h1 { font-size: 28px; }
+            .blog-index { padding: 80px 16px 40px; }
+            .blog-card-image { height: 160px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="主導航">
+    <div class="nav-container">
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="開啟選單" aria-expanded="false" aria-controls="navMenu">
+            <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+        <a href="../index.html" class="logo" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+        <ul class="nav-menu" id="navMenu" role="menubar">
+            <li role="none"><a href="../index.html" role="menuitem">首頁</a></li>
+            <li role="none"><a href="../routes.html" role="menuitem">推薦行程</a></li>
+            <li role="none"><a href="../car-rental.html" role="menuitem">小包團</a></li>
+            <li role="none"><a href="../itinerary.html" role="menuitem">行程範例</a></li>
+            <li role="none"><a href="../contact.html" role="menuitem">聯絡我們</a></li>
+            <li role="none"><a href="index.html" class="active" role="menuitem">旅遊攻略</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="blog-index">
+    <h1>🏔️ 新疆旅遊攻略</h1>
+    <p class="subtitle">從四季旅遊到南北疆比較，從獨庫公路指南到完整旅遊規劃<br>為您整理最實用的新疆旅遊資訊</p>
+
+    <div class="blog-grid">
+
+        <!-- 卡片 1：新疆四季旅遊攻略 -->
+        <a href="xinjiang-four-seasons.html" class="blog-card" style="text-decoration:none;color:inherit;">
+            <div class="blog-card-image" style="background:linear-gradient(135deg,#2ecc71,#27ae60);">
+                <span style="font-size:48px;">🌸</span>
+            </div>
+            <div class="blog-card-body">
+                <div class="category">季節指南</div>
+                <h2>新疆四季旅遊攻略</h2>
+                <div class="meta">
+                    <span>📅 2026年更新</span>
+                    <span>👁️ 閱讀約 15 分鐘</span>
+                </div>
+                <p>春的杏花、夏的草原、秋的彩林、冬的雪景——新疆四季各有魅力。本篇完整介紹各季節天氣、花況、推薦路線與注意事項，讓您在對的時間去對的地方。</p>
+                <span class="read-more">閱讀完整文章 →</span>
+            </div>
+        </a>
+
+        <!-- 卡片 2：新疆旅遊完整攻略 -->
+        <a href="xinjiang-travel-guide.html" class="blog-card" style="text-decoration:none;color:inherit;">
+            <div class="blog-card-image" style="background:linear-gradient(135deg,#1a4a7a,#2a6a9a);">
+                <span style="font-size:48px;">🗺️</span>
+            </div>
+            <div class="blog-card-body">
+                <div class="category">旅遊總攻略</div>
+                <h2>新疆旅遊完整攻略 2026</h2>
+                <div class="meta">
+                    <span>📅 2026年6月更新</span>
+                    <span>👁️ 閱讀約 8 分鐘</span>
+                </div>
+                <p>新疆旅遊必讀！從季節選擇、天數規劃、路線推薦、預算估算到包車vs跟團完整比較。無論新手還是老手，一篇搞懂所有新疆旅遊重點。</p>
+                <span class="read-more">閱讀完整文章 →</span>
+            </div>
+        </a>
+
+        <!-- 卡片 3：北疆 vs 南疆 -->
+        <a href="beijiang-vs-nanjiang.html" class="blog-card" style="text-decoration:none;color:inherit;">
+            <div class="blog-card-image" style="background:linear-gradient(135deg,#e67e22,#d35400);">
+                <span style="font-size:48px;">🌄</span>
+            </div>
+            <div class="blog-card-body">
+                <div class="category">路線比較</div>
+                <h2>北疆 vs 南疆：怎麼選？</h2>
+                <div class="meta">
+                    <span>📅 2026年更新</span>
+                    <span>👁️ 閱讀約 6 分鐘</span>
+                </div>
+                <p>北疆的草原湖泊 vs 南疆的沙漠古城，兩個風格截然不同的世界。從最佳季節、推薦天數、經典路線到預算，完整比較幫你做出選擇。</p>
+                <span class="read-more">閱讀完整文章 →</span>
+            </div>
+        </a>
+
+        <!-- 卡片 4：獨庫公路攻略 -->
+        <a href="dubai-gonglu-guide.html" class="blog-card" style="text-decoration:none;color:inherit;">
+            <div class="blog-card-image" style="background:linear-gradient(135deg,#8e44ad,#9b59b6);">
+                <span style="font-size:48px;">🛣️</span>
+            </div>
+            <div class="blog-card-body">
+                <div class="category">路線指南</div>
+                <h2>獨庫公路攻略</h2>
+                <div class="meta">
+                    <span>📅 2026年更新</span>
+                    <span>👁️ 閱讀約 6 分鐘</span>
+                </div>
+                <p>中國最美公路——獨庫公路，一日有四季，十里不同天。本篇完整介紹通車時間、沿途景點、自駕注意事項與包車建議，帶您征服這條景觀大道。</p>
+                <span class="read-more">閱讀完整文章 →</span>
+            </div>
+        </a>
+
+    </div>
+</div>
+
+<!-- 頁尾 -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>新疆采風</h3>
+                <p>專業新疆包車旅遊服務，帶您深入探索天山南北，感受絲路文化與壯闊自然。</p>
+            </div>
+            <div class="footer-col">
+                <h4>快速連結</h4>
+                <ul>
+                    <li><a href="../index.html">首頁</a></li>
+                    <li><a href="../routes.html">推薦行程</a></li>
+                    <li><a href="../car-rental.html">包車服務</a></li>
+                    <li><a href="../itinerary.html">行程範例</a></li>
+                    <li><a href="../contact.html">聯絡我們</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>旅遊攻略</h4>
+                <ul>
+                    <li><a href="xinjiang-four-seasons.html">新疆四季旅遊攻略</a></li>
+                    <li><a href="xinjiang-travel-guide.html">新疆旅遊攻略</a></li>
+                    <li><a href="beijiang-vs-nanjiang.html">北疆vs南疆</a></li>
+                    <li><a href="dubai-gonglu-guide.html">獨庫公路攻略</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>精選路線</h4>
+                <ul>
+                    <li><a href="../routes.html#tour1">伊犁河谷10日</a></li>
+                    <li><a href="../routes.html#tour2">草原深度8日</a></li>
+                    <li><a href="../routes.html#tour5">北疆全景10日</a></li>
+                    <li><a href="../routes.html#tour7">喀什帕米爾7日</a></li>
+                    <li><a href="../routes.html#tour9">南北疆15日大環線</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>聯絡資訊</h4>
+                <p>📱 LINE：XJCaifeng</p>
+                <p>📧 Email：info@xjcaifeng.com</p>
+                <p>🕐 服務時間：全年無休，09:00-22:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved. | <a href="../sitemap.xml" style="color:rgba(255,255,255,0.6);">網站地圖</a></p>
+        </div>
+    </div>
+</footer>
+
+<!-- 回到頂部按鈕 -->
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到頂部">↑</button>
+
+<script src="../js/nav.js"></script>
+<script src="../js/sitemap.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/promotion.js"></script>
+
+</body>
+</html>

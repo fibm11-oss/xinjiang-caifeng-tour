@@ -37,6 +37,7 @@ const urlsToCache = [
     '/images/tours/tour2-grassland.svg',
     '/images/tours/tour3-south-xj.svg',
     '/images/tours/tour4-kanas.svg',
+    '/blog/index.html',
     '/blog/xinjiang-four-seasons.html',
     '/blog/xinjiang-travel-guide.html',
     '/blog/beijiang-vs-nanjiang.html',

@@ -41,10 +41,14 @@ const urlsToCache = [
     '/blog/xinjiang-four-seasons.html',
     '/blog/xinjiang-travel-guide.html',
     '/blog/beijiang-vs-nanjiang.html',
-    '/blog/dubai-gonglu-guide.html'
+    '/blog/dubai-gonglu-guide.html',
     '/blog/urumqi-citywalk.html',
     '/blog/yining-citywalk.html',
-    '/blog/burqin-citywalk.html'
+    '/blog/burqin-citywalk.html',
+    '/images/photos/anjihai-canyon.webp',
+    '/images/photos/duku-road-summer.webp',
+    '/images/photos/duku-road-winter.webp',
+    '/images/photos/hemu-starry-night.webp'
 ];
 
 // 安裝服務工作線程
@@ -89,5 +93,4 @@ self.addEventListener('activate', function(event) {
             );
         })
     );
-});</content>
-<parameter name="filePath">c:\Users\tivol\Desktop\旅遊網站\sw.js
+});

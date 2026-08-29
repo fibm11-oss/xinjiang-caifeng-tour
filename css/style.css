@@ -357,8 +357,8 @@ img[loading="lazy"] {
     height: 100vh;
     min-height: 640px;
     background:
-        linear-gradient(135deg, rgba(26,74,122,0.78) 0%, rgba(26,74,122,0.45) 50%, rgba(200,16,46,0.52) 100%),
-        url("../images/hero-xinjiang.svg") center/cover no-repeat;
+        linear-gradient(135deg, rgba(26,74,122,0.72) 0%, rgba(26,74,122,0.42) 50%, rgba(200,16,46,0.48) 100%),
+        url("../images/photos/anjihai-canyon.webp") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -695,6 +695,69 @@ img[loading="lazy"] {
     font-size: var(--font-size-sm);
     margin-bottom: 14px;
     line-height: 1.7;
+}
+
+/* ========== 新疆實景照片牆 ========== */
+.scenery {
+    padding: 88px 0;
+    background: #fff;
+}
+
+.scenery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.scenery-item {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition);
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--border-light);
+}
+
+.scenery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.scenery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s;
+}
+
+.scenery-item:hover img {
+    transform: scale(1.06);
+}
+
+.scenery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px 16px 14px;
+    background: linear-gradient(to top, rgba(0,0,0,0.72), transparent);
+    color: #fff;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+    letter-spacing: 0.3px;
+}
+
+@media (max-width: 1024px) {
+    .scenery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+    .scenery-grid { grid-template-columns: 1fr; gap: 16px; }
+    .scenery { padding: 48px 0; }
 }
 
 /* ========== 景點車程表格 ========== */

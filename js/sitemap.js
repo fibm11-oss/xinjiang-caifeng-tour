@@ -65,5 +65,4 @@ if ('serviceWorker' in navigator) {
                 console.log('ServiceWorker 註冊失敗:', error);
             });
     });
-}</content>
-<parameter name="filePath">c:\Users\tivol\Desktop\旅遊網站\js\sitemap.js
+}

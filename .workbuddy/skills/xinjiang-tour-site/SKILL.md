@@ -124,25 +124,39 @@ python.exe ".../xinjiang-tour-site/scripts/preflight.py"
 5. 專案層級副本 `C:\Users\tivol\Desktop\旅遊網站\.workbuddy\skills\xinjiang-tour-site\`
    是否與使用者層級一致？改過就同步過去（`cp -r`）。
 
-## 3. 觸發機制的現況（重要，2026-10-16 T0 實測）
+## 3. skill 自動加載機制（2026-10-16 建立）
 
-| 機制 | 狀態 | 說明 |
-|---|---|---|
-| 使用者層級 skill（`~/.workbuddy/skills/`） | ✅ 生效 | 進常駐列表，description 每次對話都可被掃到 → **這是主要觸發路徑** |
-| 專案層級副本（`.workbuddy/skills/`） | ✅ 已建且會進 repo | `.gitignore` 有 negation 例外，副本會同步到 GitHub，換機器/換人拿得到 |
-| 專案根 `CLAUDE.md` | ✅ 已建 | 寫著三處同步鐵律與探活步驟，是最後一道保險 |
-| `hooks.SessionStart` 自動注入 | ❌ **目前為空** | `~/.workbuddy/settings.json` 的 `hooks` 是 `{}`；腳本 `session_gate.py` / `pre_tool_use.py` / `stop_gate.py` 都在，但沒接線（10/07 有個備份就命名為 `no-gates`） |
+> 歐陽 2026-10-16 指正：「skill 的自動加載機制更重要」。Skill 的本質是「模型記得去載」，
+> 而模型的注意力不可靠 —— 所以要有一層「系統替你記」。
 
-→ **結論：目前沒有自動注入。觸發完全依賴 description 命中。**
-因此 description 必須維持「專案名 + 資料夾路徑 + 網域 + 中英文動詞」全覆蓋，
-**不要為了簡潔而縮減它**。若歐陽日後恢復 hooks，本節需更新，且可把 CLAUDE.md 的
-內容搬進 hook 注入（那才是「系統替你做」，而不是「記得去做」）。
+### 四層，從弱到強
 
-### 三層保險為什麼要疊
+| # | 機制 | 狀態 | 角色 |
+|---|---|---|---|
+| 1 | L1 `description` 常駐列表 | ✅ | 模型自己判斷要不要載 → **不可靠，別單靠它** |
+| 2 | 專案根 `CLAUDE.md` | ✅ | 檔案在那裡等著被讀，但還是要先想到去讀 |
+| 3 | **`SessionStart` hook 主動注入** | ✅ **已建 `workspace_skills_gate.py`** | **系統塞進 context，不靠記憶** |
+| 4 | `preflight.py` 機械攔截 | ✅ | 就算前三層都漏了，這裡紅燈擋住 |
 
-Skill 的本質是「模型記得去載」；CLAUDE.md 是「檔案在那裡等著被讀」；hook 才是
-「系統主動塞給你」。前兩層都還是有機率被跳過，所以鐵律要寫進**能被機械驗證的腳本**
-（`preflight.py`），讓漏掉的人在下一個步驟被擋下來。
+### 第 3 層的規格
+
+- 腳本：`~/.workbuddy/hooks/workspace_skills_gate.py`
+  （skill 內有副本：`assets/workspace_skills_gate.py`）
+- 接線：`~/.workbuddy/settings.json` → `hooks.SessionStart`
+  （安裝器：`scripts/install_hook.py`，冪等、會備份；`--remove` 可拆、`--status` 看狀態）
+- **泛用，不是旅遊網站專用**：任何工作區只要放 `.workbuddy/skills/<name>/SKILL.md`，
+  開會話就自動被發現。解決的是「所有 skill 都可能變成擺設」的通病。
+- 行為：
+  - 有 skill → 注入「有哪些 skill + 何時該用 + 立即載入」+ 該工作區的 `CLAUDE.md`
+  - 沒 skill → **零輸出**，不打斷任何對話流（前一代 `prompt_guard` 是每次
+    `UserPromptSubmit` 都注入，已被拆除，本 hook 刻意只在 SessionStart 跑一次）
+  - 任何異常 → 靜默放行，絕不弄死會話
+
+### 已知坑（詳見 pitfalls P15）
+
+家目錄必須排除：`~/.workbuddy/skills/` 是**使用者層級** skill 的家，若不排除，
+任何以 `C:\Users\tivol` 及其子目錄為 cwd 的會話都會被灌進一批早已在 L1 清單的 skill。
+hook 已處理；**改動 hook 時不要拿掉這段**。
 
 ## 4. 參考檔
 

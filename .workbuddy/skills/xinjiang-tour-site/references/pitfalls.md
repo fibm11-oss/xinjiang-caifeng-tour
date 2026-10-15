@@ -23,6 +23,37 @@
 
 ---
 
+## P15｜自動加載 hook 的三個坑（`workspace_skills_gate.py`）
+
+### (a) YAML 摺疊語法（`>` + 縮排）解析錯 → description 只剩 `>`
+
+- 錯誤 regex：`^description:\s*(?:>\s*)?$([ \t]+.+?)...` → `\s*` 跨行吃掉換行，
+  結果抓到 `>` 本身當內容，注入出來是「skill 名稱 + 一個大於符號」，等於沒注入。
+- 正確做法：`^description:[ \t]*>[-+]?[ \t]*\r?\n((?:[ \t]+\S.*\r?\n?)+)`
+  （`>` 是語法標記不是內容），並加 `desc.lstrip(">")` 雙重保險。
+- **教訓**：frontmatter parser 一定要拿真實 SKILL.md 實測，不能只看「沒報錯」。
+
+### (b) stdout 編碼 → 中文寫入失敗被軟閘靜默吞掉
+
+- 現象：**進程內**呼叫函式有輸出（1511 字），**subprocess pipeline** 卻是 0 字。
+- 根因：hook 的 stdout 被重定向時 Python 用 cp950/gbk，`json.dumps(..., ensure_ascii=False)`
+  遇到中英混排 → UnicodeEncodeError → 被軟閘的 `except` 抓住 → 安靜放行。
+- 解法：`sys.stdout.buffer.write(data.encode("utf-8"))`，用 raw bytes 寫出。
+- **教訓**：軟閘會掩蓋 bug。「看起來沒事」跟「真的注入了」是兩回事 ——
+  驗證一定要用 subprocess pipeline 仿真的真呼叫路徑。
+
+### (c) 家目錄沒排除 → 誤注入一堆使用者層級 skill
+
+- 現象：cwd = `C:\Users\tivol` 時注入了 2842 字（12 筆 skill 摘要）。
+- 根因：`~/.workbuddy/skills/` 是使用者層級 skill 的家，`find_workspace_root` 往上找
+  時把它當成「這個工作區有 12 個專案 skill」。而那些**早就列在 L1 常駐清單**，
+  重複注入只是浪費 context、還會淹掉真正重要的那一筆。
+- 解法：家目錄直接視為「不是 workspace」，且往上找的過程不得越過它。
+- 實測結果：旅遊網站注入 1 筆 / 1511 字；家目錄、Desktop、`~/.workbuddy`、`C:\Windows`
+  全部零輸出。
+
+---
+
 ## P14｜skill 副本沒同步 → 改了卻跑舊版
 
 - **現象**：我改了使用者層級的 `preflight.py`，跑專案副本卻是舊行為（沒擋下 VPN）。

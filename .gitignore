@@ -1,5 +1,10 @@
 # Local tool / memory data (not versioned)
-.workbuddy/
+# 注意：用 `.workbuddy/*` 而非 `.workbuddy/`，否則下面的 negation 無法生效
+# （父目錄被排除時，git 不會進入，也就無法用 ! 復原子目錄）
+.workbuddy/*
+# 但專案層級 skill 要跟著 repo 走（團隊可發現性）
+!.workbuddy/skills/
+!.workbuddy/skills/**
 
 # Python cache
 __pycache__/

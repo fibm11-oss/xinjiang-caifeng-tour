@@ -60,6 +60,7 @@
             try {
                 // 存入 IndexedDB
                 await XJ.db.addInquiry({
+                    userId: (XJ.auth && XJ.auth.currentUser && XJ.auth.currentUser() ? XJ.auth.currentUser().uid : null),
                     name: data.name,
                     line: data.line || '',
                     email: data.email || '',

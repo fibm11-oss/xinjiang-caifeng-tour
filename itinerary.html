@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新疆＋上海轉機完整行程表｜新疆采風</title>
-    <meta name="description" content="新疆采風真實行程參考－11天北疆深度之旅，涵蓋喀納斯、禾木、伊犁、獨庫公路等經典路線，含航班、包車、住宿完整規劃。">
+    <title>行程範例｜新疆采風</title>
+    <meta name="description" content="新疆采風真實行程範例－北疆大環線17日（5/29-6/14，南京轉機）與北疆經典11日（6/21-7/1，上海轉機），完整收錄航班明細、每日路線、車程公里數與住宿規劃。">
     <meta name="author" content="新疆采風">
     <meta name="robots" content="index, follow">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://xjcaifeng.com/itinerary.html">
-    <meta property="og:title" content="新疆＋上海轉機完整行程表｜新疆采風">
-    <meta property="og:description" content="11天北疆深度之旅，涵蓋喀納斯、禾木、伊犁、獨庫公路等經典路線。">
+    <meta property="og:title" content="行程範例｜新疆采風">
+    <meta property="og:description" content="北疆大環線17日（南京轉機）與北疆經典11日（上海轉機），含航班、每日路線與車程完整規劃。">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://xjcaifeng.com/itinerary.html">
-    <meta property="twitter:title" content="新疆＋上海轉機完整行程表｜新疆采風">
-    <meta property="twitter:description" content="11天北疆深度之旅，涵蓋喀納斯、禾木、伊犁、獨庫公路等經典路線。">
+    <meta property="twitter:title" content="行程範例｜新疆采風">
+    <meta property="twitter:description" content="北疆大環線17日（南京轉機）與北疆經典11日（上海轉機），含航班、每日路線與車程完整規劃。">
 
     <link rel="preload" href="css/style.css" as="style">
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
@@ -85,6 +85,49 @@
             font-weight: 600;
             border: 1px solid var(--border);
         }
+
+        /* ===== 行程頁籤切換 ===== */
+        .itin-tabs {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 0 0 40px;
+        }
+        .itin-tab {
+            background: #fff;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 14px 26px;
+            cursor: pointer;
+            text-align: left;
+            min-width: 250px;
+            font-family: inherit;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        .itin-tab:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .itin-tab.active { border-color: var(--secondary); background: var(--secondary); }
+        .itin-tab-title { display: block; font-size: 17px; font-weight: 800; color: var(--secondary); }
+        .itin-tab-sub { display: block; font-size: 13px; color: var(--text-light); margin-top: 4px; }
+        .itin-tab.active .itin-tab-title { color: #fff; }
+        .itin-tab.active .itin-tab-sub { color: rgba(255,255,255,0.85); }
+        .itin-panel { animation: itinFade 0.35s ease-out both; }
+        .itin-panel[hidden] { display: none !important; }
+        @keyframes itinFade {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 航班區段標題 */
+        .flight-leg-title {
+            text-align: center;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 8px 0 14px;
+        }
+        .flight-overview + .flight-leg-title { margin-top: 8px; }
 
         /* Day cards 改用網站設計語彙 */
         .day-card {
@@ -331,14 +374,494 @@
     </nav>
 
     <!-- ===== Page Hero ===== -->
-    <section class="page-hero" id="main-content" style="background:linear-gradient(135deg,rgba(26,74,122,0.78),rgba(200,16,46,0.56)),url('images/hero-xinjiang.svg') center/cover no-repeat;">
-        <h1>🗺 新疆＋上海轉機</h1>
-        <p>完整行程範例 ・ 11 天北疆深度之旅</p>
+    <section class="page-hero" id="main-content" style="background:linear-gradient(135deg,rgba(26,74,122,0.78),rgba(200,16,46,0.56)),url('images/hero-xinjiang.png') center/cover no-repeat;">
+        <h1>🗺 行程範例</h1>
+        <p>真實行程參考 ・ 北疆大環線 17 日 ／ 北疆經典 11 日</p>
     </section>
 
     <!-- ===== 行程內容 ===== -->
     <section class="itinerary-section">
         <div class="container">
+
+            <!-- ===== 行程切換頁籤 ===== -->
+            <div class="itin-tabs" role="tablist" aria-label="行程範例切換">
+                <button type="button" class="itin-tab active" id="tab-loop17" role="tab" aria-selected="true" aria-controls="panel-loop17" onclick="switchItin('loop17')">
+                    <span class="itin-tab-title">北疆大環線 17 日</span>
+                    <span class="itin-tab-sub">2027/05/29 – 06/14 ・ 南京轉機</span>
+                </button>
+                <button type="button" class="itin-tab" id="tab-classic11" role="tab" aria-selected="false" aria-controls="panel-classic11" onclick="switchItin('classic11')">
+                    <span class="itin-tab-title">北疆經典 11 日</span>
+                    <span class="itin-tab-sub">2026/06/21 – 07/01 ・ 上海轉機</span>
+                </button>
+            </div>
+
+            <!-- ================================================================
+                 範例一：北疆大環線 17 日（2027/05/29 – 06/14）
+            ================================================================= -->
+            <div class="itin-panel" id="panel-loop17" role="tabpanel" aria-labelledby="tab-loop17">
+
+            <!-- 行程簡介 -->
+            <div class="itinerary-intro">
+                <h2>2027年5月29日 — 6月14日</h2>
+                <p style="color:var(--text-light);font-size:16px;max-width:640px;margin:0 auto;">
+                    從台北出發、經南京轉機進出烏魯木齊，一次串起北疆最經典的公路與景區。<br>
+                    S21 沙漠公路、喀納斯三灣、禾木晨霧、烏爾禾魔鬼城、賽里木湖、伊昭公路、那拉提草原、獨庫公路北段、吐魯番——16 天環線不回頭。
+                </p>
+                <div class="route-tags">
+                    <span>🏜️ S21 沙漠公路</span>
+                    <span>🏔️ 喀納斯</span>
+                    <span>🏘️ 禾木村</span>
+                    <span>🪨 烏爾禾魔鬼城</span>
+                    <span>💧 賽里木湖</span>
+                    <span>🛣️ 伊昭・獨庫公路</span>
+                    <span>🌿 那拉提</span>
+                    <span>🔥 吐魯番</span>
+                </div>
+            </div>
+
+            <!-- 航班總覽 -->
+            <div class="flight-leg-title">去程 ｜ 2027/05/29 – 05/30（南京跨天中轉 14h45m）</div>
+            <div class="flight-overview">
+                <div class="airport">
+                    <div class="code">TPE</div>
+                    <div class="city">台北桃園 T2</div>
+                </div>
+                <div class="path">
+                    <div class="line-wrap"><span class="dash"></span><span class="airplane">✈</span><span class="dash"></span></div>
+                    <div class="duration">MU5002 ・ 2h10m</div>
+                </div>
+                <div class="airport">
+                    <div class="code">NKG</div>
+                    <div class="city">南京祿口 T2</div>
+                </div>
+                <div class="path">
+                    <div class="line-wrap"><span class="dash"></span><span class="airplane">✈</span><span class="dash"></span></div>
+                    <div class="duration">MU2959 ・ 5h10m</div>
+                </div>
+                <div class="airport">
+                    <div class="code">URC</div>
+                    <div class="city">烏魯木齊</div>
+                </div>
+            </div>
+
+            <div class="flight-leg-title">回程 ｜ 2027/06/13 – 06/14（南京跨天中轉 16h50m）</div>
+            <div class="flight-overview">
+                <div class="airport">
+                    <div class="code">URC</div>
+                    <div class="city">烏魯木齊</div>
+                </div>
+                <div class="path">
+                    <div class="line-wrap"><span class="dash"></span><span class="airplane">✈</span><span class="dash"></span></div>
+                    <div class="duration">MU2730 ・ 4h25m</div>
+                </div>
+                <div class="airport">
+                    <div class="code">NKG</div>
+                    <div class="city">南京祿口 T2</div>
+                </div>
+                <div class="path">
+                    <div class="line-wrap"><span class="dash"></span><span class="airplane">✈</span><span class="dash"></span></div>
+                    <div class="duration">MU2981 ・ 2h15m</div>
+                </div>
+                <div class="airport">
+                    <div class="code">TPE</div>
+                    <div class="city">台北桃園 T2</div>
+                </div>
+            </div>
+
+            <!-- 航班明細 -->
+            <div class="itinerary-intro" style="margin-bottom:20px;">
+                <h2 style="font-size:24px;">✈️ 航班明細</h2>
+            </div>
+            <div class="summary-wrapper" style="margin-bottom:36px;">
+                <table style="min-width:760px;">
+                    <thead>
+                        <tr><th>日期</th><th>航班</th><th>航段</th><th>起降時間</th><th>飛行時間</th><th>機型</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>05/29</td><td>東方航空 MU5002</td><td>台北桃園 TPE → 南京祿口 NKG</td><td>17:50 → 20:00</td><td>2h10m</td><td>空客 A320-NEO</td></tr>
+                        <tr><td>05/30</td><td>東方航空 MU2959</td><td>南京祿口 NKG → 烏魯木齊 URC</td><td>10:45 → 15:55</td><td>5h10m</td><td>空客 A320-NEO</td></tr>
+                        <tr><td>06/13</td><td>東方航空 MU2730</td><td>烏魯木齊 URC → 南京祿口 NKG</td><td>10:20 → 14:45</td><td>4h25m</td><td>空客 A320-NEO</td></tr>
+                        <tr><td>06/14</td><td>東方航空 MU2981</td><td>南京祿口 NKG → 台北桃園 TPE</td><td>07:35 → 09:50</td><td>2h15m</td><td>空客 A320</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ===== Day 1: 5/29 ===== -->
+            <div class="day-card" id="d1">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">29</span><span class="weekday">六</span></div>
+                    <div class="day-summary"><strong>台北 → 南京</strong> ・ 轉機休整</div>
+                    <span class="drive-time">🚗 0 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">✈️</span> <strong>MU5002：</strong>台北桃園 T2 (17:50) → 南京祿口 T2 (20:00)，飛行 2h10m</div>
+                    <div class="activity"><span class="emoji">🔄</span> 南京跨天中轉 14h45m，<strong>需重新託運行李</strong></div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>南京祿口機場附近</div>
+                    <div class="tags-row">
+                        <span class="tag tag-flight">✈ 航班</span>
+                        <span class="tag tag-hotel">🏨 機場酒店</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 2: 5/30 ===== -->
+            <div class="day-card" id="d2">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">30</span><span class="weekday">日</span></div>
+                    <div class="day-summary"><strong>南京 → 烏魯木齊</strong> ・ 抵達新疆</div>
+                    <span class="drive-time">🚗 0 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">✈️</span> <strong>MU2959：</strong>南京祿口 T2 (10:45) → 烏魯木齊天山國際機場 (15:55)，飛行 5h10m</div>
+                    <div class="activity"><span class="emoji">🏙️</span> 傍晚逛 <strong>新疆國際大巴扎</strong>（中亞最大集市）</div>
+                    <div class="activity"><span class="emoji">🍢</span> 品嚐 <strong>烤包子、酸奶</strong>，初體驗新疆風味</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>烏魯木齊市區</div>
+                    <div class="tags-row">
+                        <span class="tag tag-flight">✈ 航班</span>
+                        <span class="tag tag-sight">🏙️ 國際大巴扎</span>
+                        <span class="tag tag-sight">🍢 新疆美食</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 3: 5/31 ===== -->
+            <div class="day-card" id="d3">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">31</span><span class="weekday">一</span></div>
+                    <div class="day-summary"><strong>烏魯木齊 → 布爾津</strong> ・ S21 沙漠公路</div>
+                    <span class="drive-time">🚗 6-7.5 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🏜️</span> 穿越 <strong>S21 沙漠公路</strong>（古爾班通古特沙漠），一路戈壁沙丘</div>
+                    <div class="activity"><span class="emoji">🌊</span> 途經 <strong>烏倫古湖</strong>，新疆第二大漁業基地，可短暫停留</div>
+                    <div class="activity"><span class="emoji">🌙</span> 傍晚逛 <strong>布爾津河堤夜市</strong>，必吃烤狗魚（額爾齊斯河冷水魚）</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>布爾津縣城</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 530-600 km</span>
+                        <span class="tag tag-sight">🏜️ S21 沙漠公路</span>
+                        <span class="tag tag-sight">🌙 河堤夜市</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 4: 6/01 ===== -->
+            <div class="day-card" id="d4">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">1</span><span class="weekday">二</span></div>
+                    <div class="day-summary"><strong>布爾津 → 喀納斯 → 禾木村</strong></div>
+                    <span class="drive-time">🚗 3-4 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🏔️</span> 遊覽 <strong>喀納斯三灣</strong>：神仙灣、月亮灣、臥龍灣</div>
+                    <div class="activity"><span class="emoji">🚗</span> 下午轉往 <strong>禾木村</strong>，進入圖瓦人木屋聚落</div>
+                    <div class="activity"><span class="emoji">🏡</span> 入住禾木小木屋，傍晚可先看一次日落炊煙</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>禾木村小木屋</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 150-180 km</span>
+                        <span class="tag tag-sight">🏔️ 喀納斯三灣</span>
+                        <span class="tag tag-hotel">🏡 禾木小木屋</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 5: 6/02 ===== -->
+            <div class="day-card" id="d5">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">2</span><span class="weekday">三</span></div>
+                    <div class="day-summary"><strong>禾木村</strong> ・ 全天深度漫遊</div>
+                    <span class="drive-time">🚗 0 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🌫️</span> 清晨登 <strong>禾木觀景台</strong>，看晨霧與炊煙（禾木第一招牌）</div>
+                    <div class="activity"><span class="emoji">🌲</span> 白天漫步 <strong>禾木河白樺林</strong>，初夏綠意最盛</div>
+                    <div class="activity"><span class="emoji">🌉</span> 打卡 <strong>禾木橋</strong>，木橋流水與木屋群經典構圖</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>禾木村小木屋</div>
+                    <div class="tags-row">
+                        <span class="tag tag-sight">🌫️ 禾木晨霧</span>
+                        <span class="tag tag-sight">🌲 白樺林</span>
+                        <span class="tag tag-sight">🌉 禾木橋</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 6: 6/03 ===== -->
+            <div class="day-card" id="d6">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">3</span><span class="weekday">四</span></div>
+                    <div class="day-summary"><strong>禾木 → 烏爾禾</strong> ・ 世界魔鬼城</div>
+                    <span class="drive-time">🚗 5-7 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🪨</span> 前往 <strong>烏爾禾世界魔鬼城</strong>，欣賞雅丹地貌</div>
+                    <div class="activity"><span class="emoji">🌅</span> 園內乘觀光小火車，在獅身人面像、艦隊出海等點位等 <strong>落日</strong></div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>烏爾禾鎮</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 350-500 km</span>
+                        <span class="tag tag-sight">🪨 魔鬼城雅丹</span>
+                        <span class="tag tag-sight">🌅 落日</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 7: 6/04 ===== -->
+            <div class="day-card" id="d7">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">4</span><span class="weekday">五</span></div>
+                    <div class="day-summary"><strong>烏爾禾 → 賽里木湖</strong> ・ 大西洋最後一滴眼淚</div>
+                    <span class="drive-time">🚗 6.5 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">💧</span> 抵達 <strong>賽里木湖</strong>，天山山間的高山冷水湖</div>
+                    <div class="activity"><span class="emoji">🚗</span> 可 <strong>環湖自駕約 90 公里</strong>，建議預留 2-3 小時</div>
+                    <div class="activity"><span class="emoji">🌸</span> 6 月湖畔野花盛開，藍湖與雪山同框</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>賽里木湖畔／博樂</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 538 km</span>
+                        <span class="tag tag-sight">💧 賽里木湖</span>
+                        <span class="tag tag-sight">🚗 環湖 90 km</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 8: 6/05 ===== -->
+            <div class="day-card" id="d8">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">5</span><span class="weekday">六</span></div>
+                    <div class="day-summary"><strong>賽里木湖 → 伊寧</strong> ・ 果子溝大橋</div>
+                    <span class="drive-time">🚗 2-2.5 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🌉</span> 途經 <strong>果子溝大橋</strong>，橫跨峽谷的地標級斜拉橋</div>
+                    <div class="activity"><span class="emoji">🏘️</span> 下午逛 <strong>六星街</strong>：俄式木窗、手風琴、冰淇淋</div>
+                    <div class="activity"><span class="emoji">🎨</span> <strong>喀贊其民俗區</strong>：藍色巷弄與維吾爾族生活場景</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>伊寧市區</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 150-170 km</span>
+                        <span class="tag tag-sight">🌉 果子溝大橋</span>
+                        <span class="tag tag-sight">🏘️ 六星街</span>
+                        <span class="tag tag-sight">🎨 喀贊其</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 9: 6/06 ===== -->
+            <div class="day-card" id="d9">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">6</span><span class="weekday">日</span></div>
+                    <div class="day-summary"><strong>伊寧 → 昭蘇 → 伊寧</strong> ・ 伊昭公路（小獨庫）</div>
+                    <span class="drive-time">🚗 6-8 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🛣️</span> 走 <strong>伊昭公路 S237</strong>，穿越烏孫山，「天山雲端天路」</div>
+                    <div class="activity"><span class="emoji">🐎</span> 昭蘇：<strong>天馬博物館</strong>（天馬文化園）或草原風光</div>
+                    <div class="activity"><span class="emoji">🚗</span> 傍晚原路返回伊寧（單程 3-4 小時）</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>伊寧市區</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 往返 250-380 km</span>
+                        <span class="tag tag-sight">🛣️ 伊昭公路</span>
+                        <span class="tag tag-sight">🐎 昭蘇天馬</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 10: 6/07 ===== -->
+            <div class="day-card" id="d10">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">7</span><span class="weekday">一</span></div>
+                    <div class="day-summary"><strong>伊寧 → 那拉提</strong> ・ 伊犁河谷</div>
+                    <span class="drive-time">🚗 4-4.5 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🌿</span> 沿伊犁河谷東行，沿途果園、麥田與雪山</div>
+                    <div class="activity"><span class="emoji">🏔️</span> 抵達 <strong>那拉提空中草原</strong>，天山最美牧場之一</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>那拉提鎮</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 260-280 km</span>
+                        <span class="tag tag-sight">🌿 伊犁河谷</span>
+                        <span class="tag tag-sight">🏔️ 空中草原</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 11: 6/08 ===== -->
+            <div class="day-card" id="d11">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">8</span><span class="weekday">二</span></div>
+                    <div class="day-summary"><strong>那拉提</strong> ・ 全天草原漫遊</div>
+                    <span class="drive-time">🚗 0 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🏔️</span> <strong>空中草原</strong>：雪山、雲杉、野花一次到位</div>
+                    <div class="activity"><span class="emoji">🌊</span> <strong>河谷草原</strong>：鞏乃斯河畔的哈薩克牧場</div>
+                    <div class="activity"><span class="emoji">🐎</span> 可自費騎馬、體驗牧家樂</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>那拉提鎮</div>
+                    <div class="tags-row">
+                        <span class="tag tag-sight">🏔️ 空中草原</span>
+                        <span class="tag tag-sight">🌊 河谷草原</span>
+                        <span class="tag tag-sight">🐎 牧家體驗</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 12: 6/09 ===== -->
+            <div class="day-card" id="d12">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">9</span><span class="weekday">三</span></div>
+                    <div class="day-summary"><strong>那拉提 → 獨庫公路 → 奎屯</strong> ⭐ 精華路段</div>
+                    <span class="drive-time">🚗 5-7 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🛣️</span> 穿越 <strong>獨庫公路北段</strong>（G217），中國最美公路</div>
+                    <div class="activity"><span class="emoji">🏔️</span> 沿途：<strong>喬爾瑪、哈希勒根達坂</strong>，雪山、峽谷、草原交織</div>
+                    <div class="activity"><span class="emoji">🌡️</span> 一日有四季，山腳短袖、埡口需外套</div>
+                    <div class="activity"><span class="emoji">🚗</span> 傍晚抵達奎屯</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>奎屯市區</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 220-260 km</span>
+                        <span class="tag tag-sight">🛣️ 獨庫公路北段</span>
+                        <span class="tag tag-sight">❄️ 哈希勒根達坂</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 13: 6/10 ===== -->
+            <div class="day-card" id="d13">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">10</span><span class="weekday">四</span></div>
+                    <div class="day-summary"><strong>奎屯 → 烏魯木齊</strong> ・ 獨山子大峽谷</div>
+                    <span class="drive-time">🚗 3-4 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🏞️</span> 順路遊 <strong>獨山子大峽谷</strong>，紅層峽谷地貌</div>
+                    <div class="activity"><span class="emoji">🛣️</span> 沿 <strong>連霍高速</strong> 返回烏魯木齊</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>烏魯木齊市區</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 240 km</span>
+                        <span class="tag tag-sight">🏞️ 獨山子大峽谷</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 14: 6/11 ===== -->
+            <div class="day-card" id="d14">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">11</span><span class="weekday">五</span></div>
+                    <div class="day-summary"><strong>烏魯木齊 → 吐魯番</strong> ・ 火洲風情</div>
+                    <span class="drive-time">🚗 2.5-3 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🔥</span> <strong>火焰山</strong>：西遊記場景，地表溫度極高</div>
+                    <div class="activity"><span class="emoji">💧</span> <strong>坎兒井</strong>：沙漠地下水利奇蹟</div>
+                    <div class="activity"><span class="emoji">🍇</span> <strong>葡萄溝</strong>：葡萄架下的維吾爾族村落</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>吐魯番市區</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 190-200 km</span>
+                        <span class="tag tag-sight">🔥 火焰山</span>
+                        <span class="tag tag-sight">🍇 葡萄溝</span>
+                        <span class="tag tag-sight">💧 坎兒井</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 15: 6/12 ===== -->
+            <div class="day-card" id="d15">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">12</span><span class="weekday">六</span></div>
+                    <div class="day-summary"><strong>吐魯番 → 烏魯木齊</strong></div>
+                    <span class="drive-time">🚗 2.5-3 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">🏛️</span> 上午：<strong>交河故城</strong>（兩千年絲路遺址）</div>
+                    <div class="activity"><span class="emoji">🏜️</span> 或選：<strong>庫木塔格沙漠</strong>（城市邊的沙漠）</div>
+                    <div class="activity"><span class="emoji">🚗</span> 下午返回烏魯木齊</div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>烏魯木齊機場附近</div>
+                    <div class="tags-row">
+                        <span class="tag tag-drive">🚗 190-200 km</span>
+                        <span class="tag tag-sight">🏛️ 交河故城</span>
+                        <span class="tag tag-sight">🏜️ 庫木塔格沙漠</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 16: 6/13 ===== -->
+            <div class="day-card" id="d16">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">13</span><span class="weekday">日</span></div>
+                    <div class="day-summary"><strong>烏魯木齊 → 南京</strong> ・ 返程</div>
+                    <span class="drive-time">🚗 0 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">✈️</span> <strong>MU2730：</strong>烏魯木齊 URC (10:20) → 南京祿口 T2 (14:45)，飛行 4h25m</div>
+                    <div class="activity"><span class="emoji">🔄</span> 南京跨天中轉 16h50m，<strong>需重新託運行李</strong></div>
+                    <div class="accommodation"><strong>🏨 住宿：</strong>南京祿口機場附近</div>
+                    <div class="tags-row">
+                        <span class="tag tag-flight">✈ 航班</span>
+                        <span class="tag tag-hotel">🏨 機場酒店</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Day 17: 6/14 ===== -->
+            <div class="day-card" id="d17">
+                <div class="day-header">
+                    <div class="date-badge"><span class="day">14</span><span class="weekday">一</span></div>
+                    <div class="day-summary"><strong>南京 → 台北</strong> ・ 返家</div>
+                    <span class="drive-time">🚗 0 hr</span>
+                </div>
+                <div class="day-body">
+                    <div class="activity"><span class="emoji">✈️</span> <strong>MU2981：</strong>南京祿口 T2 (07:35) → 台北桃園 T2 (09:50)，飛行 2h15m</div>
+                    <div class="activity"><span class="emoji">🏠</span> 返家！結束 17 天北疆大環線</div>
+                    <div class="tags-row">
+                        <span class="tag tag-flight">✈ 回程航班</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 里程與車程統計 ===== -->
+            <div class="itinerary-intro" style="margin-top:48px;">
+                <h2>📊 每日里程與車程統計</h2>
+                <p style="color:var(--text-light);font-size:15px;">包車實際駕駛路段（不含飛機、景區區間車、市區短途）</p>
+            </div>
+            <div class="summary-wrapper">
+                <table>
+                    <thead>
+                        <tr><th>日期</th><th>行程區段</th><th>里程</th><th>車程</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>05/31</td><td>烏魯木齊 → S21 沙漠公路 → 布爾津</td><td>530-600 km</td><td>6-7.5 hr</td></tr>
+                        <tr><td>06/01</td><td>布爾津 → 喀納斯 → 禾木村</td><td>150-180 km</td><td>3-4 hr</td></tr>
+                        <tr><td>06/03</td><td>禾木 → 烏爾禾魔鬼城</td><td>350-500 km</td><td>5-7 hr</td></tr>
+                        <tr><td>06/04</td><td>烏爾禾 → 賽里木湖</td><td>538 km</td><td>6.5 hr</td></tr>
+                        <tr><td>06/05</td><td>賽里木湖 → 伊寧（經果子溝大橋）</td><td>150-170 km</td><td>2-2.5 hr</td></tr>
+                        <tr><td>06/06</td><td>伊寧 ⇄ 昭蘇（伊昭公路往返）</td><td>250-380 km</td><td>6-8 hr</td></tr>
+                        <tr><td>06/07</td><td>伊寧 → 那拉提</td><td>260-280 km</td><td>4-4.5 hr</td></tr>
+                        <tr><td>06/09</td><td>那拉提 → 獨庫公路 → 奎屯</td><td>220-260 km</td><td>5-7 hr</td></tr>
+                        <tr><td>06/10</td><td>奎屯 → 烏魯木齊（經獨山子大峽谷）</td><td>240 km</td><td>3-4 hr</td></tr>
+                        <tr><td>06/11</td><td>烏魯木齊 → 吐魯番</td><td>190-200 km</td><td>2.5-3 hr</td></tr>
+                        <tr><td>06/12</td><td>吐魯番 → 烏魯木齊</td><td>190-200 km</td><td>2.5-3 hr</td></tr>
+                        <tr class="total-row"><td colspan="2"><strong>合計</strong></td><td><strong>約 3,300 km</strong></td><td><strong>約 51 hr</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 備註 -->
+            <div class="notes-box">
+                <h4>📌 行程說明與注意事項</h4>
+                <ul>
+                    <li><strong>獨庫公路 G217</strong>：季節性開放，歷年慣例於 6 月初通車（2026 年為 6 月 1 日），2027 年確切開放日以新疆交通部門公告為準。通行時段多為白天（約 8:00–19:00，部分路段彈性至 21:00），且<strong>僅限 7 座及以下小型客車</strong>。本行程 6/9 安排在慣例開放日之後。</li>
+                    <li><strong>伊昭公路 S237</strong>：同樣為季節性景觀公路，歷年於 6 月初通車、9 月底封閉，每日約 9:00–21:00 放行，<strong>僅限 7 座以內小車／SUV</strong>，夜間禁止通行，本行程 6/6 請安排白天往返。</li>
+                    <li>若遇天氣或道路管制導致上述公路封閉，將改由國道繞行，行程順序可彈性調整。</li>
+                    <li>5 月底至 6 月中北疆晝夜溫差大：河谷草原白天約 22–28°C，山區／達坂約 5–15°C，請備防風保暖外套與防曬用品。</li>
+                    <li>上表里程與車程為導航參考值，實際受路況、天氣、景區區間車接駁與停拍照點影響。</li>
+                </ul>
+            </div>
+
+            </div><!-- /#panel-loop17 -->
+
+            <!-- ================================================================
+                 範例二：北疆經典 11 日（2026/06/21 – 07/01）
+            ================================================================= -->
+            <div class="itin-panel" id="panel-classic11" role="tabpanel" aria-labelledby="tab-classic11" hidden>
 
             <!-- 行程簡介 -->
             <div class="itinerary-intro">
@@ -654,6 +1177,8 @@
                 </ul>
             </div>
 
+            </div><!-- /#panel-classic11 -->
+
             <!-- CTA -->
             <div class="cta-banner">
                 <h3>也想規劃屬於您的新疆之旅？</h3>
@@ -730,6 +1255,33 @@
         }, 500);
     });
 
+    /* ===== 行程範例頁籤切換 ===== */
+    var ITIN_PANELS = { 'loop17': 'panel-loop17', 'classic11': 'panel-classic11' };
+    function switchItin(key) {
+        if (!ITIN_PANELS[key]) return;
+        Object.keys(ITIN_PANELS).forEach(function (k) {
+            var tab = document.getElementById('tab-' + k);
+            var panel = document.getElementById(ITIN_PANELS[k]);
+            var on = (k === key);
+            if (tab) {
+                tab.classList.toggle('active', on);
+                tab.setAttribute('aria-selected', on ? 'true' : 'false');
+            }
+            if (panel) {
+                panel.hidden = !on;
+                if (on) {
+                    /* 重新觸發淡入動畫 */
+                    panel.style.animation = 'none';
+                    void panel.offsetWidth;
+                    panel.style.animation = '';
+                }
+            }
+        });
+        if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, '', '#' + key);
+        }
+    }
+
     function toggleMenu() {
         var menu = document.getElementById('navMenu');
         var btn = document.querySelector('.mobile-menu-btn');
@@ -749,6 +1301,14 @@
                 menu.classList.remove('active');
                 if (btn) { btn.classList.remove('active'); btn.setAttribute('aria-expanded', 'false'); }
             }
+        }
+    });
+
+    /* 依網址錨點切換行程（如 itinerary.html#classic11） */
+    document.addEventListener('DOMContentLoaded', function() {
+        var hash = (window.location.hash || '').replace('#', '');
+        if (hash && ITIN_PANELS[hash] && hash !== 'loop17') {
+            switchItin(hash);
         }
     });
 

@@ -25,7 +25,7 @@
 
     <!-- 預載入關鍵資源 -->
     <link rel="preload" href="css/style.css" as="style">
-    <link rel="preload" href="images/hero-xinjiang.svg" as="image">
+    <link rel="preload" href="images/hero-xinjiang.png" as="image">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
@@ -143,6 +143,7 @@
 <!-- Hero 區塊 -->
 <section class="hero" id="main-content">
     <div class="hero-overlay"></div>
+    <div class="hero-glow"></div>
     <div class="hero-content">
         <h1>新疆包車定制遊</h1>
         <p class="hero-subtitle">客製化包車・私人導遊</p>
@@ -151,11 +152,21 @@
             <a href="routes.html" class="btn btn-primary">查看推薦行程</a>
             <a href="contact.html" class="btn btn-secondary">立即諮詢</a>
         </div>
+        <div class="hero-stats">
+            <div class="hero-stat"><div class="num">200+</div><div class="label">服務旅人</div></div>
+            <div class="hero-stat"><div class="num">8年</div><div class="label">在地經驗</div></div>
+            <div class="hero-stat"><div class="num">4.9</div><div class="label">平均評分</div></div>
+            <div class="hero-stat"><div class="num">30+</div><div class="label">精選路線</div></div>
+        </div>
     </div>
+    <a href="#features" class="hero-scroll" aria-label="向下瀏覽">
+        <span class="mouse"></span>
+        <span class="txt">SCROLL</span>
+    </a>
 </section>
 
 <!-- 服務特色 -->
-<section class="features">
+<section class="features" id="features">
     <div class="container">
         <div class="features-grid">
             <div class="feature-card">
@@ -184,56 +195,61 @@
         <p class="section-subtitle">為您精選最經典的新疆路線，從北疆到南疆，從4日到15日，亦可依需求自由調整</p>
         <div class="tours-grid">
                 <div class="tour-card">
-                    <div class="tour-image" style="background-image:url('images/tours/tour1-ili-10days.svg');">
+                    <div class="tour-image" style="background-image:url('images/tours/tour1-ili-10days.png');">
                         <span class="tour-badge">熱門</span>
                     </div>
                     <div class="tour-info">
                         <h3>新疆伊犁河谷小包團10日深度遊</h3>
                         <p>賽里木湖環湖・那拉提草原・喀拉峻草原・巴音布魯克・獨庫公路全線通行</p>
-                        <a href="routes.html#tour1" class="btn-text">查看行程介紹 →</a>
+                        <div class="tour-meta"><span>10日</span><span class="dot"></span><span class="stars">★★★★★ 4.9</span><span class="dot"></span><span class="tag">熱門</span></div>
+<a href="routes.html#tour1" class="btn-text">查看行程介紹 →</a>
                     </div>
                 </div>
                 <div class="tour-card">
-                    <div class="tour-image" style="background-image:url('images/tours/tour2-grassland.svg');">
+                    <div class="tour-image" style="background-image:url('images/tours/tour2-grassland.png');">
                         <span class="tour-badge">推薦</span>
                     </div>
                     <div class="tour-info">
                         <h3>新疆伊犁草原8日深度之旅</h3>
                         <p>伊犁河谷全景・薰衣草花田（6-7月）・昭蘇草原・特克斯八卦城</p>
-                        <a href="routes.html#tour2" class="btn-text">查看行程介紹 →</a>
+                        <div class="tour-meta"><span>8日</span><span class="dot"></span><span class="stars">★★★★★ 4.9</span><span class="dot"></span><span class="tag">草原</span></div>
+<a href="routes.html#tour2" class="btn-text">查看行程介紹 →</a>
                     </div>
                 </div>
                 <div class="tour-card">
-                    <div class="tour-image" style="background:linear-gradient(135deg,#1a5276,#2980b9);display:flex;align-items:flex-end;padding:24px;">
+                    <div class="tour-image" style="background-image:linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.45)),url('images/tours/tour5-north-xj.png');background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:24px;">
                         <span class="tour-badge">經典</span>
                         <h3 style="color:#fff;font-size:24px;font-weight:800;text-shadow:0 2px 12px rgba(0,0,0,0.5);">北疆全景10日</h3>
                     </div>
                     <div class="tour-info">
                         <h3>北疆全景小包團10日深度遊</h3>
                         <p>天山天池・可可托海・喀納斯・禾木・魔鬼城・賽里木湖</p>
-                        <a href="routes.html#tour5" class="btn-text">查看行程介紹 →</a>
+                        <div class="tour-meta"><span>10日</span><span class="dot"></span><span class="stars">★★★★★ 4.9</span><span class="dot"></span><span class="tag">經典</span></div>
+<a href="routes.html#tour5" class="btn-text">查看行程介紹 →</a>
                     </div>
                 </div>
                 <div class="tour-card">
-                    <div class="tour-image" style="background:linear-gradient(135deg,#2c3e50,#34495e);display:flex;align-items:flex-end;padding:24px;">
+                    <div class="tour-image" style="background-image:linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.45)),url('images/tours/tour6-duku.png');background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:24px;">
                         <span class="tour-badge">🔥 人氣</span>
                         <h3 style="color:#fff;font-size:24px;font-weight:800;text-shadow:0 2px 12px rgba(0,0,0,0.5);">獨庫公路4日</h3>
                     </div>
                     <div class="tour-info">
                         <h3>獨庫公路全線4日穿越之旅</h3>
                         <p>一日有四季・十里不同天・中國最美公路全線穿越</p>
-                        <a href="routes.html#tour6" class="btn-text">查看行程介紹 →</a>
+                        <div class="tour-meta"><span>4日</span><span class="dot"></span><span class="stars">★★★★★ 4.9</span><span class="dot"></span><span class="tag">自駕</span></div>
+<a href="routes.html#tour6" class="btn-text">查看行程介紹 →</a>
                     </div>
                 </div>
                 <div class="tour-card">
-                    <div class="tour-image" style="background:linear-gradient(135deg,#8e44ad,#3498db);display:flex;align-items:flex-end;padding:24px;">
+                    <div class="tour-image" style="background-image:linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.45)),url('images/tours/tour7-kashgar.png');background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:24px;">
                         <span class="tour-badge">人文</span>
                         <h3 style="color:#fff;font-size:24px;font-weight:800;text-shadow:0 2px 12px rgba(0,0,0,0.5);">喀什+帕米爾7日</h3>
                     </div>
                     <div class="tour-info">
                         <h3>喀什+帕米爾高原7日人文之旅</h3>
                         <p>喀什古城・白沙湖・慕士塔格峰・盤龍古道・和田夜市</p>
-                        <a href="routes.html#tour7" class="btn-text">查看行程介紹 →</a>
+                        <div class="tour-meta"><span>7日</span><span class="dot"></span><span class="stars">★★★★★ 4.9</span><span class="dot"></span><span class="tag">人文</span></div>
+<a href="routes.html#tour7" class="btn-text">查看行程介紹 →</a>
                     </div>
                 </div>
         </div>
@@ -351,5 +367,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<script src="js/auth.js"></script>
 </body>
 </html>

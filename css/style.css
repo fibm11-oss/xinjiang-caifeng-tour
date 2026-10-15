@@ -358,7 +358,7 @@ img[loading="lazy"] {
     min-height: 640px;
     background:
         linear-gradient(135deg, rgba(26,74,122,0.78) 0%, rgba(26,74,122,0.45) 50%, rgba(200,16,46,0.52) 100%),
-        url("../images/hero-xinjiang.svg") center/cover no-repeat;
+        url("../images/hero-xinjiang.png") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1547,4 +1547,159 @@ img {
 .cta-section .btn-secondary:hover {
     background: #fff;
     color: var(--primary);
+}
+
+/* =============================================
+   設計優化增強 (2026-10-07)
+   ============================================= */
+
+/* 統一進場動畫基礎 (供 nav.js 使用) */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- 導航滾動收縮 ---------- */
+.navbar.scrolled {
+    background: rgba(255,255,255,0.98);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+.navbar.scrolled .nav-container {
+    height: 56px;
+}
+.navbar.scrolled .logo {
+    font-size: 22px;
+}
+.navbar.scrolled .nav-menu a {
+    padding: 6px 16px;
+}
+
+/* ---------- Hero 動態光暈 ---------- */
+.hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,166,35,0.18) 0%, transparent 60%);
+    top: 8%;
+    left: 52%;
+    filter: blur(20px);
+    animation: heroGlowFloat 12s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+@keyframes heroGlowFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-60px, 40px) scale(1.15); }
+}
+
+/* ---------- Hero 關鍵數字統計 ---------- */
+.hero-stats {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 44px;
+    position: relative;
+    z-index: 2;
+}
+.hero-stat { text-align: center; }
+.hero-stat .num {
+    font-size: var(--font-size-2xl);
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    line-height: 1.1;
+}
+.hero-stat .label {
+    font-size: var(--font-size-xs);
+    opacity: 0.9;
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+/* ---------- Hero 滾動指示器 ---------- */
+.hero-scroll {
+    position: absolute;
+    bottom: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.85;
+}
+.hero-scroll .mouse {
+    width: 24px;
+    height: 38px;
+    border: 2px solid rgba(255,255,255,0.8);
+    border-radius: 14px;
+    position: relative;
+}
+.hero-scroll .mouse::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 8px;
+    background: #fff;
+    border-radius: 2px;
+    animation: scrollWheel 1.6s ease-in-out infinite;
+}
+@keyframes scrollWheel {
+    0% { opacity: 0; transform: translate(-50%, 0); }
+    40% { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%, 14px); }
+}
+.hero-scroll .txt {
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* ---------- 行程卡片元信息 ---------- */
+.tour-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    font-size: var(--font-size-xs);
+    color: var(--text-light);
+}
+.tour-meta .dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--border);
+}
+.tour-meta .stars {
+    color: var(--accent);
+    font-weight: 700;
+}
+.tour-meta .tag {
+    background: var(--secondary-subtle);
+    color: var(--secondary);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* ---------- 響應式：優化增強區塊 ---------- */
+@media (max-width: 768px) {
+    .hero-stats { gap: 22px; margin-top: 32px; }
+    .hero-stat .num { font-size: 22px; }
+    .hero-scroll { bottom: 14px; }
+}
+@media (max-width: 480px) {
+    .hero-stats { gap: 14px; }
+    .hero-stat .num { font-size: 18px; }
+    .hero-stat .label { font-size: 11px; }
+    .hero-scroll .txt { display: none; }
+    .hero-glow { width: 360px; height: 360px; }
 }

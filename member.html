@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員中心｜新疆采風</title>
+    <meta name="description" content="新疆采風會員中心－管理個人資料、查看諮詢紀錄與收藏行程。">
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .loading-overlay { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.3s; }
+        .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+        .loading-spinner { width: 50px; height: 50px; border: 3px solid var(--border); border-top: 3px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .page-hero { background: linear-gradient(135deg, rgba(26,74,122,0.85), rgba(200,16,46,0.55)), url('images/hero-xinjiang.png') center/cover; padding: 90px 24px 60px; color: #fff; text-align: center; }
+        .page-hero h1 { font-size: 34px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay"><div class="loading-spinner"></div></div>
+    <a href="#main-content" class="skip-link">跳至主要內容</a>
+
+    <nav class="navbar" role="navigation" aria-label="主導航">
+        <div class="nav-container">
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="開啟行動選單" aria-expanded="false" aria-controls="navMenu">
+                <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+            </button>
+            <a href="index.html" class="logo" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+            <ul class="nav-menu" id="navMenu" role="menubar" aria-label="網站導航選單">
+                <li role="none"><a href="index.html" role="menuitem">首頁</a></li>
+                <li role="none"><a href="routes.html" role="menuitem">推薦行程</a></li>
+                <li role="none"><a href="car-rental.html" role="menuitem">小包團</a></li>
+                <li role="none"><a href="itinerary.html" role="menuitem">行程範例</a></li>
+                <li role="none"><a href="contact.html" role="menuitem">聯絡我們</a></li>
+                <li role="none"><a href="blog/index.html" role="menuitem">旅遊攻略</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-hero" id="main-content">
+        <h1>會員中心</h1>
+        <p>管理您的資料、諮詢紀錄與收藏行程</p>
+    </section>
+
+    <div class="container" style="padding:50px 24px; min-height:50vh;">
+        <div id="xj-member-root"></div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h3>新疆采風</h3><p>專業新疆包車旅遊服務，帶您深入探索天山南北。</p></div>
+                <div class="footer-col"><h4>快速連結</h4><ul>
+                    <li><a href="index.html">首頁</a></li><li><a href="routes.html">推薦行程</a></li>
+                    <li><a href="car-rental.html">包車服務</a></li><li><a href="itinerary.html">行程範例</a></li>
+                    <li><a href="contact.html">聯絡我們</a></li>
+                </ul></div>
+                <div class="footer-col"><h4>聯絡資訊</h4>
+                    <p>📱 LINE：XJCaifeng</p><p>📧 Email：info@xjcaifeng.com</p>
+                    <p>🕐 服務時間：全年無休 09:00-22:00</p>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/promotion.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/sitemap.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        function toggleMenu(){var m=document.getElementById('navMenu');var b=document.querySelector('.mobile-menu-btn');if(m&&b){var e=m.classList.contains('active');m.classList.toggle('active');b.classList.toggle('active');b.setAttribute('aria-expanded',!e);}}
+        window.addEventListener('load',function(){setTimeout(function(){var o=document.getElementById('loadingOverlay');if(o){o.classList.add('hidden');setTimeout(function(){o.style.display='none';},300);}},400);}});
+        document.addEventListener('keydown',function(e){if(e.key==='Escape'){var m=document.getElementById('navMenu');var b=document.querySelector('.mobile-menu-btn');if(m&&m.classList.contains('active')){m.classList.remove('active');if(b){b.classList.remove('active');b.setAttribute('aria-expanded','false');}}}});
+        document.addEventListener('DOMContentLoaded',function(){var m=document.getElementById('navMenu');if(m){m.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){m.classList.remove('active');var b=document.querySelector('.mobile-menu-btn');if(b){b.classList.remove('active');b.setAttribute('aria-expanded','false');}});});}});
+    </script>
+</body>
+</html>

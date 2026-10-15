@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 捲動淡入動畫
 (function() {
-    var fadeEls = document.querySelectorAll('.feature-card, .tour-card, .faq-item, .highlight-item');
+    var fadeEls = document.querySelectorAll('.feature-card, .tour-card, .faq-item, .highlight-item, .section-title, .testimonial-card, .badge-item');
     if ('IntersectionObserver' in window && fadeEls.length > 0) {
         var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (!prefersReducedMotion) {
@@ -84,3 +84,15 @@ document.addEventListener('DOMContentLoaded', function() {
         backBtn.addEventListener('mouseleave', function() { this.style.transform = 'scale(1)'; });
     }
 });
+
+// 導航滾動收縮
+(function() {
+    var navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+    function onScroll() {
+        if (window.scrollY > 30) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+})();

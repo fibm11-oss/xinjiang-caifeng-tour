@@ -277,7 +277,7 @@ img[loading="lazy"] {
     min-height: 640px;
     background:
         linear-gradient(135deg, rgba(26,74,122,0.72), rgba(200,16,46,0.52)),
-        url("../images/hero-xinjiang.svg") center/cover no-repeat;
+        url("../images/hero-xinjiang.png") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -279,18 +279,56 @@ def check_gitignore(r: Result) -> None:
 
 
 # ------------------------------------------------------- I. 雙站探活
+VPN_HINTS = ("surfshark", "wireguard", "tun", "tap", "wintun", "nordlynx", "zerotier")
+
+
+def _vpn_up() -> tuple[bool, str]:
+    """VPN 是否啟動：① 看網卡名 ② 看本機是否拿到 10.14.x（Surfshark WG 網段）。"""
+    rc, out = sh(["netsh", "interface", "show", "interface"], timeout=30)
+    hits = [ln.strip() for ln in out.splitlines()
+            if any(h in ln.lower() for h in VPN_HINTS) and "connected" in ln.lower()]
+    if hits:
+        return True, f"網卡 {hits[:2]}"
+    rc, out = sh(["ipconfig"], timeout=30)
+    for ln in out.splitlines():
+        if "IPv4" in ln and ln.strip().split(":")[-1].strip().startswith("10.14."):
+            return True, "本機 IP 落在 10.14.x（WireGuard 網段）"
+    return False, ""
+
+
+def _loopback_443_listening() -> bool:
+    rc, out = sh(["netstat", "-ano"], timeout=30)
+    for ln in out.splitlines():
+        if "LISTENING" in ln.upper() and re.search(r"127\.0\.0\.1:443\b", ln):
+            return True
+    return False
+
+
 def check_net(r: Result) -> None:
     for name, url in (("GitHub Pages", GH_PAGES), ("WorkBuddy 托管", WB_HOST)):
         rc, out = sh(["curl", "-s", "-o", os.devnull, "-w", "%{http_code}",
                       "--max-time", "20", url])
         code = (out.strip().splitlines() or ["?"])[-1]
         if code == "200":
-            r.good(f"I. {name} 探活 200 → 可部署")
+            r.good(f"I. {name} 探活 200")
         else:
             r.fail(f"I. {name} 探活 = {code}（目標 200）")
-            if name == "WorkBuddy 托管":
-                r.fail("   → 極可能是 VPN 開著（Surfshark）。請歐陽完全退出 VPN 後再測；"
-                       "非 200 不要發，發了也是 ECONNREFUSED 127.0.0.1:443（見 pitfalls P1）")
+
+    # ⚠️ 探活 200 是「必要但不充分」——2026-10-16 實測：VPN 開著時 curl 仍回 200，
+    #    但 deploy 照樣 ECONNREFUSED 127.0.0.1:443。真正的充分條件是本機 443 有人在聽。
+    vpn, why = _vpn_up()
+    if vpn:
+        r.fail(f"I. VPN 似乎是開著的（{why}）→ 部署會失敗（ECONNREFUSED 127.0.0.1:443）。"
+               f"請使用者完全退出 VPN（Surfshark 要結束 Surfshark.WireguardService），再重跑本檢查。")
+    else:
+        r.good("I. 未偵測到 VPN 網卡")
+
+    if _loopback_443_listening():
+        r.good("I. 127.0.0.1:443 有 LISTENING → sandbox data plane 已就緒，可部署")
+    else:
+        r.fail("I. 127.0.0.1:443 沒有 LISTENING → sandbox data plane 沒起來，"
+               "此時發部署必噴 ECONNREFUSED。處置：關 VPN → 完全退出並重開 WorkBuddy → 重跑本檢查。"
+               "（見 pitfalls P13）")
 
 
 # ------------------------------------------------------------------ main

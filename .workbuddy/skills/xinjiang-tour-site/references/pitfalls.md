@@ -4,6 +4,34 @@
 
 ---
 
+## P13｜🔴 探活 200 但部署仍失敗（推翻 P1 的放行判準）
+
+- **現象**：`curl` 探活 `xj-caifeng-tour.app.workbuddy.host` 回 **200**，
+  但 `workbuddy_sites_deploy` 照樣失敗：`ECONNREFUSED 127.0.0.1:443`。
+- **實測**：出口 IP `151.240.88.86`（Surfshark）、本機 IP `10.14.0.2`（WG 網段）、
+  網卡 `SurfsharkWireGuard = Connected` → **VPN 其實又開了**，而
+  `netstat` 顯示 `127.0.0.1:443` **沒有任何 LISTENING**。
+- **根因**：curl 走 VPN 出得去（所以探活 200），但 sandbox data plane 起不來監聽本機 443
+  → 上傳請求打到本地沒人聽的埠。
+- **修正後的正確判準**（已寫進 preflight 的 I 段）：
+  1. `netsh interface show interface` 看有無 Surfshark/WireGuard/TUN 網卡 Connected
+  2. `netstat -ano` 看 `127.0.0.1:443` 是否 LISTENING ← **這個才是充分條件**
+  3. 探活 200 只當參考，**不能當放行依據**
+- **處置順序**：關 VPN（完全退出 `Surfshark.WireguardService`）→ 完全退出並重開 WorkBuddy
+  → 重跑 preflight 看到「443 有 LISTENING」→ 才發。
+- **教訓**：會話中途 VPN 狀態會變。Phase 2 跑過 preflight，**Phase 5 發之前要再跑一次**。
+
+---
+
+## P14｜skill 副本沒同步 → 改了卻跑舊版
+
+- **現象**：我改了使用者層級的 `preflight.py`，跑專案副本卻是舊行為（沒擋下 VPN）。
+- **解法**：改任何一邊都要 `cp` 到另一邊；preflight 的 A 段會把未同步的副本報成
+  「未提交變更」，算是一層被動提醒。
+- **SOP**：SKILL.md §2 自檢第 5 項已列為必查。
+
+---
+
 ## P1｜VPN（Surfshark）讓 WorkBuddy 托管部署必失敗
 
 - **現象**：`workbuddy_sites_deploy` 連三次失敗，錯誤
@@ -16,9 +44,11 @@
 - **證據**：關 VPN 前後對比 —
   出口 IP `151.240.88.86`（Surfshark）→ `153.37.166.76`；
   托管站 `000 逾時` → `HTTP 200 / 2.7s`；部署 3 連敗 → 1 次成功。
-- **解法**：**部署前先 `curl` 探活**。非 200 就是 VPN，請歐陽關掉（Surfshark 需完全退出
-  `Surfshark.WireguardService`，不是只斷線），關完重測 200 再發。
-- 🔴 **不要連試三次**。失敗一次就停，先查探活。
+- **解法**：**發之前跑 preflight**，看「VPN 是否開著」+「127.0.0.1:443 是否 LISTENING」。
+  VPN 開著就請歐陽關掉（Surfshark 需完全退出 `Surfshark.WireguardService`，不是只斷線），
+  關完重跑 preflight。
+- 🔴 **不要連試三次**。失敗一次就停，先查 preflight 的 I 段。
+- ⚠️ **本條的放行判準已被 P13 修正**：不要用「探活 200」當放行依據。
 
 ---
 

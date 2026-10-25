@@ -20,6 +20,51 @@
 - **處置順序**：關 VPN（完全退出 `Surfshark.WireguardService`）→ 完全退出並重開 WorkBuddy
   → 重跑 preflight 看到「443 有 LISTENING」→ 才發。
 - **教訓**：會話中途 VPN 狀態會變。Phase 2 跑過 preflight，**Phase 5 發之前要再跑一次**。
+- 🟡 **2026-10-26 補正（詳見 P16）**：「443 有 LISTENING」是**充分但非必要**條件。
+  實測：VPN 關著、443 沒聽，直接 `workbuddy_sites_deploy` 仍成功（工具自行拉起 data plane）。
+  故本條「處置順序」修正為：關 VPN 後**直接試部署**，不必等 443 聽；443 紅降為參考黃燈。
+
+---
+
+## P16｜🔴 兩處 SOP 修正（2026-10-26 實測反例）
+
+> 本條修正 P1 / P13 的過嚴判準，並補上 preflight 的 VPN 子串誤判修復。
+
+### (a) 443 沒 LISTENING 不代表部署必敗 — preflight 的 443 紅是「過嚴假陰性」
+
+- **現象 / 反例**：2026-10-26 歐陽關 VPN、本機 sandbox 也關掉（`127.0.0.1:443` 沒 LISTENING），
+  preflight I 段照舊報紅；但**直接呼叫 `workbuddy_sites_deploy` 仍成功**
+  （verified=true，shareLink 正常，`xj-h5/` 全 200）。
+- **根因**：`workbuddy_sites_deploy` 會**自行拉起（自舉）sandbox data plane**，
+  不需要預先有 `127.0.0.1:443` LISTENING。舊 SOP 把「443 有 LISTENING」當成**必要**條件是錯的——
+  它充其量是**充分**條件（有聽一定成），但不是**必要**條件。
+- **修正後判準**：
+  1. **VPN 關著** → 可直接呼叫 `workbuddy_sites_deploy`，不必等 443 LISTENING（443 紅降為**參考黃燈**）。
+  2. 若呼叫後失敗、錯誤含 `ECONNREFUSED 127.0.0.1:443` / `SITES_UPLOAD_FAILED`
+     → 此時才去重開 WorkBuddy 拉起 data plane，不要預先卡關。
+  3. 🔴 **唯一真正的硬紅燈仍是 VPN 開著**（TLS 握手卡死，見 P1）。
+- **證據**：preflight 報 443 紅 → 仍 deploy 成功；curl 驗證
+  `https://xj-caifeng-tour.app.workbuddy.host/xj-h5/` 全 200。
+
+### (b) preflight `_vpn_up()` 對 `disconnected` 子串誤判（已修）
+
+- **現象**：已斷開的 Surfshark 網卡 `netsh interface show interface` 顯示 `Disconnected`，
+  但 preflight 的 `_vpn_up()` 報「VPN 開著」→ 誤導後續處置（叫歐陽重開 WorkBuddy）。
+- **根因**：判斷式 `if "connected" in line.lower()`，`"disconnected"` 含子串 `"connected"` 被誤命中。
+- **解法**（已寫進兩份 `scripts/preflight.py`，使用者層 + 專案副本）：
+  ```python
+  hits = [ln.strip() for ln in out.splitlines()
+          if any(h in ln.lower() for h in VPN_HINTS)
+          and "connected" in ln.lower() and "disconnected" not in ln.lower()]
+  ```
+- **證據**：修後同一張 `Disconnected` 網卡不再被判為 VPN 開著；commit `93349c9`（待 VPN 開時補推 GitHub）。
+- **教訓**：字串包含判斷要排除否定詞（`disconnected` / `not connected`），別用裸子串比對。
+
+### 對 SKILL.md Phase 5 的修正
+
+- 舊表「443 沒 LISTENING（VPN 已關）→ 完全退出並重開 WorkBuddy」→ 改為**黃燈/參考，直接試部署**。
+- 舊語「真正決定成敗的是本機 443 有沒有 LISTENING」→ 改為
+  「真正決定成敗的是 **VPN 有沒有關**，443 只是參考；工具會自舉 data plane」。
 
 ---
 
@@ -79,7 +124,7 @@
   VPN 開著就請歐陽關掉（Surfshark 需完全退出 `Surfshark.WireguardService`，不是只斷線），
   關完重跑 preflight。
 - 🔴 **不要連試三次**。失敗一次就停，先查 preflight 的 I 段。
-- ⚠️ **本條的放行判準已被 P13 修正**：不要用「探活 200」當放行依據。
+- ⚠️ **本條的放行判準已被 P13 修正**（探活 200 非放行依據）；而 P13 的「443 必須 LISTENING」又於 **P16a 修正為非必要**——只要 VPN 關著即可直接試部署。
 
 ---
 

@@ -316,7 +316,9 @@ def check_net(r: Result) -> None:
             r.fail(f"I. {name} 探活 = {code}（目標 200）")
 
     # ⚠️ 探活 200 是「必要但不充分」——2026-10-16 實測：VPN 開著時 curl 仍回 200，
-    #    但 deploy 照樣 ECONNREFUSED 127.0.0.1:443。真正的充分條件是本機 443 有人在聽。
+    #    但 deploy 照樣 ECONNREFUSED 127.0.0.1:443（根因是 VPN 的 TLS 握手卡死，見 P1）。
+    #    真正決定成敗的是「VPN 有沒有關」；443 有沒有 LISTENING 只是參考——
+    #    workbuddy_sites_deploy 會自行拉起 sandbox data plane（見 P16a，2026-10-26 實測）。
     vpn, why = _vpn_up()
     if vpn:
         r.fail(f"I. VPN 似乎是開著的（{why}）→ 部署會失敗（ECONNREFUSED 127.0.0.1:443）。"
@@ -325,11 +327,14 @@ def check_net(r: Result) -> None:
         r.good("I. 未偵測到 VPN 網卡")
 
     if _loopback_443_listening():
-        r.good("I. 127.0.0.1:443 有 LISTENING → sandbox data plane 已就緒，可部署")
+        r.good("I. 127.0.0.1:443 有 LISTENING → sandbox data plane 已就緒")
     else:
-        r.fail("I. 127.0.0.1:443 沒有 LISTENING → sandbox data plane 沒起來，"
-               "此時發部署必噴 ECONNREFUSED。處置：關 VPN → 完全退出並重開 WorkBuddy → 重跑本檢查。"
-               "（見 pitfalls P13）")
+        # 🟡 2026-10-26 修正（P16a）：443 沒聽「不再」是阻擋部署的紅燈。
+        #    workbuddy_sites_deploy 會自行拉起 data plane，實測 443 沒聽仍部署成功。
+        #    降為黃燈提醒；只有「VPN 開著」才是硬紅燈。
+        r.caution("I. 127.0.0.1:443 沒有 LISTENING（參考黃燈）：sandbox data plane 可能尚未就緒。"
+                  "但若 VPN 已關，仍可直接呼叫 workbuddy_sites_deploy——它會自行拉起 data plane。"
+                  "僅當部署真的報 ECONNREFUSED 127.0.0.1:443 時，才去重開 WorkBuddy。（見 pitfalls P16a）")
 
 
 # ------------------------------------------------------------------ main

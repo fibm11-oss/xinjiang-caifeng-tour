@@ -21,7 +21,7 @@ description: >
 | # | 鐵律 | 為什麼 |
 |---|---|---|
 | 1 | **三處同步才算完成**：本地 → GitHub → WorkBuddy 托管 | 歐陽明確要求。只推 GitHub 或只發托管都算半成品 |
-| 2 | **發托管前跑 preflight，看「有沒有 VPN」+「443 有沒有 LISTENING」，不是只看探活 200** | 探活 200 是必要不充分；VPN 開著時 curl 仍回 200，部署照樣失敗（P13） |
+| 2 | **發托管前跑 preflight，看「有沒有 VPN（硬紅燈）」+「443 有沒有 LISTENING（參考，非必要）」，不是只看探活 200** | 探活 200 必要不充分；**VPN 開著才是真兇**（TLS 卡死，P1）。443 沒 LISTENING 不代表敗——部署工具會自舉 data plane（P16） |
 | 3 | **動手前先看 git 現況，別假設在 main** | 2026-10-15 工作目錄 checkout 在 `agents/*` 分支且落後 main 3 筆，差點蓋掉別人的東西 |
 | 4 | **不確定的日期/事實一律查證或跑程式，禁止心算** | 我曾把 2027 行程算成 2026 年星期，全錯 |
 | 5 | **hero / tours / blog 圖片一律 WebP，禁止放 PNG** | 專案曾因 PNG 胖到 26 MB，轉 WebP 後 5.3 MB |
@@ -95,17 +95,16 @@ python.exe ".../xinjiang-tour-site/scripts/preflight.py"
 
 | preflight 的 I 段 | 處置 |
 |---|---|
-| 「未偵測到 VPN」+「127.0.0.1:443 有 LISTENING」 | ✅ 呼叫 `workbuddy_sites_deploy`（參數見 `references/site-facts.md`） |
-| VPN 開著 | 請歐陽**完全退出** Surfshark（結束 `Surfshark.WireguardService`，不是只斷線）→ 重跑 preflight |
-| 443 沒 LISTENING（VPN 已關） | sandbox data plane 沒起來 → **完全退出並重開 WorkBuddy** → 重跑 preflight |
+| VPN 開著 | 🔴 **硬紅燈**：請歐陽**完全退出** Surfshark（結束 `Surfshark.WireguardService`，不是只斷線）→ 重跑 preflight |
+| 「未偵測到 VPN」（443 有沒有 LISTENING 都行） | ✅ **直接呼叫** `workbuddy_sites_deploy`（參數見 `references/site-facts.md`）。443 紅只是**參考黃燈**，工具會自行拉起 sandbox data plane |
 | 其他 | 回報，不要連試三次 |
 
-⚠️ **探活 200 是必要但不充分的條件，別拿它當放行依據。**
-2026-10-16 實測：VPN 開著時 `curl` 照樣回 200，但部署仍噴 `ECONNREFUSED 127.0.0.1:443`
-（見 pitfalls P13）。真正決定成敗的是**本機 443 有沒有 LISTENING**。
+⚠️ **探活 200 是必要但不充分的條件，別拿它當放行依據**（見 P13）。
+真正決定成敗的是**本機 VPN 有沒有關**——VPN 開著時 TLS 握手卡死，部署必敗（P1）。
+443 有沒有 LISTENING **不再是必要條件**：2026-10-26 實測，443 沒聽仍部署成功（P16a）。
 
-失敗時若錯誤含 `ECONNREFUSED 127.0.0.1:443` 或 `SITES_UPLOAD_FAILED`：
-那是**本機 sandbox data plane 沒起來**，不是檔案太大 —— 別去壓圖，去查 VPN 和 443。
+呼叫 `workbuddy_sites_deploy` 後若失敗、錯誤含 `ECONNREFUSED 127.0.0.1:443` 或 `SITES_UPLOAD_FAILED`：
+那是**本機 sandbox data plane 沒起來**（極少見），不是檔案太大 —— 別去壓圖，去**重開 WorkBuddy** 再試一次，不要預先卡關。
 
 ### Phase 6 — 收尾（不可省）
 

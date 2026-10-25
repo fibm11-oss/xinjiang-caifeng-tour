@@ -1,0 +1,112 @@
+:root {
+  --bg: #0f1419;
+  --card: #1b232c;
+  --card2: #232e39;
+  --accent: #ff7a45;
+  --accent2: #36cfc9;
+  --text: #e8eef3;
+  --muted: #9bb0c0;
+  --line: #2c3a47;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body {
+  margin: 0; padding: 0; height: 100%;
+  background: var(--bg); color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.app-bar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 14px 16px; background: linear-gradient(135deg, #1d2730, #141b22);
+  border-bottom: 1px solid var(--line);
+}
+.app-bar h1 { font-size: 18px; margin: 0; letter-spacing: 1px; }
+.app-sub { font-size: 11px; color: var(--accent2); }
+.view { padding: 16px 16px 88px; max-width: 720px; margin: 0 auto; }
+
+/* 卡片 */
+.card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 14px; padding: 14px; margin-bottom: 12px;
+}
+.card h3 { margin: 0 0 6px; font-size: 16px; }
+.card .meta { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+.card .theme { color: var(--accent); font-size: 13px; }
+.zone-list { display: grid; gap: 10px; }
+
+/* 按鈕 */
+.btn {
+  border: none; border-radius: 12px; padding: 12px 16px;
+  font-size: 15px; font-weight: 600; cursor: pointer; color: #fff;
+  background: var(--accent); width: 100%;
+}
+.btn.secondary { background: var(--card2); border: 1px solid var(--line); }
+.btn.ghost { background: transparent; border: 1px solid var(--accent2); color: var(--accent2); }
+.btn:active { transform: scale(0.98); }
+.row { display: flex; gap: 10px; }
+.row .btn { flex: 1; }
+
+/* 導覽 */
+.guide-status {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 18px; text-align: center; margin-bottom: 12px;
+}
+.guide-status .big { font-size: 20px; font-weight: 700; }
+.guide-status .sub { color: var(--muted); font-size: 13px; margin-top: 6px; }
+.guide-zone {
+  font-size: 22px; font-weight: 800; color: var(--accent); margin: 8px 0;
+}
+.pulse { animation: pulse 1.6s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.45} }
+
+.sim-bar {
+  display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0;
+}
+.sim-bar button {
+  flex: 1 1 30%; padding: 8px; border-radius: 10px; border: 1px solid var(--line);
+  background: var(--card2); color: var(--text); font-size: 12px; cursor: pointer;
+}
+.sim-bar button.active { border-color: var(--accent); color: var(--accent); }
+
+/* 相簿 */
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 10px; }
+.grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; }
+.album-empty { color: var(--muted); text-align: center; padding: 24px 0; }
+.roadbook h2 { font-size: 18px; color: var(--accent2); }
+.roadbook section { margin: 14px 0; padding: 12px; background: var(--card); border-radius: 12px; }
+.roadbook h3 { margin: 0 0 6px; font-size: 16px; }
+.roadbook p { margin: 6px 0; font-size: 14px; line-height: 1.5; color: var(--text); }
+
+/* 我的 */
+.setting { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.setting:last-child { border-bottom: none; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.seg button { padding: 8px 14px; background: var(--card2); border: none; color: var(--muted); cursor: pointer; }
+.seg button.on { background: var(--accent); color: #fff; }
+
+/* tabbar */
+.tabbar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;
+  display: flex; background: #131a21; border-top: 1px solid var(--line);
+}
+.tab {
+  flex: 1; border: none; background: transparent; color: var(--muted);
+  padding: 8px 0; font-size: 12px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.tab .ico { font-size: 20px; }
+.tab.active { color: var(--accent); }
+.toast {
+  position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,.85); color: #fff; padding: 10px 16px; border-radius: 10px;
+  font-size: 13px; z-index: 50; opacity: 0; transition: opacity .2s;
+}
+.toast.show { opacity: 1; }
+
+/* 行程 */
+.hero { text-align: center; margin-bottom: 16px; }
+.hero h2 { margin: 0; font-size: 22px; }
+.hero p { color: var(--muted); margin: 6px 0 0; }
+.badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 8px; }
+.badge.P0 { background: rgba(255,122,69,.2); color: var(--accent); }
+.badge.P1 { background: rgba(54,207,201,.2); color: var(--accent2); }

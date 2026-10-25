@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>新疆采風 · H5 原型</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-bar">
+    <h1 id="appTitle">新疆采風</h1>
+    <span id="appSub" class="app-sub">H5 原型</span>
+  </header>
+
+  <main id="view" class="view"><!-- 各 view 由 app.js 渲染 --></main>
+
+  <nav class="tabbar">
+    <button class="tab" data-route="#guide"><span class="ico">🔊</span><span data-i18n="tab_guide">導覽</span></button>
+    <button class="tab" data-route="#album"><span class="ico">📷</span><span data-i18n="tab_album">路書</span></button>
+    <button class="tab" data-route="#about"><span class="ico">ℹ️</span><span data-i18n="tab_about">關於</span></button>
+  </nav>
+
+  <!-- UMD 模組（順序：geo/zones/i18n/roadbook/audio 在前，app 最後） -->
+  <script src="js/geo.js"></script>
+  <script src="js/zones.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/roadbook.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

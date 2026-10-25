@@ -57,7 +57,7 @@
           if any(h in ln.lower() for h in VPN_HINTS)
           and "connected" in ln.lower() and "disconnected" not in ln.lower()]
   ```
-- **證據**：修後同一張 `Disconnected` 網卡不再被判為 VPN 開著；commit `93349c9`（待 VPN 開時補推 GitHub）。
+- **證據**：修後同一張 `Disconnected` 網卡不再被判為 VPN 開著；commit `93349c9` 已隨 `a36f425..2580a8a` **無 VPN** 推上 `origin/main`（參見 P17：GitHub 推送免 VPN，不依賴本機 VPN）。
 - **教訓**：字串包含判斷要排除否定詞（`disconnected` / `not connected`），別用裸子串比對。
 
 ### 對 SKILL.md Phase 5 的修正
@@ -65,6 +65,23 @@
 - 舊表「443 沒 LISTENING（VPN 已關）→ 完全退出並重開 WorkBuddy」→ 改為**黃燈/參考，直接試部署**。
 - 舊語「真正決定成敗的是本機 443 有沒有 LISTENING」→ 改為
   「真正決定成敗的是 **VPN 有沒有關**，443 只是參考；工具會自舉 data plane」。
+
+---
+
+## P17｜GitHub 推送免 VPN（糾正「github.com 被 IP 封鎖」誤判）
+
+- **現象 / 誤判**：曾宣稱「github.com 被 IP 封鎖，推 GitHub 必須開 VPN」，並據此把 P16b 的證據寫成
+  「commit 93349c9（待 VPN 開時補推 GitHub）」。2026-10-26 歐陽指正：當晚根本沒開 VPN，
+  而 SOP 修正（a36f425..2580a8a）確實已上 GitHub。
+- **實測對比（2026-10-26）**：
+  - `git ls-remote origin` 在**本機無 VPN** 下直接成功（EXIT=0，回傳 `2580a8a… HEAD` / `refs/heads/main`）。
+  - 本地 `git status -sb` 顯示 `## main...origin/main` 無 ahead/behind，與 `origin/main` 完全同步。
+  - 遠端 SKILL.md SHA `803292211e979cea…` 即修正後版本（含 P16）。
+- **根因**：那次「git push 免 VPN 失敗 / github.com 連線逾時」是**瞬時網路抖動**，被誤當成永久「IP 封鎖」鐵律。
+- **結論**：**推 GitHub（`git push origin main`）不需要本機 VPN**；github.com 在本機可直連。
+  VPN 的硬紅燈只適用於 Phase 5 的 **WorkBuddy 托管部署**（`*.app.workbuddy.host` 的 TLS 握手卡死，見 P1），
+  與 GitHub 推送無關。不要再把「開 VPN」當成推 GitHub 的前置條件。
+- **證據**：上述 `ls-remote` / `git status` / 遠端 SHA 三項實測。
 
 ---
 

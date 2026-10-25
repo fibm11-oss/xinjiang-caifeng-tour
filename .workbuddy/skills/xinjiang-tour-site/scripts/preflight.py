@@ -286,7 +286,8 @@ def _vpn_up() -> tuple[bool, str]:
     """VPN 是否啟動：① 看網卡名 ② 看本機是否拿到 10.14.x（Surfshark WG 網段）。"""
     rc, out = sh(["netsh", "interface", "show", "interface"], timeout=30)
     hits = [ln.strip() for ln in out.splitlines()
-            if any(h in ln.lower() for h in VPN_HINTS) and "connected" in ln.lower()]
+            if any(h in ln.lower() for h in VPN_HINTS)
+            and "connected" in ln.lower() and "disconnected" not in ln.lower()]
     if hits:
         return True, f"網卡 {hits[:2]}"
     rc, out = sh(["ipconfig"], timeout=30)

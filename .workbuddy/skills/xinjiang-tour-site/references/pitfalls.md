@@ -85,6 +85,27 @@
 
 ---
 
+## P18｜連通性測試逾時太短 → 假「連不到」（2026-10-26 實測）
+
+- **現象 / 誤判**：用 `curl -m 15` 探 github.com 回 `HTTP 000`（15s 逾時），`git fetch` 21s 報
+  `Recv failure: Connection was reset` → 當下斷言「GitHub 在本機連不到 / 被封鎖」。
+- **重測（把等待拉長）**：同樣的 `git -c http.timeout=120 ls-remote origin` → **EXIT=0**，
+  回傳 `5b06f23… HEAD` / `refs/heads/main`；`curl -m 90 github.com` → **HTTP 200（0.88s）**；
+  `curl -m 90 raw.githubusercontent.com` → **HTTP 200（0.48s）**。
+- **根因**：那次 15~21s 的失敗是**瞬時網路抖動 / 慢回應**，不是永久封鎖。
+  **秒級沒回應 ≠ 連不到**；網路慢時 github / workbuddy.host 偶需 60~90s 才回。
+- **結論（鐵律）**：
+  1. 🔴 **一切結論都要實測，且不要因為「沒有秒回應」就否定**——先排除「只是網路慢」。
+  2. 連通性測試一律給足時間：`curl` 用 `-m 90`（不要 15/20s）、`git` 用 `http.timeout=120`
+     （`-c http.timeout=120` 或 `GIT_HTTP_TIMEOUT`）。
+  3. 一次失敗不算數——遇到 `Connection reset` / `000` 先**重測一次、拉長逾時**再下結論。
+  4. 本條也修正了 preflight I 段：`--max-time 20` → `90`（sh 牆鐘 120s），避免慢網假陽性誤擋部署。
+- **證據**：上述 120s / 90s 重測全部成功；且 `origin/main = 5b06f23 = 本地 HEAD`，
+  三處（本地 / GitHub / 託管站）確認全部同步——所謂「網站卡在 51e5957」是另一 agent 的**幻覺**，
+  非實測結果（本機對託管站 index/routes/itinerary/contact/xj-h5 做 md5 全部一致）。
+
+---
+
 ## P15｜自動加載 hook 的三個坑（`workspace_skills_gate.py`）
 
 ### (a) YAML 摺疊語法（`>` + 縮排）解析錯 → description 只剩 `>`

@@ -307,8 +307,12 @@ def _loopback_443_listening() -> bool:
 
 def check_net(r: Result) -> None:
     for name, url in (("GitHub Pages", GH_PAGES), ("WorkBuddy 托管", WB_HOST)):
+        # ⚠️ 2026-10-26 修正：曾用 --max-time 20，網路稍慢/站點冷啟動就假陽性報「探活失敗」，
+        #    進而誤擋部署。經驗：從本機打 github.com / workbuddy.host 偶需 60~90s 才回應，
+        #    且 git ls-remote 在 http.timeout=120s 下才穩定成功（15~21s 會遇 Connection reset）。
+        #    故探活上限拉到 90s，sh 牆鐘 120s，寧可等久也不要誤殺。
         rc, out = sh(["curl", "-s", "-o", os.devnull, "-w", "%{http_code}",
-                      "--max-time", "20", url])
+                      "--max-time", "90", url], timeout=120)
         code = (out.strip().splitlines() or ["?"])[-1]
         if code == "200":
             r.good(f"I. {name} 探活 200")

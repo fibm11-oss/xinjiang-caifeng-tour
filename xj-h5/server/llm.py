@@ -270,6 +270,60 @@ def provider_status():
     }
 
 
+def available_providers():
+    """列出供應商及其「當前是否可用」（只看配置齊不齊，不外呼）。
+
+    供客戶端做能力協商：例如此地網路只能連境內節點，就挑境內供應商。
+    """
+    out = []
+    for name, spec in PROVIDERS.items():
+        cfg = _build_cfg(name)
+        out.append({
+            "name": name,
+            "label": spec.get("label", name),
+            "configured": cfg is not None,
+            "model": cfg.get("model") if cfg else None,
+            "base_url": cfg.get("base_url") if cfg else None,
+            "need_key": bool(spec.get("need_key")),
+        })
+    return out
+
+
+def build_chain(preferred=None, chain=None):
+    """組出這次請求要試的供應商順序。
+
+    · preferred：請求指定的偏好（可為 str 或 list），放最前
+    · chain：請求指定的備援序列
+    · 再接上環境變數 XJ_LLM_FALLBACK
+    · 都沒有才用 resolve() 的自動偵測結果
+    """
+    names = []
+
+    def _push(v):
+        if isinstance(v, str):
+            v = [v]
+        for n in (v or []):
+            n = str(n).strip().lower()
+            if n and n in PROVIDERS and n not in ("mock", "off", "none") and n not in names:
+                names.append(n)
+
+    _push(preferred)
+    _push(chain)
+    fb = _env("XJ_LLM_FALLBACK")
+    _push(fb.split(",") if fb else [])
+
+    out = []
+    for n in names:
+        cfg = _build_cfg(n)
+        if cfg:
+            out.append(cfg)
+    if out:
+        return out
+
+    cfg = resolve()
+    return [cfg] if cfg else []
+
+
 # ── 呼叫核心 ────────────────────────────────────────────────────────────
 def _post_chat(cfg, messages, max_tokens, temperature, timeout):
     url = cfg["base_url"] + "/chat/completions"
@@ -308,24 +362,18 @@ def _post_chat(cfg, messages, max_tokens, temperature, timeout):
     return (content or "").strip()
 
 
-def call_chat(messages, *, max_tokens=800, temperature=0.7, provider=None, timeout=None):
+def call_chat(messages, *, max_tokens=800, temperature=0.7, provider=None,
+              provider_chain=None, timeout=None):
     """呼叫 LLM。回 {ok, text, provider, model, error, attempts}。
 
     任一供應商失敗會自動換下一個備援；全失敗回 ok=False（呼叫端負責降級）。
+    provider / provider_chain 可由請求指定 → 這是多區域部署的接縫：
+    由邊緣層（CDN / Worker）依客戶所在網路決定走境內還是境外供應商。
     """
     timeout = timeout or _timeout()
     attempts = []
 
-    cfg = _build_cfg(provider) if provider else resolve()
-    chain = [cfg] if cfg else []
-    fb = _env("XJ_LLM_FALLBACK")
-    for n in (fb.split(",") if fb else []):
-        n = n.strip().lower()
-        if n and n not in ("mock", "off", "none"):
-            c = _build_cfg(n)
-            if c:
-                chain.append(c)
-
+    chain = build_chain(preferred=provider, chain=provider_chain)
     if not chain:
         return {"ok": False, "text": "", "provider": None, "model": None,
                 "error": "no_provider_configured", "attempts": attempts}

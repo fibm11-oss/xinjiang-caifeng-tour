@@ -217,6 +217,84 @@ class TestAiLabelling(unittest.TestCase):
         self.assertNotIn("ai-notice", tpl["html"])
 
 
+class TestProviderRouting(unittest.TestCase):
+    """請求級 provider 路由 —— 多區域部署的前置接縫。
+
+    場景：境外客戶在新疆現場，網路可能是「本地 SIM / 機場 WiFi」（被過濾，只能連境內節點）
+    或「旅行 eSIM / 國際漫遊」（流量出境，不被過濾，可連境外模型）。
+    邊緣層依客戶網路決定走哪個供應商，前端不變。
+    """
+
+    def test_build_chain_preferred_first(self):
+        env = clean_env(XJ_LLM_PROVIDER="mock",
+                        XJ_LLM_BASE_URL="https://a.example/v1", XJ_LLM_MODEL="m1",
+                        XJ_LLM_API_KEY="k1")
+        with mock.patch.dict(os.environ, env, clear=True):
+            chain = llm.build_chain(preferred="custom", chain=["mock"])
+            self.assertTrue(chain)
+            self.assertEqual(chain[0]["name"], "custom")
+
+    def test_build_chain_falls_back_to_auto_resolve(self):
+        # 不設 XJ_LLM_PROVIDER，只給 base_url → resolve() 自動偵測成 custom
+        env = clean_env(XJ_LLM_BASE_URL="https://a.example/v1", XJ_LLM_MODEL="m1")
+        with mock.patch.dict(os.environ, env, clear=True):
+            chain = llm.build_chain()
+            self.assertTrue(chain)
+            self.assertEqual(chain[0]["name"], "custom")
+
+    def test_build_chain_empty_in_mock_mode(self):
+        """mock 模式（未接 LLM）→ 鏈路為空，由上層走模板降級。"""
+        env = clean_env(XJ_LLM_PROVIDER="mock")
+        with mock.patch.dict(os.environ, env, clear=True):
+            self.assertEqual(llm.build_chain(), [])
+
+    def test_build_chain_ignores_unknown_and_mock(self):
+        env = clean_env(XJ_LLM_PROVIDER="mock",
+                        XJ_LLM_BASE_URL="https://a.example/v1", XJ_LLM_MODEL="m1")
+        with mock.patch.dict(os.environ, env, clear=True):
+            chain = llm.build_chain(preferred=["nosuchprovider", "mock", "custom"])
+            names = [c["name"] for c in chain]
+            self.assertNotIn("nosuchprovider", names)
+            self.assertNotIn("mock", names)
+            self.assertIn("custom", names)
+
+    def test_available_providers_reports_configured_flag(self):
+        env = clean_env(XJ_LLM_PROVIDER="mock",
+                        XJ_LLM_BASE_URL="https://a.example/v1", XJ_LLM_MODEL="m1")
+        with mock.patch.dict(os.environ, env, clear=True):
+            lst = llm.available_providers()
+            names = [p["name"] for p in lst]
+            for want in ("deepseek", "qwen", "openai", "local", "custom"):
+                self.assertIn(want, names)
+            # 需要 key 但沒 key → configured 必須為 False
+            d = next(p for p in lst if p["name"] == "deepseek")
+            self.assertFalse(d["configured"])
+            # 有 base_url 的 custom 應為 configured
+            c = next(p for p in lst if p["name"] == "custom")
+            self.assertTrue(c["configured"])
+
+    def test_server_provider_hint_precedence(self):
+        """HTTP 標頭優先於請求體（邊緣層的決定權高於前端）。"""
+        import roadbook_server as rs
+        self.assertEqual(rs._provider_hint({"_providerHeader": "local",
+                                             "provider": "openai"}), "local")
+        self.assertEqual(rs._provider_hint({"provider": "OpenAI"}), "openai")
+        self.assertEqual(rs._provider_hint({}), "")
+        self.assertEqual(rs._provider_hint({"provider": ["a", "b"]}), "a,b")
+
+    def test_server_provider_chain_parsing(self):
+        import roadbook_server as rs
+        self.assertEqual(rs._provider_chain({"providerChain": ["A", "b"]}), ["a", "b"])
+        self.assertEqual(rs._provider_chain({}), [])
+
+    def test_cache_key_separates_by_provider_hint(self):
+        """不同 provider 偏好不得共用同一份快取。"""
+        import roadbook_server as rs
+        k1 = rs._roadbook_cache_key([{"zoneId": "Z1", "ts": 1}], "zh", [], "")
+        k2 = rs._roadbook_cache_key([{"zoneId": "Z1", "ts": 1}], "zh", [], "local")
+        self.assertNotEqual(k1, k2)
+
+
 class TestNoProvider(unittest.TestCase):
     def test_call_without_provider_fails_gracefully(self):
         env = clean_env(XJ_LLM_PROVIDER="mock")

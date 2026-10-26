@@ -101,6 +101,27 @@ curl http://localhost:8787/api/llm/status
 | `XJ_LLM_TIMEOUT` | 單次請求逾時秒（預設 60） |
 | `XJ_SERVER_PORT` | 後端監聽埠（預設 8787） |
 
+### provider 運行時路由（多區域部署接縫）
+
+客戶在新疆現場的網路決定了哪些端點可達（旅行 eSIM / 國際漫遊 = 流量出境不被過濾；
+本地 SIM / 酒店 WiFi = 被過濾），所以後端不能只靠進程級開關選供應商：
+
+```bash
+# 邊緣層（CDN / Worker）依客戶所在網路注入標頭，前端無需改動
+curl -X POST http://localhost:8787/api/guide/generate \
+     -H 'X-LLM-Provider: local' -d '{...}'
+```
+
+| 優先序 | 來源 |
+|---|---|
+| 1 | HTTP 標頭 `X-LLM-Provider`（邊緣層注入，優先於請求體） |
+| 2 | 請求體 `provider` / `providerChain` |
+| 3 | 環境變數 `XJ_LLM_FALLBACK` |
+| 4 | 自動偵測（依已設定的 key / 本機端點） |
+
+- `GET /api/llm/providers` → 各供應商與 `configured` 旗標，供客戶端做能力協商
+- 服務端快取鍵**包含 provider 偏好**，不同供應商不共用快取
+
 **降級行為**：LLM 失敗／逾時／回應格式不合法 → 自動退回模板路書與靜態 intro，
 任務狀態仍為 `completed`（前端不會卡在「編纂中」）。服務端另有 6 小時快取。
 

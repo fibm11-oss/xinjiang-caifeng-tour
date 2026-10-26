@@ -214,7 +214,31 @@ def _esc(s: str) -> str:
             .replace(">", "&gt;").replace('"', "&quot;"))
 
 
-def _roadbook_cache_key(photos, lang, zones):
+def _provider_hint(req: dict) -> str:
+    """本次請求偏好的供應商（多區域部署接縫）。
+
+    優先序：HTTP 標頭 X-LLM-Provider（可由邊緣層依客戶所在網路注入）
+          → 請求體 provider / providerChain
+          → 空字串（走環境變數自動偵測）
+    """
+    hint = (req.get("_providerHeader") or "").strip().lower()
+    if hint:
+        return hint
+    p = req.get("provider")
+    if isinstance(p, list):
+        return ",".join(str(x).strip().lower() for x in p if x)
+    return str(p or "").strip().lower()
+
+
+def _provider_chain(req: dict) -> list:
+    """請求指定的備援供應商序列。"""
+    c = req.get("providerChain")
+    if isinstance(c, list):
+        return [str(x).strip().lower() for x in c if x]
+    return []
+
+
+def _roadbook_cache_key(photos, lang, zones, provider_hint=""):
     zids = []
     for z in (zones or []):
         if isinstance(z, dict):
@@ -224,8 +248,8 @@ def _roadbook_cache_key(photos, lang, zones):
         "%s:%s" % ((p.get("zoneId") if isinstance(p, dict) else "?"),
                    (p.get("ts") if isinstance(p, dict) else 0))
         for p in (photos or []))
-    return "rb:%s:%s:%d:%s" % ("+".join(zids), lang, len(photos or []),
-                               llm.cache_key_hash(sig))
+    return "rb:%s:%s:%s:%d:%s" % (provider_hint or "-", "+".join(zids), lang,
+                                  len(photos or []), llm.cache_key_hash(sig))
 
 
 def _compose_roadbook_html(obj: dict, tpl: dict, lang: str, misc_count: int) -> str:
@@ -270,8 +294,10 @@ def generate_roadbook(req: dict, progress_cb) -> dict:
     photos = req.get("photos", [])
     lang = req.get("lang", "zh")
     req_zones = req.get("zones")
+    hint = _provider_hint(req)
+    chain_pref = _provider_chain(req)
 
-    key = _roadbook_cache_key(photos, lang, req_zones)
+    key = _roadbook_cache_key(photos, lang, req_zones, hint)
     hit = llm.cache_get(key)
     if hit:
         progress_cb("命中快取", "直接回傳既有路書…", 100)
@@ -279,7 +305,7 @@ def generate_roadbook(req: dict, progress_cb) -> dict:
 
     tpl = template_roadbook(photos, lang, req_zones)
 
-    if llm.resolve() is None:
+    if llm.resolve() is None and not hint:
         # 未接 LLM：純模板 + 模擬進度（讓無 key 環境也能真跑通整條鏈路）
         progress_cb("檢索景點", "正在彙整 POI…", 30)
         time.sleep(0.8)
@@ -290,7 +316,8 @@ def generate_roadbook(req: dict, progress_cb) -> dict:
     progress_cb("檢索景點", "正在彙整 POI…", 25)
     msgs = llm.build_roadbook_messages(req, lang)
     progress_cb("編纂遊記", "正在生成連貫敘事…", 60)
-    res = llm.call_chat(msgs, max_tokens=1600, temperature=0.85)
+    res = llm.call_chat(msgs, max_tokens=1600, temperature=0.85,
+                         provider=hint or None, provider_chain=chain_pref)
 
     if not res["ok"]:
         progress_cb("降級", "AI 編纂失敗，改用模板路書", 80)
@@ -350,14 +377,16 @@ def generate_guide(req: dict, progress_cb) -> dict:
     name = req.get("name", "")
     intro = req.get("intro", "")
     ctx = req.get("context") or {}
+    hint = _provider_hint(req)
+    chain_pref = _provider_chain(req)
 
-    key = "guide:%s|%s|%s" % (zone_id, lang, ctx.get("timeOfDay", ""))
+    key = "guide:%s|%s|%s|%s" % (zone_id, lang, ctx.get("timeOfDay", ""), hint or "-")
     hit = llm.cache_get(key)
     if hit:
         progress_cb("命中快取", "直接回傳既有講解…", 100)
         return hit
 
-    if llm.resolve() is None:
+    if llm.resolve() is None and not hint:
         progress_cb("構思講解", "正在組織當地風土…", 40)
         time.sleep(0.6)
         progress_cb("潤色文案", "正在生成導覽語…", 80)
@@ -366,7 +395,8 @@ def generate_guide(req: dict, progress_cb) -> dict:
 
     progress_cb("構思講解", "正在組織當地風土…", 45)
     msgs = llm.build_guide_messages(req)
-    res = llm.call_chat(msgs, max_tokens=400, temperature=0.8)
+    res = llm.call_chat(msgs, max_tokens=400, temperature=0.8,
+                        provider=hint or None, provider_chain=chain_pref)
 
     if not res["ok"]:
         progress_cb("降級", "AI 講解不可用，改用標準講解", 80)
@@ -442,6 +472,11 @@ class Handler(BaseHTTPRequestHandler):
             return
 
         task_id = uuid.uuid4().hex[:8]
+        # 多區域部署接縫：邊緣層（CDN / Worker）可依客戶所在網路注入 X-LLM-Provider，
+        # 決定這次請求走境內還是境外供應商；前端無需改動。
+        header_hint = (self.headers.get("X-LLM-Provider") or "").strip()
+        if header_hint:
+            req["_providerHeader"] = header_hint
         with _lock:
             _tasks[task_id] = _create_task(task_id)
             _tasks[task_id]["request"] = req
@@ -458,6 +493,12 @@ class Handler(BaseHTTPRequestHandler):
             st = llm.provider_status()
             st["cache_size"] = llm.cache_size()
             self._send(200, st)
+            return
+
+        # 供應商能力清單：客戶端可據此做能力協商（例如當地網路只能連境內節點）
+        if self.path.rstrip("/") == "/api/llm/providers":
+            self._send(200, {"providers": llm.available_providers(),
+                             "timeout_sec": llm._timeout()})
             return
 
         # roadbook 與 guide 共用同一張任務表，status 路由合一

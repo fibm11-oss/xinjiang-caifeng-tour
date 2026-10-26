@@ -5,6 +5,7 @@
   const I = window.XJi18n;
   const rb = window.XJRoadbook;
   const audio = window.XJAudio;
+  const guide = window.XJGuide || null;   // guide.js 缺席時降級，不讓整個 app 掛掉
   const ZONES = zonesMod.ZONES;
 
   const LS_PHOTOS = 'xj_photos';
@@ -16,6 +17,7 @@
     simMode: false,
     watchId: null,
     currentZone: null,   // zone 物件
+    zoneEnteredAt: {},    // zoneId -> 上次「實際播報」的時間戳（Smart Cooldown 用）
     lastZoneId: (function () { try { return localStorage.getItem(LS_LASTZONE); } catch (e) { return null; } })()
   };
 
@@ -121,24 +123,76 @@
     const z = state.currentZone;
     if (!z) return;
     const lang = I.currentLang();
-    const text = lang === 'en' ? z.introEn : z.intro;
+    // 命中預取緩存就用 AI 版，否則退回 zones 靜態 intro（零延遲、永遠有聲）
+    const aiText = guide && typeof guide.getGuide === 'function'
+      ? guide.getGuide(z.id, lang) : null;
+    const text = aiText || (lang === 'en' ? z.introEn : z.intro);
     audio.speak(text, lang);
   }
 
-  // 進入某 zone：更新狀態、UI、播報
+  // 時段提示（供後端生成更貼合當下的講解）
+  function timeOfDayHint() {
+    const h = new Date().getHours();
+    if (h < 6) return 'dawn';
+    if (h < 11) return 'morning';
+    if (h < 14) return 'noon';
+    if (h < 18) return 'afternoon';
+    if (h < 22) return 'evening';
+    return 'night';
+  }
+
+  // 進 zone 後預取「當前 + 接下來 2 站」AI 講解（背景、失敗靜默、不阻塞播報）
+  function prefetchAround(z) {
+    const lang = I.currentLang();
+    const idx = ZONES.findIndex(x => x.id === z.id);
+    const ids = [z.id];
+    for (let k = 1; k <= 2; k++) {
+      const nz = ZONES[idx + k];
+      if (nz) ids.push(nz.id);
+    }
+    for (const id of ids) {
+      const nz = zonesMod.getZoneById(id);
+      if (!nz) continue;
+      if (!guide || typeof guide.prefetchGuide !== 'function') return;
+      guide.prefetchGuide(id, lang, {
+        name: lang === 'en' ? nz.nameEn : nz.name,
+        intro: lang === 'en' ? nz.introEn : nz.intro,
+        context: {
+          timeOfDay: timeOfDayHint(),
+          photoCount: getPhotos().filter(p => p.zoneId === id).length
+        }
+      });
+    }
+  }
+
+  // 進入某 zone：更新狀態、UI、播報（含 Smart Cooldown）
+  // 同 zone 重入不重播的兩種情境：
+  //   (a) 持續 watchPosition 連續命中同一 zone（changed=false）→ 不重播
+  //   (b) 離開後在冷卻期內回來（changed=true 但距上次播報 < COOLDOWN_MS）→ 不重播
+  const COOLDOWN_MS = 5 * 60 * 1000; // 同一景點 5 分鐘內不重複播報
   function enterZone(z) {
-    const changed = (!state.currentZone) || (state.currentZone.id !== (z ? z.id : null));
+    const now = Date.now();
+    const prevId = state.currentZone ? state.currentZone.id : null;
+    const newId = z ? z.id : null;
+    const changed = prevId !== newId;
     state.currentZone = z; // z 可能為 null
     if (z) {
       state.lastZoneId = z.id;
       try { localStorage.setItem(LS_LASTZONE, z.id); } catch (e) {}
     }
     renderGuide();
-    if (z && changed) {
-      speakCurrentZone();
-    } else if (!z) {
-      audio.stop();
+    if (!z) { audio.stop(); return; }
+    if (!changed) return; // 仍在同一 zone（持續 watchPosition），不重播
+    // 新進 zone：預取 AI 講解（當前 + 接下來 2 站），失敗靜默，不阻塞播報
+    prefetchAround(z);
+    // 同 zone 冷卻期內（如離開又回來）：只更新狀態，不重播
+    const last = state.zoneEnteredAt[newId] || 0;
+    if (now - last < COOLDOWN_MS) {
+      if (state.simMode) toast(I.t('cooldown'));
+      return;
     }
+    state.zoneEnteredAt[newId] = now;
+    speakCurrentZone();
   }
 
   function startGuide() {
@@ -236,9 +290,31 @@
 
     document.getElementById('btnGen').onclick = function () {
       const photos = getPhotos();
-      const res = rb.buildRoadbook(photos, zonesMod.toData(), I.currentLang());
-      document.getElementById('roadbookOut').innerHTML = res.html;
-      toast(res.totalPhotos + ' ' + t('photo_count'));
+      const lang = I.currentLang();
+      const zonesData = zonesMod.toData();
+      const out = document.getElementById('roadbookOut');
+      out.innerHTML = '<p class="roadbook-progress">AI 編纂中… 0%</p>';
+      rb.requestRoadbook(photos, zonesData, lang, {
+        onProgress: function (p, msg) {
+          out.innerHTML = '<p class="roadbook-progress">AI 編纂中 ' + p + '% · ' + msg + '</p>';
+        },
+        onDone: function (res) {
+          // 伺服器給敘事，本地注入照片（避免 base64 來回傳膨脹）
+          const html = rb.composeRoadbookHtml(res, photos);
+          if (html) {
+            out.innerHTML = html;
+          } else {
+            const t2 = rb.buildRoadbook(photos, zonesData, lang);
+            out.innerHTML = rb.injectPhotos(t2.html, photos);
+          }
+          toast(photos.length + ' ' + t('photo_count'));
+        },
+        onFallback: function (reason, tpl) {
+          out.innerHTML = rb.injectPhotos(tpl.html, photos) +
+            '<p class="roadbook-note">（AI 編纂暫不可用，已為你生成基礎路書）</p>';
+          toast(t('roadbook_fallback') || '已生成基礎路書');
+        }
+      });
     };
 
     const btnClearAlbum = document.getElementById('btnClearAlbum');
@@ -286,6 +362,7 @@
     document.getElementById('langEn').onclick = () => { I.setLang('en'); router(); };
     document.getElementById('btnClear').onclick = () => {
       try { localStorage.removeItem(LS_PHOTOS); localStorage.removeItem(LS_LASTZONE); } catch (e) {}
+      if (window.XJGuide && window.XJGuide.clearCache) window.XJGuide.clearCache();
       state.lastZoneId = null;
       toast(t('clear_ok'));
     };
@@ -298,4 +375,9 @@
   });
   if (audio && audio.onEnded) { audio.onEnded(function () { if (location.hash === '#guide') renderGuide(); }); }
   router();
+
+  // ── 測試掛載（node require 時導出內部函式供單測；瀏覽器環境 module 為 undefined，不生效）──
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { _enterZone: enterZone, _state: state, _cooldownMs: COOLDOWN_MS, _toast: toast, _speakCurrentZone: speakCurrentZone };
+  }
 })();

@@ -29,6 +29,7 @@
       introEn: 'Kanas Lake hides deep in the Altai Mountains, its color shifting with light and season. Tuva wooden cabins dot the forest; Hemu village in morning mist is called "God\'s own land".' },
     { id: 'Z4', name: '烏爾禾', nameEn: 'Urho',
       center: [85.669384, 46.200710], radius: 8000, type: 'point', priority: 'P1',
+      polygon: [[85.663, 46.195], [85.676, 46.196], [85.675, 46.206], [85.663, 46.205]],
       days: 'D6', theme: '雅丹地貌 · 魔鬼城',
       intro: '烏爾禾魔鬼城是典型的風蝕雅丹，千奇百怪的岩柱在夕陽下如一座廢棄古城。風穿石隙發出嗚咽，故名魔鬼城。這裡也是電影《臥虎藏龍》的取景地之一。',
       introEn: 'Urho\'s "Devil City" is a classic wind-eroded yardang landscape. Bizarre rock pillars look like a ruined city at sunset, and the wind howls through the stones — hence the name.' },

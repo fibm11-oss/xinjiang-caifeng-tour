@@ -20,11 +20,13 @@
     <button class="tab" data-route="#about"><span class="ico">ℹ️</span><span data-i18n="tab_about">關於</span></button>
   </nav>
 
-  <!-- UMD 模組（順序：geo/zones/i18n/roadbook/audio 在前，app 最後） -->
+  <!-- UMD 模組（順序：geo/zones/i18n → async(共用輪詢骨架) → roadbook/guide → audio → app） -->
   <script src="js/geo.js"></script>
   <script src="js/zones.js"></script>
   <script src="js/i18n.js"></script>
+  <script src="js/async.js"></script>
   <script src="js/roadbook.js"></script>
+  <script src="js/guide.js"></script>
   <script src="js/audio.js"></script>
   <script src="js/app.js"></script>
 </body>

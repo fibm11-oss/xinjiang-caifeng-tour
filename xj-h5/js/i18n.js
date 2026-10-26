@@ -25,7 +25,9 @@
       sim_mode: '模擬定位', sim_pick: '模擬進入站點', sim_off: '真實定位',
       loc_denied: '定位權限被拒，已切到模擬模式', loc_unavail: '定位不可用，已切到模擬模式',
       cur_zone: '目前所在', no_zone: '未在任何景區範圍內',
-      photo_count: '張照片', lang_hint: '切換後重啟導覽語音', clear_ok: '快取已清除'
+      cooldown: '（冷卻中，暫不重播）',
+      photo_count: '張照片', lang_hint: '切換後重啟導覽語音', clear_ok: '快取已清除',
+      roadbook_fallback: '已生成基礎路書'
     },
     en: {
       tab_route: 'Route', tab_guide: 'Guide', tab_album: 'Album', tab_me: 'Me', tab_about: 'About',
@@ -45,7 +47,9 @@
       loc_denied: 'Location denied — switched to simulate',
       loc_unavail: 'Location unavailable — switched to simulate',
       cur_zone: 'Current', no_zone: 'Not in any zone',
-      photo_count: 'photos', lang_hint: 'Restart guide speech after switch', clear_ok: 'Cache cleared'
+      cooldown: '(cooldown — not replaying)',
+      photo_count: 'photos', lang_hint: 'Restart guide speech after switch', clear_ok: 'Cache cleared',
+      roadbook_fallback: 'Basic roadbook generated'
     }
   };
 

@@ -59,13 +59,33 @@
     return R * c;
   }
 
+  // 點在多邊形內（ray casting）。poly: [[lng,lat], ...]
+  // 與本專案其餘坐標約定一致（均為 [lng, lat]）。
+  function pointInPolygon(lng, lat, poly) {
+    let inside = false;
+    for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+      const xi = poly[i][0], yi = poly[i][1];
+      const xj = poly[j][0], yj = poly[j][1];
+      const intersect =
+        ((yi > lat) !== (yj > lat)) &&
+        (lng < ((xj - xi) * (lat - yi)) / (yj - yi) + xi);
+      if (intersect) inside = !inside;
+    }
+    return inside;
+  }
+
   // 判定當前位置落在哪個 zone
-  // zones: [{id, center:[lng,lat], radius, type:'point'|'linear', points:[[lng,lat,buf],...], centers?:[[lng,lat,r],...]}]
+  // zones: [{id, center:[lng,lat], radius, polygon:[[lng,lat],...], type:'point'|'linear',
+  //          points:[[lng,lat,buf],...], centers?:[[lng,lat,r],...]}]
   // loc: {latitude, longitude}（GCJ-02）
   function resolveZone(loc, zones) {
     if (!loc || !zones) return null;
     const { latitude, longitude } = loc;
     for (const z of zones) {
+      // 多邊形 zone（不規則景區，如雅丹地貌）：優先判定
+      if (z.polygon && z.polygon.length >= 3) {
+        if (pointInPolygon(longitude, latitude, z.polygon)) return z;
+      }
       if (z.type === 'linear') {
         const hit = (z.points || []).some(p =>
           distance(latitude, longitude, p[1], p[0]) <= (p[2] != null ? p[2] : z.radius));
@@ -81,5 +101,5 @@
     return null;
   }
 
-  return { wgs84ToGcj02, distance, resolveZone, outOfChina };
+  return { wgs84ToGcj02, distance, resolveZone, outOfChina, pointInPolygon };
 });

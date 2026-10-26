@@ -1766,3 +1766,28 @@ img {
     .hero-scroll .txt { display: none; }
     .hero-glow { width: 360px; height: 360px; }
 }
+
+/* 載入動畫（與官網根頁 index.html 一致） */
+.loading-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--bg, #ffffff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+}
+.loading-overlay.hidden { opacity: 0; pointer-events: none; }
+.loading-spinner {
+    width: 50px; height: 50px;
+    border: 3px solid var(--border, #f3f3f3);
+    border-top: 3px solid var(--primary, #c8102e);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

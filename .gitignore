@@ -10,6 +10,9 @@
 __pycache__/
 *.pyc
 
+# 路書平台本地儲存（照片 / 生成路書 / meta，含客戶資料，絕不進 repo）
+xj-h5/data/
+
 # WorkBuddy app temp files
 *.genie
 

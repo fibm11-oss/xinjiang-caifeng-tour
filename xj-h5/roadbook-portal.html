@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>我的新疆路書 · 下載端口</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f4f1ea;color:#2b2620}
+  .top{max-width:820px;margin:0 auto;padding:24px 20px 8px}
+  .top h1{font-size:20px;margin:0 0 4px}
+  .top p{margin:0;color:#7a6f5e;font-size:14px}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;max-width:820px;margin:16px auto;padding:0 20px}
+  .controls input{flex:1;min-width:200px;padding:10px 12px;border:1px solid #d8cdb6;border-radius:10px;font-size:14px}
+  button{padding:10px 16px;border:none;border-radius:10px;font-size:14px;cursor:pointer;font-weight:600}
+  .b-primary{background:#9a6a2f;color:#fff}
+  .b-ghost{background:#fff;border:1px solid #d8cdb6;color:#5a5142}
+  .qrbox{display:none;max-width:820px;margin:8px auto;padding:0 20px;text-align:center}
+  .qrbox svg{width:200px;height:200px;background:#fff;border-radius:12px;padding:10px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+  .qrbox .hint{font-size:13px;color:#7a6f5e;margin-top:6px}
+  .frame{max-width:820px;margin:12px auto 40px;padding:0 20px}
+  iframe{width:100%;height:78vh;border:1px solid #e3d6bf;border-radius:14px;background:#fff}
+  .msg{max-width:820px;margin:40px auto;padding:0 20px;text-align:center;color:#a99}
+</style>
+</head>
+<body>
+  <div class="top">
+    <h1>📖 我的新疆路書</h1>
+    <p>行程結束後，專屬連結即可開啟並下載您的路書。</p>
+  </div>
+
+  <div class="controls" id="controls">
+    <input id="tok" placeholder="請輸入您的姓名，或貼上路書連結 / 代碼">
+    <button class="b-primary" onclick="openToken()">開啟</button>
+  </div>
+
+  <div class="qrbox" id="qrbox">
+    <div id="qr"></div>
+    <div class="hint">掃描 QR 在手機上開啟</div>
+  </div>
+
+  <div class="frame" id="frame" style="display:none">
+    <div class="controls" style="padding:0 0 12px">
+      <button class="b-primary" onclick="downloadRb()">⬇ 下載路書（HTML）</button>
+      <button class="b-ghost" onclick="copyLink()">🔗 複製連結</button>
+    </div>
+    <iframe id="rb" title="roadbook"></iframe>
+  </div>
+
+  <div class="msg" id="msg">請在上方輸入您的路書代碼。</div>
+
+<script>
+function getParam(name){
+  return new URLSearchParams(location.search).get(name);
+}
+function api(u){ return location.origin.replace(/:8787/, "") + ":8787" + u; }
+
+let CURRENT_TOKEN = null;
+
+async function openToken(){
+  const raw = document.getElementById('tok').value.trim();
+  if(!raw){ alert('請輸入您的姓名，或貼上路書連結 / 代碼'); return; }
+  // 1) 直接 token 或整條連結 → 擷取 token 段
+  const m = raw.match(/roadbook\/([\w-]+)/);
+  let token = null;
+  if(m){ token = m[1]; }
+  else if(/^[\w-]{8,}$/.test(raw)){ token = raw.replace(/^=*/,'').trim(); }
+  if(token){
+    CURRENT_TOKEN = token;
+    history.replaceState(null,'', '?token=' + encodeURIComponent(token));
+    loadRb(token);
+    return;
+  }
+  // 2) 視為姓名 → 解析成 token
+  try{
+    const res = await fetch(api('/api/trip/resolve?name=' + encodeURIComponent(raw)));
+    if(res.ok){
+      const j = await res.json();
+      CURRENT_TOKEN = j.token;
+      history.replaceState(null,'', '?name=' + encodeURIComponent(raw));
+      loadRb(j.token);
+      return;
+    }
+  }catch(e){ /* 落到下方提示 */ }
+  alert('查無此姓名，或代碼有誤。請確認報名時的主辦方登記姓名，或貼上主辦方提供的路書連結。');
+}
+
+async function loadRb(token){
+  const msg = document.getElementById('msg');
+  msg.textContent = '載入中…';
+  try{
+    const res = await fetch(api('/api/roadbook/' + encodeURIComponent(token)));
+    if(res.status === 404){
+      msg.textContent = '路書尚未生成，或代碼不正確。';
+      document.getElementById('frame').style.display='none';
+      document.getElementById('qrbox').style.display='none';
+      return;
+    }
+    if(!res.ok){ msg.textContent = '讀取失敗（'+res.status+'）'; return; }
+    const html = await res.text();
+    document.getElementById('rb').srcdoc = html;
+    document.getElementById('frame').style.display='block';
+    msg.textContent='';
+    loadQr(token);
+  }catch(e){
+    msg.textContent = '無法連線到伺服器：' + e.message;
+  }
+}
+
+async function loadQr(token){
+  try{
+    const res = await fetch(api('/api/roadbook/' + encodeURIComponent(token) + '/qr'));
+    if(res.ok){
+      const svg = await res.text();
+      document.getElementById('qr').innerHTML = svg;
+      document.getElementById('qrbox').style.display='block';
+    }
+  }catch(e){ /* QR 非必要，失敗靜默 */ }
+}
+
+function downloadRb(){
+  if(!CURRENT_TOKEN) return;
+  fetch(api('/api/roadbook/' + encodeURIComponent(CURRENT_TOKEN)))
+    .then(r=>r.text()).then(t=>{
+      const blob = new Blob([t], {type:'text/html'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = '新疆路書_' + CURRENT_TOKEN + '.html';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+}
+
+function copyLink(){
+  const url = location.origin.replace(/:8787/,'') + ':8787/roadbook-portal.html?token=' + encodeURIComponent(CURRENT_TOKEN);
+  navigator.clipboard.writeText(url).then(()=>alert('連結已複製'));
+}
+
+// 開頁即帶 token 或 name 則自動開啟
+const t0 = getParam('token');
+const n0 = getParam('name');
+if(t0){ document.getElementById('tok').value = t0; openToken(); }
+else if(n0){ document.getElementById('tok').value = n0; openToken(); }
+</script>
+</body>
+</html>

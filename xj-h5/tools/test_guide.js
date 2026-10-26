@@ -72,6 +72,16 @@ async function main() {
   check('失敗後 getGuide 仍 null', nf.stillNull === true);
   check('失敗後 inflight 已釋放（可重試）', nf.inflightCleared === true);
 
+  console.log('=== D. AI 生成內容標識：i18n 字典必須有中英標識文案 ===');
+  const i18n = require(path.join('..', 'js', 'i18n.js'));
+  const zhDict = i18n.DICT.zh, enDict = i18n.DICT.en;
+  check('中文有導覽語 AI 標識', !!zhDict.ai_notice_guide && zhDict.ai_notice_guide.indexOf('AI') >= 0);
+  check('中文有路書 AI 標識', !!zhDict.ai_notice_roadbook);
+  check('中文有 AI 徽章文案', !!zhDict.ai_badge);
+  check('英文有導覽語 AI 標識', !!enDict.ai_notice_guide && enDict.ai_notice_guide.indexOf('AI') >= 0);
+  check('英文有路書 AI 標識', !!enDict.ai_notice_roadbook);
+  check('英文有 AI 徽章文案', !!enDict.ai_badge);
+
   console.log(failures === 0 ? '\n全部通過 ✅' : '\n' + failures + ' 項失敗 ❌');
   process.exit(failures === 0 ? 0 : 1);
 }

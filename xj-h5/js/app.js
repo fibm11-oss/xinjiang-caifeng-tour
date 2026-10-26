@@ -99,7 +99,12 @@
       '<div class="row" style="margin-top:10px"><button class="btn secondary" id="btnPause">' +
       (playing ? t('guide_pause') : t('guide_play')) + '</button></div>' : '';
 
-    view.innerHTML = statusHtml + startBtn + playPause + speechNote +
+    // AI 生成內容顯式標識：導覽語含 AI 生成成分，須在使用者明顯可見處提示
+    //（《人工智能生成合成內容標識辦法》2025-09-01 施行；語音類亦可用界面顯著標識）
+    const aiNotice = '<div class="ai-notice"><strong>' + t('ai_badge') +
+      '</strong> · ' + t('ai_notice_guide') + '</div>';
+
+    view.innerHTML = statusHtml + aiNotice + startBtn + playPause + speechNote +
       '<div style="margin-top:12px">' + toggleBtn + '</div>' + simHtml;
 
     const btnTrack = document.getElementById('btnTrack');

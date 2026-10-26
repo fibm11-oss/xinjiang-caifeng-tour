@@ -229,7 +229,11 @@ def _roadbook_cache_key(photos, lang, zones):
 
 
 def _compose_roadbook_html(obj: dict, tpl: dict, lang: str, misc_count: int) -> str:
-    """把 LLM 的敘事與模板的章節骨架組裝成最終 HTML（含照片掛載點）。"""
+    """把 LLM 的敘事與模板的章節骨架組裝成最終 HTML（含照片掛載點）。
+
+    顯式標識：依《人工智能生成合成內容標識辦法》（2025-09-01 施行）第四條，
+    AI 生成的文本須在起始/中間/末尾加可被使用者明顯感知的文字提示。
+    """
     zh = _is_zh(lang)
     narr = {}
     for ch in (obj.get("chapters") or []):
@@ -237,7 +241,12 @@ def _compose_roadbook_html(obj: dict, tpl: dict, lang: str, misc_count: int) -> 
             narr[str(ch["zoneId"])] = ch.get("narrative") or ""
 
     head = "我的新疆路書" if zh else "My Xinjiang Roadbook"
+    notice = ("本路書內容由 AI 依你的照片自動編纂，僅供參考。"
+              if zh else
+              "This roadbook was AI-generated from your photos and is for reference only.")
     html = "<h2>" + head + "</h2>"
+    html += ('<div class="ai-notice"><strong>' + ("AI 生成" if zh else "AI-generated") +
+             "</strong> · " + notice + "</div>")
     summary = (obj.get("summary") or "").strip()
     if summary:
         html += '<p class="rb-summary">' + _esc(summary) + "</p>"
@@ -307,6 +316,11 @@ def generate_roadbook(req: dict, progress_cb) -> dict:
         "model": res["model"],
         "fallback": False,
         "cacheKey": key,
+        # 隱式標識三要素（《標識辦法》第五條）：屬性資訊 / 服務提供者 / 內容編號
+        # 目前前端不導出檔案，先隨結果一併回傳，供未來匯出時寫入檔案元資料。
+        "aiGenerated": True,
+        "contentId": "XJ-" + uuid.uuid4().hex[:12],
+        "providerName": "%s/%s" % (res["provider"], res["model"]),
     }
     llm.cache_set(key, out)
     return out
@@ -362,7 +376,11 @@ def generate_guide(req: dict, progress_cb) -> dict:
         return out
 
     out = {"text": res["text"], "lang": lang, "zoneId": zone_id,
-           "provider": res["provider"], "model": res["model"], "fallback": False}
+           "provider": res["provider"], "model": res["model"], "fallback": False,
+           # 隱式標識三要素（屬性資訊 / 服務提供者 / 內容編號）
+           "aiGenerated": True,
+           "contentId": "XJ-" + uuid.uuid4().hex[:12],
+           "providerName": "%s/%s" % (res["provider"], res["model"])}
     llm.cache_set(key, out)
     return out
 

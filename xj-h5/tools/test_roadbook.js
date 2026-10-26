@@ -100,6 +100,14 @@ async function main() {
   check('compose 保留伺服器敘事', composed.indexOf('我的新疆路書') >= 0);
   check('compose 對空結果回空字串', composeRoadbookHtml(null, photoList) === '');
 
+  console.log('=== E. AI 生成內容標識（不得誤標人工文案）===');
+  const tpl3 = buildRoadbook(photoList, zonesData, 'zh');
+  check('模板路書不宣稱 AI 生成（模板是人工文案）', tpl3.html.indexOf('ai-notice') < 0);
+  const aiHtml = '<h2>我的新疆路書</h2><div class="ai-notice"><strong>AI 生成</strong> · 本路書內容由 AI 依你的照片自動編纂，僅供參考。</div><section><div class="rb-photos" data-zone="Z1"></div></section>';
+  const aiComposed = composeRoadbookHtml({ html: aiHtml }, photoList);
+  check('伺服器的 AI 顯式標識在照片注入後仍保留', aiComposed.indexOf('ai-notice') >= 0);
+  check('AI 標識與照片可共存', (aiComposed.match(/<img/g) || []).length === 2);
+
   console.log(failures === 0 ? '\n全部通過 ✅' : '\n' + failures + ' 項失敗 ❌');
   process.exit(failures === 0 ? 0 : 1);
 }

@@ -27,7 +27,11 @@
       cur_zone: '目前所在', no_zone: '未在任何景區範圍內',
       cooldown: '（冷卻中，暫不重播）',
       photo_count: '張照片', lang_hint: '切換後重啟導覽語音', clear_ok: '快取已清除',
-      roadbook_fallback: '已生成基礎路書'
+      roadbook_fallback: '已生成基礎路書',
+      // AI 生成內容顯式標識（《人工智能生成合成內容標識辦法》2025-09-01）
+      ai_notice_guide: '本頁導覽語由 AI 生成，僅供參考。',
+      ai_notice_roadbook: '本路書內容由 AI 依你的照片自動編纂，僅供參考。',
+      ai_badge: 'AI 生成'
     },
     en: {
       tab_route: 'Route', tab_guide: 'Guide', tab_album: 'Album', tab_me: 'Me', tab_about: 'About',
@@ -49,7 +53,11 @@
       cur_zone: 'Current', no_zone: 'Not in any zone',
       cooldown: '(cooldown — not replaying)',
       photo_count: 'photos', lang_hint: 'Restart guide speech after switch', clear_ok: 'Cache cleared',
-      roadbook_fallback: 'Basic roadbook generated'
+      roadbook_fallback: 'Basic roadbook generated',
+      // Explicit AI-generated-content notice (China's AI content labelling rules, eff. 2025-09-01)
+      ai_notice_guide: 'This guide narration is AI-generated and is for reference only.',
+      ai_notice_roadbook: 'This roadbook was AI-generated from your photos and is for reference only.',
+      ai_badge: 'AI-generated'
     }
   };
 

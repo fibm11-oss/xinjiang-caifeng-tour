@@ -181,6 +181,42 @@ class TestCache(unittest.TestCase):
         self.assertNotEqual(llm.cache_key_hash("a", "b"), llm.cache_key_hash("a", "c"))
 
 
+class TestAiLabelling(unittest.TestCase):
+    """AI 生成內容標識（《人工智能生成合成內容標識辦法》2025-09-01 施行）。
+
+    - 第四條：AI 生成文本須加「可被使用者明顯感知」的顯式標識
+    - 第五條：隱式標識須含屬性資訊 / 服務提供者 / 內容編號三要素
+    """
+
+    def _server(self):
+        import roadbook_server as rs
+        return rs
+
+    def test_roadbook_html_has_explicit_notice_zh(self):
+        rs = self._server()
+        tpl = {"chapters": [{"zoneId": "Z1", "title": "烏魯木齊", "intro": "首府", "count": 2}]}
+        html = rs._compose_roadbook_html(
+            {"summary": "總述", "chapters": [{"zoneId": "Z1", "narrative": "敘事"}]},
+            tpl, "zh", 0)
+        self.assertIn("ai-notice", html)
+        self.assertIn("AI 生成", html)
+
+    def test_roadbook_html_has_explicit_notice_en(self):
+        rs = self._server()
+        tpl = {"chapters": [{"zoneId": "Z1", "title": "Urumqi", "intro": "Capital", "count": 2}]}
+        html = rs._compose_roadbook_html(
+            {"summary": "s", "chapters": [{"zoneId": "Z1", "narrative": "n"}]},
+            tpl, "en", 0)
+        self.assertIn("ai-notice", html)
+        self.assertIn("AI-generated", html)
+
+    def test_template_roadbook_is_not_labelled_as_ai(self):
+        """模板路書是人工撰寫文案（zones.js），不得宣稱 AI 生成。"""
+        rs = self._server()
+        tpl = rs.template_roadbook([{"zoneId": "Z1", "ts": 1}], "zh")
+        self.assertNotIn("ai-notice", tpl["html"])
+
+
 class TestNoProvider(unittest.TestCase):
     def test_call_without_provider_fails_gracefully(self):
         env = clean_env(XJ_LLM_PROVIDER="mock")

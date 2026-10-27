@@ -684,6 +684,10 @@ body {
 
     .nav-cta { display: none; }
 
+    /* 手機選單：覆寫桌面 .nav-menu 橫向 gap（34px），改為垂直緊湊間距，避免項目間距過大 */
+    .nav-menu { gap: 2px !important; }
+    .nav-menu a { padding: 14px 16px !important; }
+
     .v2-hero {
         margin-top: 64px;
         min-height: 560px;

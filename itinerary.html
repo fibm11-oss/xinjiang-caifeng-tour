@@ -114,6 +114,13 @@
         .itin-tab.active .itin-tab-sub { color: rgba(255,255,255,0.85); }
         .itin-panel { animation: itinFade 0.35s ease-out both; }
         .itin-panel[hidden] { display: none !important; }
+
+        /* 行程平鋪排列時的區塊分隔 */
+        .itin-panel + .itin-panel {
+            margin-top: 64px;
+            padding-top: 64px;
+            border-top: 2px solid var(--border);
+        }
         @keyframes itinFade {
             from { opacity: 0; transform: translateY(8px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -377,37 +384,22 @@
     <!-- ===== Page Hero ===== -->
     <section class="page-hero" id="main-content" style="background:linear-gradient(135deg,rgba(26,74,122,0.78),rgba(200,16,46,0.56)),url('images/photos/duku-road-winter.webp') center/cover no-repeat;">
         <h1>🗺 行程範例</h1>
-        <p>真實行程參考 ・ 北疆大環線 17 日 ／ 北疆經典 11 日 ／ 北疆＋伊犁＋獨庫 16 日小包團</p>
+        <p>真實行程範例 ・ 專屬司機＋私人導遊 ・ 每一段都可依你的需求重新定制</p>
     </section>
 
     <!-- ===== 行程內容 ===== -->
     <section class="itinerary-section">
         <div class="container">
 
-            <!-- ===== 行程切換頁籤 ===== -->
-            <div class="itin-tabs" role="tablist" aria-label="行程範例切換">
-                <button type="button" class="itin-tab active" id="tab-loop17" role="tab" aria-selected="true" aria-controls="panel-loop17" onclick="switchItin('loop17')">
-                    <span class="itin-tab-title">北疆大環線 17 日</span>
-                    <span class="itin-tab-sub">2027/05/29 – 06/14 ・ 南京轉機</span>
-                </button>
-                <button type="button" class="itin-tab" id="tab-classic11" role="tab" aria-selected="false" aria-controls="panel-classic11" onclick="switchItin('classic11')">
-                    <span class="itin-tab-title">北疆經典 11 日</span>
-                    <span class="itin-tab-sub">2026/06/21 – 07/01 ・ 上海轉機</span>
-                </button>
-                <button type="button" class="itin-tab" id="tab-selfdrive16" role="tab" aria-selected="false" aria-controls="panel-selfdrive16" onclick="switchItin('selfdrive16')">
-                    <span class="itin-tab-title">北疆＋伊犁＋獨庫 16 日</span>
-                    <span class="itin-tab-sub">2027/06/10 – 06/25 ・ 南京轉機 ・ 專屬小包團</span>
-                </button>
-            </div>
-
             <!-- ================================================================
                  範例一：北疆大環線 17 日（2027/05/29 – 06/14）
             ================================================================= -->
-            <div class="itin-panel" id="panel-loop17" role="tabpanel" aria-labelledby="tab-loop17">
+            <div class="itin-panel" id="panel-loop17">
 
             <!-- 行程簡介 -->
             <div class="itinerary-intro">
-                <h2>2027年5月29日 — 6月14日</h2>
+                <h2 style="font-size:34px;">北疆大環線 17 日</h2>
+                <p style="color:var(--primary);font-size:15px;font-weight:700;margin:0 0 14px;">2027/05/29 – 06/14 ・ 南京轉機 ・ 專屬小包團</p>
                 <p style="color:var(--text-light);font-size:16px;max-width:640px;margin:0 auto;">
                     從台北出發、經南京轉機進出烏魯木齊，一次串起北疆最經典的公路與景區。<br>
                     S21 沙漠公路、喀納斯三灣、禾木晨霧、烏爾禾魔鬼城、賽里木湖、伊昭公路、那拉提草原、獨庫公路北段、吐魯番——16 天環線不回頭。
@@ -866,11 +858,12 @@
             <!-- ================================================================
                  範例二：北疆經典 11 日（2026/06/21 – 07/01）
             ================================================================= -->
-            <div class="itin-panel" id="panel-classic11" role="tabpanel" aria-labelledby="tab-classic11" hidden>
+            <div class="itin-panel" id="panel-classic11">
 
             <!-- 行程簡介 -->
             <div class="itinerary-intro">
-                <h2>2026年6月21日 — 7月1日</h2>
+                <h2 style="font-size:34px;">北疆經典 11 日</h2>
+                <p style="color:var(--primary);font-size:15px;font-weight:700;margin:0 0 14px;">2026/06/21 – 07/01 ・ 上海轉機 ・ 專屬小包團</p>
                 <p style="color:var(--text-light);font-size:16px;max-width:600px;margin:0 auto;">
                     一趟從台北出發、途經上海轉機，深入北疆經典路線的 11 天完整旅程。<br>
                     喀納斯的晨霧、禾木村的日落、獨庫公路的壯闊——全部收錄。
@@ -1187,11 +1180,12 @@
             <!-- ================================================================
                  範例三：北疆＋伊犁＋獨庫 16 日客製小包團（2027/06/10 – 06/25）
             ================================================================= -->
-            <div class="itin-panel" id="panel-selfdrive16" role="tabpanel" aria-labelledby="tab-selfdrive16" hidden>
+            <div class="itin-panel" id="panel-selfdrive16">
 
             <!-- 行程簡介 -->
             <div class="itinerary-intro">
-                <h2>2027年6月10日 — 6月25日</h2>
+                <h2 style="font-size:34px;">北疆＋伊犁＋獨庫 16 日</h2>
+                <p style="color:var(--primary);font-size:15px;font-weight:700;margin:0 0 14px;">2027/06/10 – 06/25 ・ 南京轉機 ・ 專屬小包團</p>
                 <p style="color:var(--text-light);font-size:16px;max-width:680px;margin:0 auto;">
                     專屬司機＋私人導遊的北疆完整環線：從台北經南京轉機進出烏魯木齊，<br>
                     S21 沙漠公路 → 喀納斯三灣 → 禾木晨霧 → 魔鬼城落日 → 賽里木湖環湖 → 果子溝大橋 → 伊昭公路 → 昭蘇天馬 → 那拉提空中草原 → 獨庫公路北段 → 吐魯番，一次不折返。
@@ -1711,26 +1705,12 @@
 
     /* ===== 行程範例頁籤切換 ===== */
     var ITIN_PANELS = { 'loop17': 'panel-loop17', 'classic11': 'panel-classic11', 'selfdrive16': 'panel-selfdrive16' };
+
+    /* 各行程平鋪顯示，錨點僅用於捲動定位 */
     function switchItin(key) {
-        if (!ITIN_PANELS[key]) return;
-        Object.keys(ITIN_PANELS).forEach(function (k) {
-            var tab = document.getElementById('tab-' + k);
-            var panel = document.getElementById(ITIN_PANELS[k]);
-            var on = (k === key);
-            if (tab) {
-                tab.classList.toggle('active', on);
-                tab.setAttribute('aria-selected', on ? 'true' : 'false');
-            }
-            if (panel) {
-                panel.hidden = !on;
-                if (on) {
-                    /* 重新觸發淡入動畫 */
-                    panel.style.animation = 'none';
-                    void panel.offsetWidth;
-                    panel.style.animation = '';
-                }
-            }
-        });
+        var panel = document.getElementById(ITIN_PANELS[key]);
+        if (!panel) return;
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
         if (window.history && window.history.replaceState) {
             window.history.replaceState(null, '', '#' + key);
         }
@@ -1761,8 +1741,14 @@
     /* 依網址錨點切換行程（如 itinerary.html#classic11） */
     document.addEventListener('DOMContentLoaded', function() {
         var hash = (window.location.hash || '').replace('#', '');
-        if (hash && ITIN_PANELS[hash] && hash !== 'loop17') {
-            switchItin(hash);
+        if (hash && ITIN_PANELS[hash]) {
+            /* 平鋪顯示時，錨點直接捲動到對應行程 */
+            setTimeout(function () {
+                var panel = document.getElementById(ITIN_PANELS[hash]);
+                if (panel) {
+                    window.scrollTo({ top: panel.offsetTop - 80, behavior: 'auto' });
+                }
+            }, 100);
         }
     });
 

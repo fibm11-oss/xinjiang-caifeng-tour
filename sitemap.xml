@@ -26,7 +26,25 @@
     </url>
     <url>
         <loc>https://xjcaifeng.com/itinerary.html</loc>
-        <lastmod>2026-06-01</lastmod>
+        <lastmod>2026-10-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://xjcaifeng.com/itinerary-loop17.html</loc>
+        <lastmod>2026-10-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://xjcaifeng.com/itinerary-classic11.html</loc>
+        <lastmod>2026-10-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://xjcaifeng.com/itinerary-selfdrive16.html</loc>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>

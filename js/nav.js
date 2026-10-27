@@ -33,19 +33,59 @@ document.addEventListener('keydown', function(e) {
 // 點擊選單連結後自動關閉選單
 document.addEventListener('DOMContentLoaded', function() {
     var menu = document.getElementById('navMenu');
-    if (menu) {
-        var links = menu.querySelectorAll('a');
-        links.forEach(function(link) {
-            link.addEventListener('click', function() {
-                menu.classList.remove('active');
-                var btn = document.querySelector('.mobile-menu-btn');
-                if (btn) {
-                    btn.classList.remove('active');
-                    btn.setAttribute('aria-expanded', 'false');
-                }
-            });
+    if (!menu) return;
+
+    var dropdowns = menu.querySelectorAll('li.has-dropdown');
+    function closeDropdowns() {
+        dropdowns.forEach(function(li) {
+            li.classList.remove('open');
+            var pl = li.querySelector(':scope > a.dropdown-parent');
+            if (pl) pl.setAttribute('aria-expanded', 'false');
         });
     }
+
+    // 點擊 / 鍵盤選單連結後：收合整個手機選單，並一併收合已展開的手風琴
+    var links = menu.querySelectorAll('a');
+    links.forEach(function(link) {
+        link.addEventListener('click', function() {
+            if (link.classList.contains('dropdown-parent')) return; // 手機手風琴由下方擷取處理
+            menu.classList.remove('active');
+            closeDropdowns();
+            var btn = document.querySelector('.mobile-menu-btn');
+            if (btn) {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+
+    // 行程範例：手機點擊父層連結 -> 展開 / 收合手風琴（不導航）；桌機則正常導向總覽頁
+    var isMobile = function() { return window.matchMedia('(max-width: 768px)').matches; };
+    dropdowns.forEach(function(li) {
+        var parentLink = li.querySelector(':scope > a.dropdown-parent');
+        if (!parentLink) return;
+        li.addEventListener('click', function(e) {
+            if (parentLink.contains(e.target) && isMobile()) {
+                e.preventDefault();
+                e.stopPropagation();
+                var open = li.classList.toggle('open');
+                parentLink.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+        }, true); // 擷取階段攔截，避免與既有關閉邏輯衝突
+    });
+
+    // 點擊頁面其他區域關閉手機選單與手風琴
+    document.addEventListener('click', function(e) {
+        if (menu.classList.contains('active') && !menu.contains(e.target) && !e.target.closest('.mobile-menu-btn')) {
+            menu.classList.remove('active');
+            closeDropdowns();
+            var btn = document.querySelector('.mobile-menu-btn');
+            if (btn) {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+    });
 });
 
 // 捲動淡入動畫

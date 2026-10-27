@@ -25,15 +25,19 @@
 
     <!-- 預載入關鍵資源 -->
     <link rel="preload" href="css/style.css" as="style">
-    <link rel="preload" href="images/photos/anjihai-canyon.webp" as="image">
+    <link rel="preload" href="css/v2-home.css" as="style">
+    <link rel="preload" href="images/hero-xinjiang.webp" as="image">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="icon" href="images/favicon-16.png" type="image/png" sizes="16x16">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#c8102e">
+    <meta name="theme-color" content="#FBF4E6">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="新疆采風">
@@ -41,6 +45,7 @@
     <link rel="apple-touch-icon" href="images/favicon-512.png" sizes="512x512">
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/v2-home.css">
 
     <!-- 結構化數據 -->
     <script type="application/ld+json">
@@ -135,211 +140,236 @@
             <li role="none"><a href="car-rental.html" role="menuitem">小包團</a></li>
             <li role="none"><a href="itinerary.html" role="menuitem">行程範例</a></li>
             <li role="none"><a href="contact.html" role="menuitem">聯絡我們</a></li>
-            <li role="none"><a href="blog/index.html" role="menuitem">旅遊攻略</a></li>
-            <li role="none"><a href="xj-h5/index.html" role="menuitem">導覽 / 路書 APP</a></li>
+            <li role="none"><a href="xj-h5/index.html" role="menuitem">導覽 / 路書</a></li>
         </ul>
+        <a href="contact.html" class="nav-cta">免費諮詢</a>
     </div>
 </nav>
 
+<main id="main-content">
+
 <!-- Hero 區塊 -->
-<section class="hero" id="main-content">
-    <div class="hero-overlay"></div>
-    <div class="hero-glow"></div>
-    <div class="hero-content">
-        <h1>新疆包車定制遊</h1>
-        <p class="hero-subtitle">客製化包車・私人導遊</p>
-        <p class="hero-desc">根據您的預算與天數，量身打造專屬新疆行程<br>北疆風光・南疆人文・全程專車專導</p>
-        <div class="hero-buttons">
-            <a href="routes.html" class="btn btn-primary">查看推薦行程</a>
-            <a href="contact.html" class="btn btn-secondary">立即諮詢</a>
-        </div>
-        <div class="hero-stats">
-            <div class="hero-stat"><div class="num">200+</div><div class="label">服務旅人</div></div>
-            <div class="hero-stat"><div class="num">8年</div><div class="label">在地經驗</div></div>
-            <div class="hero-stat"><div class="num">4.9</div><div class="label">平均評分</div></div>
-            <div class="hero-stat"><div class="num">30+</div><div class="label">精選路線</div></div>
-        </div>
+<section class="v2-hero">
+    <div class="v2-hero__media">
+        <img src="images/hero-xinjiang.webp" alt="新疆天山腳下湖泊與草原的日落景色" width="1536" height="1024" fetchpriority="high">
     </div>
-    <a href="#features" class="hero-scroll" aria-label="向下瀏覽">
-        <span class="mouse"></span>
-        <span class="txt">SCROLL</span>
-    </a>
-</section>
-
-<!-- 服務特色 -->
-<section class="features" id="features">
-    <div class="container">
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🚗</div>
-                <h3>專屬司機 + 私人導遊</h3>
-                <p>專業司機負責駕駛，隨車中文導遊全程陪同，強調安全、舒適、深度體驗，帶您走進真正的新疆。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💬</div>
-                <h3>即時服務支援</h3>
-                <p>出發前成立專屬微信群組，隨時協助處理問題，溝通順暢更安心，旅程中全程有人照應。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🗺️</div>
-                <h3>彈性行程安排</h3>
-                <p>不趕路、不進購物店，依您的步調調整行程，隨時可停車拍照，真正自由自在的新疆深度旅遊。</p>
-            </div>
+    <div class="v2-hero__inner">
+        <p class="v2-hero__eyebrow">北疆 · 南疆 · 絲路　|　專屬包車定制</p>
+        <h1 class="v2-title">把整片新疆，走成你的私人路線</h1>
+        <p class="v2-hero__desc">166 萬平方公里的遼闊，由你決定怎麼走。專車、專導、隨停隨拍——不趕路、不進店，只為你一人包場。</p>
+        <div class="v2-hero__actions">
+            <a href="contact.html" class="v2-btn v2-btn--red">3 步定制我的新疆</a>
+            <a href="routes.html" class="v2-btn v2-btn--ghost">看精選路線</a>
         </div>
     </div>
 </section>
 
-<!-- 精選行程 -->
-<section class="tours">
-    <div class="container">
-        <h2 class="section-title">精選行程推薦</h2>
-        <p class="section-subtitle">為您精選最經典的新疆路線，從北疆到南疆，從4日到15日，亦可依需求自由調整</p>
-        <div class="tours-grid">
-                <div class="tour-card">
-                    <div class="tour-image" style="background-image:url('images/tours/tour1-ili-10days.webp');">
-                        <span class="tour-badge">熱門</span>
-                    </div>
-                    <div class="tour-info">
-                        <h3>新疆伊犁河谷小包團10日深度遊</h3>
-                        <p>賽里木湖環湖・那拉提草原・喀拉峻草原・巴音布魯克・獨庫公路全線通行</p>
-                        <div class="tour-meta"><span>10日</span><span class="dot"></span><span class="stars">★★★★★ 4.9</span><span class="dot"></span><span class="tag">熱門</span></div>
-<a href="routes.html#tour1" class="btn-text">查看行程介紹 →</a>
-                    </div>
-                </div>
-                <div class="tour-card">
-                    <div class="tour-image" style="background-image:url('images/tours/tour2-grassland.webp');">
-                        <span class="tour-badge">推薦</span>
-                    </div>
-                    <div class="tour-info">
-                        <h3>新疆伊犁草原8日深度之旅</h3>
-                        <p>伊犁河谷全景・薰衣草花田（6-7月）・昭蘇草原・特克斯八卦城</p>
-                        <div class="tour-meta"><span>8日</span><span class="dot"></span><span class="stars">★★★★★ 4.9</span><span class="dot"></span><span class="tag">草原</span></div>
-<a href="routes.html#tour2" class="btn-text">查看行程介紹 →</a>
-                    </div>
-                </div>
-                <div class="tour-card">
-                    <div class="tour-image" style="background-image:linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.45)),url('images/tours/tour5-north-xj.webp');background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:24px;">
-                        <span class="tour-badge">經典</span>
-                        <h3 style="color:#fff;font-size:24px;font-weight:800;text-shadow:0 2px 12px rgba(0,0,0,0.5);">北疆全景10日</h3>
-                    </div>
-                    <div class="tour-info">
-                        <h3>北疆全景小包團10日深度遊</h3>
-                        <p>天山天池・可可托海・喀納斯・禾木・魔鬼城・賽里木湖</p>
-                        <div class="tour-meta"><span>10日</span><span class="dot"></span><span class="stars">★★★★★ 4.9</span><span class="dot"></span><span class="tag">經典</span></div>
-<a href="routes.html#tour5" class="btn-text">查看行程介紹 →</a>
-                    </div>
-                </div>
-                <div class="tour-card">
-                    <div class="tour-image" style="background-image:linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.45)),url('images/tours/tour6-duku.webp');background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:24px;">
-                        <span class="tour-badge">🔥 人氣</span>
-                        <h3 style="color:#fff;font-size:24px;font-weight:800;text-shadow:0 2px 12px rgba(0,0,0,0.5);">獨庫公路4日</h3>
-                    </div>
-                    <div class="tour-info">
-                        <h3>獨庫公路全線4日穿越之旅</h3>
-                        <p>一日有四季・十里不同天・中國最美公路全線穿越</p>
-                        <div class="tour-meta"><span>4日</span><span class="dot"></span><span class="stars">★★★★★ 4.9</span><span class="dot"></span><span class="tag">自駕</span></div>
-<a href="routes.html#tour6" class="btn-text">查看行程介紹 →</a>
-                    </div>
-                </div>
-                <div class="tour-card">
-                    <div class="tour-image" style="background-image:linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.45)),url('images/tours/tour7-kashgar.webp');background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:24px;">
-                        <span class="tour-badge">人文</span>
-                        <h3 style="color:#fff;font-size:24px;font-weight:800;text-shadow:0 2px 12px rgba(0,0,0,0.5);">喀什+帕米爾7日</h3>
-                    </div>
-                    <div class="tour-info">
-                        <h3>喀什+帕米爾高原7日人文之旅</h3>
-                        <p>喀什古城・白沙湖・慕士塔格峰・盤龍古道・和田夜市</p>
-                        <div class="tour-meta"><span>7日</span><span class="dot"></span><span class="stars">★★★★★ 4.9</span><span class="dot"></span><span class="tag">人文</span></div>
-<a href="routes.html#tour7" class="btn-text">查看行程介紹 →</a>
-                    </div>
-                </div>
+<!-- 三步定制 -->
+<section class="v2-section v2-section--cream">
+    <div class="v2-shell">
+        <div class="v2-head">
+            <span class="v2-eyebrow">為你而寫的行程</span>
+            <h2 class="v2-title">3 步，定制你的新疆</h2>
+            <p>不是選套餐，而是從零為你寫一本路書。三步就好，剩下的交給我們。</p>
         </div>
-        <div class="text-center" style="margin-top:2rem;">
-            <a href="routes.html" class="btn btn-primary">查看全部行程</a>
+        <div class="v2-steps">
+            <article class="v2-step">
+                <span class="v2-step__no">01</span>
+                <h3>選風格</h3>
+                <p>北疆風光、南疆人文、攝影、家庭、情侶……先告訴我們你想要什麼。</p>
+            </article>
+            <article class="v2-step">
+                <span class="v2-step__no">02</span>
+                <h3>選日期人數</h3>
+                <p>幾人成行、幾天假期、喜歡的節奏，我們幫你排出最順的動線。</p>
+            </article>
+            <article class="v2-step">
+                <span class="v2-step__no">03</span>
+                <h3>我們寫路書</h3>
+                <p>專屬司機＋導遊，為你量身寫一份不趕路、不進店、隨停隨拍的行程。</p>
+            </article>
         </div>
     </div>
 </section>
 
-<!-- 新疆實景照片牆 -->
-<section class="scenery">
-    <div class="container">
-        <h2 class="section-title">新疆實景</h2>
-        <p class="section-subtitle">真實鏡頭下的新疆——四季更迭，處處皆風景</p>
-        <div class="scenery-grid">
-            <div class="scenery-item">
-                <img src="images/photos/anjihai-canyon.webp" alt="安集海大峽谷" loading="lazy" width="1600" height="899">
-                <div class="scenery-caption">安集海大峽谷</div>
-            </div>
-            <div class="scenery-item">
-                <img src="images/photos/duku-road-summer.webp" alt="獨庫公路夏季景色" loading="lazy" width="900" height="1200">
-                <div class="scenery-caption">獨庫公路・夏</div>
-            </div>
-            <div class="scenery-item">
-                <img src="images/photos/duku-road-winter.webp" alt="獨庫公路冬季雪景" loading="lazy" width="1400" height="1049">
-                <div class="scenery-caption">獨庫公路・冬</div>
-            </div>
-            <div class="scenery-item">
-                <img src="images/photos/hemu-starry-night.webp" alt="禾木村星空夜景" loading="lazy" width="1400" height="1049">
-                <div class="scenery-caption">禾木村・星空</div>
+<!-- 精選路線 -->
+<section class="v2-section v2-section--sand">
+    <div class="v2-shell">
+        <div class="v2-head">
+            <span class="v2-eyebrow">精選路線</span>
+            <h2 class="v2-title">經典方向，皆可為你重寫</h2>
+            <p>這是我們最常被點名的方向。你喜歡哪個，我們就從那裡開始為你改寫。</p>
+        </div>
+        <div class="v2-routes">
+            <article class="v2-route">
+                <div class="v2-route__media">
+                    <img src="images/tours/tour1-ili-10days.webp" alt="賽里木湖畔草原與村落" width="1024" height="768" loading="lazy">
+                    <span class="v2-route__tag">賽里木湖 · 伊犁</span>
+                </div>
+                <div class="v2-route__body">
+                    <span class="v2-badge">熱門</span>
+                    <h3>伊犁河谷小包團 10 日</h3>
+                    <p>賽里木湖環湖 · 那拉提草原 · 喀拉峻 · 巴音布魯克 · 獨庫公路全線。</p>
+                    <div class="v2-route__meta">10 日　·　草原湖泊　·　★★★★★ 4.9</div>
+                    <a href="routes.html#tour1" class="v2-route__link">為我定制這條 →</a>
+                </div>
+            </article>
+            <article class="v2-route">
+                <div class="v2-route__media">
+                    <img src="images/tours/tour5-north-xj.webp" alt="禾木村秋色木屋與晨霧" width="1024" height="768" loading="lazy">
+                    <span class="v2-route__tag">禾木 · 喀納斯秋色</span>
+                </div>
+                <div class="v2-route__body">
+                    <span class="v2-badge v2-badge--gold">經典</span>
+                    <h3>北疆全景小包團 10 日</h3>
+                    <p>天山天池 · 可可托海 · 喀納斯 · 禾木 · 魔鬼城 · 賽里木湖，一程看盡北疆。</p>
+                    <div class="v2-route__meta">10 日　·　北疆全景　·　★★★★★ 4.9</div>
+                    <a href="routes.html#tour5" class="v2-route__link">為我定制這條 →</a>
+                </div>
+            </article>
+            <article class="v2-route">
+                <div class="v2-route__media">
+                    <img src="images/hero-routes.webp" alt="獨庫公路丹霞地貌公路" width="1536" height="1024" loading="lazy">
+                    <span class="v2-route__tag">獨庫公路 · 丹霞</span>
+                </div>
+                <div class="v2-route__body">
+                    <span class="v2-badge">人氣</span>
+                    <h3>獨庫公路全線 4 日穿越</h3>
+                    <p>一日有四季 · 十里不同天，中國最美公路全線穿越，把天山的層次一次看盡。</p>
+                    <div class="v2-route__meta">4 日　·　自駕公路　·　★★★★★ 4.9</div>
+                    <a href="routes.html#tour6" class="v2-route__link">為我定制這條 →</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- 在地信任 -->
+<section class="v2-section v2-section--cream">
+    <div class="v2-shell">
+        <div class="v2-head">
+            <span class="v2-eyebrow">為什麼是我們</span>
+            <h2 class="v2-title">把新疆，交給真正懂它的人</h2>
+            <p>不是標準化行程表，而是一段為你而寫、有人全程照應的邊疆敘事。</p>
+        </div>
+        <div class="v2-trust">
+            <figure class="v2-trust__media">
+                <img src="images/hero-car.webp" alt="新疆山路上的在地車隊" width="1536" height="1024" loading="lazy">
+                <span>在地司機與車隊 · 實景</span>
+            </figure>
+            <div class="v2-trust__list">
+                <article class="v2-trust__item">
+                    <h3>在地司機 + 私人導遊</h3>
+                    <p>本地資深司機掌舵，隨車中文導遊全程陪同。安全、舒適、深度，帶你走進一個真實的新疆。</p>
+                </article>
+                <article class="v2-trust__item">
+                    <h3>出發即建群，全程有人照應</h3>
+                    <p>專屬微信群裡有司機、導遊與客服。溝通順暢、遇事不慌，安心感來自被看見。</p>
+                </article>
+                <article class="v2-trust__item">
+                    <h3>不趕路、不進店</h3>
+                    <p>依你的步調隨時停拍，把時間還給風景，把決定權還給你。</p>
+                </article>
             </div>
         </div>
     </div>
 </section>
 
-<!-- 常見問題 -->
-<section class="faq">
-    <div class="container">
-        <h2 class="section-title">新疆旅遊常見問題</h2>
-        <div class="faq-list">
-            <div class="faq-item">
-                <h4>Q: 新疆適合自由行還是跟團？</h4>
-                <p>新疆幅員遼闊，景點之間距離極遠，公共交通非常不便。包車旅遊才是最佳選擇——自由度高、安全舒適，還能隨時停車拍照。</p>
-            </div>
-            <div class="faq-item">
-                <h4>Q: 新疆旅遊安全嗎？</h4>
-                <p>非常安全。新疆是中國治安最好的地區之一，隨處可見警察巡邏站，對遊客保護措施完善。我們的司機均為本地資深司機，熟悉路況與安全資訊。</p>
-            </div>
-            <div class="faq-item">
-                <h4>Q: 新疆旅遊最佳季節是什麼時候？</h4>
-                <p>北疆最佳：6-9月（草原綠、湖泊藍）；南疆全年皆宜，4-6月與9-10月最佳（避開酷暑）；冬季則可享受阿勒泰滑雪與喀納斯雪景。</p>
-            </div>
-            <div class="faq-item">
-                <h4>Q: 新疆旅遊需要幾天？</h4>
-                <p>北疆環線建議 8-10 天；南北疆聯遊建議 12-15 天；若時間有限，可選擇伊犁 6-7 天或喀什周邊 5-6 天。</p>
-            </div>
+<!-- 新疆實景 -->
+<section class="v2-section v2-section--sand">
+    <div class="v2-shell">
+        <div class="v2-head">
+            <span class="v2-eyebrow">新疆實景</span>
+            <h2 class="v2-title">真實鏡頭下的新疆</h2>
+            <p>四季更迭，處處皆風景——這些畫面，等你親自走進。</p>
+        </div>
+        <div class="v2-scenery">
+            <figure>
+                <img src="images/photos/anjihai-canyon.webp" alt="安集海大峽谷" width="1600" height="899" loading="lazy">
+                <figcaption>安集海大峽谷</figcaption>
+            </figure>
+            <figure>
+                <img src="images/photos/duku-road-summer.webp" alt="獨庫公路夏季景色" width="900" height="1200" loading="lazy">
+                <figcaption>獨庫公路 · 夏</figcaption>
+            </figure>
+            <figure>
+                <img src="images/photos/hemu-starry-night.webp" alt="禾木村星空夜景" width="1400" height="1049" loading="lazy">
+                <figcaption>禾木村 · 星空</figcaption>
+            </figure>
+            <figure>
+                <img src="images/tours/tour4-kanas.webp" alt="喀納斯湖秋色" width="1024" height="768" loading="lazy">
+                <figcaption>喀納斯湖</figcaption>
+            </figure>
         </div>
     </div>
 </section>
 
-<!-- 客戶好評 -->
+<!-- 見證 -->
+<section class="v2-section v2-section--sand" style="padding-top:0;">
+    <div class="v2-quote">
+        <span class="v2-quote__mark">“</span>
+        <p>原本以為只是包車，結果是一場被照顧得很好的旅行。司機像老朋友，導遊比我們還懂新疆。</p>
+        <cite>—— 林女士 · 2026 伊犁河谷 10 日</cite>
+    </div>
+</section>
+
+<!-- 旅客真實好評（動態渲染） -->
 <div id="testimonialsContainer"></div>
 
-<!-- 信任徽章 -->
-<div id="trustBadgesContainer"></div>
-
-<!-- 強力 CTA -->
-<section class="cta-section">
-    <div class="container">
-        <h2>準備好探索新疆了嗎？</h2>
-        <p>加入超過 200 位旅人的行列，讓我們為您打造專屬的新疆旅程<br>專屬司機・深度行程・全程無購物</p>
-        <a href="contact.html" class="btn btn-secondary">免費獲取行程規劃 →</a>
+<!-- 常見問題 -->
+<section class="v2-section v2-section--cream v2-faq">
+    <div class="v2-shell">
+        <div class="v2-head">
+            <span class="v2-eyebrow">常見問題</span>
+            <h2 class="v2-title">新疆旅遊常見問題</h2>
+            <p>出發前最常被問到的幾個問題，先在這裡說清楚。</p>
+        </div>
+        <div class="v2-faq__list">
+            <article class="v2-faq__item">
+                <h3>Q: 新疆適合自由行還是跟團？</h3>
+                <p>新疆幅員遼闊，景點之間距離極遠，公共交通非常不便。包車旅遊才是最佳選擇——自由度高、安全舒適，還能隨時停車拍照。</p>
+            </article>
+            <article class="v2-faq__item">
+                <h3>Q: 新疆旅遊安全嗎？</h3>
+                <p>非常安全。新疆是中國治安最好的地區之一，隨處可見警察巡邏站，對遊客保護措施完善。我們的司機均為本地資深司機，熟悉路況與安全資訊。</p>
+            </article>
+            <article class="v2-faq__item">
+                <h3>Q: 新疆旅遊最佳季節是什麼時候？</h3>
+                <p>北疆最佳：6-9月（草原綠、湖泊藍）；南疆全年皆宜，4-6月與9-10月最佳（避開酷暑）；冬季則可享受阿勒泰滑雪與喀納斯雪景。</p>
+            </article>
+            <article class="v2-faq__item">
+                <h3>Q: 新疆旅遊需要幾天？</h3>
+                <p>北疆環線建議 8-10 天；南北疆聯遊建議 12-15 天；若時間有限，可選擇伊犁 6-7 天或喀什周邊 5-6 天。</p>
+            </article>
+        </div>
     </div>
 </section>
+
+<!-- 強力 CTA -->
+<section class="v2-cta">
+    <div class="v2-shell">
+        <h2 class="v2-title">準備好，把新疆走成你的故事了嗎？</h2>
+        <p>加入 200+ 位旅人的行列。專屬司機 · 深度行程 · 全程無購物。</p>
+        <a href="contact.html" class="v2-btn v2-btn--red">獲取我的專屬路書 →</a>
+    </div>
+</section>
+
+</main>
 
 <!-- 頁尾 -->
 <footer class="footer">
     <div class="container">
         <div class="footer-grid">
             <div class="footer-col">
-                <h3>新疆采風</h3>
-                <p>專業新疆包車旅遊服務，帶您深入探索天山南北，感受丝路文化與壯闊自然。</p>
+                <h3>新疆 采風</h3>
+                <p>專業新疆包車旅遊，深入天山南北，感受絲路文化與壯闊自然。</p>
             </div>
             <div class="footer-col">
                 <h4>快速連結</h4>
                 <ul>
                     <li><a href="index.html">首頁</a></li>
                     <li><a href="routes.html">推薦行程</a></li>
-                    <li><a href="car-rental.html">包車服務</a></li>
+                    <li><a href="car-rental.html">小包團</a></li>
                     <li><a href="itinerary.html">行程範例</a></li>
                     <li><a href="contact.html">聯絡我們</a></li>
                     <li><a href="xj-h5/index.html">導覽 / 路書 APP</a></li>
@@ -349,8 +379,7 @@
                 <h4>旅遊攻略</h4>
                 <ul>
                     <li><a href="blog/xinjiang-four-seasons.html">新疆四季旅遊攻略</a></li>
-                    <li><a href="blog/index.html">旅遊攻略總覽</a></li>
-                    <li><a href="blog/beijiang-vs-nanjiang.html">北疆vs南疆</a></li>
+                    <li><a href="blog/beijiang-vs-nanjiang.html">北疆 vs 南疆</a></li>
                     <li><a href="blog/dubai-gonglu-guide.html">獨庫公路攻略</a></li>
                     <li><a href="blog/urumqi-citywalk.html">烏魯木齊 City Walk</a></li>
                     <li><a href="blog/yining-citywalk.html">伊寧 City Walk</a></li>
@@ -358,20 +387,10 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>精選路線</h4>
-                <ul>
-                    <li><a href="routes.html#tour1">伊犁河谷10日</a></li>
-                    <li><a href="routes.html#tour2">草原深度8日</a></li>
-                    <li><a href="routes.html#tour5">北疆全景10日</a></li>
-                    <li><a href="routes.html#tour7">喀什帕米爾7日</a></li>
-                    <li><a href="routes.html#tour9">南北疆15日大環線</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
                 <h4>聯絡資訊</h4>
-                <p>📱 LINE：XJCaifeng</p>
-                <p>📧 Email：info@xjcaifeng.com</p>
-                <p>🕐 服務時間：全年無休，09:00-22:00</p>
+                <p>LINE：XJCaifeng</p>
+                <p>Email：info@xjcaifeng.com</p>
+                <p>時間：全年無休 09:00–22:00</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -382,7 +401,7 @@
 
 <!-- 回到頂部按鈕 -->
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到頂部">↑</button>
-<script>window.addEventListener('load', function(){setTimeout(function(){var overlay = document.getElementById('loadingOverlay');if(overlay){overlay.classList.add('hidden');setTimeout(function(){overlay.style.display = 'none';}, 300);}}, 500);});function toggleMenu(){var menu = document.getElementById('navMenu');var btn = document.querySelector('.mobile-menu-btn');if(menu && btn){var isExpanded = menu.classList.contains('active');menu.classList.toggle('active');btn.classList.toggle('active');btn.setAttribute('aria-expanded', !isExpanded);}}document.addEventListener('keydown', function(e){if(e.key === 'Escape'){var menu = document.getElementById('navMenu');var btn = document.querySelector('.mobile-menu-btn');if(menu && menu.classList.contains('active')){menu.classList.remove('active');if(btn){btn.classList.remove('active');btn.setAttribute('aria-expanded', 'false');}}}});document.addEventListener('DOMContentLoaded', function(){var menu = document.getElementById('navMenu');if(menu){var links = menu.querySelectorAll('a');links.forEach(function(link){link.addEventListener('click', function(){menu.classList.remove('active');var btn = document.querySelector('.mobile-menu-btn');if(btn){btn.classList.remove('active');btn.setAttribute('aria-expanded', 'false');}});});}window.addEventListener('error', function(e){console.error('JavaScript 錯誤:', e.error);});window.addEventListener('online', function(){console.log('網路連線恢復');});window.addEventListener('offline', function(){console.log('網路連線中斷');});});var fadeEls = document.querySelectorAll('.feature-card, .tour-card, .faq-item');if('IntersectionObserver' in window && fadeEls.length > 0){var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(!prefersReducedMotion){var observer = new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.style.animation = 'fadeInUp 0.7s ease-out both';observer.unobserve(entry.target);}});},{threshold: 0.12});fadeEls.forEach(function(el){observer.observe(el);});}else{fadeEls.forEach(function(el){el.style.opacity = '1';el.style.transform = 'translateY(0)';});}}var backBtn = document.getElementById('backToTop');if(backBtn){backBtn.style.cssText = 'position:fixed;bottom:32px;right:32px;z-index:9999;background:#c8102e;color:#fff;border:none;border-radius:50%;width:52px;height:52px;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(200,16,46,0.35);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;display:flex;align-items:center;justify-content:center;';backBtn.setAttribute('aria-label', '回到頁面頂部');backBtn.innerHTML = '↑';window.addEventListener('scroll', function(){if(window.scrollY > 400){backBtn.style.opacity = '1';backBtn.style.pointerEvents = 'auto';}else{backBtn.style.opacity = '0';backBtn.style.pointerEvents = 'none';}});backBtn.addEventListener('click', function(){window.scrollTo({top: 0, behavior: 'smooth'});});backBtn.addEventListener('mouseenter', function(){this.style.transform = 'scale(1.1)';});backBtn.addEventListener('mouseleave', function(){this.style.transform = 'scale(1)';});backBtn.addEventListener('keydown', function(e){if(e.key === 'Enter' || e.key === ' '){e.preventDefault();this.click();}});}if('performance' in window && 'PerformanceObserver' in window){try{var observer = new PerformanceObserver(function(list){list.getEntries().forEach(function(entry){if(entry.entryType === 'largest-contentful-paint'){console.log('LCP:', entry.startTime);}});});		observer.observe({entryTypes: ['largest-contentful-paint']});}catch(e){console.log('Performance monitoring not supported');}}</script>
+<script>window.addEventListener('load', function(){setTimeout(function(){var overlay = document.getElementById('loadingOverlay');if(overlay){overlay.classList.add('hidden');setTimeout(function(){overlay.style.display = 'none';}, 300);}}, 500);});function toggleMenu(){var menu = document.getElementById('navMenu');var btn = document.querySelector('.mobile-menu-btn');if(menu && btn){var isExpanded = menu.classList.contains('active');menu.classList.toggle('active');btn.classList.toggle('active');btn.setAttribute('aria-expanded', !isExpanded);}}document.addEventListener('keydown', function(e){if(e.key === 'Escape'){var menu = document.getElementById('navMenu');var btn = document.querySelector('.mobile-menu-btn');if(menu && menu.classList.contains('active')){menu.classList.remove('active');if(btn){btn.classList.remove('active');btn.setAttribute('aria-expanded','false');}}}});document.addEventListener('DOMContentLoaded', function(){var menu = document.getElementById('navMenu');if(menu){var links = menu.querySelectorAll('a');links.forEach(function(link){link.addEventListener('click', function(){menu.classList.remove('active');var btn = document.querySelector('.mobile-menu-btn');if(btn){btn.classList.remove('active');btn.setAttribute('aria-expanded','false');}});});}window.addEventListener('error', function(e){console.error('JavaScript 錯誤:', e.error);});window.addEventListener('online', function(){console.log('網路連線恢復');});window.addEventListener('offline', function(){console.log('網路連線中斷');});});</script>
 
 <script src="js/app.js"></script>
 <script src="js/promotion.js"></script>
@@ -390,8 +409,9 @@
 <script src="js/sitemap.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    XJPromo.Testimonials.render('testimonialsContainer');
-    XJPromo.TrustBadges.render('trustBadgesContainer');
+    if (window.XJPromo && XJPromo.Testimonials) {
+        XJPromo.Testimonials.render('testimonialsContainer');
+    }
 });
 </script>
 

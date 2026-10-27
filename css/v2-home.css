@@ -1,0 +1,753 @@
+/* ==========================================
+   新疆采風 · 首頁 v2「大地實景」落地樣式
+   設計稿來源：Ardot「首頁 v2 · 大地實景」(1440) / 「首頁 v2 · 手機版 390」
+   覆蓋層：載於 css/style.css 之後，僅改寫首頁呈現
+   ========================================== */
+
+/* ---------- v2 色票與排版基礎 ---------- */
+:root {
+    --v2-ink: #1A1714;
+    --v2-body: #5A5048;
+    --v2-muted: #8A7E70;
+    --v2-faint: #9C958A;
+    --v2-red: #C8102E;
+    --v2-red-2: #C0392B;
+    --v2-teal: #0F8B8D;
+    --v2-gold: #F2C14E;
+    --v2-blue: #134E7A;
+    --v2-sand: #F3EAD8;
+    --v2-cream: #FBF4E6;
+    --v2-white: #FFFFFF;
+    --v2-line: #E7DCC6;
+    --v2-shell: 1440px;
+    --v2-pad: 72px;
+}
+
+body {
+    color: var(--v2-ink);
+    background: var(--v2-sand);
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Heiti TC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.v2-title {
+    font-family: "Noto Sans TC", "PingFang TC", sans-serif;
+    font-weight: 900;
+    letter-spacing: .01em;
+    line-height: 1.22;
+}
+
+.v2-shell {
+    max-width: var(--v2-shell);
+    margin: 0 auto;
+    padding: 0 var(--v2-pad);
+}
+
+.v2-section {
+    padding: 84px 0;
+}
+
+.v2-section--cream { background: var(--v2-cream); }
+.v2-section--sand { background: var(--v2-sand); }
+
+.v2-head {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 44px;
+}
+
+.v2-eyebrow {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--v2-red-2);
+    letter-spacing: .04em;
+}
+
+.v2-head h2 {
+    font-size: 40px;
+    color: var(--v2-ink);
+    margin: 0;
+}
+
+.v2-head p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--v2-body);
+    margin: 0;
+    max-width: 720px;
+}
+
+/* ---------- 導覽列 ---------- */
+.navbar {
+    background: var(--v2-cream);
+    border-bottom: 1px solid var(--v2-line);
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.nav-container {
+    max-width: var(--v2-shell);
+    padding: 0 56px;
+    height: 76px;
+}
+
+.logo {
+    font-family: "Noto Sans TC", sans-serif;
+    font-weight: 900;
+    font-size: 24px !important;
+    color: var(--v2-ink) !important;
+    letter-spacing: .02em;
+}
+
+.logo span { color: var(--v2-red) !important; }
+
+.nav-menu { gap: 34px; }
+
+.nav-menu a {
+    font-size: 15px;
+    color: var(--v2-body) !important;
+    font-weight: 500;
+    padding: 6px 0 !important;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: var(--v2-red) !important;
+    font-weight: 700;
+}
+
+.nav-menu a.active::after {
+    background: var(--v2-red) !important;
+    height: 2px !important;
+}
+
+.nav-cta {
+    display: inline-block;
+    background: var(--v2-red);
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 22px;
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: transform .2s ease, background .2s ease;
+}
+
+.nav-cta:hover { background: var(--v2-red-2); transform: translateY(-1px); }
+
+.navbar.scrolled .nav-container { height: 76px; }
+.navbar.scrolled .logo { font-size: 24px !important; }
+.navbar.scrolled .nav-menu a { padding: 6px 0 !important; }
+
+/* ---------- Hero ---------- */
+.v2-hero {
+    position: relative;
+    margin-top: 76px;
+    min-height: 780px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.v2-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+}
+
+.v2-hero__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 45%;
+    display: block;
+}
+
+.v2-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(90deg, rgba(16, 14, 12, .78) 0%, rgba(16, 14, 12, .58) 42%, rgba(16, 14, 12, .30) 100%),
+        linear-gradient(180deg, rgba(16, 14, 12, .38) 0%, rgba(16, 14, 12, .10) 45%, rgba(16, 14, 12, .55) 100%);
+}
+
+.v2-hero__inner {
+    max-width: var(--v2-shell);
+    margin: 0 auto;
+    padding: 0 110px;
+    width: 100%;
+}
+
+.v2-hero__eyebrow {
+    font-size: 15px;
+    font-weight: 700;
+    color: #FFD15C;
+    letter-spacing: .06em;
+    margin-bottom: 22px;
+}
+
+.v2-hero h1 {
+    font-size: 60px;
+    line-height: 1.14;
+    color: #fff;
+    margin: 0 0 22px;
+    max-width: 1120px;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, .35);
+}
+
+.v2-hero__desc {
+    font-size: 19px;
+    line-height: 1.75;
+    color: var(--v2-sand);
+    margin: 0 0 34px;
+    max-width: 760px;
+}
+
+.v2-hero__actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.v2-btn {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 16px 34px;
+    border-radius: 999px;
+    text-align: center;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+}
+
+.v2-btn--red {
+    background: var(--v2-red);
+    color: #fff !important;
+    box-shadow: 0 10px 30px rgba(200, 16, 46, .32);
+}
+
+.v2-btn--red:hover { background: var(--v2-red-2); transform: translateY(-2px); }
+
+.v2-btn--ghost {
+    background: rgba(255, 255, 255, .12);
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, .55);
+    backdrop-filter: blur(6px);
+}
+
+.v2-btn--ghost:hover { background: rgba(255, 255, 255, .22); transform: translateY(-2px); }
+
+/* ---------- 三步定制 ---------- */
+.v2-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.v2-step {
+    background: var(--v2-white);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 2px 14px rgba(26, 23, 20, .05);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.v2-step:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(26, 23, 20, .10); }
+
+.v2-step__no {
+    font-family: "Noto Sans TC", sans-serif;
+    font-weight: 900;
+    font-size: 46px;
+    line-height: 1;
+    color: var(--v2-teal);
+}
+
+.v2-step:nth-child(2) .v2-step__no { color: var(--v2-gold); }
+.v2-step:nth-child(3) .v2-step__no { color: var(--v2-red); }
+
+.v2-step h3 {
+    font-size: 24px;
+    font-weight: 900;
+    margin: 0;
+    color: var(--v2-ink);
+}
+
+.v2-step p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--v2-body);
+    margin: 0;
+}
+
+/* ---------- 精選路線 ---------- */
+.v2-routes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.v2-route {
+    background: var(--v2-white);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 14px rgba(26, 23, 20, .05);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.v2-route:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(26, 23, 20, .12); }
+
+.v2-route__media {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.v2-route__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s ease;
+}
+
+.v2-route:hover .v2-route__media img { transform: scale(1.05); }
+
+.v2-route__tag {
+    position: absolute;
+    left: 16px;
+    bottom: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, .55);
+    z-index: 1;
+}
+
+.v2-route__body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.v2-badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 999px;
+    background: var(--v2-red);
+    color: #fff;
+}
+
+.v2-badge--gold { background: var(--v2-gold); color: var(--v2-ink); }
+
+.v2-route__body h3 {
+    font-size: 22px;
+    font-weight: 900;
+    margin: 0;
+    color: var(--v2-ink);
+}
+
+.v2-route__body p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--v2-body);
+    margin: 0;
+    flex: 1;
+}
+
+.v2-route__meta {
+    font-size: 13px;
+    color: var(--v2-muted);
+}
+
+.v2-route__link {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--v2-red-2);
+    text-decoration: none;
+}
+
+.v2-route__link:hover { color: var(--v2-red); }
+
+/* ---------- 在地信任 ---------- */
+.v2-trust {
+    display: grid;
+    grid-template-columns: 520px 1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.v2-trust__media {
+    position: relative;
+    height: 420px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.v2-trust__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.v2-trust__media span {
+    position: absolute;
+    left: 18px;
+    bottom: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, .55);
+}
+
+.v2-trust__list {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.v2-trust__item h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 21px;
+    font-weight: 900;
+    margin: 0 0 8px;
+    color: var(--v2-ink);
+}
+
+.v2-trust__item h3::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: var(--v2-teal);
+    flex: none;
+}
+
+.v2-trust__item:nth-child(2) h3::before { background: var(--v2-gold); }
+.v2-trust__item:nth-child(3) h3::before { background: var(--v2-red); }
+
+.v2-trust__item p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--v2-body);
+    margin: 0;
+}
+
+/* ---------- 新疆實景 ---------- */
+.v2-scenery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.v2-scenery figure {
+    margin: 0;
+    position: relative;
+    height: 280px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.v2-scenery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s ease;
+}
+
+.v2-scenery figure:hover img { transform: scale(1.06); }
+
+.v2-scenery figcaption {
+    position: absolute;
+    left: 16px;
+    bottom: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, .6);
+}
+
+/* ---------- 見證 ---------- */
+.v2-quote {
+    text-align: center;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 150px;
+}
+
+.v2-quote__mark {
+    font-family: "Noto Sans TC", sans-serif;
+    font-weight: 900;
+    font-size: 80px;
+    line-height: .6;
+    color: var(--v2-red);
+    display: block;
+    margin-bottom: 18px;
+}
+
+.v2-quote p {
+    font-size: 30px;
+    line-height: 1.6;
+    color: var(--v2-ink);
+    margin: 0 0 22px;
+    font-weight: 500;
+}
+
+.v2-quote cite {
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--v2-red-2);
+}
+
+/* ---------- 動態評價（promotion.js 注入） ---------- */
+.testimonials { background: var(--v2-cream); padding: 64px 0; }
+.testimonials .container { max-width: var(--v2-shell); padding: 0 var(--v2-pad); }
+.testimonials .section-title {
+    font-family: "Noto Sans TC", sans-serif;
+    font-weight: 900;
+    font-size: 34px;
+    color: var(--v2-ink);
+    margin-bottom: 10px;
+}
+.testimonials .section-subtitle { color: var(--v2-body); font-size: 16px; margin-bottom: 34px; }
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.testimonial-card {
+    background: var(--v2-white);
+    border-radius: 16px;
+    padding: 26px;
+    box-shadow: 0 2px 14px rgba(26, 23, 20, .05);
+}
+.testimonial-header { display: flex; align-items: center; gap: 12px; }
+.testimonial-name { font-weight: 700; color: var(--v2-ink); }
+.testimonial-tour, .testimonial-date { font-size: 13px; color: var(--v2-muted); }
+.testimonial-text { font-size: 14px; line-height: 1.75; color: var(--v2-body); margin-top: 10px; }
+.testimonials .btn-primary {
+    background: var(--v2-red);
+    color: #fff !important;
+    border-radius: 999px;
+    padding: 14px 32px;
+    font-weight: 700;
+}
+
+/* ---------- FAQ（沿用內容，套 v2 視覺） ---------- */
+.v2-faq { background: var(--v2-cream); }
+.v2-faq__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.v2-faq__item {
+    background: var(--v2-white);
+    border-radius: 16px;
+    padding: 24px 26px;
+    box-shadow: 0 2px 14px rgba(26, 23, 20, .04);
+}
+.v2-faq__item h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: var(--v2-ink);
+}
+.v2-faq__item p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--v2-body);
+    margin: 0;
+}
+
+/* ---------- CTA ---------- */
+.v2-cta {
+    background: var(--v2-teal);
+    text-align: center;
+    padding: 84px 0;
+}
+
+.v2-cta h2 {
+    font-family: "Noto Sans TC", sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    color: #fff;
+    margin: 0 0 14px;
+}
+
+.v2-cta p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #EAF6F5;
+    margin: 0 0 28px;
+}
+
+.v2-cta .v2-btn--red { box-shadow: 0 12px 34px rgba(0, 0, 0, .18); }
+
+/* ---------- 頁尾 ---------- */
+.footer {
+    background: var(--v2-cream) !important;
+    color: var(--v2-body) !important;
+    padding: 64px 0 28px !important;
+    border-top: 1px solid var(--v2-line);
+}
+
+.footer .container { max-width: var(--v2-shell); padding: 0 var(--v2-pad); }
+
+.footer-grid {
+    display: grid !important;
+    grid-template-columns: 280px 1fr 1fr 1.2fr;
+    gap: 56px !important;
+}
+
+.footer-col h3 {
+    font-family: "Noto Sans TC", sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--v2-ink);
+    margin-bottom: 14px;
+}
+
+.footer-col h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--v2-red-2);
+    margin-bottom: 12px;
+}
+
+.footer-col p { font-size: 14px; line-height: 1.75; color: var(--v2-muted); }
+
+.footer-col ul { list-style: none; padding: 0; }
+
+.footer-col li { margin-bottom: 10px; }
+
+.footer-col li a {
+    font-size: 14px;
+    color: var(--v2-body);
+    text-decoration: none;
+}
+
+.footer-col li a:hover { color: var(--v2-red); }
+
+.footer-bottom {
+    margin-top: 48px;
+    padding-top: 22px;
+    border-top: 1px solid var(--v2-gold);
+}
+
+.footer-bottom p {
+    font-size: 13px;
+    color: #7E776C;
+    margin: 0;
+}
+
+/* ---------- 響應式：手機優先 ---------- */
+@media (max-width: 1024px) {
+    .v2-shell { padding: 0 40px; }
+    .v2-steps, .v2-routes { grid-template-columns: repeat(2, 1fr); }
+    .v2-trust { grid-template-columns: 1fr; gap: 32px; }
+    .v2-trust__media { height: 340px; }
+    .v2-scenery { grid-template-columns: repeat(2, 1fr); }
+    .v2-quote { padding: 0 40px; }
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px !important; }
+    .v2-hero__inner { padding: 0 40px; }
+    .v2-hero h1 { font-size: 46px; }
+}
+
+@media (max-width: 768px) {
+    :root { --v2-pad: 20px; }
+
+    .nav-container {
+        padding: 0 20px;
+        height: 64px;
+    }
+
+    .navbar.scrolled .nav-container { height: 64px; }
+
+    .nav-cta { display: none; }
+
+    .v2-hero {
+        margin-top: 64px;
+        min-height: 560px;
+    }
+
+    .v2-hero__inner { padding: 0 20px; }
+
+    .v2-hero h1 {
+        font-size: 34px;
+        line-height: 1.2;
+        text-shadow: 0 3px 20px rgba(0, 0, 0, .4);
+    }
+
+    .v2-hero__eyebrow { font-size: 13px; }
+
+    .v2-hero__desc { font-size: 16px; line-height: 1.7; }
+
+    .v2-hero__actions { flex-direction: column; align-items: stretch; }
+
+    .v2-btn { width: 100%; padding: 15px 24px; }
+
+    .v2-section { padding: 56px 0; }
+
+    .v2-head { margin-bottom: 30px; gap: 10px; }
+
+    .v2-head h2 { font-size: 28px; }
+
+    .v2-head p { font-size: 15px; }
+
+    .v2-steps, .v2-routes,
+    .testimonials-grid, .v2-faq__list { grid-template-columns: 1fr; }
+
+    .v2-step { padding: 26px; }
+
+    .v2-step__no { font-size: 38px; }
+
+    .v2-route__media { height: 190px; }
+
+    .v2-trust__media { height: 240px; }
+
+    .v2-scenery { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+    .v2-scenery figure { height: 168px; }
+
+    .v2-scenery figcaption { left: 10px; bottom: 10px; font-size: 13px; }
+
+    .v2-quote { padding: 0 20px; }
+
+    .v2-quote p { font-size: 20px; line-height: 1.6; }
+
+    .v2-quote__mark { font-size: 54px; }
+
+    .v2-cta { padding: 56px 0; }
+
+    .v2-cta h2 { font-size: 26px; }
+
+    .v2-cta p { font-size: 15px; }
+
+    .footer-grid { grid-template-columns: 1fr; gap: 28px !important; }
+
+    .footer { padding: 44px 0 24px !important; }
+}
+
+/* 桌機仍保留手機選單按鈕的隱藏邏輯（沿用 style.css） */
+@media (min-width: 769px) {
+    .mobile-menu-btn { display: none !important; }
+}

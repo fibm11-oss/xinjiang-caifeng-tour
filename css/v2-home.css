@@ -752,6 +752,8 @@ body {
 }
 
 /* 桌機仍保留手機選單按鈕的隱藏邏輯（沿用 style.css） */
-@media (min-width: 769px) {
+/* 注意：手機全屏選單上限已提高到 1024px（見 style.css 的 769–1024 區塊），
+   故此處僅在 ≥1025px 才隱藏 hamburger，避免平板/較寬預覽面板走桌面橫向選單而被截斷 */
+@media (min-width: 1025px) {
     .mobile-menu-btn { display: none !important; }
 }

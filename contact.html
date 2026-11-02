@@ -370,11 +370,25 @@
 <script>
 function handleSubmit(e) {
     e.preventDefault();
-    var name = document.getElementById('name').value;
-    if (!name) {
-        alert('請填寫您的稱呼');
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var msg = '';
+    if (!name) msg = '請填寫您的稱呼';
+    else if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) msg = '電子郵件格式不正確';
+    if (msg) {
+        var err = document.getElementById('formError');
+        if (!err) {
+            err = document.createElement('p');
+            err.id = 'formError';
+            err.style.cssText = 'color:#c8102e;font-size:14px;margin:0;';
+            document.getElementById('contactForm').prepend(err);
+        }
+        err.textContent = msg;
+        err.setAttribute('role','alert');
         return;
     }
+    var existingErr = document.getElementById('formError');
+    if (existingErr) existingErr.remove();
     // 模擬送出成功
     document.getElementById('contactForm').style.display = 'none';
     var thankYou = document.createElement('div');

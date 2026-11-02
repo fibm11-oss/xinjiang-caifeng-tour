@@ -843,3 +843,36 @@ body {
     .nav-container { padding: 0 24px; }
     .nav-cta { padding: 9px 16px !important; font-size: 13px !important; }
 }
+
+/* ========== 手機版首頁：單屏、僅保留照片內標題文字 ========== */
+@media (max-width: 768px) {
+    .page-home {
+        overflow: hidden;
+        height: 100vh;
+    }
+    .page-home .v2-hero {
+        margin-top: 0;
+        min-height: 100vh;
+        height: 100vh;
+        align-items: center;
+    }
+    .page-home .v2-hero__inner {
+        padding: 0 24px;
+    }
+    .page-home .v2-hero__eyebrow,
+    .page-home .v2-hero__desc,
+    .page-home .v2-hero__actions,
+    .page-home .v2-hero__minifoot {
+        display: none !important;
+    }
+    .page-home .v2-hero h1 {
+        font-size: 40px;
+        line-height: 1.15;
+        text-align: center;
+    }
+    .page-home .home-rich,
+    .page-home .footer,
+    .page-home .sticky-contact-bar {
+        display: none !important;
+    }
+}

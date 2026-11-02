@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於我們・服務保障｜新疆采風</title>
+    <meta name="description" content="新疆采風關於我們——3 步定制、在地司機與私人導遊、專屬微信群全程照應、不趕路不進店。附新疆旅遊常見問題與真實旅客好評。">
+    <meta name="keywords" content="新疆包車,新疆自駕,在地司機,私人導遊,新疆旅遊常見問題,新疆包車評價">
+    <meta name="author" content="新疆采風">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xjcaifeng.com/about.html">
+    <meta property="og:title" content="關於我們・服務保障｜新疆采風">
+    <meta property="og:description" content="3 步定制、在地司機與私人導遊、專屬微信群全程照應、不趕路不進店。新疆采風的服務保障與真實評價。">
+    <meta property="og:image" content="https://xjcaifeng.com/images/og-image.svg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="關於我們・服務保障｜新疆采風">
+    <meta property="twitter:description" content="3 步定制、在地司機與私人導遊、專屬微信群全程照應、不趕路不進店。">
+    <meta property="twitter:image" content="https://xjcaifeng.com/images/og-image.svg">
+
+    <!-- 預載入關鍵資源 -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="css/v2-home.css" as="style">
+    <link rel="preload" href="images/hero-routes.webp" as="image">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="images/favicon-16.png" type="image/png" sizes="16x16">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FBF4E6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="新疆采風">
+    <link rel="apple-touch-icon" href="images/favicon-192.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="images/favicon-512.png" sizes="512x512">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/v2-home.css">
+
+    <!-- 結構化數據 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TravelAgency",
+        "name": "新疆采風",
+        "description": "專業新疆包車旅遊服務，提供北疆喀纳斯、伊犁草原、南疆丝路深度行程",
+        "url": "https://xjcaifeng.com",
+        "logo": "https://xjcaifeng.com/images/logo.svg",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+86-",
+            "contactType": "customer service",
+            "availableLanguage": "Chinese",
+            "contactOption": "TollFree"
+        },
+        "telephone": "+86-",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "CN",
+            "addressRegion": "新疆"
+        },
+        "sameAs": [
+            "https://line.me/R/ti/p/@xjcaifeng"
+        ],
+        "offers": {
+            "@type": "Offer",
+            "description": "新疆包車旅遊服務，包含專屬司機和私人導遊"
+        }
+    }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        @keyframes fadeInUp {
+            from { opacity:0; transform:translateY(40px); }
+            to { opacity:1; transform:translateY(0); }
+        }
+        .fade-in { animation: fadeInUp 0.7s ease-out both; }
+
+        /* 載入動畫 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+        .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* 頁首大圖 */
+        .page-hero {
+            margin-top: 76px;
+            background:
+                linear-gradient(135deg, rgba(26, 74, 122, .88) 0%, rgba(200, 16, 46, .52) 100%),
+                url('images/hero-routes.webp') center/cover;
+            padding: 84px 24px 62px;
+            color: #fff;
+            text-align: center;
+        }
+        .page-hero h1 {
+            font-size: 40px;
+            font-weight: 900;
+            margin: 0 0 14px;
+            letter-spacing: -0.5px;
+        }
+        .page-hero p {
+            max-width: 780px;
+            margin: 0 auto;
+            font-size: 17px;
+            line-height: 1.85;
+            opacity: .93;
+        }
+        .page-hero__tags {
+            margin-top: 26px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .page-hero__tags span {
+            background: rgba(255, 255, 255, .16);
+            border: 1px solid rgba(255, 255, 255, .3);
+            border-radius: 999px;
+            padding: 7px 18px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .page-hero { margin-top: 64px; padding: 56px 20px 44px; }
+            .page-hero h1 { font-size: 24px; }
+            .page-hero p { font-size: 15px; line-height: 1.75; }
+        }
+    </style>
+</head>
+<body class="page-about">
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <a href="#main-content" class="skip-link">跳至主要內容</a>
+
+<!-- 頂部導航 -->
+<nav class="navbar" role="navigation" aria-label="主導航">
+    <div class="nav-container">
+        <input type="checkbox" id="navMenuToggle" class="nav-menu-toggle-cb" aria-hidden="true" tabindex="-1">
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="開啟行動選單" aria-expanded="false" aria-controls="navMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
+        <a href="index.html" class="logo logo-link" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+        <label for="navMenuToggle" class="logo logo-css-toggle" aria-label="開啟選單（手機版）">新疆<span>采風</span></label>
+        <ul class="nav-menu" id="navMenu" role="menubar" aria-label="網站導航選單">
+    <li class="mobile-home-link" role="none"><a href="index.html" role="menuitem">首頁</a></li>
+            <li role="none" class="has-dropdown">
+                <a href="routes.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">推薦行程 <span class="dropdown-caret" aria-hidden="true"></span></a>
+                <ul class="dropdown" role="menu" aria-label="推薦行程">
+                    <li role="none"><a href="routes.html#tour1" role="menuitem">伊犁河谷小包團 10 日</a></li>
+                    <li role="none"><a href="routes.html#tour5" role="menuitem">北疆全景小包團 10 日</a></li>
+                    <li role="none"><a href="routes.html#tour6" role="menuitem">獨庫公路全線 4 日穿越</a></li>
+                    <li role="none"><a href="routes.html" role="menuitem">查看全部 9 條路線 →</a></li>
+                </ul>
+            </li>
+            <li role="none" class="has-dropdown">
+                <a href="itinerary.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">行程範例 <span class="dropdown-caret" aria-hidden="true"></span></a>
+                <ul class="dropdown" role="menu" aria-label="行程範例">
+                    <li role="none"><a href="itinerary.html" role="menuitem">行程範例總覽</a></li>
+                    <li role="none"><a href="itinerary-loop17.html" role="menuitem">北疆大環線 17 日</a></li>
+                    <li role="none"><a href="itinerary-classic11.html" role="menuitem">北疆經典 11 日</a></li>
+                    <li role="none"><a href="itinerary-selfdrive16.html" role="menuitem">北疆＋伊犁＋獨庫 16 日</a></li>
+                </ul>
+            </li>
+            <li role="none" class="has-dropdown">
+                <a href="car-rental.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">小包團 <span class="dropdown-caret" aria-hidden="true"></span></a>
+                <ul class="dropdown" role="menu" aria-label="小包團">
+                    <li role="none"><a href="car-rental.html#services" role="menuitem">服務總覽</a></li>
+                    <li role="none"><a href="car-rental.html#cars" role="menuitem">推薦車型</a></li>
+                    <li role="none"><a href="car-rental.html#pricing" role="menuitem">費用說明</a></li>
+                </ul>
+            </li>
+            <li role="none" class="has-dropdown">
+                <a href="blog/index.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">旅遊攻略 <span class="dropdown-caret" aria-hidden="true"></span></a>
+                <ul class="dropdown" role="menu" aria-label="旅遊攻略">
+                    <li role="none"><a href="blog/xinjiang-four-seasons.html" role="menuitem">新疆四季旅遊攻略</a></li>
+                    <li role="none"><a href="blog/beijiang-vs-nanjiang.html" role="menuitem">北疆 vs 南疆</a></li>
+                    <li role="none"><a href="blog/dubai-gonglu-guide.html" role="menuitem">獨庫公路攻略</a></li>
+                    <li role="none"><a href="blog/urumqi-citywalk.html" role="menuitem">烏魯木齊 City Walk</a></li>
+                    <li role="none"><a href="blog/yining-citywalk.html" role="menuitem">伊寧 City Walk</a></li>
+                    <li role="none"><a href="blog/burqin-citywalk.html" role="menuitem">布爾津 City Walk</a></li>
+                    <li role="none"><a href="blog/hemucun-citywalk.html" role="menuitem">禾木村 City Walk</a></li>
+                    <li role="none"><a href="blog/kuitun-citywalk.html" role="menuitem">奎屯市 City Walk</a></li>
+                    <li role="none"><a href="blog/turpan-citywalk.html" role="menuitem">吐魯番市 City Walk</a></li>
+                </ul>
+            </li>
+            <li role="none" class="has-dropdown">
+        <a href="xj-h5/index.html#guide" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">福利 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="福利">
+            <li role="none"><a href="xj-h5/index.html#guide" role="menuitem">導覽</a></li>
+            <li role="none"><a href="xj-h5/index.html#album" role="menuitem">路書</a></li>
+        </ul>
+    </li><li role="none" class="has-dropdown">
+                <a href="about.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent active" aria-current="page">關於我們 <span class="dropdown-caret" aria-hidden="true"></span></a>
+                <ul class="dropdown" role="menu" aria-label="關於我們">
+                    <li role="none"><a href="about.html#steps" role="menuitem">3 步定制你的新疆</a></li>
+                    <li role="none"><a href="about.html#trust" role="menuitem">為什麼選擇我們</a></li>
+                    <li role="none"><a href="about.html#scenery" role="menuitem">新疆實景</a></li>
+                    <li role="none"><a href="about.html#faq" role="menuitem">常見問題</a></li>
+                </ul>
+            </li>
+                <li role="none" class="has-dropdown">
+        <a href="contact.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">聯絡我們 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="聯絡我們">
+            <li role="none"><a href="contact.html" role="menuitem">電子郵件</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">LINE</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">諮詢表單</a></li>
+        </ul>
+    </li>
+
+    
+        </ul>
+        <a href="contact.html" class="nav-cta">免費諮詢</a>
+    </div>
+</nav>
+
+<main id="main-content">
+
+<!-- 頁首 -->
+<section class="page-hero">
+    <h1>關於新疆采風</h1>
+    <p>不是標準化行程表，而是一段為你而寫、有人全程照應的邊疆敘事。<br>這裡是我們的做法、我的實力，以及你可能想先知道的問題。</p>
+    <div class="page-hero__tags">
+        <span>在地司機</span>
+        <span>私人導遊</span>
+        <span>專屬微信群</span>
+        <span>不趕路 · 不進店</span>
+    </div>
+</section>
+
+<!-- 三步定制 -->
+<section class="v2-section v2-section--cream" id="steps">
+    <div class="v2-shell">
+        <div class="v2-head">
+            <span class="v2-eyebrow">為你而寫的行程</span>
+            <h2 class="v2-title">3 步，定制你的新疆</h2>
+            <p>不是選套餐，而是從零為你寫一本路書。三步就好，剩下的交給我們。</p>
+        </div>
+        <div class="v2-steps">
+            <article class="v2-step">
+                <span class="v2-step__no">01</span>
+                <h3>選風格</h3>
+                <p>北疆風光、南疆人文、攝影、家庭、情侶……先告訴我們你想要什麼。</p>
+            </article>
+            <article class="v2-step">
+                <span class="v2-step__no">02</span>
+                <h3>選日期人數</h3>
+                <p>幾人成行、幾天假期、喜歡的節奏，我們幫你排出最順的動線。</p>
+            </article>
+            <article class="v2-step">
+                <span class="v2-step__no">03</span>
+                <h3>我們寫路書</h3>
+                <p>專屬司機＋導遊，為你量身寫一份不趕路、不進店、隨停隨拍的行程。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- 在地信任 -->
+<section class="v2-section v2-section--sand" id="trust">
+    <div class="v2-shell">
+        <div class="v2-head">
+            <span class="v2-eyebrow">為什麼是我們</span>
+            <h2 class="v2-title">把新疆，交給真正懂它的人</h2>
+            <p>不是標準化行程表，而是一段為你而寫、有人全程照應的邊疆敘事。</p>
+        </div>
+        <div class="v2-trust">
+            <figure class="v2-trust__media">
+                <img src="images/hero-car.webp" alt="新疆山路上的在地車隊" width="1536" height="1024" loading="lazy">
+                <span>在地司機與車隊 · 實景</span>
+            </figure>
+            <div class="v2-trust__list">
+                <article class="v2-trust__item">
+                    <h3>在地司機 + 私人導遊</h3>
+                    <p>本地資深司機掌舵，隨車中文導遊全程陪同。安全、舒適、深度，帶你走進一個真實的新疆。</p>
+                </article>
+                <article class="v2-trust__item">
+                    <h3>出發即建群，全程有人照應</h3>
+                    <p>專屬微信群裡有司機、導遊與客服。溝通順暢、遇事不慌，安心感來自被看見。</p>
+                </article>
+                <article class="v2-trust__item">
+                    <h3>不趕路、不進店</h3>
+                    <p>依你的步調隨時停拍，把時間還給風景，把決定權還給你。</p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 新疆實景 -->
+<section class="v2-section v2-section--cream" id="scenery">
+    <div class="v2-shell">
+        <div class="v2-head">
+            <span class="v2-eyebrow">新疆實景</span>
+            <h2 class="v2-title">真實鏡頭下的新疆</h2>
+            <p>四季更迭，處處皆風景——這些畫面，等你親自走進。</p>
+        </div>
+        <div class="v2-scenery">
+            <figure>
+                <img src="images/photos/anjihai-canyon.webp" alt="安集海大峽谷" width="1600" height="899" loading="lazy">
+                <figcaption>安集海大峽谷</figcaption>
+            </figure>
+            <figure>
+                <img src="images/photos/duku-road-summer.webp" alt="獨庫公路夏季景色" width="900" height="1200" loading="lazy">
+                <figcaption>獨庫公路 · 夏</figcaption>
+            </figure>
+            <figure>
+                <img src="images/photos/hemu-starry-night.webp" alt="禾木村星空夜景" width="1400" height="1049" loading="lazy">
+                <figcaption>禾木村 · 星空</figcaption>
+            </figure>
+            <figure>
+                <img src="images/tours/tour4-kanas.webp" alt="喀納斯湖秋色" width="1024" height="768" loading="lazy">
+                <figcaption>喀納斯湖</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<!-- 常見問題 -->
+<section class="v2-section v2-section--cream v2-faq" id="faq">
+    <div class="v2-shell">
+        <div class="v2-head">
+            <span class="v2-eyebrow">常見問題</span>
+            <h2 class="v2-title">新疆旅遊常見問題</h2>
+            <p>出發前最常被問到的幾個問題，先在這裡說清楚。</p>
+        </div>
+        <div class="v2-faq__list">
+            <article class="v2-faq__item">
+                <h3>Q: 新疆適合自由行還是跟團？</h3>
+                <p>新疆幅員遼闊，景點之間距離極遠，公共交通非常不便。包車旅遊才是最佳選擇——自由度高、安全舒適，還能隨時停車拍照。</p>
+            </article>
+            <article class="v2-faq__item">
+                <h3>Q: 新疆旅遊安全嗎？</h3>
+                <p>非常安全。新疆是中國治安最好的地區之一，隨處可見警察巡邏站，對遊客保護措施完善。我們的司機均為本地資深司機，熟悉路況與安全資訊。</p>
+            </article>
+            <article class="v2-faq__item">
+                <h3>Q: 新疆旅遊最佳季節是什麼時候？</h3>
+                <p>北疆最佳：6-9月（草原綠、湖泊藍）；南疆全年皆宜，4-6月與9-10月最佳（避開酷暑）；冬季則可享受阿勒泰滑雪與喀納斯雪景。</p>
+            </article>
+            <article class="v2-faq__item">
+                <h3>Q: 新疆旅遊需要幾天？</h3>
+                <p>北疆環線建議 8-10 天；南北疆聯遊建議 12-15 天；若時間有限，可選擇伊犁 6-7 天或喀什周邊 5-6 天。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- 強力 CTA -->
+<section class="v2-cta">
+    <div class="v2-shell">
+        <h2 class="v2-title">準備好，把新疆走成你的故事了嗎？</h2>
+        <p>加入 200+ 位旅人的行列。專屬司機 · 深度行程 · 全程無購物。</p>
+        <a href="contact.html" class="v2-btn v2-btn--red">獲取我的專屬路書 →</a>
+    </div>
+</section>
+
+</main>
+
+<!-- 頁尾 -->
+<footer class="site-minifoot">
+    <div class="site-minifoot__inner">
+        <a href="index.html" class="site-minifoot__brand">新疆采風 · 專屬包車定制</a>
+        <nav class="site-minifoot__links" aria-label="頁尾導覽">
+            <a href="routes.html">推薦行程</a>
+            <a href="car-rental.html">小包團</a>
+            <a href="itinerary.html">行程範例</a>
+            <a href="blog/index.html">旅遊攻略</a>
+            <a href="about.html">關於我們</a>
+            <a href="contact.html">聯絡我們</a>
+            <a href="xj-h5/index.html#guide">導覽 APP</a>
+            <a href="xj-h5/index.html#album">路書 APP</a>
+        </nav>
+        <p class="site-minifoot__contact" style="margin:0;">&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- 回到頂部按鈕 -->
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到頂部">↑</button>
+
+<script src="js/app.js"></script>
+<script src="js/promotion.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/sitemap.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

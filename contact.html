@@ -95,7 +95,7 @@
         }
     </style>
 </head>
-<body data-analytics data-baidu-id="YOUR_BAIDU_ID" data-ga-id="YOUR_GA_ID">
+<body class="page-contact" data-analytics data-baidu-id="YOUR_BAIDU_ID" data-ga-id="YOUR_GA_ID">
     <!-- 載入動畫 -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
@@ -107,33 +107,87 @@
 <!-- 頂部導航 -->
 <nav class="navbar" role="navigation" aria-label="主導航">
     <div class="nav-container">
+        <input type="checkbox" id="navMenuToggle" class="nav-menu-toggle-cb" aria-hidden="true" tabindex="-1">
         <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="開啟行動選單" aria-expanded="false" aria-controls="navMenu">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
         </button>
-        <a href="index.html" class="logo" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+        <a href="index.html" class="logo logo-link" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+        <label for="navMenuToggle" class="logo logo-css-toggle" aria-label="開啟選單（手機版）">新疆<span>采風</span></label>
         <ul class="nav-menu" id="navMenu" role="menubar" aria-label="網站導航選單">
-            <li role="none"><a href="index.html" role="menuitem">首頁</a></li>
-            <li role="none"><a href="routes.html" role="menuitem">推薦行程</a></li>
-            <li role="none"><a href="car-rental.html" role="menuitem">小包團</a></li>
-            <li role="none" class="has-dropdown">
-                <a href="itinerary.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">行程範例 <span class="dropdown-caret" aria-hidden="true"></span></a>
-                <ul class="dropdown" role="menu" aria-label="行程範例">
-                    <li role="none"><a href="itinerary.html" role="menuitem">行程範例總覽</a></li>
-                    <li role="none"><a href="itinerary-loop17.html" role="menuitem">北疆大環線 17 日</a></li>
-                    <li role="none"><a href="itinerary-classic11.html" role="menuitem">北疆經典 11 日</a></li>
-                    <li role="none"><a href="itinerary-selfdrive16.html" role="menuitem">北疆＋伊犁＋獨庫 16 日</a></li>
-                </ul>
-            </li>
-            <li role="none"><a href="contact.html" class="active" role="menuitem" aria-current="page">聯絡我們</a></li>
-            <li role="none"><a href="blog/index.html" role="menuitem">旅遊攻略</a></li>
-            <li role="none"><a href="xj-h5/index.html" role="menuitem">導覽 / 路書 APP</a></li>
+    <li class="mobile-home-link" role="none"><a href="index.html" role="menuitem">首頁</a></li>
+    <li role="none" class="has-dropdown">
+        <a href="routes.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">推薦行程 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="推薦行程">
+            <li role="none"><a href="routes.html#tour1" role="menuitem">伊犁河谷小包團 10 日</a></li>
+            <li role="none"><a href="routes.html#tour5" role="menuitem">北疆全景小包團 10 日</a></li>
+            <li role="none"><a href="routes.html#tour6" role="menuitem">獨庫公路全線 4 日穿越</a></li>
+            <li role="none"><a href="routes.html" role="menuitem">查看全部 9 條路線 →</a></li>
         </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="itinerary.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">行程範例 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="行程範例">
+            <li role="none"><a href="itinerary.html" role="menuitem">行程範例總覽</a></li>
+            <li role="none"><a href="itinerary-loop17.html" role="menuitem">北疆大環線 17 日</a></li>
+            <li role="none"><a href="itinerary-classic11.html" role="menuitem">北疆經典 11 日</a></li>
+            <li role="none"><a href="itinerary-selfdrive16.html" role="menuitem">北疆＋伊犁＋獨庫 16 日</a></li>
+        </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="car-rental.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">小包團 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="小包團">
+            <li role="none"><a href="car-rental.html#services" role="menuitem">服務總覽</a></li>
+            <li role="none"><a href="car-rental.html#cars" role="menuitem">推薦車型</a></li>
+            <li role="none"><a href="car-rental.html#pricing" role="menuitem">費用說明</a></li>
+        </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="blog/index.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">旅遊攻略 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="旅遊攻略">
+            <li role="none"><a href="blog/xinjiang-four-seasons.html" role="menuitem">新疆四季旅遊攻略</a></li>
+            <li role="none"><a href="blog/beijiang-vs-nanjiang.html" role="menuitem">北疆 vs 南疆</a></li>
+            <li role="none"><a href="blog/dubai-gonglu-guide.html" role="menuitem">獨庫公路攻略</a></li>
+            <li role="none"><a href="blog/urumqi-citywalk.html" role="menuitem">烏魯木齊 City Walk</a></li>
+            <li role="none"><a href="blog/yining-citywalk.html" role="menuitem">伊寧 City Walk</a></li>
+            <li role="none"><a href="blog/burqin-citywalk.html" role="menuitem">布爾津 City Walk</a></li>
+            <li role="none"><a href="blog/hemucun-citywalk.html" role="menuitem">禾木村 City Walk</a></li>
+            <li role="none"><a href="blog/kuitun-citywalk.html" role="menuitem">奎屯市 City Walk</a></li>
+            <li role="none"><a href="blog/turpan-citywalk.html" role="menuitem">吐魯番市 City Walk</a></li>
+        </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="xj-h5/index.html#guide" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">福利 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="福利">
+            <li role="none"><a href="xj-h5/index.html#guide" role="menuitem">導覽</a></li>
+            <li role="none"><a href="xj-h5/index.html#album" role="menuitem">路書</a></li>
+        </ul>
+    </li><li role="none" class="has-dropdown">
+        <a href="about.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">關於我們 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="關於我們">
+            <li role="none"><a href="about.html#steps" role="menuitem">3 步定制你的新疆</a></li>
+            <li role="none"><a href="about.html#trust" role="menuitem">為什麼選擇我們</a></li>
+            <li role="none"><a href="about.html#scenery" role="menuitem">新疆實景</a></li>
+            <li role="none"><a href="about.html#faq" role="menuitem">常見問題</a></li>
+        </ul>
+    </li>
+        <li role="none" class="has-dropdown">
+        <a href="contact.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent active" aria-current="page">聯絡我們 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="聯絡我們">
+            <li role="none"><a href="contact.html" role="menuitem">電子郵件</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">LINE</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">諮詢表單</a></li>
+        </ul>
+    </li>
+
+    
+</ul>
+        <a href="contact.html" class="nav-cta">免費諮詢</a>
     </div>
 </nav>
 
-<section class="page-hero" id="main-content" style="background:linear-gradient(135deg,rgba(26,74,122,0.75),rgba(200,16,46,0.55)),url('images/photos/hemu-starry-night.webp') center/cover;">
+<section class="page-hero" id="main-content" style="background:linear-gradient(135deg,rgba(26,74,122,0.75),rgba(200,16,46,0.55)),url('images/photos/hemu-starry-night.webp') center/cover; height:280px;">
     <h1>聯絡我們</h1>
     <p>有任何問題或需求，歡迎隨時與我們聯絡</p>
 </section>
@@ -149,18 +203,25 @@
             <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:40px;">
                 <div style="display:flex;align-items:center;gap:16px;">
                     <div style="width:48px;height:48px;background:#f0f6ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">📱</div>
-                    <div>
+                    <div style="flex:1;">
                         <strong style="color:#333;display:block;margin-bottom:2px;">LINE 諮詢</strong>
-                        <span style="color:#c8102e;font-size:16px;font-weight:700;">XJCaifeng</span>
-                        <p style="color:#888;font-size:13px;margin-top:2px;">加 LINE，發送「新疆旅遊」獲取專屬方案</p>
+                        <div style="display:flex;align-items:center;gap:8px;">
+                            <span id="lineIdText" style="color:#c8102e;font-size:16px;font-weight:700;">XJCaifeng</span>
+                            <button onclick="copyLineId()" style="background:#f0f6ff;border:1px solid #cdd9ec;border-radius:8px;min-height:44px;padding:0 16px;display:inline-flex;align-items:center;font-size:14px;font-weight:600;cursor:pointer;color:#1a4a7a;" aria-label="複製 LINE ID">📋 複製</button>
+                            <a href="https://line.me/ti/p/@xjcaifeng" target="_blank" rel="noopener" style="background:#06c755;color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;text-decoration:none;" aria-label="開啟 LINE">🚀 開啟</a>
+                        </div>
+                        <p style="color:#888;font-size:13px;margin-top:4px;">加 LINE，發送「新疆旅遊」獲取專屬方案</p>
                     </div>
                 </div>
                 <div style="display:flex;align-items:flex-start;gap:16px;">
                     <div style="width:48px;height:48px;background:#f0f6ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">📧</div>
-                    <div>
+                    <div style="flex:1;">
                         <strong style="color:#333;display:block;margin-bottom:2px;">電子郵件</strong>
-                        <span style="color:#1a4a7a;font-size:15px;">info@xjcaifeng.com</span>
-                        <p style="color:#888;font-size:13px;margin-top:2px;">24小時內回覆</p>
+                        <div style="display:flex;align-items:center;gap:8px;">
+                            <span id="emailText" style="color:#1a4a7a;font-size:15px;">info@xjcaifeng.com</span>
+                            <button onclick="copyEmail()" style="background:#f0f6ff;border:1px solid #cdd9ec;border-radius:8px;min-height:44px;padding:0 16px;display:inline-flex;align-items:center;font-size:14px;font-weight:600;cursor:pointer;color:#1a4a7a;" aria-label="複製電子郵件">📋 複製</button>
+                        </div>
+                        <p style="color:#888;font-size:13px;margin-top:4px;">24小時內回覆</p>
                     </div>
                 </div>
                 <div style="display:flex;align-items:flex-start;gap:16px;">
@@ -268,10 +329,10 @@
 </div>
 
 <!-- FAQ 簡短版 -->
-<section style="background:#f7f8fa;padding:60px 0;">
+<section style="background:#FBF4E6;padding:60px 0;">
     <div class="container">
         <h2 class="section-title">常見問題快速解答</h2>
-        <p class="section-subtitle">更多問題請參閱<a href="index.html#faq" style="color:#c8102e;">首頁 FAQ</a> 或直接与我們聯絡</p>
+        <p class="section-subtitle">更多問題請參閱<a href="about.html#faq" style="color:#c8102e;">首頁 FAQ</a> 或直接与我們聯絡</p>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;">
             <div style="background:#fff;border-radius:12px;padding:24px;">
                 <h4 style="color:#c8102e;font-size:15px;margin-bottom:8px;">包車需要提前幾天預約？</h4>
@@ -289,56 +350,20 @@
     </div>
 </section>
 
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3>新疆采風</h3>
-                <p>專業新疆包車旅遊服務，帶您深入探索天山南北。</p>
-            </div>
-            <div class="footer-col">
-                <h4>快速連結</h4>
-                <ul>
-                    <li><a href="index.html">首頁</a></li>
-                    <li><a href="routes.html">推薦行程</a></li>
-                    <li><a href="car-rental.html">包車服務</a></li>
-                    <li><a href="itinerary.html">行程範例</a></li>
-                    <li><a href="contact.html">聯絡我們</a></li>
-                    <li><a href="xj-h5/index.html">導覽 / 路書 APP</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>旅遊攻略</h4>
-                <ul>
-                    <li><a href="blog/xinjiang-four-seasons.html">新疆四季旅遊攻略</a></li>
-                    <li><a href="blog/index.html">旅遊攻略總覽</a></li>
-                    <li><a href="blog/beijiang-vs-nanjiang.html">北疆vs南疆</a></li>
-                    <li><a href="blog/dubai-gonglu-guide.html">獨庫公路攻略</a></li>
-                    <li><a href="blog/urumqi-citywalk.html">烏魯木齊 City Walk</a></li>
-                    <li><a href="blog/yining-citywalk.html">伊寧 City Walk</a></li>
-                    <li><a href="blog/burqin-citywalk.html">布爾津 City Walk</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>精選路線</h4>
-                <ul>
-                    <li><a href="routes.html#tour1">伊犁河谷10日</a></li>
-                    <li><a href="routes.html#tour2">草原深度8日</a></li>
-                    <li><a href="routes.html#tour5">北疆全景10日</a></li>
-                    <li><a href="routes.html#tour7">喀什帕米爾7日</a></li>
-                    <li><a href="routes.html#tour9">南北疆15日大環線</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>聯絡資訊</h4>
-                <p>📱 LINE：XJCaifeng</p>
-                <p>📧 Email：info@xjcaifeng.com</p>
-                <p>🕐 服務時間：全年無休 09:00-22:00</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved.</p>
-        </div>
+<footer class="site-minifoot">
+    <div class="site-minifoot__inner">
+        <a href="index.html" class="site-minifoot__brand">新疆采風 · 專屬包車定制</a>
+        <nav class="site-minifoot__links" aria-label="頁尾導覽">
+            <a href="routes.html">推薦行程</a>
+            <a href="car-rental.html">小包團</a>
+            <a href="itinerary.html">行程範例</a>
+            <a href="blog/index.html">旅遊攻略</a>
+            <a href="about.html">關於我們</a>
+            <a href="contact.html">聯絡我們</a>
+            <a href="xj-h5/index.html#guide">導覽 APP</a>
+            <a href="xj-h5/index.html#album">路書 APP</a>
+        </nav>
+        <p class="site-minifoot__contact" style="margin:0;">&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved.</p>
     </div>
 </footer>
 
@@ -356,6 +381,22 @@ function handleSubmit(e) {
     thankYou.style.cssText = 'text-align:center;padding:40px;background:#f0faf0;border-radius:12px;';
     thankYou.innerHTML = '<div style="font-size:48px;margin-bottom:16px;">✅</div><h3 style="color:#2e7d32;font-size:22px;margin-bottom:12px;">諮詢表單已送出！</h3><p style="color:#666;font-size:15px;line-height:1.8;">感謝您的諮詢，我們將在 <strong>24 小時內</strong>透過微信或 Email 與您聯絡。<br>如需緊急諮詢，請直接加微信 <strong>XJCaifeng</strong>。</p>';
     document.getElementById('contactForm').parentNode.appendChild(thankYou);
+}
+
+function copyLineId() {
+    navigator.clipboard.writeText('XJCaifeng').then(function() {
+        alert('LINE ID 已複製：XJCaifeng');
+    }).catch(function() {
+        prompt('請手動複製 LINE ID:', 'XJCaifeng');
+    });
+}
+
+function copyEmail() {
+    navigator.clipboard.writeText('info@xjcaifeng.com').then(function() {
+        alert('電子郵件已複製：info@xjcaifeng.com');
+    }).catch(function() {
+        prompt('請手動複製電子郵件:', 'info@xjcaifeng.com');
+    });
 }
 </script>
 

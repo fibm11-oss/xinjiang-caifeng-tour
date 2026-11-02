@@ -3,17 +3,55 @@
  * 集中管理各頁面重複的內聯 JavaScript
  * ========================================== */
 
-// 手機版選單切換
+// 手機版選單切換（漢堡按鈕已取消，改由 logo 觸發）
 function toggleMenu() {
     var menu = document.getElementById('navMenu');
+    if (!menu) return;
+    var willExpand = !menu.classList.contains('active');
+    menu.classList.toggle('active', willExpand);
+    var cb = document.getElementById('navMenuToggle');
+    if (cb) cb.checked = willExpand;
     var btn = document.querySelector('.mobile-menu-btn');
-    if (menu && btn) {
-        var isExpanded = menu.classList.contains('active');
-        menu.classList.toggle('active');
-        btn.classList.toggle('active');
-        btn.setAttribute('aria-expanded', !isExpanded);
+    if (btn) {
+        btn.classList.toggle('active', willExpand);
+        btn.setAttribute('aria-expanded', willExpand ? 'true' : 'false');
     }
+    var logo = document.querySelector('.logo');
+    if (logo) logo.setAttribute('aria-expanded', willExpand ? 'true' : 'false');
 }
+
+// 手機版：點擊 / 鍵盤觸發「新疆采風」logo 開關選單（取代漢堡按鈕）
+(function() {
+    var logo = document.querySelector('.logo');
+    // 避免與首頁內聯腳本的重複綁定（雙重綁定會導致點一下開、再點一下關）
+    if (!logo || window.__xjLogoMenuBound) return;
+    // 僅在手機 / 平板（≤1024px）才把 logo 當作可開關選單的按鈕，桌機維持一般首頁連結
+    function apply() {
+        var m = window.matchMedia('(max-width: 1024px)').matches;
+        if (m) {
+            logo.setAttribute('role', 'button');
+            logo.setAttribute('aria-expanded', logo.getAttribute('aria-expanded') || 'false');
+            if (!logo.hasAttribute('tabindex')) logo.setAttribute('tabindex', '0');
+        } else {
+            logo.removeAttribute('role');
+            logo.removeAttribute('aria-expanded');
+            logo.removeAttribute('tabindex');
+        }
+    }
+    apply();
+    window.addEventListener('resize', apply);
+    function onActivate(e) {
+        if (window.matchMedia('(max-width: 1024px)').matches) {
+            e.preventDefault();
+            toggleMenu();
+        }
+    }
+    logo.addEventListener('click', onActivate);
+    logo.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') onActivate(e);
+    });
+    window.__xjLogoMenuBound = true;
+})();
 
 // 點擊 ESC 關閉選單
 document.addEventListener('keydown', function(e) {
@@ -26,6 +64,8 @@ document.addEventListener('keydown', function(e) {
                 btn.classList.remove('active');
                 btn.setAttribute('aria-expanded', 'false');
             }
+            var cb = document.getElementById('navMenuToggle');
+            if (cb) cb.checked = false;
         }
     }
 });
@@ -56,27 +96,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 btn.classList.remove('active');
                 btn.setAttribute('aria-expanded', 'false');
             }
+            var cb = document.getElementById('navMenuToggle');
+            if (cb) cb.checked = false;
         });
     });
 
-    // 行程範例：手機點擊父層連結 -> 展開 / 收合手風琴（不導航）；桌機則正常導向總覽頁
-    var isMobile = function() { return window.matchMedia('(max-width: 768px)').matches; };
-    dropdowns.forEach(function(li) {
-        var parentLink = li.querySelector(':scope > a.dropdown-parent');
-        if (!parentLink) return;
-        li.addEventListener('click', function(e) {
-            if (parentLink.contains(e.target) && isMobile()) {
-                e.preventDefault();
-                e.stopPropagation();
-                var open = li.classList.toggle('open');
-                parentLink.setAttribute('aria-expanded', open ? 'true' : 'false');
-            }
-        }, true); // 擷取階段攔截，避免與既有關閉邏輯衝突
-    });
+    // 手機版：父層選單直接導向其總覽頁（不再展開子選單手風琴）。
+    // 桌機版仍由 CSS hover 展開下拉；手機版由 CSS 隱藏 .dropdown，點父項即跳轉總覽頁。
+
 
     // 點擊頁面其他區域關閉手機選單與手風琴
     document.addEventListener('click', function(e) {
-        if (menu.classList.contains('active') && !menu.contains(e.target) && !e.target.closest('.mobile-menu-btn')) {
+        if (menu.classList.contains('active') && !menu.contains(e.target) && !e.target.closest('.mobile-menu-btn') && !e.target.closest('.logo')) {
             menu.classList.remove('active');
             closeDropdowns();
             var btn = document.querySelector('.mobile-menu-btn');
@@ -84,6 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 btn.classList.remove('active');
                 btn.setAttribute('aria-expanded', 'false');
             }
+            var cb = document.getElementById('navMenuToggle');
+            if (cb) cb.checked = false;
         }
     });
 });

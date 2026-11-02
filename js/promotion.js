@@ -6,64 +6,6 @@
 
 (function() {
 
-    /* ---------- 客戶評價數據 ---------- */
-    const TESTIMONIALS = [
-        {
-            name: '陳先生',
-            city: '台北',
-            avatar: '👨',
-            rating: 5,
-            tour: '伊犁河谷10日遊',
-            date: '2026年5月',
-            text: '全程體驗非常好！司機師傅熟悉路況，帶我們去了很多旅遊團不會去的小眾景點。草原騎馬、薰衣草花田都超棒，下次還會找新疆采風。'
-        },
-        {
-            name: '林小姐',
-            city: '香港',
-            avatar: '👩',
-            rating: 5,
-            tour: '北疆喀納斯8日遊',
-            date: '2026年4月',
-            text: '原本擔心新疆旅遊的安全問題，但全程非常安心。導遊講解很深入，從維吾爾文化到絲路歷史都學到很多。獨庫公路的風景太震撼了！'
-        },
-        {
-            name: '王先生一家',
-            city: '新加坡',
-            avatar: '👨‍👩‍👧‍👦',
-            rating: 5,
-            tour: '南疆絲路9日遊',
-            date: '2026年3月',
-            text: '帶小孩去新疆完全沒有問題！司機很貼心，路上小孩暈車還特意停車休息。喀什古城的異域風情讓我們印象深刻，非常推薦家庭遊。'
-        },
-        {
-            name: '張小姐',
-            city: '高雄',
-            avatar: '👩‍🦰',
-            rating: 4,
-            tour: '伊犁草原8日深度',
-            date: '2025年9月',
-            text: 'CP值很高！包車比跟團自由太多了，想停就停、想拍就拍。賽里木湖的日出美到讓人窒息，師傅還幫我們找最佳的拍攝角度。'
-        },
-        {
-            name: '李大哥',
-            city: '馬來西亞',
-            avatar: '👨‍🦱',
-            rating: 5,
-            tour: '南北疆聯遊15日',
-            date: '2025年8月',
-            text: '15天的行程安排得很合理，不趕路、不走馬看花。南疆的人文和北疆的風光都體驗到了，感謝全程陪同的導遊和司機，專業又熱情！'
-        },
-        {
-            name: '黃小姐',
-            city: '澳門',
-            avatar: '👩‍🦳',
-            rating: 5,
-            tour: '獨庫公路+伊犁7日',
-            date: '2025年7月',
-            text: '獨庫公路真的是一生必去！一日有四季，十里不同天。師傅技術很好，路上還介紹了很多當地人才知道的美食小店。'
-        }
-    ];
-
     /* ---------- 信任徽章 ---------- */
     const TRUST_BADGES = [
         { icon: '🏆', title: '5年經驗', desc: '深耕新疆旅遊市場' },
@@ -102,58 +44,9 @@
         return d.innerHTML;
     }
 
-    /* ==========================================
-     * 1. 客戶好評區塊
-     * ========================================== */
-    const Testimonials = {
-        render: function(containerId) {
-            var container = document.getElementById(containerId);
-            if (!container) return;
-
-            var html = [
-                '<section class="testimonials">',
-                '  <div class="container">',
-                '    <h2 class="section-title">旅客真實好評</h2>',
-                '    <p class="section-subtitle">來自台灣、香港、新加坡等地旅客的真實回饋</p>',
-                '    <div class="testimonials-grid">'
-            ].join('\n');
-
-            TESTIMONIALS.forEach(function(t) {
-                var stars = '';
-                for (var i = 0; i < 5; i++) {
-                    stars += i < t.rating ? '★' : '☆';
-                }
-                html += [
-                    '<div class="testimonial-card">',
-                    '  <div class="testimonial-header">',
-                    '    <span class="testimonial-avatar">' + t.avatar + '</span>',
-                    '    <div>',
-                    '      <strong>' + escapeHtml(t.name) + '</strong>',
-                    '      <span style="font-size:13px;color:#888;">' + escapeHtml(t.city) + '</span>',
-                    '    </div>',
-                    '  </div>',
-                    '  <div class="testimonial-stars" style="color:#ff9800;font-size:18px;margin:10px 0 6px;">' + stars + '</div>',
-                    '  <div style="font-size:13px;color:#999;margin-bottom:10px;">' + escapeHtml(t.tour) + ' · ' + escapeHtml(t.date) + '</div>',
-                    '  <p style="color:#555;line-height:1.8;font-size:14px;">" ' + escapeHtml(t.text) + ' "</p>',
-                    '</div>'
-                ].join('\n');
-            });
-
-            html += [
-                '    </div>',
-                '    <div class="text-center" style="margin-top:32px;">',
-                '      <a href="contact.html" class="btn btn-primary">我也想去新疆 →</a>',
-                '    </div>',
-                '  </div>',
-                '</section>'
-            ].join('\n');
-
-            container.innerHTML = html;
-        }
-    };
 
     /* ==========================================
-     * 2. 信任徽章區塊
+     * 1. 信任徽章區塊
      * ========================================== */
     const TrustBadges = {
         render: function(containerId) {
@@ -189,7 +82,7 @@
     };
 
     /* ==========================================
-     * 3. 粘性聯繫欄（底部固定）
+     * 2. 粘性聯繫欄（底部固定）
      * ========================================== */
     const StickyBar = {
         render: function() {
@@ -200,17 +93,17 @@
             bar.className = 'sticky-contact-bar';
             bar.innerHTML = [
                 '<div class="sticky-bar-inner">',
-                '  <a href="https://line.me/R/ti/p/@xjcaifeng" target="_blank" rel="noopener" class="sticky-btn line-btn" aria-label="LINE 諮詢">',
-                '    <span class="sticky-icon">💬</span>',
-                '    <span class="sticky-text">LINE 諮詢</span>',
+                '  <a href="xj-h5/index.html#guide" class="sticky-btn line-btn" aria-label="導覽">',
+                '    <span class="sticky-icon">🧭</span>',
+                '    <span class="sticky-text">導覽</span>',
                 '  </a>',
                 '  <a href="contact.html" class="sticky-btn quote-btn" aria-label="立即詢價">',
                 '    <span class="sticky-icon">📋</span>',
                 '    <span class="sticky-text">立即詢價</span>',
                 '  </a>',
-                '  <a href="tel:+886" class="sticky-btn call-btn" aria-label="電話諮詢" onclick="XJ && XJ.toast(\'請加 LINE: XJCaifeng 取得聯繫\',\'info\')">',
-                '    <span class="sticky-icon">📞</span>',
-                '    <span class="sticky-text">電話諮詢</span>',
+                '  <a href="xj-h5/index.html#album" class="sticky-btn call-btn" aria-label="路書">',
+                '    <span class="sticky-icon">📖</span>',
+                '    <span class="sticky-text">路書</span>',
                 '  </a>',
                 '</div>'
             ].join('\n');
@@ -220,7 +113,7 @@
     };
 
     /* ==========================================
-     * 4. 季節促銷橫幅
+     * 3. 季節促銷橫幅
      * ========================================== */
     const PromotionBanner = {
         render: function(containerId) {
@@ -259,7 +152,7 @@
     };
 
     /* ==========================================
-     * 5. 最新諮詢動態（社會證明）
+     * 4. 最新諮詢動態（社會證明）
      * ========================================== */
     const SocialProof = {
         render: function(containerId) {
@@ -331,7 +224,7 @@
     };
 
     /* ==========================================
-     * 6. 分析追蹤（GA4 + 百度統計）
+     * 5. 分析追蹤（GA4 + 百度統計）
      * ========================================== */
     const Analytics = {
         init: function() {
@@ -417,7 +310,6 @@
 
     /* ---------- 公開 API ---------- */
     window.XJPromo = {
-        Testimonials: Testimonials,
         TrustBadges: TrustBadges,
         PromotionBanner: PromotionBanner,
         StickyBar: StickyBar,

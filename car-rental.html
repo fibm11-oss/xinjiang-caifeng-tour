@@ -88,7 +88,7 @@
         }
     </style>
 </head>
-<body data-analytics data-baidu-id="YOUR_BAIDU_ID" data-ga-id="YOUR_GA_ID">
+<body class="page-car-rental" data-analytics data-baidu-id="YOUR_BAIDU_ID" data-ga-id="YOUR_GA_ID">
     <!-- 載入動畫 -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
@@ -100,33 +100,87 @@
 <!-- 頂部導航 -->
 <nav class="navbar" role="navigation" aria-label="主導航">
     <div class="nav-container">
+        <input type="checkbox" id="navMenuToggle" class="nav-menu-toggle-cb" aria-hidden="true" tabindex="-1">
         <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="開啟行動選單" aria-expanded="false" aria-controls="navMenu">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
         </button>
-        <a href="index.html" class="logo" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+        <a href="index.html" class="logo logo-link" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+        <label for="navMenuToggle" class="logo logo-css-toggle" aria-label="開啟選單（手機版）">新疆<span>采風</span></label>
         <ul class="nav-menu" id="navMenu" role="menubar" aria-label="網站導航選單">
-            <li role="none"><a href="index.html" role="menuitem">首頁</a></li>
-            <li role="none"><a href="routes.html" role="menuitem">推薦行程</a></li>
-            <li role="none"><a href="car-rental.html" class="active" role="menuitem" aria-current="page">小包團</a></li>
-            <li role="none" class="has-dropdown">
-                <a href="itinerary.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">行程範例 <span class="dropdown-caret" aria-hidden="true"></span></a>
-                <ul class="dropdown" role="menu" aria-label="行程範例">
-                    <li role="none"><a href="itinerary.html" role="menuitem">行程範例總覽</a></li>
-                    <li role="none"><a href="itinerary-loop17.html" role="menuitem">北疆大環線 17 日</a></li>
-                    <li role="none"><a href="itinerary-classic11.html" role="menuitem">北疆經典 11 日</a></li>
-                    <li role="none"><a href="itinerary-selfdrive16.html" role="menuitem">北疆＋伊犁＋獨庫 16 日</a></li>
-                </ul>
-            </li>
-            <li role="none"><a href="contact.html" role="menuitem">聯絡我們</a></li>
-            <li role="none"><a href="blog/index.html" role="menuitem">旅遊攻略</a></li>
-            <li role="none"><a href="xj-h5/index.html" role="menuitem">導覽 / 路書 APP</a></li>
+    <li class="mobile-home-link" role="none"><a href="index.html" role="menuitem">首頁</a></li>
+    <li role="none" class="has-dropdown">
+        <a href="routes.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">推薦行程 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="推薦行程">
+            <li role="none"><a href="routes.html#tour1" role="menuitem">伊犁河谷小包團 10 日</a></li>
+            <li role="none"><a href="routes.html#tour5" role="menuitem">北疆全景小包團 10 日</a></li>
+            <li role="none"><a href="routes.html#tour6" role="menuitem">獨庫公路全線 4 日穿越</a></li>
+            <li role="none"><a href="routes.html" role="menuitem">查看全部 9 條路線 →</a></li>
         </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="itinerary.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">行程範例 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="行程範例">
+            <li role="none"><a href="itinerary.html" role="menuitem">行程範例總覽</a></li>
+            <li role="none"><a href="itinerary-loop17.html" role="menuitem">北疆大環線 17 日</a></li>
+            <li role="none"><a href="itinerary-classic11.html" role="menuitem">北疆經典 11 日</a></li>
+            <li role="none"><a href="itinerary-selfdrive16.html" role="menuitem">北疆＋伊犁＋獨庫 16 日</a></li>
+        </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="car-rental.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent active" aria-current="page">小包團 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="小包團">
+            <li role="none"><a href="car-rental.html#services" role="menuitem">服務總覽</a></li>
+            <li role="none"><a href="car-rental.html#cars" role="menuitem">推薦車型</a></li>
+            <li role="none"><a href="car-rental.html#pricing" role="menuitem">費用說明</a></li>
+        </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="blog/index.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">旅遊攻略 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="旅遊攻略">
+            <li role="none"><a href="blog/xinjiang-four-seasons.html" role="menuitem">新疆四季旅遊攻略</a></li>
+            <li role="none"><a href="blog/beijiang-vs-nanjiang.html" role="menuitem">北疆 vs 南疆</a></li>
+            <li role="none"><a href="blog/dubai-gonglu-guide.html" role="menuitem">獨庫公路攻略</a></li>
+            <li role="none"><a href="blog/urumqi-citywalk.html" role="menuitem">烏魯木齊 City Walk</a></li>
+            <li role="none"><a href="blog/yining-citywalk.html" role="menuitem">伊寧 City Walk</a></li>
+            <li role="none"><a href="blog/burqin-citywalk.html" role="menuitem">布爾津 City Walk</a></li>
+            <li role="none"><a href="blog/hemucun-citywalk.html" role="menuitem">禾木村 City Walk</a></li>
+            <li role="none"><a href="blog/kuitun-citywalk.html" role="menuitem">奎屯市 City Walk</a></li>
+            <li role="none"><a href="blog/turpan-citywalk.html" role="menuitem">吐魯番市 City Walk</a></li>
+        </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="xj-h5/index.html#guide" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">福利 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="福利">
+            <li role="none"><a href="xj-h5/index.html#guide" role="menuitem">導覽</a></li>
+            <li role="none"><a href="xj-h5/index.html#album" role="menuitem">路書</a></li>
+        </ul>
+    </li><li role="none" class="has-dropdown">
+        <a href="about.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">關於我們 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="關於我們">
+            <li role="none"><a href="about.html#steps" role="menuitem">3 步定制你的新疆</a></li>
+            <li role="none"><a href="about.html#trust" role="menuitem">為什麼選擇我們</a></li>
+            <li role="none"><a href="about.html#scenery" role="menuitem">新疆實景</a></li>
+            <li role="none"><a href="about.html#faq" role="menuitem">常見問題</a></li>
+        </ul>
+    </li>
+        <li role="none" class="has-dropdown">
+        <a href="contact.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">聯絡我們 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="聯絡我們">
+            <li role="none"><a href="contact.html" role="menuitem">電子郵件</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">LINE</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">諮詢表單</a></li>
+        </ul>
+    </li>
+
+    
+</ul>
+        <a href="contact.html" class="nav-cta">免費諮詢</a>
     </div>
 </nav>
 
-<section class="page-hero" id="main-content" style="background:linear-gradient(rgba(26,74,122,0.55),rgba(200,16,46,0.45)),url('images/hero-car.webp') center/cover;">
+<section class="page-hero" id="main-content" style="background:linear-gradient(rgba(26,74,122,0.55),rgba(200,16,46,0.45)),url('images/hero-xinjiang.webp') center/cover;">
     <h1>小包團服務</h1>
     <p>專屬司機・私人導遊・不和陌生人拼團</p>
 </section>
@@ -134,26 +188,26 @@
 <div class="container" style="padding:60px 24px;">
 
     <!-- 服務說明 -->
-    <section style="margin-bottom:64px;">
+    <section id="services" style="margin-bottom:64px;">
         <h2 class="section-title">小包團旅遊服務</h2>
-        <p class="section-subtitle">新疆幅員遼闊，景點之間動輒數百公里 — 小包團才是最佳選擇<br>專屬車輛+司機+導遊，2-8人即可成團，不和陌生人共享旅程</p>
-        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:40px;">
-            <div style="background:#f7f8fa;border-radius:12px;padding:36px 28px;">
+        <p class="section-subtitle cr-subtitle">新疆幅員遼闊，景點之間動輒數百公里 — 小包團才是最佳選擇<br>專屬車輛+司機+導遊，2-8人即可成團，不和陌生人共享旅程</p>
+        <div class="cr-cards" style="display:grid;gap:32px;margin-top:40px;">
+            <div style="background:#FBF4E6;border-radius:12px;padding:36px 28px;">
                 <div style="font-size:40px;margin-bottom:16px;">🚗</div>
                 <h3 style="font-size:20px;color:#1a4a7a;margin-bottom:12px;">專屬車輛與司機</h3>
                 <p style="color:#666;line-height:1.8;">每團專屬一台車輛，不與他人拼車。司機均為新疆本地資深司機，熟悉路況、懂維吾爾語，兼顧安全與深度體驗。</p>
             </div>
-            <div style="background:#f7f8fa;border-radius:12px;padding:36px 28px;">
+            <div style="background:#FBF4E6;border-radius:12px;padding:36px 28px;">
                 <div style="font-size:40px;margin-bottom:16px;">🎤</div>
                 <h3 style="font-size:20px;color:#1a4a7a;margin-bottom:12px;">可加私人導遊</h3>
                 <p style="color:#666;line-height:1.8;">如需更深入的文化解說，可加購私人導遊服務。導遊全程隨車，深入介紹維吾爾文化、絲路歷史與在地美食。</p>
             </div>
-            <div style="background:#f7f8fa;border-radius:12px;padding:36px 28px;">
+            <div style="background:#FBF4E6;border-radius:12px;padding:36px 28px;">
                 <div style="font-size:40px;margin-bottom:16px;">🛡️</div>
                 <h3 style="font-size:20px;color:#1a4a7a;margin-bottom:12px;">全面保險保障</h3>
                 <p style="color:#666;line-height:1.8;">所有車輛均投保旅遊責任險與車輛險，司機持有合法執照，車輛定期檢修，全面符合安全標準。</p>
             </div>
-            <div style="background:#f7f8fa;border-radius:12px;padding:36px 28px;">
+            <div style="background:#FBF4E6;border-radius:12px;padding:36px 28px;">
                 <div style="font-size:40px;margin-bottom:16px;">💬</div>
                 <h3 style="font-size:20px;color:#1a4a7a;margin-bottom:12px;">即時 LINE 支援</h3>
                 <p style="color:#666;line-height:1.8;">出發前成立專屬 LINE 群組，隨時協助處理問題。行程中如有任何需求，第一時間有人回應。</p>
@@ -162,7 +216,7 @@
     </section>
 
     <!-- 車型介紹 -->
-    <section style="margin-bottom:64px;">
+    <section id="cars" style="margin-bottom:64px;">
         <h2 class="section-title">推薦車型</h2>
         <p class="section-subtitle">依照人數與路線需求，為您配置最合適的車輛</p>
 
@@ -172,7 +226,7 @@
             <p style="color:#666;margin-bottom:20px;">適合北疆、獨庫公路</p>
             <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
                 <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-                    <div style="background:linear-gradient(135deg,#2d5016,#4caf50);height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;line-height:1.6;">坦克300<br>豐田陸巡</div>
+                    <div style="position:relative;height:200px;overflow:hidden;"><img src="images/vehicles/vehicle-suv-4x4.webp" alt="坦克300／豐田陸巡（越野車 / SUV・適合北疆獨庫公路）" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px 10px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.80));color:#fff;font-size:16px;font-weight:700;letter-spacing:.3px;">坦克300／豐田陸巡<span style="display:block;font-size:12px;font-weight:400;opacity:.82;margin-top:2px;">越野車 / SUV・適合北疆獨庫公路</span></span></div>
                     <div style="padding:20px;">
                         <p style="color:#666;font-size:14px;margin-bottom:12px;">適合2-3人小包團，北疆探險首選。底盤高、通過性佳，獨庫公路、伊昭公路輕鬆穿越，專業司機全程駕駛。</p>
                         <div style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -183,7 +237,7 @@
                     </div>
                 </div>
                 <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-                    <div style="background:linear-gradient(135deg,#555,#333);height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;line-height:1.6;">漢蘭達<br>普拉多</div>
+                    <div style="position:relative;height:200px;overflow:hidden;"><img src="images/vehicles/vehicle-suv-comfort.webp" alt="漢蘭達／普拉多（越野車 / SUV・舒適長途）" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px 10px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.80));color:#fff;font-size:16px;font-weight:700;letter-spacing:.3px;">漢蘭達／普拉多<span style="display:block;font-size:12px;font-weight:400;opacity:.82;margin-top:2px;">越野車 / SUV・舒適長途</span></span></div>
                     <div style="padding:20px;">
                         <p style="color:#666;font-size:14px;margin-bottom:12px;">適合2-4人，舒適性與通過性兼具，長途乘坐不易疲勞，適合家庭出遊。</p>
                         <div style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -202,7 +256,7 @@
             <p style="color:#666;margin-bottom:20px;">適合4-5人舒適遊</p>
             <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
                 <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-                    <div style="background:linear-gradient(135deg,#1a4a7a,#2a6a9a);height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;line-height:1.6;">別克GL8<br>騰勢D9</div>
+                    <div style="position:relative;height:200px;overflow:hidden;"><img src="images/vehicles/vehicle-mpv-business.webp" alt="別克 GL8／騰勢 D9（七座商務車・舒適寬敞）" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px 10px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.80));color:#fff;font-size:16px;font-weight:700;letter-spacing:.3px;">別克 GL8／騰勢 D9<span style="display:block;font-size:12px;font-weight:400;opacity:.82;margin-top:2px;">七座商務車・舒適寬敞</span></span></div>
                     <div style="padding:20px;">
                         <p style="color:#666;font-size:14px;margin-bottom:12px;">中國最受歡迎的商務車，座椅舒適、行李空間充足，長途旅行首選。</p>
                         <div style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -213,7 +267,7 @@
                     </div>
                 </div>
                 <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-                    <div style="background:linear-gradient(135deg,#5c2d91,#7b4dba);height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;line-height:1.6;">豐田賽那<br>嵐圖夢想家</div>
+                    <div style="position:relative;height:200px;overflow:hidden;"><img src="images/vehicles/vehicle-mpv-luxury.webp" alt="豐田賽那／嵐圖夢想家（七座商務車・高級舒適）" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px 10px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.80));color:#fff;font-size:16px;font-weight:700;letter-spacing:.3px;">豐田賽那／嵐圖夢想家<span style="display:block;font-size:12px;font-weight:400;opacity:.82;margin-top:2px;">七座商務車・高級舒適</span></span></div>
                     <div style="padding:20px;">
                         <p style="color:#666;font-size:14px;margin-bottom:12px;">經典豪華MPV，乘坐空間寬裕，適合家庭親子出遊或長輩同行。</p>
                         <div style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -232,7 +286,7 @@
             <p style="color:#666;margin-bottom:20px;">適合6-10人團體</p>
             <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
                 <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-                    <div style="background:linear-gradient(135deg,#e8a345,#d4943a);height:160px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;">9座商務車（福特全順/福田）</div>
+                    <div style="position:relative;height:200px;overflow:hidden;"><img src="images/vehicles/vehicle-van-9seat.webp" alt="9 座商務車（福特全順／福田）（9-13 座商務小巴・適合 6-7 人）" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px 10px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.80));color:#fff;font-size:16px;font-weight:700;letter-spacing:.3px;">9 座商務車（福特全順／福田）<span style="display:block;font-size:12px;font-weight:400;opacity:.82;margin-top:2px;">9-13 座商務小巴・適合 6-7 人</span></span></div>
                     <div style="padding:20px;">
                         <p style="color:#666;font-size:14px;margin-bottom:12px;">建議6人包車，保留充足行李空間。適合朋友小團體、公司旅遊。</p>
                         <div style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -242,7 +296,7 @@
                     </div>
                 </div>
                 <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-                    <div style="background:linear-gradient(135deg,#c8102e,#e83e4d);height:160px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;">13座商務車（大通V80/全順新時代）</div>
+                    <div style="position:relative;height:200px;overflow:hidden;"><img src="images/vehicles/vehicle-bus-13seat.webp" alt="13 座商務車（大通 V80／全順新時代）（9-13 座商務小巴・適合 8-10 人）" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px 10px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.80));color:#fff;font-size:16px;font-weight:700;letter-spacing:.3px;">13 座商務車（大通 V80／全順新時代）<span style="display:block;font-size:12px;font-weight:400;opacity:.82;margin-top:2px;">9-13 座商務小巴・適合 8-10 人</span></span></div>
                     <div style="padding:20px;">
                         <p style="color:#666;font-size:14px;margin-bottom:12px;">建議8-10人包車，空間充裕，適合大型家庭旅遊或攝影團體。</p>
                         <div style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -256,7 +310,7 @@
     </section>
 
     <!-- 價格說明 -->
-    <section style="background:#f7f8fa;border-radius:12px;padding:48px 40px;margin-bottom:64px;">
+    <section id="pricing" style="background:#FBF4E6;border-radius:12px;padding:48px 40px;margin-bottom:64px;">
         <h2 style="font-size:24px;color:#1a4a7a;text-align:center;margin-bottom:12px;">小包團費用說明</h2>
         <p style="text-align:center;color:#666;margin-bottom:32px;">以下費用已包含全程服務，無隱藏收費，不和陌生人拼團</p>
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
@@ -312,56 +366,6 @@
         </div>
     </section>
 
-    <!-- 報價計算器 -->
-    <section id="quoteCalculator" style="margin-bottom:64px;">
-        <div style="background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,0.08);padding:40px;">
-            <h2 style="font-size:24px;color:#1a4a7a;text-align:center;margin-bottom:8px;">🧮 包車費用估算器</h2>
-            <p style="text-align:center;color:#666;margin-bottom:32px;">選擇您的需求，快速估算包車費用</p>
-
-            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:32px;">
-                <div>
-                    <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">車型</label>
-                    <select class="quote-vehicle" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;background:#fff;">
-                        <option value="suv">越野車 / SUV (2-4人)</option>
-                        <option value="mpv7">七座商務車 (4-5人)</option>
-                        <option value="bus9">9座商務小巴 (6-7人)</option>
-                        <option value="bus13">13座商務小巴 (8-10人)</option>
-                    </select>
-                </div>
-                <div>
-                    <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">旅行天數</label>
-                    <input type="number" class="quote-days" min="1" max="30" value="7" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;">
-                </div>
-                <div>
-                    <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">人數</label>
-                    <input type="number" class="quote-people" min="1" max="20" value="4" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;">
-                </div>
-                <div>
-                    <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">車輛檔次</label>
-                    <select class="quote-quality" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;background:#fff;">
-                        <option value="low">經濟型</option>
-                        <option value="mid" selected>標準型</option>
-                        <option value="high">豪華型</option>
-                    </select>
-                </div>
-            </div>
-
-            <div style="display:flex;gap:20px;margin-bottom:32px;flex-wrap:wrap;">
-                <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;color:#555;">
-                    <input type="checkbox" class="quote-guide" style="width:18px;height:18px;"> 加私人導遊 (¥300/天)
-                </label>
-                <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;color:#555;">
-                    <input type="checkbox" class="quote-car-seat" style="width:18px;height:18px;"> 加兒童安全座椅 (¥50/天)
-                </label>
-            </div>
-
-            <div id="quoteResult"></div>
-
-            <div style="text-align:center;margin-top:24px;padding:16px;background:#fff8e1;border-radius:8px;font-size:13px;color:#e65100;">
-                💡 以上為參考估價。實際價格因季節、路線、具體車況與市場波動而異，請以客服最終報價為準。
-            </div>
-        </div>
-    </section>
 
     <!-- CTA -->
     <div style="text-align:center;padding:40px 0;">
@@ -372,55 +376,20 @@
 
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3>新疆采風</h3>
-                <p>專業新疆包車旅遊服務，帶您深入探索天山南北。</p>
-            </div>
-            <div class="footer-col">
-                <h4>快速連結</h4>
-                <ul>
-                    <li><a href="index.html">首頁</a></li>
-                    <li><a href="routes.html">推薦行程</a></li>
-                    <li><a href="car-rental.html">包車服務</a></li>
-                    <li><a href="itinerary.html">行程範例</a></li>
-                    <li><a href="contact.html">聯絡我們</a></li>
-                    <li><a href="xj-h5/index.html">導覽 / 路書 APP</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>旅遊攻略</h4>
-                <ul>
-                    <li><a href="blog/xinjiang-four-seasons.html">新疆四季旅遊攻略</a></li>
-                    <li><a href="blog/index.html">旅遊攻略總覽</a></li>
-                    <li><a href="blog/beijiang-vs-nanjiang.html">北疆vs南疆</a></li>
-                    <li><a href="blog/dubai-gonglu-guide.html">獨庫公路攻略</a></li>
-                    <li><a href="blog/urumqi-citywalk.html">烏魯木齊 City Walk</a></li>
-                    <li><a href="blog/yining-citywalk.html">伊寧 City Walk</a></li>
-                    <li><a href="blog/burqin-citywalk.html">布爾津 City Walk</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>精選路線</h4>
-                <ul>
-                    <li><a href="routes.html#tour1">伊犁河谷10日</a></li>
-                    <li><a href="routes.html#tour2">草原深度8日</a></li>
-                    <li><a href="routes.html#tour5">北疆全景10日</a></li>
-                    <li><a href="routes.html#tour7">喀什帕米爾7日</a></li>
-                    <li><a href="routes.html#tour9">南北疆15日大環線</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>聯絡資訊</h4>
-                <p>📱 LINE：XJCaifeng</p>
-                <p>📧 Email：info@xjcaifeng.com</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved.</p>
-        </div>
+<footer class="site-minifoot">
+    <div class="site-minifoot__inner">
+        <a href="index.html" class="site-minifoot__brand">新疆采風 · 專屬包車定制</a>
+        <nav class="site-minifoot__links" aria-label="頁尾導覽">
+            <a href="routes.html">推薦行程</a>
+            <a href="car-rental.html">小包團</a>
+            <a href="itinerary.html">行程範例</a>
+            <a href="blog/index.html">旅遊攻略</a>
+            <a href="about.html">關於我們</a>
+            <a href="contact.html">聯絡我們</a>
+            <a href="xj-h5/index.html#guide">導覽 APP</a>
+            <a href="xj-h5/index.html#album">路書 APP</a>
+        </nav>
+        <p class="site-minifoot__contact" style="margin:0;">&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved.</p>
     </div>
 </footer>
 
@@ -564,14 +533,8 @@ if ('serviceWorker' in navigator) {
 
 <script src="js/app.js"></script>
 <script src="js/promotion.js"></script>
-<script src="js/quote.js"></script>
 <script src="js/nav.js"></script>
 <script src="js/sitemap.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    XJQuote.bind('quoteCalculator');
-});
-</script>
 
 </body>
 </html>

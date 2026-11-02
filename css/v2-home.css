@@ -103,25 +103,8 @@ body {
 
 .logo span { color: var(--v2-red) !important; }
 
-.nav-menu { gap: 34px; }
-
-.nav-menu a {
-    font-size: 15px;
-    color: var(--v2-body) !important;
-    font-weight: 500;
-    padding: 6px 0 !important;
-}
-
-.nav-menu a:hover,
-.nav-menu a.active {
-    color: var(--v2-red) !important;
-    font-weight: 700;
-}
-
-.nav-menu a.active::after {
-    background: var(--v2-red) !important;
-    height: 2px !important;
-}
+/* 導覽列格式統一採用 style.css 的樣式（項目間距、字級、active 紅色藥丸），
+   首頁與其他頁面保持一致，不再另設 v2 版本覆寫 */
 
 .nav-cta {
     display: inline-block;
@@ -139,7 +122,6 @@ body {
 
 .navbar.scrolled .nav-container { height: 76px; }
 .navbar.scrolled .logo { font-size: 24px !important; }
-.navbar.scrolled .nav-menu a { padding: 6px 0 !important; }
 
 /* ---------- Hero ---------- */
 .v2-hero {
@@ -147,7 +129,7 @@ body {
     margin-top: 76px;
     min-height: 780px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     overflow: hidden;
     isolation: isolate;
 }
@@ -179,8 +161,9 @@ body {
 .v2-hero__inner {
     max-width: var(--v2-shell);
     margin: 0 auto;
-    padding: 0 110px;
+    padding: 56px 110px 0;
     width: 100%;
+    text-align: center;
 }
 
 .v2-hero__eyebrow {
@@ -195,7 +178,7 @@ body {
     font-size: 60px;
     line-height: 1.14;
     color: #fff;
-    margin: 0 0 22px;
+    margin: 0 auto 22px;
     max-width: 1120px;
     text-shadow: 0 4px 30px rgba(0, 0, 0, .35);
 }
@@ -204,15 +187,30 @@ body {
     font-size: 19px;
     line-height: 1.75;
     color: var(--v2-sand);
-    margin: 0 0 34px;
+    margin: 0 auto 34px;
     max-width: 760px;
 }
+
+/* 手機版 hero 描述：預設（桌機）顯示兩段，手機版切換為三段 */
+.desc-m { display: none; }
+
+/* 手機版 hero 主標：預設（桌機）單行，手機版改為兩行斷行 */
+.title-m { display: none; }
 
 .v2-hero__actions {
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
+    justify-content: center;
+    /* 桌機版：按鈕絕對固定在 hero 底部上方，不受上方文字區上移影響 */
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 260px;
 }
+
+/* 首頁 hero 按鈕：桌面版 / 手機版 雙版本（手機版預設隱藏，由媒體查詢開啟） */
+.v2-btn.hero-act-mobile { display: none; }
 
 .v2-btn {
     display: inline-block;
@@ -233,13 +231,27 @@ body {
 .v2-btn--red:hover { background: var(--v2-red-2); transform: translateY(-2px); }
 
 .v2-btn--ghost {
-    background: rgba(255, 255, 255, .12);
+    background: rgba(22, 20, 18, .62);
     color: #fff !important;
-    border: 1px solid rgba(255, 255, 255, .55);
-    backdrop-filter: blur(6px);
+    border: 1.5px solid rgba(255, 255, 255, .78);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .28);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, .55);
 }
 
-.v2-btn--ghost:hover { background: rgba(255, 255, 255, .22); transform: translateY(-2px); }
+.v2-btn--ghost:hover { background: rgba(22, 20, 18, .78); transform: translateY(-2px); }
+
+/* 首頁 hero 兩顆按鈕：預設灰底（與精選路線同款），滑鼠移上才轉紅（與旅遊攻略同款），桌面/手機一致 */
+.v2-hero__actions .v2-btn--ghost {
+    border-color: rgba(255, 255, 255, .6);
+}
+.v2-hero__actions .v2-btn--ghost:hover {
+    background: var(--v2-red);
+    border-color: var(--v2-red);
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(200, 16, 46, .32);
+}
 
 /* ---------- 三步定制 ---------- */
 .v2-steps {
@@ -644,7 +656,7 @@ body {
     text-decoration: none;
 }
 
-.footer-col li a:hover { color: var(--v2-red); }
+.footer-col li a:hover { color: var(--primary-bright, #f0425c); }
 
 .footer-bottom {
     margin-top: 48px;
@@ -690,10 +702,13 @@ body {
 
     .v2-hero {
         margin-top: 64px;
-        min-height: 560px;
+        /* 手機單屏模式：hero 佔 88vh，下方區塊露出邊緣作為「可捲動」提示，
+           避免首屏被 hero 完全吃滿、使用者以為頁面到頭 */
+        min-height: 88vh;
+        align-items: flex-start;
     }
 
-    .v2-hero__inner { padding: 0 20px; }
+    .v2-hero__inner { padding: 14px 20px 0; margin-top: 0; }
 
     .v2-hero h1 {
         font-size: 34px;
@@ -701,13 +716,26 @@ body {
         text-shadow: 0 3px 20px rgba(0, 0, 0, .4);
     }
 
-    .v2-hero__eyebrow { font-size: 13px; }
+    .v2-hero__eyebrow { font-size: 16px; }
 
     .v2-hero__desc { font-size: 16px; line-height: 1.7; }
 
-    .v2-hero__actions { flex-direction: column; align-items: stretch; }
+    .v2-hero__actions { flex-direction: column; align-items: center; position: absolute; left: 20px; right: 20px; bottom: 76px; }
+
+    /* 手機版 hero 描述：三段排版（覆蓋桌機兩段），並隱藏指定區塊（不影響原文） */
+    .desc-pc { display: none; }
+    .desc-m { display: inline; }
+    .mobile-hide { display: none !important; }
+
+    /* 手機版 hero 主標：兩行斷行 */
+    .title-pc { display: none; }
+    .title-m { display: inline; }
 
     .v2-btn { width: 100%; padding: 15px 24px; }
+
+    /* 手機版 hero 按鈕：隱藏桌面版、顯示手機版；寬度貼合文字、不拉滿，配合文字向中間移動 */
+    .hero-act-desk { display: none !important; }
+    .hero-act-mobile { display: inline-block !important; width: auto !important; padding: 14px 38px; }
 
     .v2-section { padding: 56px 0; }
 
@@ -749,6 +777,14 @@ body {
     .footer-grid { grid-template-columns: 1fr; gap: 28px !important; }
 
     .footer { padding: 44px 0 24px !important; }
+
+    /* 手機版：品牌介紹與版權之間不要空太多 */
+    .footer-bottom { margin-top: 18px; padding-top: 16px; }
+
+    /* 手機版首頁：不捲動，只保留照片內的設定（隱藏照片以外的所有內容） */
+    .home-rich { display: none !important; }
+    .footer { display: none !important; }
+    .page-home { overflow: hidden; }
 }
 
 /* 桌機仍保留手機選單按鈕的隱藏邏輯（沿用 style.css） */
@@ -756,4 +792,55 @@ body {
    故此處僅在 ≥1025px 才隱藏 hamburger，避免平板/較寬預覽面板走桌面橫向選單而被截斷 */
 @media (min-width: 1025px) {
     .mobile-menu-btn { display: none !important; }
+}
+
+/* ==========================================
+ * 首頁桌機單屏模式
+ * 桌機（≥1025px）：首頁僅 hero 大圖 + 迷你頁尾，文件總高等於視窗高 → 零捲動
+ * 手機（<1025px）：維持原本可捲動的完整首頁（內容包在 .home-rich 內）
+ * ========================================== */
+
+/* 手機版首頁不顯示「旅客真實好評」（該區塊保留在「關於我們」頁） */
+@media (max-width: 1024px) {
+    .page-home #testimonialsContainer { display: none; }
+}
+
+/* 首頁大圖疊加的迷你頁尾：視覺樣式沿用全站 .site-minifoot，這裡只負責定位與預設隱藏 */
+.v2-hero__minifoot {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+@media (min-width: 1025px) {
+    /* hero 撐滿整個視窗高度，導覽列（fixed）直接疊在大圖上層，
+       文件總高精確等於視窗高 → 不產生任何捲動。
+       註：此時 hero 的 margin-top 必須歸零，否則外溢會讓文件多出一段高度 */
+    .page-home .v2-hero {
+        margin-top: 0;
+        min-height: 100vh;
+        height: 100vh;
+    }
+
+    /* 首頁下方豐富內容改由導覽分層引導，桌機版隱藏 */
+    .page-home .home-rich { display: none; }
+
+    /* 完整頁尾由迷你頁尾取代 */
+    .page-home .footer { display: none; }
+
+    /* 顯示迷你頁尾 */
+    .page-home .v2-hero__minifoot { display: block; }
+
+    /* 保險：即使有 1px 誤差也不產生捲動 */
+    .page-home { overflow: hidden; }
+}
+
+/* 導覽項目改用 style.css 的統一格式後，僅在極窄的桌機區間微調容器留白與 CTA 尺寸，
+   避免 8 個項目 + CTA 在 1025–1180px 擠出視窗；項目間距與字級維持全站一致 */
+@media (min-width: 1025px) and (max-width: 1180px) {
+    .nav-container { padding: 0 24px; }
+    .nav-cta { padding: 9px 16px !important; font-size: 13px !important; }
 }

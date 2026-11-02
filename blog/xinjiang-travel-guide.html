@@ -62,27 +62,81 @@
 
 <nav class="navbar" role="navigation" aria-label="主導航">
     <div class="nav-container">
+        <input type="checkbox" id="navMenuToggle" class="nav-menu-toggle-cb" aria-hidden="true" tabindex="-1">
         <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="開啟選單" aria-expanded="false" aria-controls="navMenu">
             <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
         </button>
-        <a href="../index.html" class="logo" aria-label="新疆采風首頁">新疆<span>采風</span></a>
-        <ul class="nav-menu" id="navMenu" role="menubar">
-            <li role="none"><a href="../index.html" role="menuitem">首頁</a></li>
-            <li role="none"><a href="../routes.html" role="menuitem">推薦行程</a></li>
-            <li role="none"><a href="../car-rental.html" role="menuitem">小包團</a></li>
-            <li role="none" class="has-dropdown">
-                <a href="../itinerary.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">行程範例 <span class="dropdown-caret" aria-hidden="true"></span></a>
-                <ul class="dropdown" role="menu" aria-label="行程範例">
-                    <li role="none"><a href="../itinerary.html" role="menuitem">行程範例總覽</a></li>
-                    <li role="none"><a href="../itinerary-loop17.html" role="menuitem">北疆大環線 17 日</a></li>
-                    <li role="none"><a href="../itinerary-classic11.html" role="menuitem">北疆經典 11 日</a></li>
-                    <li role="none"><a href="../itinerary-selfdrive16.html" role="menuitem">北疆＋伊犁＋獨庫 16 日</a></li>
-                </ul>
-            </li>
-            <li role="none"><a href="../contact.html" role="menuitem">聯絡我們</a></li>
-            <li role="none"><a href="xinjiang-travel-guide.html" class="active" role="menuitem">旅遊攻略</a></li>
-            <li role="none"><a href="../xj-h5/index.html" role="menuitem">導覽 / 路書 APP</a></li>
+        <a href="../index.html" class="logo logo-link" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+        <label for="navMenuToggle" class="logo logo-css-toggle" aria-label="開啟選單（手機版）">新疆<span>采風</span></label>
+        <ul class="nav-menu" id="navMenu" role="menubar" aria-label="網站導航選單">
+    <li class="mobile-home-link" role="none"><a href="../index.html" role="menuitem">首頁</a></li>
+    <li role="none" class="has-dropdown">
+        <a href="../routes.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">推薦行程 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="推薦行程">
+            <li role="none"><a href="../routes.html#tour1" role="menuitem">伊犁河谷小包團 10 日</a></li>
+            <li role="none"><a href="../routes.html#tour5" role="menuitem">北疆全景小包團 10 日</a></li>
+            <li role="none"><a href="../routes.html#tour6" role="menuitem">獨庫公路全線 4 日穿越</a></li>
+            <li role="none"><a href="../routes.html" role="menuitem">查看全部 9 條路線 →</a></li>
         </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="../itinerary.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">行程範例 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="行程範例">
+            <li role="none"><a href="../itinerary.html" role="menuitem">行程範例總覽</a></li>
+            <li role="none"><a href="../itinerary-loop17.html" role="menuitem">北疆大環線 17 日</a></li>
+            <li role="none"><a href="../itinerary-classic11.html" role="menuitem">北疆經典 11 日</a></li>
+            <li role="none"><a href="../itinerary-selfdrive16.html" role="menuitem">北疆＋伊犁＋獨庫 16 日</a></li>
+        </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="../car-rental.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">小包團 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="小包團">
+            <li role="none"><a href="../car-rental.html#services" role="menuitem">服務總覽</a></li>
+            <li role="none"><a href="../car-rental.html#cars" role="menuitem">推薦車型</a></li>
+            <li role="none"><a href="../car-rental.html#pricing" role="menuitem">費用說明</a></li>
+        </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="index.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent active" aria-current="page">旅遊攻略 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="旅遊攻略">
+            <li role="none"><a href="xinjiang-four-seasons.html" role="menuitem">新疆四季旅遊攻略</a></li>
+            <li role="none"><a href="beijiang-vs-nanjiang.html" role="menuitem">北疆 vs 南疆</a></li>
+            <li role="none"><a href="dubai-gonglu-guide.html" role="menuitem">獨庫公路攻略</a></li>
+            <li role="none"><a href="urumqi-citywalk.html" role="menuitem">烏魯木齊 City Walk</a></li>
+            <li role="none"><a href="yining-citywalk.html" role="menuitem">伊寧 City Walk</a></li>
+            <li role="none"><a href="burqin-citywalk.html" role="menuitem">布爾津 City Walk</a></li>
+            <li role="none"><a href="hemucun-citywalk.html" role="menuitem">禾木村 City Walk</a></li>
+            <li role="none"><a href="kuitun-citywalk.html" role="menuitem">奎屯市 City Walk</a></li>
+            <li role="none"><a href="turpan-citywalk.html" role="menuitem">吐魯番市 City Walk</a></li>
+        </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="../xj-h5/index.html#guide" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">福利 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="福利">
+            <li role="none"><a href="../xj-h5/index.html#guide" role="menuitem">導覽</a></li>
+            <li role="none"><a href="../xj-h5/index.html#album" role="menuitem">路書</a></li>
+        </ul>
+    </li><li role="none" class="has-dropdown">
+        <a href="../about.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">關於我們 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="關於我們">
+            <li role="none"><a href="../about.html#steps" role="menuitem">3 步定制你的新疆</a></li>
+            <li role="none"><a href="../about.html#trust" role="menuitem">為什麼選擇我們</a></li>
+            <li role="none"><a href="../about.html#scenery" role="menuitem">新疆實景</a></li>
+            <li role="none"><a href="../about.html#faq" role="menuitem">常見問題</a></li>
+        </ul>
+    </li>
+        <li role="none" class="has-dropdown">
+        <a href="../contact.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">聯絡我們 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="聯絡我們">
+            <li role="none"><a href="../contact.html" role="menuitem">電子郵件</a></li>
+            <li role="none"><a href="../contact.html" role="menuitem">LINE</a></li>
+            <li role="none"><a href="../contact.html" role="menuitem">諮詢表單</a></li>
+        </ul>
+    </li>
+
+    
+</ul>
+        <a href="../contact.html" class="nav-cta">免費諮詢</a>
     </div>
 </nav>
 
@@ -108,18 +162,21 @@
     <h2>一、北疆 vs 南疆：怎麼選？</h2>
     <p>新疆旅遊的第一個選擇題：去北疆還是南疆？兩者風格截然不同：</p>
 
-    <table class="table-compare">
+        <div class="table-scroll">
+<table class="table-compare">
         <thead>
             <tr><th>項目</th><th>北疆</th><th>南疆</th></tr>
         </thead>
         <tbody>
-            <tr><td><strong>代表風光</strong></td><td>草原、湖泊、雪山、森林</td><td>沙漠、峽谷、古城、人文</td></tr>
-            <tr><td><strong>最佳季節</strong></td><td>6月-9月（夏季草原）</td><td>4-6月、9-10月（避開酷暑）</td></tr>
-            <tr><td><strong>推薦天數</strong></td><td>8-10天</td><td>7-9天</td></tr>
-            <tr><td><strong>經典路線</strong></td><td>喀納斯、伊犁、獨庫公路</td><td>喀什古城、帕米爾高原、沙漠公路</td></tr>
-            <tr><td><strong>適合人群</strong></td><td>自然風光愛好者、攝影師</td><td>人文歷史愛好者、深度旅行者</td></tr>
+            <tr><td data-label="項目"><strong>代表風光</strong></td><td data-label="北疆">草原、湖泊、雪山、森林</td><td data-label="南疆">沙漠、峽谷、古城、人文</td></tr>
+            <tr><td data-label="項目"><strong>最佳季節</strong></td><td data-label="北疆">6月-9月（夏季草原）</td><td data-label="南疆">4-6月、9-10月（避開酷暑）</td></tr>
+            <tr><td data-label="項目"><strong>推薦天數</strong></td><td data-label="北疆">8-10天</td><td data-label="南疆">7-9天</td></tr>
+            <tr><td data-label="項目"><strong>經典路線</strong></td><td data-label="北疆">喀納斯、伊犁、獨庫公路</td><td data-label="南疆">喀什古城、帕米爾高原、沙漠公路</td></tr>
+            <tr><td data-label="項目"><strong>適合人群</strong></td><td data-label="北疆">自然風光愛好者、攝影師</td><td data-label="南疆">人文歷史愛好者、深度旅行者</td></tr>
         </tbody>
     </table>
+    </div>
+<p class="table-scroll-hint">← 左右滑動查看完整表格 →</p>
 
     <div class="highlight-box">
         <strong>💡 小建議：</strong>如果時間允許（12-15天），南北疆聯遊是最佳選擇。先走北疆草原路線，再到南疆感受絲路文化，一次旅行體驗兩種截然不同的新疆。
@@ -173,56 +230,20 @@
 
 </article>
 
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3>新疆采風</h3>
-                <p>專業新疆小包團旅遊服務<br>不和陌生人拼團・專屬司機導遊</p>
-            </div>
-            <div class="footer-col">
-                <h4>快速連結</h4>
-                <ul>
-                    <li><a href="../index.html">首頁</a></li>
-                    <li><a href="../routes.html">推薦行程</a></li>
-                    <li><a href="../car-rental.html">小包團</a></li>
-                    <li><a href="../itinerary.html">行程範例</a></li>
-                    <li><a href="../contact.html">聯絡我們</a></li>
-                    <li><a href="../xj-h5/index.html">導覽 / 路書 APP</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>旅遊攻略</h4>
-                <ul>
-                    <li><a href="xinjiang-four-seasons.html">新疆四季旅遊攻略</a></li>
-                    <li><a href="xinjiang-travel-guide.html">新疆旅遊完整攻略</a></li>
-                    <li><a href="beijiang-vs-nanjiang.html">北疆vs南疆怎麼選</a></li>
-                    <li><a href="dubai-gonglu-guide.html">獨庫公路攻略</a></li>
-                    <li><a href="urumqi-citywalk.html">烏魯木齊 City Walk</a></li>
-                    <li><a href="yining-citywalk.html">伊寧 City Walk</a></li>
-                    <li><a href="burqin-citywalk.html">布爾津 City Walk</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>精選路線</h4>
-                <ul>
-                    <li><a href="../routes.html#tour1">伊犁河谷10日</a></li>
-                    <li><a href="../routes.html#tour2">草原深度8日</a></li>
-                    <li><a href="../routes.html#tour5">北疆全景10日</a></li>
-                    <li><a href="../routes.html#tour7">喀什帕米爾7日</a></li>
-                    <li><a href="../routes.html#tour9">南北疆15日大環線</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>聯絡資訊</h4>
-                <p>📱 LINE：XJCaifeng</p>
-                <p>📧 Email：info@xjcaifeng.com</p>
-                <p>🕐 服務時間：全年無休，09:00-22:00</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved. | <a href="../sitemap.xml" style="color:rgba(255,255,255,0.6);">網站地圖</a></p>
-        </div>
+<footer class="site-minifoot">
+    <div class="site-minifoot__inner">
+        <a href="../index.html" class="site-minifoot__brand">新疆采風 · 專屬包車定制</a>
+        <nav class="site-minifoot__links" aria-label="頁尾導覽">
+            <a href="../routes.html">推薦行程</a>
+            <a href="../car-rental.html">小包團</a>
+            <a href="../itinerary.html">行程範例</a>
+            <a href="../blog/index.html">旅遊攻略</a>
+            <a href="../about.html">關於我們</a>
+            <a href="../contact.html">聯絡我們</a>
+            <a href="../xj-h5/index.html#guide">導覽 APP</a>
+            <a href="../xj-h5/index.html#album">路書 APP</a>
+        </nav>
+        <p class="site-minifoot__contact" style="margin:0;">&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved.</p>
     </div>
 </footer>
 

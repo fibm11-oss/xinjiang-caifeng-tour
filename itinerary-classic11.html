@@ -69,6 +69,12 @@
             color: var(--secondary);
             margin-bottom: 10px;
         }
+        /* 行程簡介的「說明文字」恢復左對齊（h2 標題與日期行維持置中） */
+        .itinerary-intro p:not([style*="font-weight:700"]) {
+            text-align: left;
+            margin-left: 0;
+            margin-right: auto;
+        }
         .itinerary-intro .route-tags {
             display: flex;
             flex-wrap: wrap;
@@ -224,6 +230,31 @@
         }
         .day-body .accommodation strong { color: var(--text); }
 
+        /* 桌面版：每日行程 左文右圖 兩欄，統一填補右側空白 */
+        .day-content {
+            display: flex;
+            align-items: stretch;
+        }
+        .day-content .day-body {
+            flex: 1;
+            min-width: 0;
+        }
+        .day-photo {
+            width: 340px;
+            height: 260px;
+            flex-shrink: 0;
+            align-self: center;
+            border-left: 1px solid var(--border);
+            background: var(--bg-light);
+            overflow: hidden;
+        }
+        .day-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
         /* Flight overview card */
         .flight-overview {
             display: flex;
@@ -301,6 +332,7 @@
             text-align: center;
             border-bottom: 1px solid var(--border);
         }
+        .summary-wrapper tbody tr { background: #fff8e1; }
         .summary-wrapper tbody tr:hover { background: #f0f6ff; }
         .summary-wrapper tbody tr:last-child td { border-bottom: none; }
         .summary-wrapper .total-row { background: #fff8e1; font-weight: 700; }
@@ -339,6 +371,14 @@
             .day-header .date-badge { min-width: 54px; }
             .day-header .date-badge .day { font-size: 20px; }
             .day-body { padding: 16px 18px; }
+            .day-content { flex-direction: column; }
+            .day-photo {
+                width: 100%;
+                height: 220px;
+                align-self: stretch;
+                border-left: none;
+                border-top: 1px solid var(--border);
+            }
             .flight-overview { padding: 20px; }
             .flight-overview .airport .code { font-size: 24px; }
             .itinerary-intro h2 { font-size: 26px; }
@@ -363,37 +403,90 @@
     <!-- ===== 頂部導航 ===== -->
     <nav class="navbar" role="navigation" aria-label="主導航">
         <div class="nav-container">
+            <input type="checkbox" id="navMenuToggle" class="nav-menu-toggle-cb" aria-hidden="true" tabindex="-1">
             <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="開啟行動選單" aria-expanded="false" aria-controls="navMenu">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </button>
-            <a href="index.html" class="logo" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+            <a href="index.html" class="logo logo-link" aria-label="新疆采風首頁">新疆<span>采風</span></a>
+            <label for="navMenuToggle" class="logo logo-css-toggle" aria-label="開啟選單（手機版）">新疆<span>采風</span></label>
             <ul class="nav-menu" id="navMenu" role="menubar" aria-label="網站導航選單">
-                <li role="none"><a href="index.html" role="menuitem">首頁</a></li>
-                <li role="none"><a href="routes.html" role="menuitem">推薦行程</a></li>
-                <li role="none"><a href="car-rental.html" role="menuitem">小包團</a></li>
-                <li role="none" class="has-dropdown">
-                    <a href="itinerary.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="active dropdown-parent">行程範例 <span class="dropdown-caret" aria-hidden="true"></span></a>
-                    <ul class="dropdown" role="menu" aria-label="行程範例">
-                        <li role="none"><a href="itinerary.html" role="menuitem">行程範例總覽</a></li>
-                        <li role="none"><a href="itinerary-loop17.html" role="menuitem">北疆大環線 17 日</a></li>
-                        <li role="none"><a href="itinerary-classic11.html" role="menuitem">北疆經典 11 日</a></li>
-                        <li role="none"><a href="itinerary-selfdrive16.html" role="menuitem">北疆＋伊犁＋獨庫 16 日</a></li>
-                    </ul>
-                </li>
-                <li role="none"><a href="contact.html" role="menuitem">聯絡我們</a></li>
-                <li role="none"><a href="blog/index.html" role="menuitem">旅遊攻略</a></li>
-                <li role="none"><a href="xj-h5/index.html" role="menuitem">導覽 / 路書 APP</a></li>
-            </ul>
-        </div>
+    <li class="mobile-home-link" role="none"><a href="index.html" role="menuitem">首頁</a></li>
+    <li role="none" class="has-dropdown">
+        <a href="routes.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">推薦行程 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="推薦行程">
+            <li role="none"><a href="routes.html#tour1" role="menuitem">伊犁河谷小包團 10 日</a></li>
+            <li role="none"><a href="routes.html#tour5" role="menuitem">北疆全景小包團 10 日</a></li>
+            <li role="none"><a href="routes.html#tour6" role="menuitem">獨庫公路全線 4 日穿越</a></li>
+            <li role="none"><a href="routes.html" role="menuitem">查看全部 9 條路線 →</a></li>
+        </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="itinerary.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent active" aria-current="page">行程範例 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="行程範例">
+            <li role="none"><a href="itinerary.html" role="menuitem">行程範例總覽</a></li>
+            <li role="none"><a href="itinerary-loop17.html" role="menuitem">北疆大環線 17 日</a></li>
+            <li role="none"><a href="itinerary-classic11.html" role="menuitem">北疆經典 11 日</a></li>
+            <li role="none"><a href="itinerary-selfdrive16.html" role="menuitem">北疆＋伊犁＋獨庫 16 日</a></li>
+        </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="car-rental.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">小包團 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="小包團">
+            <li role="none"><a href="car-rental.html#services" role="menuitem">服務總覽</a></li>
+            <li role="none"><a href="car-rental.html#cars" role="menuitem">推薦車型</a></li>
+            <li role="none"><a href="car-rental.html#pricing" role="menuitem">費用說明</a></li>
+        </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="blog/index.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">旅遊攻略 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="旅遊攻略">
+            <li role="none"><a href="blog/xinjiang-four-seasons.html" role="menuitem">新疆四季旅遊攻略</a></li>
+            <li role="none"><a href="blog/beijiang-vs-nanjiang.html" role="menuitem">北疆 vs 南疆</a></li>
+            <li role="none"><a href="blog/dubai-gonglu-guide.html" role="menuitem">獨庫公路攻略</a></li>
+            <li role="none"><a href="blog/urumqi-citywalk.html" role="menuitem">烏魯木齊 City Walk</a></li>
+            <li role="none"><a href="blog/yining-citywalk.html" role="menuitem">伊寧 City Walk</a></li>
+            <li role="none"><a href="blog/burqin-citywalk.html" role="menuitem">布爾津 City Walk</a></li>
+            <li role="none"><a href="blog/hemucun-citywalk.html" role="menuitem">禾木村 City Walk</a></li>
+            <li role="none"><a href="blog/kuitun-citywalk.html" role="menuitem">奎屯市 City Walk</a></li>
+            <li role="none"><a href="blog/turpan-citywalk.html" role="menuitem">吐魯番市 City Walk</a></li>
+        </ul>
+    </li>
+    <li role="none" class="has-dropdown">
+        <a href="xj-h5/index.html#guide" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">福利 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="福利">
+            <li role="none"><a href="xj-h5/index.html#guide" role="menuitem">導覽</a></li>
+            <li role="none"><a href="xj-h5/index.html#album" role="menuitem">路書</a></li>
+        </ul>
+    </li><li role="none" class="has-dropdown">
+        <a href="about.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">關於我們 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="關於我們">
+            <li role="none"><a href="about.html#steps" role="menuitem">3 步定制你的新疆</a></li>
+            <li role="none"><a href="about.html#trust" role="menuitem">為什麼選擇我們</a></li>
+            <li role="none"><a href="about.html#scenery" role="menuitem">新疆實景</a></li>
+            <li role="none"><a href="about.html#faq" role="menuitem">常見問題</a></li>
+        </ul>
+    </li>
+        <li role="none" class="has-dropdown">
+        <a href="contact.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">聯絡我們 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <ul class="dropdown" role="menu" aria-label="聯絡我們">
+            <li role="none"><a href="contact.html" role="menuitem">電子郵件</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">LINE</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">諮詢表單</a></li>
+        </ul>
+    </li>
+
+    
+</ul>
+        <a href="contact.html" class="nav-cta">免費諮詢</a>
+    </div>
     </nav>
 
     <!-- ===== Page Hero ===== -->
-    <section class="page-hero" id="main-content" style="background:linear-gradient(135deg,rgba(26,74,122,0.78),rgba(200,16,46,0.56)),url('images/photos/duku-road-winter.webp') center/cover no-repeat;">
-        <h1>🗺 北疆經典 11 日</h1>
+    <section class="page-hero page-hero--v2" id="main-content" style="background:url('images/hero-xinjiang.webp') center 45%/cover no-repeat;">
+        <h1>北疆經典 11 日</h1>
         <p>2026/06/21 – 07/01 ・ 上海轉機 ・ 專屬司機＋私人導遊的小包團</p>
-        <p style="margin-top:14px;"><a href="itinerary.html" style="color:#fff;text-decoration:underline;font-weight:700;">← 返回行程範例</a></p>
     </section>
 
     <!-- ===== 行程內容 ===== -->
@@ -410,7 +503,7 @@
             <div class="itinerary-intro">
                 <h2 style="font-size:34px;">北疆經典 11 日</h2>
                 <p style="color:var(--primary);font-size:15px;font-weight:700;margin:0 0 14px;">2026/06/21 – 07/01 ・ 上海轉機 ・ 專屬小包團</p>
-                <p style="color:var(--text-light);font-size:16px;max-width:600px;margin:0 auto;">
+                <p style="color:var(--text-light);font-size:16px;max-width:600px;margin:0 auto 0 0;text-align:left;">
                     一趟從台北出發、途經上海轉機，深入北疆經典路線的 11 天完整旅程。<br>
                     喀納斯的晨霧、禾木村的日落、獨庫公路的壯闊——全部收錄。
                 </p>
@@ -475,7 +568,8 @@
                     <div class="day-summary"><strong>台北 → 上海浦東</strong> ・ 過夜轉機</div>
                     <span class="drive-time">🚗 0 hr</span>
                 </div>
-                <div class="day-body">
+                <div class="day-content">
+<div class="day-body">
                     <div class="activity"><span class="emoji">✈️</span> <strong>航班 MU506：</strong>台北桃園 (18:40) → 上海浦東 (20:40)</div>
                     <div class="activity"><span class="emoji">🔄</span> 過夜轉機，需重新託運行李</div>
                     <div class="accommodation"><strong>🏨 住宿：</strong>上海浦東機場附近</div>
@@ -484,6 +578,8 @@
                         <span class="tag tag-hotel">🏨 機場酒店</span>
                     </div>
                 </div>
+<div class="day-photo"><img src="images/hero-xinjiang.webp" alt="新疆旅程起點・台北轉機上海" loading="lazy"></div>
+</div>
             </div>
 
             <!-- ===== Day 2: 6/22 ===== -->
@@ -493,7 +589,8 @@
                     <div class="day-summary"><strong>上海浦東 → 阿勒泰 → 布爾津</strong></div>
                     <span class="drive-time">🚗 2.0 hr</span>
                 </div>
-                <div class="day-body">
+                <div class="day-content">
+<div class="day-body">
                     <div class="activity"><span class="emoji">✈️</span> <strong>航班 MU6673：</strong>上海浦東 (09:20) → 阿勒泰 (15:05)</div>
                     <div class="activity"><span class="emoji">🚗</span> 抵達阿勒泰後取車／包車前往布爾津</div>
                     <div class="activity"><span class="emoji">🌙</span> 晚上漫遊 <strong>河堤夜市</strong>（布爾津知名夜市）</div>
@@ -504,6 +601,8 @@
                         <span class="tag tag-sight">🌙 河堤夜市</span>
                     </div>
                 </div>
+<div class="day-photo"><img src="images/blog/burqin.webp" alt="布爾津・阿勒泰途中風光" loading="lazy"></div>
+</div>
             </div>
 
             <!-- ===== Day 3: 6/23 ===== -->
@@ -513,7 +612,8 @@
                     <div class="day-summary"><strong>布爾津 → 禾木村</strong></div>
                     <span class="drive-time">🚗 4.0 hr</span>
                 </div>
-                <div class="day-body">
+                <div class="day-content">
+<div class="day-body">
                     <div class="activity"><span class="emoji">🚗</span> 布爾津驅車前往禾木村（車程約 4hr）</div>
                     <div class="activity"><span class="emoji">🏘️</span> 禾木村景點：<strong>禾木橋、白樺林</strong></div>
                     <div class="activity"><span class="emoji">🌅</span> 登上 <strong>哈登平台</strong> 觀賞禾木村經典日落</div>
@@ -525,6 +625,8 @@
                         <span class="tag tag-hotel">🏡 小木屋</span>
                     </div>
                 </div>
+<div class="day-photo"><img src="images/photos/hemu-starry-night.webp" alt="禾木村・晨霧木屋與白樺林" loading="lazy"></div>
+</div>
             </div>
 
             <!-- ===== Day 4: 6/24 ===== -->
@@ -534,7 +636,8 @@
                     <div class="day-summary"><strong>禾木晨霧 → 喀納斯景區</strong></div>
                     <span class="drive-time">🚗 1.5 hr</span>
                 </div>
-                <div class="day-body">
+                <div class="day-content">
+<div class="day-body">
                     <div class="activity"><span class="emoji">🌫️</span> 早起觀賞 <strong>禾木晨霧</strong>（禾木標誌性景觀）</div>
                     <div class="activity"><span class="emoji">🚗</span> 驅車前往喀納斯景區（車程約 1.5hr）</div>
                     <div class="activity"><span class="emoji">🏔️</span> 喀納斯景區徒步：<strong>觀魚台、神仙灣、月亮灣、臥龍灣</strong></div>
@@ -546,6 +649,8 @@
                         <span class="tag tag-hotel">🏨 景區住宿</span>
                     </div>
                 </div>
+<div class="day-photo"><img src="images/tours/tour4-kanas.webp" alt="喀納斯湖・神仙灣與鴨澤湖" loading="lazy"></div>
+</div>
             </div>
 
             <!-- ===== Day 5: 6/25 ===== -->
@@ -555,7 +660,8 @@
                     <div class="day-summary"><strong>喀納斯湖 → 布爾津 → 阿勒泰市區</strong></div>
                     <span class="drive-time">🚗 4.0 hr</span>
                 </div>
-                <div class="day-body">
+                <div class="day-content">
+<div class="day-body">
                     <div class="activity"><span class="emoji">🏞️</span> <strong>喀納斯湖</strong> 自由活動（可遊船或湖邊漫步）</div>
                     <div class="activity"><span class="emoji">🍽️</span> 布爾津午餐（品嚐新疆特色料理）</div>
                     <div class="activity"><span class="emoji">🏙️</span> 前往阿勒泰市區，參觀 <strong>駝峰公園</strong></div>
@@ -566,6 +672,8 @@
                         <span class="tag tag-hotel">🏨 市區酒店</span>
                     </div>
                 </div>
+<div class="day-photo"><img src="images/tours/tour5-north-xj.webp" alt="北疆風光・阿勒泰市區" loading="lazy"></div>
+</div>
             </div>
 
             <!-- ===== Day 6: 6/26 ===== -->
@@ -575,7 +683,8 @@
                     <div class="day-summary"><strong>阿勒泰 → 伊寧</strong></div>
                     <span class="drive-time">✈ 1hr 10min</span>
                 </div>
-                <div class="day-body">
+                <div class="day-content">
+<div class="day-body">
                     <div class="activity"><span class="emoji">✈️</span> <strong>航班 G54970：</strong>阿勒泰 (12:15) → 伊寧 (13:35)</div>
                     <div class="activity"><span class="emoji">🏘️</span> 下午漫遊 <strong>六星街</strong>（伊寧特色街區）</div>
                     <div class="activity"><span class="emoji">🌅</span> <strong>伊犁河大橋日落</strong> — 伊寧經典日落景點</div>
@@ -586,6 +695,8 @@
                         <span class="tag tag-sight">🌅 伊犁河日落</span>
                     </div>
                 </div>
+<div class="day-photo"><img src="images/blog/yining.webp" alt="伊寧・抵疆伊犁河谷" loading="lazy"></div>
+</div>
             </div>
 
             <!-- ===== Day 7: 6/27 ===== -->
@@ -595,7 +706,8 @@
                     <div class="day-summary"><strong>伊寧 → 唐布拉草原 → 那拉提鎮</strong></div>
                     <span class="drive-time">🚗 4.5 hr</span>
                 </div>
-                <div class="day-body">
+                <div class="day-content">
+<div class="day-body">
                     <div class="activity"><span class="emoji">🚗</span> 伊寧出發前往唐布拉草原</div>
                     <div class="activity"><span class="emoji">🛤️</span> 唐布拉 <strong>百里畫廊</strong> — 新疆最美公路景觀之一</div>
                     <div class="activity"><span class="emoji">🏞️</span> <strong>仙女湖</strong>（可騎馬或徒步前往）</div>
@@ -607,6 +719,8 @@
                         <span class="tag tag-sight">🏞️ 仙女湖</span>
                     </div>
                 </div>
+<div class="day-photo"><img src="images/tours/tour2-grassland.webp" alt="唐布拉草原・那拉提鎮" loading="lazy"></div>
+</div>
             </div>
 
             <!-- ===== Day 8: 6/28 ===== -->
@@ -616,7 +730,8 @@
                     <div class="day-summary"><strong>獨庫公路北段 → 奎屯</strong> ⭐ 精華路段</div>
                     <span class="drive-time">🚗 5.0 hr</span>
                 </div>
-                <div class="day-body">
+                <div class="day-content">
+<div class="day-body">
                     <div class="activity"><span class="emoji">🚗</span> 穿越 <strong>獨庫公路北段</strong> — 新疆最美景觀公路</div>
                     <div class="activity"><span class="emoji">🏔️</span> 途經：<strong>喬爾瑪、哈希勒根達坂、天瀑</strong></div>
                     <div class="activity"><span class="emoji">🌲</span> 峽谷、雪山、森林交織的壯麗景觀，一路驚嘆</div>
@@ -628,6 +743,8 @@
                         <span class="tag tag-sight">❄️ 哈希勒根達坂</span>
                     </div>
                 </div>
+<div class="day-photo"><img src="images/photos/duku-road-summer.webp" alt="獨庫公路北段精華路段" loading="lazy"></div>
+</div>
             </div>
 
             <!-- ===== Day 9: 6/29 ===== -->
@@ -637,7 +754,8 @@
                     <div class="day-summary"><strong>奎屯 → 烏魯木齊（包車）</strong></div>
                     <span class="drive-time">🚗 3.0 hr</span>
                 </div>
-                <div class="day-body">
+                <div class="day-content">
+<div class="day-body">
                     <div class="activity"><span class="emoji">🚗</span> 奎屯 → 烏魯木齊，<strong>包車前往</strong>（車程約 2.5 小時）</div>
                     <div class="activity"><span class="emoji">🏙️</span> 下午遊覽：<strong>國際大巴扎</strong>（中亞最大集市）</div>
                     <div class="activity"><span class="emoji">🌳</span> <strong>紅山公園</strong> — 烏魯木齊城市地標</div>
@@ -648,6 +766,8 @@
                         <span class="tag tag-sight">🌳 紅山公園</span>
                     </div>
                 </div>
+<div class="day-photo"><img src="images/photos/anjihai-canyon.webp" alt="獨山子大峽谷（近奎屯）" loading="lazy"></div>
+</div>
             </div>
 
             <!-- ===== Day 10: 6/30 ===== -->
@@ -657,7 +777,8 @@
                     <div class="day-summary"><strong>烏魯木齊 → 上海浦東 → 上海市區</strong></div>
                     <span class="drive-time">🚗 0.5 hr</span>
                 </div>
-                <div class="day-body">
+                <div class="day-content">
+<div class="day-body">
                     <div class="activity"><span class="emoji">🚗</span> 上午：市區 → 烏魯木齊機場（車程 0.5hr）</div>
                     <div class="activity"><span class="emoji">✈️</span> <strong>航班 MU5688：</strong>烏魯木齊 (11:05) → 上海浦東 (15:50)</div>
                     <div class="activity"><span class="emoji">🌆</span> 晚上可進上海市區：<strong>外灘、南京路步行街</strong></div>
@@ -667,6 +788,8 @@
                         <span class="tag tag-sight">🌆 外灘夜景</span>
                     </div>
                 </div>
+<div class="day-photo"><img src="images/blog/urumqi.webp" alt="烏魯木齊・搭機返程" loading="lazy"></div>
+</div>
             </div>
 
             <!-- ===== Day 11: 7/1 ===== -->
@@ -676,13 +799,16 @@
                     <div class="day-summary"><strong>上海浦東 → 台北松山</strong> ・ 返家</div>
                     <span class="drive-time">🚗 0 hr</span>
                 </div>
-                <div class="day-body">
+                <div class="day-content">
+<div class="day-body">
                     <div class="activity"><span class="emoji">✈️</span> <strong>航班 FM801：</strong>上海浦東 (09:10) → 台北松山 (11:00)</div>
                     <div class="activity"><span class="emoji">🏠</span> 返家！結束 11 天精彩旅程</div>
                     <div class="tags-row">
                         <span class="tag tag-flight">✈ 回程航班</span>
                     </div>
                 </div>
+<div class="day-photo"><img src="images/hero-xinjiang.webp" alt="滿載新疆回憶・返回家鄉" loading="lazy"></div>
+</div>
             </div>
 
             <!-- ===== 用車時長統計 ===== -->
@@ -696,19 +822,20 @@
                         <tr><th>日期</th><th>行程區段</th><th>用車時長</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>6/22</td><td>阿勒泰 → 布爾津</td><td>2.0 小時</td></tr>
-                        <tr><td>6/23</td><td>布爾津 → 禾木村</td><td>4.0 小時</td></tr>
-                        <tr><td>6/24</td><td>禾木 → 喀納斯景區</td><td>1.5 小時</td></tr>
-                        <tr><td>6/25</td><td>喀納斯 → 布爾津 → 阿勒泰</td><td>4.0 小時</td></tr>
-                        <tr><td>6/26</td><td>阿勒泰市區</td><td>0.5 小時</td></tr>
-                        <tr><td>6/27</td><td>伊寧 → 唐布拉 → 那拉提</td><td>4.5 小時</td></tr>
-                        <tr><td>6/28</td><td>獨庫公路北段（那拉提→奎屯）</td><td>5.0 小時</td></tr>
-                        <tr><td>6/29</td><td>奎屯 → 烏魯木齊（包車）</td><td>3.0 小時</td></tr>
-                        <tr><td>6/30</td><td>烏魯木齊市區 → 機場</td><td>0.5 小時</td></tr>
-                        <tr class="total-row"><td colspan="2"><strong>合計用車時長</strong></td><td><strong>22.0 小時</strong></td></tr>
+                        <tr><td data-label="日期">6/22</td><td data-label="行程區段">阿勒泰 → 布爾津</td><td data-label="用車時長">2.0 小時</td></tr>
+                        <tr><td data-label="日期">6/23</td><td data-label="行程區段">布爾津 → 禾木村</td><td data-label="用車時長">4.0 小時</td></tr>
+                        <tr><td data-label="日期">6/24</td><td data-label="行程區段">禾木 → 喀納斯景區</td><td data-label="用車時長">1.5 小時</td></tr>
+                        <tr><td data-label="日期">6/25</td><td data-label="行程區段">喀納斯 → 布爾津 → 阿勒泰</td><td data-label="用車時長">4.0 小時</td></tr>
+                        <tr><td data-label="日期">6/26</td><td data-label="行程區段">阿勒泰市區</td><td data-label="用車時長">0.5 小時</td></tr>
+                        <tr><td data-label="日期">6/27</td><td data-label="行程區段">伊寧 → 唐布拉 → 那拉提</td><td data-label="用車時長">4.5 小時</td></tr>
+                        <tr><td data-label="日期">6/28</td><td data-label="行程區段">獨庫公路北段（那拉提→奎屯）</td><td data-label="用車時長">5.0 小時</td></tr>
+                        <tr><td data-label="日期">6/29</td><td data-label="行程區段">奎屯 → 烏魯木齊（包車）</td><td data-label="用車時長">3.0 小時</td></tr>
+                        <tr><td data-label="日期">6/30</td><td data-label="行程區段">烏魯木齊市區 → 機場</td><td data-label="用車時長">0.5 小時</td></tr>
+                        <tr class="total-row"><td colspan="2" data-label="日期"><strong>合計用車時長</strong></td><td data-label="行程區段"><strong>22.0 小時</strong></td></tr>
                     </tbody>
                 </table>
             </div>
+<p class="table-scroll-hint">← 左右滑動查看完整表格 →</p>
 
             <!-- 備註 -->
             <div class="notes-box">
@@ -735,60 +862,22 @@
     </section>
 
     <!-- ===== 頁尾 ===== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>新疆采風</h3>
-                    <p>專業新疆包車旅遊服務，帶您深入探索天山南北，感受絲路文化與壯闊自然。</p>
-                </div>
-                <div class="footer-col">
-                    <h4>快速連結</h4>
-                    <ul>
-                        <li><a href="index.html">首頁</a></li>
-                        <li><a href="routes.html">推薦行程</a></li>
-                        <li><a href="car-rental.html">包車服務</a></li>
-                        <li><a href="itinerary.html">行程範例</a></li>
-                        <li><a href="itinerary-loop17.html">北疆大環線 17 日</a></li>
-                        <li><a href="itinerary-classic11.html">北疆經典 11 日</a></li>
-                        <li><a href="itinerary-selfdrive16.html">北疆＋伊犁＋獨庫 16 日</a></li>
-                        <li><a href="contact.html">聯絡我們</a></li>
-                        <li><a href="xj-h5/index.html">導覽 / 路書 APP</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>旅遊攻略</h4>
-                    <ul>
-                        <li><a href="blog/xinjiang-four-seasons.html">新疆四季旅遊攻略</a></li>
-                        <li><a href="blog/index.html">旅遊攻略總覽</a></li>
-                        <li><a href="blog/beijiang-vs-nanjiang.html">北疆vs南疆</a></li>
-                        <li><a href="blog/dubai-gonglu-guide.html">獨庫公路攻略</a></li>
-                    <li><a href="blog/urumqi-citywalk.html">烏魯木齊 City Walk</a></li>
-                    <li><a href="blog/yining-citywalk.html">伊寧 City Walk</a></li>
-                    <li><a href="blog/burqin-citywalk.html">布爾津 City Walk</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>精選路線</h4>
-                    <ul>
-                        <li><a href="routes.html#tour1">伊犁河谷10日</a></li>
-                        <li><a href="routes.html#tour2">草原深度8日</a></li>
-                        <li><a href="routes.html#tour3">南疆絲路9日</a></li>
-                        <li><a href="routes.html#tour4">北疆喀納斯8日</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>聯絡資訊</h4>
-                    <p>📱 LINE：XJCaifeng</p>
-                    <p>📧 Email：info@xjcaifeng.com</p>
-                    <p>🕐 服務時間：全年無休，09:00-22:00</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <footer class="site-minifoot">
+    <div class="site-minifoot__inner">
+        <a href="index.html" class="site-minifoot__brand">新疆采風 · 專屬包車定制</a>
+        <nav class="site-minifoot__links" aria-label="頁尾導覽">
+            <a href="routes.html">推薦行程</a>
+            <a href="car-rental.html">小包團</a>
+            <a href="itinerary.html">行程範例</a>
+            <a href="blog/index.html">旅遊攻略</a>
+            <a href="about.html">關於我們</a>
+            <a href="contact.html">聯絡我們</a>
+            <a href="xj-h5/index.html#guide">導覽 APP</a>
+            <a href="xj-h5/index.html#album">路書 APP</a>
+        </nav>
+        <p class="site-minifoot__contact" style="margin:0;">&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved.</p>
+    </div>
+</footer>
 
     <!-- 回到頂部 -->
     <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到頂部">↑</button>

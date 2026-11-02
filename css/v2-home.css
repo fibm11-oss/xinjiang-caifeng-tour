@@ -863,7 +863,4 @@ body {
     .page-home .footer {
         display: none !important;
     }
-    .page-home .v2-hero__minifoot {
-        display: block;
-    }
 }

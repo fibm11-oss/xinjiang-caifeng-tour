@@ -21,7 +21,7 @@ html, body {
   border-bottom: 1px solid var(--line);
 }
 .app-bar h1 { font-size: 18px; margin: 0; letter-spacing: 1px; }
-.app-sub { font-size: 11px; color: var(--accent2); }
+.app-sub { font-size: 12px; color: var(--accent2); }
 .app-logo {
   display: flex;
   align-items: baseline;
@@ -129,6 +129,6 @@ html, body {
 .hero { text-align: center; margin-bottom: 16px; }
 .hero h2 { margin: 0; font-size: 22px; }
 .hero p { color: var(--muted); margin: 6px 0 0; }
-.badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 8px; }
+.badge { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 8px; }
 .badge.P0 { background: rgba(255,122,69,.2); color: var(--accent); }
 .badge.P1 { background: rgba(54,207,201,.2); color: var(--accent2); }

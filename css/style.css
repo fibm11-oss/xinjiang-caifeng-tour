@@ -2119,9 +2119,13 @@ img {
     background: var(--bg-light);
 }
 
-.sticky-btn.line-btn { border-top-color: #06c755; color: #06c755; }
-.sticky-btn.quote-btn { border-top-color: var(--primary); color: var(--primary); }
-.sticky-btn.call-btn { border-top-color: var(--secondary); color: var(--secondary); }
+.sticky-btn { color: var(--text-muted, #888); border-top-color: transparent; }
+.sticky-btn .sticky-icon { filter: grayscale(100%); opacity: .55; transition: filter .2s, opacity .2s; }
+.sticky-btn.active { color: var(--text); border-top-width: 3px; }
+.sticky-btn.active .sticky-icon { filter: none; opacity: 1; }
+.sticky-btn.active.line-btn { color: #06c755; border-top-color: #06c755; }
+.sticky-btn.active.quote-btn { color: var(--primary); border-top-color: var(--primary); }
+.sticky-btn.active.call-btn { color: var(--secondary); border-top-color: var(--secondary); }
 
 .sticky-icon { font-size: 20px; }
 .sticky-text { font-size: 12px; font-weight: 700; }
@@ -2457,6 +2461,9 @@ img {
     letter-spacing: .4px;
     white-space: nowrap;
     text-decoration: none;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
 }
 .site-minifoot__brand:hover {
     color: var(--primary-bright, #f0425c);
@@ -2503,4 +2510,68 @@ img {
     }
     .site-minifoot__contact { white-space: normal; }
     .site-minifoot__bottom p { padding: 10px 20px; }
+}
+
+/* ========== 手機版全面優化：type scale + 觸控 + 一致性 ========== */
+@media (max-width: 768px) {
+    /* 表單輸入最小觸控高度 */
+    #contactForm input,
+    #contactForm select,
+    #contactForm textarea {
+        min-height: 44px;
+    }
+
+    /* 小標籤 / 輔助文字統一 12px */
+    .site-minifoot__brand,
+    .site-minifoot__contact,
+    .v2-route__tag,
+    .v2-route__meta,
+    .month-pill,
+    .weekday,
+    .drive-time,
+    .table-scroll-hint,
+    .table-scroll th,
+    .summary-wrapper th,
+    .v2-route__meta {
+        font-size: 12px !important;
+    }
+
+    /* 次要文字統一 14px */
+    .flight-leg-title,
+    .itin-card__desc,
+    .section-subtitle,
+    .season-subtitle,
+    .v2-route__link {
+        font-size: 14px !important;
+    }
+
+    /* 標題統一 */
+    h4 { font-size: 18px !important; }
+    h3 { font-size: 20px !important; }
+    .v2-title { font-size: 24px !important; }
+    .itinerary-intro h2 { font-size: 28px !important; }
+    .v2-step__no { font-size: 28px !important; }
+    .v2-quote__mark { font-size: 36px !important; }
+    .title-pc { font-size: 32px !important; }
+
+    /* 內文段落：提升可讀性 */
+    p { font-size: 16px !important; }
+
+    /* 底部 sticky bar 觸控高度 */
+    .sticky-btn {
+        min-height: 48px;
+        padding: 10px 4px 12px;
+        font-size: 12px;
+    }
+    .sticky-icon { font-size: 22px; }
+    .sticky-text { font-size: 12px; }
+
+    /* site-minifoot 連結 */
+    .site-minifoot__links a {
+        min-height: 44px;
+        line-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        font-size: 14px !important;
+    }
 }

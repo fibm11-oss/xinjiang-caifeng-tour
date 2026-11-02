@@ -109,6 +109,14 @@
             ].join('\n');
 
             document.body.appendChild(bar);
+
+            // 根據當前頁面標示 active
+            var path = (location.pathname || '').toLowerCase();
+            var activeBtn = null;
+            if (path.indexOf('contact') !== -1) activeBtn = bar.querySelector('.quote-btn');
+            else if (path.indexOf('xj-h5') !== -1 || path.indexOf('guide') !== -1) activeBtn = bar.querySelector('.line-btn');
+            else activeBtn = bar.querySelector('.call-btn');
+            if (activeBtn) activeBtn.classList.add('active');
         }
     };
 

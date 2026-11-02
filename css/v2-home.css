@@ -846,18 +846,22 @@ body {
 
 /* ========== 手機版首頁：參考桌機單屏模式（保留標題/描述/按鈕） ========== */
 @media (max-width: 768px) {
+    html:has(body.page-home) {
+        overflow: hidden;
+        height: 100vh;
+    }
     .page-home {
         overflow: hidden;
         height: 100vh;
     }
     .page-home .v2-hero {
-        margin-top: 0;
-        min-height: calc(100vh - 60px);
-        height: calc(100vh - 60px);
+        margin-top: 64px;
+        min-height: calc(100vh - 124px);
+        height: calc(100vh - 124px);
         align-items: flex-start;
     }
     .page-home .v2-hero__inner {
-        padding: 48px 20px 0;
+        padding: 16px 20px 0;
     }
     .page-home .v2-hero__eyebrow {
         display: none;

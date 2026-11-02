@@ -2589,3 +2589,13 @@ img {
         min-height: 44px;
     }
 }
+
+/* ========== 無障礙：焦點可見 ========== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--primary, #c8102e);
+    outline-offset: 2px;
+}

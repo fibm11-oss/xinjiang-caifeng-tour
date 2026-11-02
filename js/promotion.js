@@ -293,9 +293,23 @@
     };
 
     /* ==========================================
-     * 初始化
+     * 8. 圖片載入優化（lazy + async decode）
      * ========================================== */
+    const ImageOptimizer = {
+        init: function() {
+            var imgs = document.querySelectorAll('img');
+            for (var i = 0; i < imgs.length; i++) {
+                var img = imgs[i];
+                if (img.getAttribute('fetchpriority') === 'high') continue;
+                if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+                if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+            }
+        }
+    };
     function init() {
+        // 圖片載入優化
+        ImageOptimizer.init();
+
         // 粘性聯繫欄（所有頁面）
         StickyBar.render();
 

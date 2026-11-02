@@ -1467,6 +1467,10 @@ tbody tr:last-child {
     body.page-contact div[style*="grid-template-columns:repeat(3,1fr)"] > div {
         border-radius: 0;
     }
+    /* 聯絡頁 Hero 在手機上過高（inline 280px），降到 200px 更合手機比例 */
+    body.page-contact .page-hero {
+        height: 200px !important;
+    }
     /* 關於我們頁：.v2-shell 出血，文字區塊保留邊距，卡片/照片貼邊（首頁共用 v2 系統，故限定 page-about） */
     body.page-about .v2-shell {
         padding-left: 0;
@@ -1862,7 +1866,7 @@ tbody tr:last-child {
     }
     .table-scroll table,
     .summary-wrapper table {
-        min-width: 0;
+        min-width: 0 !important;
         width: 100%;
         display: block;
     }

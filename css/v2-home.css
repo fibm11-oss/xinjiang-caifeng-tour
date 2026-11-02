@@ -243,7 +243,9 @@ body {
 
 /* 首頁 hero 兩顆按鈕：預設灰底（與精選路線同款），滑鼠移上才轉紅（與旅遊攻略同款），桌面/手機一致 */
 .v2-hero__actions .v2-btn--ghost {
-    border-color: rgba(255, 255, 255, .6);
+    background: rgba(20, 18, 16, .85);
+    border-color: rgba(255, 255, 255, .92);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, .42);
 }
 .v2-hero__actions .v2-btn--ghost:hover {
     background: var(--v2-red);
@@ -750,7 +752,7 @@ body {
 
     .v2-step { padding: 26px; }
 
-    .v2-step__no { font-size: 38px; }
+    .v2-step__no { font-size: 30px; }
 
     .v2-route__media { height: 190px; }
 
@@ -766,7 +768,7 @@ body {
 
     .v2-quote p { font-size: 20px; line-height: 1.6; }
 
-    .v2-quote__mark { font-size: 54px; }
+    .v2-quote__mark { font-size: 40px; }
 
     .v2-cta { padding: 56px 0; }
 
@@ -781,10 +783,7 @@ body {
     /* 手機版：品牌介紹與版權之間不要空太多 */
     .footer-bottom { margin-top: 18px; padding-top: 16px; }
 
-    /* 手機版首頁：不捲動，只保留照片內的設定（隱藏照片以外的所有內容） */
-    .home-rich { display: none !important; }
-    .footer { display: none !important; }
-    .page-home { overflow: hidden; }
+    /* 手機版首頁：恢復可捲動的完整首頁（與平板 769–1024px 一致；原 hidden 會把手機內容全藏，違反設計註解） */
 }
 
 /* 桌機仍保留手機選單按鈕的隱藏邏輯（沿用 style.css） */

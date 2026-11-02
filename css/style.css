@@ -2575,3 +2575,17 @@ img {
         font-size: 14px !important;
     }
 }
+
+/* ========== 手機版觸控目標補強 ========== */
+@media (max-width: 768px) {
+    .nav-menu a,
+    .logo-link,
+    .skip-link {
+        min-height: 44px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        min-height: 44px;
+    }
+}

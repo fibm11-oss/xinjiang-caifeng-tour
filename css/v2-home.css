@@ -855,9 +855,9 @@ body {
         height: 100vh;
     }
     .page-home .v2-hero {
-        margin-top: 64px;
-        min-height: calc(100vh - 124px);
-        height: calc(100vh - 124px);
+        margin-top: calc(64px + env(safe-area-inset-top, 0px));
+        min-height: calc(100vh - 124px - env(safe-area-inset-top, 0px));
+        height: calc(100vh - 124px - env(safe-area-inset-top, 0px));
         align-items: flex-start;
     }
     .page-home .v2-hero__inner {

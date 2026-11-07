@@ -390,6 +390,68 @@
             .day-header .day-summary { font-size: 14px; }
         }
     </style>
+<!-- VG-START:style -->
+<style>
+
+/* ==== 景點語音導覽（僅注入 itinerary-selfdrive16.html，全部 vg- 前綴）==== */
+.vg-box{ background:#FBF4E6; border-top:1px solid #E8DDC8; padding:14px 28px 16px; }
+.vg-head{ display:flex; align-items:baseline; justify-content:space-between;
+  gap:10px; margin-bottom:6px; }
+.vg-head b{ font-size:14px; color:#26241F; letter-spacing:.06em; }
+.vg-head small{ font-size:12px; color:#8A8175; white-space:nowrap; }
+.vg-row{ position:relative; display:flex; align-items:center; gap:10px;
+  padding:6px 0 8px; }
+.vg-row + .vg-row{ border-top:1px solid rgba(38,36,31,.07); }
+.vg-row.is-on .vg-name{ color:#C8623F; font-weight:700; }
+.vg-row.is-on .vg-len{ color:#C8623F; }
+.vg-btn{ width:36px; height:36px; flex-shrink:0; border:none; border-radius:50%;
+  background:#C8623F; color:#fff; font-size:12px; line-height:1; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  -webkit-tap-highlight-color:transparent; font-family:Arial,sans-serif; }
+.vg-btn.is-on{ background:#26241F; }
+.vg-btn:active{ transform:scale(.94); }
+.vg-name{ flex:1; min-width:0; font-size:15px; color:#26241F;
+  letter-spacing:.03em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.vg-len{ font-size:12px; color:#8A8175; font-variant-numeric:tabular-nums;
+  flex-shrink:0; }
+.vg-bar{ position:absolute; left:0; bottom:0; height:2px; width:0;
+  background:#C8623F; border-radius:2px; }
+
+/* 吸底播放器：z-index 高過網站的固定諮詢條(9999)，播放時把其他固定件讓開 */
+.vg-player{ position:fixed; left:0; right:0; bottom:0; z-index:10001;
+  max-width:560px; margin:0 auto; background:#26241F; color:#F7F1E3;
+  padding:12px 14px calc(12px + env(safe-area-inset-bottom));
+  display:flex; align-items:center; gap:12px;
+  transform:translateY(115%); transition:transform .26s ease;
+  box-shadow:0 -4px 20px rgba(0,0,0,.25); }
+.vg-player.show{ transform:translateY(0); }
+.vg-player .vg-track{ position:absolute; top:0; left:0; height:3px; width:0;
+  background:#C8623F; }
+.vg-player .vg-pbtn{ width:38px; height:38px; flex-shrink:0;
+  border:1px solid rgba(247,241,227,.5); border-radius:50%; background:transparent;
+  color:#F7F1E3; font-size:13px; cursor:pointer; font-family:Arial,sans-serif;
+  display:flex; align-items:center; justify-content:center; }
+.vg-player .vg-ptitle{ flex:1; min-width:0; font-size:14px; line-height:1.4;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; letter-spacing:.03em; }
+.vg-player .vg-ptitle small{ display:block; font-size:11px; opacity:.68;
+  letter-spacing:.06em; }
+.vg-player .vg-pclose{ flex-shrink:0; border:none; background:transparent;
+  color:rgba(247,241,227,.7); font-size:20px; cursor:pointer; line-height:1;
+  padding:4px 2px; }
+.vg-player .vg-audio{ display:none; width:100%; margin-top:8px; }
+.vg-player.use-audio{ flex-wrap:wrap; }
+.vg-player.use-audio .vg-audio{ display:block; }
+body.vg-playing{ padding-bottom:76px; }
+body.vg-playing .sticky-contact-bar{ transform:translateY(110%); }
+@media (max-width:768px){
+  .vg-box{ padding:13px 18px 15px; }
+  .vg-name{ font-size:14px; }
+  body.vg-playing{ padding-bottom:140px !important; }
+  body.vg-playing #backToTop{ bottom:150px !important; }
+}
+
+</style>
+<!-- VG-END:style -->
 </head>
 <body data-analytics data-baidu-id="YOUR_BAIDU_ID" data-ga-id="YOUR_GA_ID">
     <!-- 載入動畫 -->
@@ -610,6 +672,12 @@
                 <div class="day-photo">
                     <img src="images/hero-xinjiang.webp" alt="新疆旅程起點・台北轉機前往烏魯木齊" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:1 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d01"><button class="vg-btn" type="button" data-vg-key="d01" aria-label="播放 啟程・十六日環線導讀 語音導覽">▶</button><span class="vg-name">啟程・十六日環線導讀</span><span class="vg-len" id="vg-time-d01">約 1:08</span><i class="vg-bar" id="vg-bar-d01"></i></div>
+</div>
+<!-- VG-END:box:1 -->
             </div>
 
             <!-- ===== Day 2: 6/11 ===== -->
@@ -633,6 +701,12 @@
                 <div class="day-photo">
                     <img src="images/blog/urumqi.webp" alt="烏魯木齊城市風光・抵疆首日" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:2 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d02"><button class="vg-btn" type="button" data-vg-key="d02" aria-label="播放 抵疆・天山北麓門戶 語音導覽">▶</button><span class="vg-name">抵疆・天山北麓門戶</span><span class="vg-len" id="vg-time-d02">約 1:00</span><i class="vg-bar" id="vg-bar-d02"></i></div>
+</div>
+<!-- VG-END:box:2 -->
             </div>
 
             <!-- ===== Day 3: 6/12 ===== -->
@@ -656,6 +730,13 @@
                 <div class="day-photo">
                     <img src="images/blog/burqin.webp" alt="布爾津・S21 沙漠公路與烏倫古湖" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:3 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d03a"><button class="vg-btn" type="button" data-vg-key="d03a" aria-label="播放 古爾班通古特沙漠 語音導覽">▶</button><span class="vg-name">古爾班通古特沙漠</span><span class="vg-len" id="vg-time-d03a">約 0:57</span><i class="vg-bar" id="vg-bar-d03a"></i></div>
+    <div class="vg-row" data-vg-item="d03b"><button class="vg-btn" type="button" data-vg-key="d03b" aria-label="播放 烏倫古湖與河堤夜市 語音導覽">▶</button><span class="vg-name">烏倫古湖與河堤夜市</span><span class="vg-len" id="vg-time-d03b">約 0:58</span><i class="vg-bar" id="vg-bar-d03b"></i></div>
+</div>
+<!-- VG-END:box:3 -->
             </div>
 
             <!-- ===== Day 4: 6/13 ===== -->
@@ -678,6 +759,13 @@
                 <div class="day-photo">
                     <img src="images/tours/tour4-kanas.webp" alt="喀納斯三灣・神仙灣月亮灣臥龍灣" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:4 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d04a"><button class="vg-btn" type="button" data-vg-key="d04a" aria-label="播放 喀納斯三灣 語音導覽">▶</button><span class="vg-name">喀納斯三灣</span><span class="vg-len" id="vg-time-d04a">約 1:01</span><i class="vg-bar" id="vg-bar-d04a"></i></div>
+    <div class="vg-row" data-vg-item="d04b"><button class="vg-btn" type="button" data-vg-key="d04b" aria-label="播放 禾木村與圖瓦人木屋 語音導覽">▶</button><span class="vg-name">禾木村與圖瓦人木屋</span><span class="vg-len" id="vg-time-d04b">約 0:57</span><i class="vg-bar" id="vg-bar-d04b"></i></div>
+</div>
+<!-- VG-END:box:4 -->
             </div>
 
             <!-- ===== Day 5: 6/14 ===== -->
@@ -701,6 +789,13 @@
                 <div class="day-photo">
                     <img src="images/photos/hemu-starry-night.webp" alt="禾木村・晨霧與星空" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:5 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d05a"><button class="vg-btn" type="button" data-vg-key="d05a" aria-label="播放 觀景台晨霧與炊煙 語音導覽">▶</button><span class="vg-name">觀景台晨霧與炊煙</span><span class="vg-len" id="vg-time-d05a">約 0:57</span><i class="vg-bar" id="vg-bar-d05a"></i></div>
+    <div class="vg-row" data-vg-item="d05b"><button class="vg-btn" type="button" data-vg-key="d05b" aria-label="播放 禾木河白樺林與禾木橋 語音導覽">▶</button><span class="vg-name">禾木河白樺林與禾木橋</span><span class="vg-len" id="vg-time-d05b">約 0:57</span><i class="vg-bar" id="vg-bar-d05b"></i></div>
+</div>
+<!-- VG-END:box:5 -->
             </div>
 
             <!-- ===== Day 6: 6/15 ===== -->
@@ -724,6 +819,12 @@
                 <div class="day-photo">
                     <img src="images/devil-city.webp" alt="烏爾禾世界魔鬼城・雅丹地貌奇岩群" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:6 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d06a"><button class="vg-btn" type="button" data-vg-key="d06a" aria-label="播放 世界魔鬼城雅丹地貌 語音導覽">▶</button><span class="vg-name">世界魔鬼城雅丹地貌</span><span class="vg-len" id="vg-time-d06a">約 0:58</span><i class="vg-bar" id="vg-bar-d06a"></i></div>
+</div>
+<!-- VG-END:box:6 -->
             </div>
 
             <!-- ===== Day 7: 6/16 ===== -->
@@ -747,6 +848,12 @@
                 <div class="day-photo">
                     <img src="images/tours/tour1-ili-10days.webp" alt="伊犁・賽里木湖環湖" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:7 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d07a"><button class="vg-btn" type="button" data-vg-key="d07a" aria-label="播放 環湖・大西洋最後一滴眼淚 語音導覽">▶</button><span class="vg-name">環湖・大西洋最後一滴眼淚</span><span class="vg-len" id="vg-time-d07a">約 1:02</span><i class="vg-bar" id="vg-bar-d07a"></i></div>
+</div>
+<!-- VG-END:box:7 -->
             </div>
 
             <!-- ===== Day 8: 6/17 ===== -->
@@ -770,6 +877,14 @@
                 <div class="day-photo">
                     <img src="images/blog/yining.webp" alt="伊寧・果子溝大橋與喀贊其" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:8 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d08a"><button class="vg-btn" type="button" data-vg-key="d08a" aria-label="播放 湖畔日出 語音導覽">▶</button><span class="vg-name">湖畔日出</span><span class="vg-len" id="vg-time-d08a">約 0:55</span><i class="vg-bar" id="vg-bar-d08a"></i></div>
+    <div class="vg-row" data-vg-item="d08b"><button class="vg-btn" type="button" data-vg-key="d08b" aria-label="播放 果子溝大橋 語音導覽">▶</button><span class="vg-name">果子溝大橋</span><span class="vg-len" id="vg-time-d08b">約 1:02</span><i class="vg-bar" id="vg-bar-d08b"></i></div>
+    <div class="vg-row" data-vg-item="d08c"><button class="vg-btn" type="button" data-vg-key="d08c" aria-label="播放 六星街與喀贊其 語音導覽">▶</button><span class="vg-name">六星街與喀贊其</span><span class="vg-len" id="vg-time-d08c">約 1:01</span><i class="vg-bar" id="vg-bar-d08c"></i></div>
+</div>
+<!-- VG-END:box:8 -->
             </div>
 
             <!-- ===== Day 9: 6/18 ===== -->
@@ -793,6 +908,14 @@
                 <div class="day-photo">
                     <img src="images/yizhao-highway.webp" alt="伊昭公路・昭蘇白石峰盤山公路（小獨庫）" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:9 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d09a"><button class="vg-btn" type="button" data-vg-key="d09a" aria-label="播放 小獨庫・白石峰 語音導覽">▶</button><span class="vg-name">小獨庫・白石峰</span><span class="vg-len" id="vg-time-d09a">約 1:02</span><i class="vg-bar" id="vg-bar-d09a"></i></div>
+    <div class="vg-row" data-vg-item="d09b"><button class="vg-btn" type="button" data-vg-key="d09b" aria-label="播放 昭蘇草原與天馬 語音導覽">▶</button><span class="vg-name">昭蘇草原與天馬</span><span class="vg-len" id="vg-time-d09b">約 0:59</span><i class="vg-bar" id="vg-bar-d09b"></i></div>
+    <div class="vg-row" data-vg-item="d09c"><button class="vg-btn" type="button" data-vg-key="d09c" aria-label="播放 特克斯八卦城 語音導覽">▶</button><span class="vg-name">特克斯八卦城</span><span class="vg-len" id="vg-time-d09c">約 0:57</span><i class="vg-bar" id="vg-bar-d09c"></i></div>
+</div>
+<!-- VG-END:box:9 -->
             </div>
 
             <!-- ===== Day 10: 6/19 ===== -->
@@ -814,6 +937,12 @@
                 <div class="day-photo">
                     <img src="images/tours/tour2-grassland.webp" alt="那拉提河谷草原" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:10 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d10a"><button class="vg-btn" type="button" data-vg-key="d10a" aria-label="播放 河谷草原・適應海拔 語音導覽">▶</button><span class="vg-name">河谷草原・適應海拔</span><span class="vg-len" id="vg-time-d10a">約 0:58</span><i class="vg-bar" id="vg-bar-d10a"></i></div>
+</div>
+<!-- VG-END:box:10 -->
             </div>
 
             <!-- ===== Day 11: 6/20 ===== -->
@@ -834,8 +963,14 @@
                     </div>
                 </div>
                 <div class="day-photo">
-                    <img src="images/tours/tour2-grassland.webp" alt="那拉提空中草原" loading="lazy">
+                    <img src="images/tours/tour9-full-loop.webp" alt="那拉提空中草原" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:11 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d11a"><button class="vg-btn" type="button" data-vg-key="d11a" aria-label="播放 空中草原與騎馬 語音導覽">▶</button><span class="vg-name">空中草原與騎馬</span><span class="vg-len" id="vg-time-d11a">約 1:01</span><i class="vg-bar" id="vg-bar-d11a"></i></div>
+</div>
+<!-- VG-END:box:11 -->
             </div>
 
             <!-- ===== Day 12: 6/21 ===== -->
@@ -859,6 +994,12 @@
                 <div class="day-photo">
                     <img src="images/photos/duku-road-summer.webp" alt="獨庫公路北段・一天有四季" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:12 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d12a"><button class="vg-btn" type="button" data-vg-key="d12a" aria-label="播放 北段・一日有四季 語音導覽">▶</button><span class="vg-name">北段・一日有四季</span><span class="vg-len" id="vg-time-d12a">約 1:02</span><i class="vg-bar" id="vg-bar-d12a"></i></div>
+</div>
+<!-- VG-END:box:12 -->
             </div>
 
             <!-- ===== Day 13: 6/22 ===== -->
@@ -881,6 +1022,12 @@
                 <div class="day-photo">
                     <img src="images/photos/anjihai-canyon.webp" alt="獨山子大峽谷・安集海峽谷地貌" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:13 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d13a"><button class="vg-btn" type="button" data-vg-key="d13a" aria-label="播放 獨山子大峽谷 語音導覽">▶</button><span class="vg-name">獨山子大峽谷</span><span class="vg-len" id="vg-time-d13a">約 0:59</span><i class="vg-bar" id="vg-bar-d13a"></i></div>
+</div>
+<!-- VG-END:box:13 -->
             </div>
 
             <!-- ===== Day 14: 6/23 ===== -->
@@ -904,6 +1051,14 @@
                 <div class="day-photo">
                     <img src="images/tours/tour8-turpan.webp" alt="吐魯番・火焰山與葡萄溝" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:14 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d14a"><button class="vg-btn" type="button" data-vg-key="d14a" aria-label="播放 火焰山 語音導覽">▶</button><span class="vg-name">火焰山</span><span class="vg-len" id="vg-time-d14a">約 0:58</span><i class="vg-bar" id="vg-bar-d14a"></i></div>
+    <div class="vg-row" data-vg-item="d14b"><button class="vg-btn" type="button" data-vg-key="d14b" aria-label="播放 坎兒井 語音導覽">▶</button><span class="vg-name">坎兒井</span><span class="vg-len" id="vg-time-d14b">約 0:58</span><i class="vg-bar" id="vg-bar-d14b"></i></div>
+    <div class="vg-row" data-vg-item="d14c"><button class="vg-btn" type="button" data-vg-key="d14c" aria-label="播放 葡萄溝與火洲之夜 語音導覽">▶</button><span class="vg-name">葡萄溝與火洲之夜</span><span class="vg-len" id="vg-time-d14c">約 0:59</span><i class="vg-bar" id="vg-bar-d14c"></i></div>
+</div>
+<!-- VG-END:box:14 -->
             </div>
 
             <!-- ===== Day 15: 6/24 ===== -->
@@ -927,6 +1082,12 @@
                 <div class="day-photo">
                     <img src="images/blog/urumqi.webp" alt="吐魯番返回烏魯木齊・搭機返程" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:15 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d15a"><button class="vg-btn" type="button" data-vg-key="d15a" aria-label="播放 達坂城風口・返程提醒 語音導覽">▶</button><span class="vg-name">達坂城風口・返程提醒</span><span class="vg-len" id="vg-time-d15a">約 0:59</span><i class="vg-bar" id="vg-bar-d15a"></i></div>
+</div>
+<!-- VG-END:box:15 -->
             </div>
 
             <!-- ===== Day 16: 6/25 ===== -->
@@ -946,6 +1107,12 @@
                 <div class="day-photo">
                     <img src="images/hero-xinjiang.webp" alt="滿載新疆回憶・返回家鄉" loading="lazy">
                 </div></div>
+            <!-- VG-START:box:16 -->
+<div class="vg-box">
+  <div class="vg-head"><b>🎧 本日景點語音導覽</b><small>點擊播放・每段約 1 分鐘</small></div>
+    <div class="vg-row" data-vg-item="d16a"><button class="vg-btn" type="button" data-vg-key="d16a" aria-label="播放 返抵・十六日回顧 語音導覽">▶</button><span class="vg-name">返抵・十六日回顧</span><span class="vg-len" id="vg-time-d16a">約 1:00</span><i class="vg-bar" id="vg-bar-d16a"></i></div>
+</div>
+<!-- VG-END:box:16 -->
             </div>
 
             <!-- 里程與車程統計 -->
@@ -1105,5 +1272,175 @@
 <script src="js/nav.js"></script>
 <script src="js/sitemap.js"></script>
 
+<!-- VG-START:player -->
+<div class="vg-player" id="vg-player" role="region" aria-label="語音播放器">
+  <div class="vg-track" id="vg-track"></div>
+  <button class="vg-pbtn" id="vg-btn" type="button" aria-label="播放或暫停">▶</button>
+  <div class="vg-ptitle" id="vg-title"></div>
+  <button class="vg-pclose" id="vg-close" type="button" aria-label="關閉播放器">×</button>
+  <audio class="vg-audio" id="vg-audio" controls preload="none"></audio>
+</div>
+<script type="text/plain" id="vg-aud-d01">audio/selfdrive16/d01.mp3</script>
+<script type="text/plain" id="vg-aud-d02">audio/selfdrive16/d02.mp3</script>
+<script type="text/plain" id="vg-aud-d03a">audio/selfdrive16/d03a.mp3</script>
+<script type="text/plain" id="vg-aud-d03b">audio/selfdrive16/d03b.mp3</script>
+<script type="text/plain" id="vg-aud-d04a">audio/selfdrive16/d04a.mp3</script>
+<script type="text/plain" id="vg-aud-d04b">audio/selfdrive16/d04b.mp3</script>
+<script type="text/plain" id="vg-aud-d05a">audio/selfdrive16/d05a.mp3</script>
+<script type="text/plain" id="vg-aud-d05b">audio/selfdrive16/d05b.mp3</script>
+<script type="text/plain" id="vg-aud-d06a">audio/selfdrive16/d06a.mp3</script>
+<script type="text/plain" id="vg-aud-d07a">audio/selfdrive16/d07a.mp3</script>
+<script type="text/plain" id="vg-aud-d08a">audio/selfdrive16/d08a.mp3</script>
+<script type="text/plain" id="vg-aud-d08b">audio/selfdrive16/d08b.mp3</script>
+<script type="text/plain" id="vg-aud-d08c">audio/selfdrive16/d08c.mp3</script>
+<script type="text/plain" id="vg-aud-d09a">audio/selfdrive16/d09a.mp3</script>
+<script type="text/plain" id="vg-aud-d09b">audio/selfdrive16/d09b.mp3</script>
+<script type="text/plain" id="vg-aud-d09c">audio/selfdrive16/d09c.mp3</script>
+<script type="text/plain" id="vg-aud-d10a">audio/selfdrive16/d10a.mp3</script>
+<script type="text/plain" id="vg-aud-d11a">audio/selfdrive16/d11a.mp3</script>
+<script type="text/plain" id="vg-aud-d12a">audio/selfdrive16/d12a.mp3</script>
+<script type="text/plain" id="vg-aud-d13a">audio/selfdrive16/d13a.mp3</script>
+<script type="text/plain" id="vg-aud-d14a">audio/selfdrive16/d14a.mp3</script>
+<script type="text/plain" id="vg-aud-d14b">audio/selfdrive16/d14b.mp3</script>
+<script type="text/plain" id="vg-aud-d14c">audio/selfdrive16/d14c.mp3</script>
+<script type="text/plain" id="vg-aud-d15a">audio/selfdrive16/d15a.mp3</script>
+<script type="text/plain" id="vg-aud-d16a">audio/selfdrive16/d16a.mp3</script>
+<script>
+
+(function(){
+'use strict';
+var META = {"d01": {"day": 1, "city": "台北・南京", "spot": "啟程・十六日環線導讀"}, "d02": {"day": 2, "city": "烏魯木齊", "spot": "抵疆・天山北麓門戶"}, "d03a": {"day": 3, "city": "S21 沙漠公路", "spot": "古爾班通古特沙漠"}, "d03b": {"day": 3, "city": "布爾津", "spot": "烏倫古湖與河堤夜市"}, "d04a": {"day": 4, "city": "喀納斯", "spot": "喀納斯三灣"}, "d04b": {"day": 4, "city": "禾木", "spot": "禾木村與圖瓦人木屋"}, "d05a": {"day": 5, "city": "禾木", "spot": "觀景台晨霧與炊煙"}, "d05b": {"day": 5, "city": "禾木", "spot": "禾木河白樺林與禾木橋"}, "d06a": {"day": 6, "city": "烏爾禾", "spot": "世界魔鬼城雅丹地貌"}, "d07a": {"day": 7, "city": "賽里木湖", "spot": "環湖・大西洋最後一滴眼淚"}, "d08a": {"day": 8, "city": "賽里木湖", "spot": "湖畔日出"}, "d08b": {"day": 8, "city": "果子溝", "spot": "果子溝大橋"}, "d08c": {"day": 8, "city": "伊寧", "spot": "六星街與喀贊其"}, "d09a": {"day": 9, "city": "伊昭公路", "spot": "小獨庫・白石峰"}, "d09b": {"day": 9, "city": "昭蘇", "spot": "昭蘇草原與天馬"}, "d09c": {"day": 9, "city": "特克斯", "spot": "特克斯八卦城"}, "d10a": {"day": 10, "city": "那拉提", "spot": "河谷草原・適應海拔"}, "d11a": {"day": 11, "city": "那拉提", "spot": "空中草原與騎馬"}, "d12a": {"day": 12, "city": "獨庫公路", "spot": "北段・一日有四季"}, "d13a": {"day": 13, "city": "奎屯", "spot": "獨山子大峽谷"}, "d14a": {"day": 14, "city": "吐魯番", "spot": "火焰山"}, "d14b": {"day": 14, "city": "吐魯番", "spot": "坎兒井"}, "d14c": {"day": 14, "city": "吐魯番", "spot": "葡萄溝與火洲之夜"}, "d15a": {"day": 15, "city": "吐魯番 → 烏魯木齊", "spot": "達坂城風口・返程提醒"}, "d16a": {"day": 16, "city": "南京・台北", "spot": "返抵・十六日回顧"}};
+var ctx=null, srcNode=null, bufNow=null, fallbackAudio=null;
+var curKey=null, playing=false, offset=0, startedAt=0, raf=0;
+var btns=[].slice.call(document.querySelectorAll('[data-vg-key]'));
+var mini=document.getElementById('vg-player');
+var mpTitle=document.getElementById('vg-title');
+var mpBtn=document.getElementById('vg-btn');
+var mpClose=document.getElementById('vg-close');
+var mpTrack=document.getElementById('vg-track');
+var mpAudio=document.getElementById('vg-audio');
+
+function byKey(k){ return META[k] || {day:'?',spot:'語音導覽',city:''}; }
+function fmt(s){ s=Math.max(0,Math.round(s||0)); return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2); }
+function pathOf(k){ var el=document.getElementById('vg-aud-'+k); return el?el.textContent.trim():null; }
+function setTime(k,t){ var el=document.getElementById('vg-time-'+k); if(el) el.textContent=t; }
+function setBar(k,r){ var el=document.getElementById('vg-bar-'+k);
+  if(el) el.style.width=Math.max(0,Math.min(100,r*100))+'%'; }
+function ensureCtx(){
+  if(!ctx){ var C=window.AudioContext||window.webkitAudioContext; if(!C) return false;
+    try{ ctx=new C(); }catch(e){ return false; } }
+  if(ctx.state==='suspended'&&ctx.resume){ try{ ctx.resume(); }catch(e){} }
+  return true;
+}
+function loadAndDecode(k,ok,fail){
+  var p=pathOf(k); if(!p){ fail(); return; }
+  fetch(p).then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.arrayBuffer(); })
+    .then(function(ab){
+      var done=false;
+      function good(b){ if(done)return; done=true; ok(b); }
+      function bad(e){ if(done)return; done=true; fail(e); }
+      try{ var q=ctx.decodeAudioData(ab,good,bad);
+           if(q&&typeof q.then==='function') q.then(good).catch(bad); }
+      catch(e){ bad(e); }
+    }).catch(fail);
+}
+function stopAll(reset){
+  if(srcNode){ try{ srcNode.onended=null; srcNode.stop(); }catch(e){}
+    try{ srcNode.disconnect(); }catch(e){} srcNode=null; }
+  if(fallbackAudio){ try{ fallbackAudio.pause(); }catch(e){} fallbackAudio=null; }
+  cancelAnimationFrame(raf); playing=false;
+  if(reset){ curKey=null; offset=0; bufNow=null; }
+  syncUI();
+}
+function syncUI(){
+  for(var i=0;i<btns.length;i++){
+    var k=btns[i].getAttribute('data-vg-key');
+    var on=(k===curKey&&playing);
+    btns[i].classList.toggle('is-on',on);
+    btns[i].textContent=on?'❚❚':'▶';
+  }
+  var rows=[].slice.call(document.querySelectorAll('.vg-row'));
+  for(var j=0;j<rows.length;j++){
+    rows[j].classList.toggle('is-on',rows[j].getAttribute('data-vg-item')===curKey);
+  }
+  document.body.classList.toggle('vg-playing',!!curKey);
+  if(curKey){
+    var m=byKey(curKey);
+    mini.classList.add('show');
+    mpTitle.innerHTML='第 '+m.day+' 天 ・ '+m.spot+
+      '<small>'+(playing?'播放中':'已暫停')+(m.city?' ・ '+m.city:'')+'</small>';
+    mpBtn.textContent=playing?'❚❚':'▶';
+  }else{
+    mini.classList.remove('show'); mpTitle.textContent='';
+    mpTrack.style.width='0'; mini.classList.remove('use-audio');
+  }
+}
+function tick(){
+  cancelAnimationFrame(raf);
+  function step(){
+    if(!playing||!ctx||!bufNow) return;
+    var t=ctx.currentTime-startedAt, d=bufNow.duration;
+    setBar(curKey,t/d); mpTrack.style.width=(Math.min(1,t/d)*100)+'%';
+    if(t>=d){ stopAll(true); setTime(curKey,fmt(d)); setBar(curKey,0); return; }
+    raf=requestAnimationFrame(step);
+  }
+  raf=requestAnimationFrame(step);
+}
+function startBuffer(b,off,k){
+  var s=ctx.createBufferSource(); s.buffer=b; s.connect(ctx.destination);
+  s.onended=function(){ if(srcNode===s&&playing) stopAll(true); };
+  offset=Math.min(off,Math.max(0,b.duration-0.05));
+  startedAt=ctx.currentTime-offset;
+  try{ s.start(0,offset); }catch(e){ useFallback(k); return; }
+  srcNode=s; playing=true; setTime(k,fmt(b.duration)); tick(); syncUI();
+}
+function useFallback(k){
+  /* 第二層：相對路徑交給原生 audio；第三層是畫面上可見的控制條 */
+  var p=pathOf(k);
+  if(!p){ setTime(k,'音檔缺失'); return; }
+  curKey=k; bufNow=null; fallbackAudio=mpAudio;
+  try{
+    mpAudio.src=p; mini.classList.add('use-audio');
+    var pr=mpAudio.play();
+    if(pr&&typeof pr.then==='function'){
+      pr.then(function(){ playing=true; syncUI(); },function(){ syncUI(); });
+    }
+  }catch(e){}
+  setTime(k,'請按播放器 ▶'); syncUI();
+}
+function toggle(k){
+  if(curKey===k&&playing){
+    if(ctx&&bufNow){
+      offset=Math.min(ctx.currentTime-startedAt,bufNow.duration-0.05);
+      stopAll(false); setTime(k,fmt(offset)+' / '+fmt(bufNow.duration));
+    }else{ stopAll(false); }
+    return;
+  }
+  if(curKey===k&&!playing&&bufNow&&ctx){ startBuffer(bufNow,offset,k); return; }
+  stopAll(true); curKey=k; offset=0; setTime(k,'載入中…'); syncUI();
+  if(!pathOf(k)){ setTime(k,'音檔缺失'); return; }
+  if(!ensureCtx()){ useFallback(k); return; }
+  loadAndDecode(k,function(b){
+    if(curKey!==k) return;
+    bufNow=b; setTime(k,fmt(b.duration)); startBuffer(b,0,k);
+  },function(e){
+    if(curKey===k){ try{ console.warn('Web Audio 解碼失敗，改用原生播放器：',e); }catch(x){} useFallback(k); }
+  });
+}
+for(var i=0;i<btns.length;i++){
+  btns[i].addEventListener('click',function(ev){
+    ev.preventDefault(); toggle(this.getAttribute('data-vg-key'));
+  });
+}
+mpBtn.addEventListener('click',function(){ if(curKey) toggle(curKey); });
+mpClose.addEventListener('click',function(){ stopAll(true); });
+if(mpAudio){
+  mpAudio.addEventListener('ended',function(){ stopAll(true); });
+  mpAudio.addEventListener('error',function(){ if(curKey) setTime(curKey,'此瀏覽器請按播放器 ▶'); });
+}
+})();
+
+</script>
+<!-- VG-END:player -->
 </body>
 </html>

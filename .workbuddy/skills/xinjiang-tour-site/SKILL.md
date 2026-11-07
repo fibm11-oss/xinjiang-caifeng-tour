@@ -27,6 +27,7 @@ description: >
 | 5 | **hero / tours / blog 圖片一律 WebP，禁止放 PNG** | 專案曾因 PNG 胖到 26 MB，轉 WebP 後 5.3 MB |
 | 6 | **改檔前先有 rollback 點**（commit 或分支） | 合併會衝突，沒有備份點就無法回溯 |
 | 7 | **改完必跑 `scripts/preflight.py`**，全綠才往下走 | 機械檢查比目測可靠 |
+| 8 | **下「打不開 / 連結壞」結論前，必須先驗真**：`--directory` 起 server + curl 雙路驗證（根 `index.html` 與 `blog/index.html` 都 200）+ 真瀏覽器實測（桌面/手機視口、遮擋檢測、實際點擊、console 報錯） | 2026-11-07 實戰：本地預覽 server 跑錯目錄（停在 `blog/`），誤判「旅遊攻略打不開」，繞了一大圈；見 pitfalls P19 |
 
 ## 1. 標準作業流程（六階段）
 
@@ -49,17 +50,42 @@ git rev-list --left-right --count main...HEAD   # 落後/領先幾筆
 - 改 HTML/CSS/JS 後，若涉及圖片：新增圖一律先轉 WebP（見 `references/site-facts.md` 的轉檔指令）。
 - 涉及日期/星期：**用 Python 算**，不要心算。
 - 涉及路線/公路開放日等事實：**先網路檢索**，年份要對（2027 的行程查 2027）。
-- ⚠️ **語音導覽現狀**：官網 nav「福利」下拉與頁尾已無「導覽 / 導覽 APP」連結（2026 年隨 H5 語音層移除，見 `references/site-facts.md` §7）。未來語音請用「行程表內嵌」模式（點擊播放、不定位），**不要**新增指向 `xj-h5/index.html#guide` 的連結（該路由已不存在，會死鏈）。
+- ⚠️ **語音導覽現狀（2026 確定）**：H5 語音層已整層移除（見 §7）。未來語音**只走「行程表內嵌」模式**：預錄人聲、點擊即播、不開定位、不輪詢。參考範例 `itinerary-selfdrive16.html` 的 `vg-` 播放器，及其依賴的獨立目錄 `語音行程表/`（含建頁 `.py` 腳本 + 生成 `index.html` + `audio/` 景點音檔）。**不要**為語音新建 H5 獨立 app 或 LBS 邏輯；**不要**新增指向 `xj-h5/index.html#guide` 的連結（路由已刪，會死鏈）。`語音行程表/` 目前**未部署**（含建頁腳本，是否上線待歐陽決定）。
 
 ### Phase 2 — 本地驗證（機械檢查）
 
 ```bash
-C:/Users/tivol/.workbuddy/binaries/python/versions/3.13.12/python.exe \
-  "C:/Users/tivol/.workbuddy/skills/xinjiang-tour-site/scripts/preflight.py"
+C:/Users/tivol/AppData/Local/Programs/Python/Python313/python \
+  "C:/Users/tivol/Desktop/旅遊網站/.workbuddy/skills/xinjiang-tour-site/scripts/preflight.py"
 ```
 
 檢查項目：git 分支/落後、合併衝突殘留標記、HTML 標籤結構、失效資源連結、
 殘留 `.png` 引用、敏感字串、以及雙站探活。**任一紅燈先修完再往下。**
+
+### Phase 2.5 — 本地預覽與「打不開」排查（必讀，2026-11-07 實戰）
+
+給歐陽看本地效果、或要判斷「某連結打不開」時，照這套做，**別靠讀碼猜**：
+
+1. **起 server 必須顯式指定根目錄**：
+   ```bash
+   C:/Users/tivol/AppData/Local/Programs/Python/Python313/python \
+     -m http.server 8013 --bind 127.0.0.1 --directory "C:/Users/tivol/Desktop/旅遊網站"
+   ```
+   ⚠️ 背景任務裡的 `cd` 經常**不生效**，`python -m http.server` 會跑在錯誤目錄
+   （例如停在 `blog/`），preview 看到的「首頁」根本不是真首頁、連結全錯 → 誤判「打不開」。
+   **一律用 `--directory` 顯式釘死根目錄**，不依賴 cwd。
+2. **啟動後立即 curl 雙路驗證**（只驗 `index.html` 會漏掉「跑在子目錄」的假象）：
+   ```bash
+   curl -s -o /dev/null -w "index: %{http_code}\n" http://127.0.0.1:8013/index.html
+   curl -s -o /dev/null -w "blog:  %{http_code}\n" http://127.0.0.1:8013/blog/index.html
+   ```
+   兩路都 `200` 才說明根目錄對了；若 `blog/index.html` 是 `404` 但 `index.html` 是 `200`，
+   表示 server 跑錯目錄，**不是網站 bug**。
+3. **驗證「某連結打不開」用真瀏覽器實測**（Playwright / Edge，桌面 + 手機視口）：
+   用 `elementFromPoint` 做遮擋檢測 + 實際點擊 + 捕獲 console 報錯。
+   **不要**用側邊欄面板的「點了沒反應」主觀判斷，也**不要**只讀程式碼推論。
+4. **已部署站「新舊框來回跳 / 點不動」**：多半是 Service Worker 緩存舊版。
+   先 `Ctrl+Shift+R` 硬刷新，或用真瀏覽器乾淨版本仲裁；**別急著改程式碼**。
 
 ### Phase 3 — 提交並推 GitHub
 
@@ -89,7 +115,8 @@ curl -s -o /dev/null -w "%{http_code}\n" https://fibm11-oss.github.io/xinjiang-c
 2026-10-16 就是 Phase 2 時 VPN 關著、到 Phase 5 時又開了，白發一次部署。
 
 ```bash
-python.exe ".../xinjiang-tour-site/scripts/preflight.py"
+C:/Users/tivol/AppData/Local/Programs/Python/Python313/python \
+  "C:/Users/tivol/Desktop/旅遊網站/.workbuddy/skills/xinjiang-tour-site/scripts/preflight.py"
 ```
 
 **判準（依序）**：

@@ -43,7 +43,7 @@ CSS（2）：`style.css` `style.min.css`
 
 > `member.html` / `admin.html` / `js/auth.js` 為會員與後台（前端模擬，無敏感憑證）。
 > `style.min.css` 是**無人引用的遺留檔**，勿維護；`css/v2-home.css` 僅 `index.html` / `about.html` 引用。
-> `itinerary-selfdrive16.html` 含語音行程表範例（`vg-` 播放器），依賴**未部署**的 `語音行程表/` 目錄。
+> `itinerary-selfdrive16.html` 含行程內嵌語音導覽範例（`vg-` 播放器），語音檔位於已部署的 `audio/selfdrive16/`（25 段）；獨立 `語音行程表/` 目錄已於 2026-11-07 永久刪除。
 
 ## 4. 圖片規範
 
@@ -75,7 +75,7 @@ FF="/c/Users/tivol/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft
 | `itinerary.html` | `北疆大環線 17 日`、`2027年5月29日`、`MU5002`、`panel-loop17` |
 | `routes.html` | （視當次修改內容而定） |
 | `blog/index.html` | 攻略卡片 `class="blog-card"`（應有 **10** 張）、`新疆旅遊攻略總覽` |
-| `itinerary-selfdrive16.html` | `vg-` 播放器、`本日景點語音導覽`、`語音行程表` |
+| `itinerary-selfdrive16.html` | `vg-` 播放器、`本日景點語音導覽`、引用 `audio/selfdrive16/*.mp3`（已部署） |
 
 ## 6. 已知待辦 / 歷史殘留
 
@@ -90,6 +90,6 @@ FF="/c/Users/tivol/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft
 
 - `xj-h5/` 是路書原型：**僅剩「路書 / 關於」兩個 tab**，LBS 語音導覽層（原 `js/guide.js`、`js/audio.js`、`js/app.js` 的 `#guide` 路由與 `renderGuide/startGuide/enterZone` 等）已於 2026 年整層移除；`js/geo.js` 保留供 `roadbook-upload.html` 上傳照片做坐標→zone 歸類。
 - 官網 nav「福利」下拉**只剩「路書」**（原「導覽」項已刪），頁尾「導覽 APP」連結**已刪**，僅留「路書 APP」。新增官網連結時**不要**指向 `xj-h5/index.html#guide`（該路由已不存在，會死鏈）。
-- **未來語音導覽改用「行程表內嵌」模式**：預先完成、直接放在行程表內（點擊即播、預錄人聲、不開啟定位、不輪詢），參考 `itinerary-selfdrive16.html` 的 `vg-` 播放器與 `語音行程表/` 範例。不要為語音新建 H5 獨立 app 或 LBS 邏輯。
-- ⚠️ **`語音行程表/` 是獨立目錄**（含 `build_page.py` / `content.py` 建頁腳本 + 生成 `index.html` + `audio/` 景點音檔），目前**未部署**（2026-11-07 上線時刻意排除，因其含建頁腳本）。`itinerary-selfdrive16.html` 的語音範例引用了它；若要正式上線須單獨處理，且 `.gitignore` **未排除**此目錄，勿 `git add -A` 時誤整包帶上。
+- **語音導覽採「行程表內嵌」模式（已實作）**：預先完成、直接放在行程表內（點擊即播、預錄人聲、不開啟定位、不輪詢），現役範例為 `itinerary-selfdrive16.html` 的 `vg-` 播放器 + 根目錄 `audio/selfdrive16/`（已部署、25 段）。不要為語音新建 H5 獨立 app 或 LBS 邏輯。
+- ⚠️ 獨立 `語音行程表/` 目錄（含建頁腳本 + 生成 `index.html` + `audio/` 景點音檔）已於 2026-11-07 自專案與備份**永久刪除**，從未納入版本控制、從未部署；線上語音導覽實作在 `itinerary-selfdrive16.html` 的 `vg-` 播放器 + `audio/selfdrive16/`（已部署）。勿為語音新建 H5 獨立 app 或 LBS 邏輯。
 - ⚠️ **託管站增量上傳「只增不刪」**：刪除類改動（如本次刪 `xj-h5/js/guide.js`、`audio.js`、`tools/test_guide.js`、`tools/test_geofence.js` 共 4 檔）在 WorkBuddy 託管站仍會殘留 200（本地已刪、GitHub Pages 已 404）。殘留對線上功能零影響（無頁面引用）；要徹底清只能 unpublish 再重發（會短暫斷鏈、且可能復用原 sandbox）。見 pitfalls P20。

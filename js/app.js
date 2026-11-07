@@ -354,15 +354,15 @@ const XJ = (function() {
         updateCopyright();
 
         // 載入完成後移除載入動畫
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                var overlay = document.getElementById('loadingOverlay');
-                if (overlay) {
-                    overlay.classList.add('hidden');
-                    setTimeout(function() { overlay.style.display = 'none'; }, 300);
-                }
-            }, 500);
-        });
+        // 改用 DOMContentLoaded 時機（init 即於 DOM 就緒後執行），不再依賴 window.load，
+        // 避免受限網路下外部字型/腳本 pending 導致 load 不觸發、遮罩永久遮擋全站點擊。
+        setTimeout(function() {
+            var overlay = document.getElementById('loadingOverlay');
+            if (overlay) {
+                overlay.classList.add('hidden');
+                setTimeout(function() { overlay.style.display = 'none'; }, 300);
+            }
+        }, 600);
     }
 
     // DOM 就緒時執行

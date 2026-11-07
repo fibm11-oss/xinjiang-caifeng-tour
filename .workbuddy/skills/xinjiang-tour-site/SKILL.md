@@ -49,6 +49,7 @@ git rev-list --left-right --count main...HEAD   # 落後/領先幾筆
 - 改 HTML/CSS/JS 後，若涉及圖片：新增圖一律先轉 WebP（見 `references/site-facts.md` 的轉檔指令）。
 - 涉及日期/星期：**用 Python 算**，不要心算。
 - 涉及路線/公路開放日等事實：**先網路檢索**，年份要對（2027 的行程查 2027）。
+- ⚠️ **語音導覽現狀**：官網 nav「福利」下拉與頁尾已無「導覽 / 導覽 APP」連結（2026 年隨 H5 語音層移除，見 `references/site-facts.md` §7）。未來語音請用「行程表內嵌」模式（點擊播放、不定位），**不要**新增指向 `xj-h5/index.html#guide` 的連結（該路由已不存在，會死鏈）。
 
 ### Phase 2 — 本地驗證（機械檢查）
 

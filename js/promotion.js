@@ -93,11 +93,7 @@
             bar.className = 'sticky-contact-bar';
             bar.innerHTML = [
                 '<div class="sticky-bar-inner">',
-                '  <a href="xj-h5/index.html#guide" class="sticky-btn line-btn" aria-label="導覽">',
-                '    <span class="sticky-icon">🧭</span>',
-                '    <span class="sticky-text">導覽</span>',
-                '  </a>',
-                '  <a href="contact.html" class="sticky-btn quote-btn" aria-label="立即詢價">',
+                                '  <a href="contact.html" class="sticky-btn quote-btn" aria-label="立即詢價">',
                 '    <span class="sticky-icon">📋</span>',
                 '    <span class="sticky-text">立即詢價</span>',
                 '  </a>',
@@ -113,8 +109,9 @@
             // 根據當前頁面標示 active
             var path = (location.pathname || '').toLowerCase();
             var activeBtn = null;
+            // 導覽層已移除；吸底欄僅剩「立即詢價」「路書」兩項。
+            // 路書為預設 active（亦涵蓋 xj-h5 頁）；contact 頁改標「立即詢價」。
             if (path.indexOf('contact') !== -1) activeBtn = bar.querySelector('.quote-btn');
-            else if (path.indexOf('xj-h5') !== -1 || path.indexOf('guide') !== -1) activeBtn = bar.querySelector('.line-btn');
             else activeBtn = bar.querySelector('.call-btn');
             if (activeBtn) activeBtn.classList.add('active');
         }

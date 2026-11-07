@@ -3,6 +3,7 @@
 > 常驻档案，供「旅游网站管理」对话框接手后续进度管理。
 > 生成时间：2026-10-27 · 由 Claw（agent）整理。
 > 本档案基于实际代码状态核对，非凭记忆。
+> ⚠️ **2026 更新**：本 H5 的 **LBS 語音導覽層已移除**（`js/guide.js`、`js/audio.js`、`js/app.js` 的 `#guide` 路由與 `renderGuide/startGuide/enterZone` 等函式均已刪除；`index.html` 不再有「導覽」tab）。語音改為**官網行程表內嵌模式**（點擊播放、預錄人聲、不定位、不輪詢）。`js/geo.js` 保留供 `roadbook-upload.html` 上傳照片做坐標→zone 歸類；`tools/test_guide.js`、`tools/test_geofence.js` 已隨語音層刪除。詳見 `README.md`。
 
 ---
 
@@ -101,23 +102,19 @@
 
 - **纯逻辑单测**：
   - `node tools/verify.js` → **28 项全过**（10 zone 多中心/线性/多边形 + WGS-84→GCJ-02 + buildRoadbook 分群）。
-  - `node tools/test_geofence.js` → **15 项全过**（原为崩溃，见下）。
   - `node tools/test_roadbook.js` → **12 项全过**（轮询/降级/请求带 zones/照片注入 4 张/未归类可见/compose）。
-  - `node tools/test_guide.js` → **6 项全过**（预取命中/未预取回 null/网络失败静默可重试）。
   - `python tools/test_llm.py` → **20 项全过**，含**真连本机 LM Studio**（`qwen/qwen3.6-35b-a3b` 回「你好」）。
+  - （原 `test_geofence.js` / `test_guide.js` 随语音层删除，已不存在。）
 - **真 LLM 端到端（curl 实跑）**：
   ```bash
   XJ_LLM_PROVIDER=local XJ_LLM_BASE_URL=http://127.0.0.1:8081/v1 python server/roadbook_server.py
   curl http://127.0.0.1:8787/api/llm/status          # 看接了哪家（不回传 key）
-  curl -X POST .../api/guide/generate -d '{"zoneId":"Z3",...}'   # → task_id → completed 带 AI 文案
   curl -X POST .../api/roadbook/generate -d @rb.json            # → completed 带 AI 游记 + 照片挂载点
   ```
   实测产出：讲解贴合时段（morning→清晨）、路书每站独立叙事 + summary、章节地名正确、含未归类区。
 - **降级路径实跑**（指向死端口 `127.0.0.1:59999`）：`fallback=True` + 记录真实错误（WinError 10061），
-  讲解回静态 intro、路书回模板稿，**任务状态仍是 completed**（前端不会卡在「编纂中」）。
-- **修掉的既有崩溃**：`tools/test_geofence.js` 原直接崩（`guide` 为 undefined → `prefetchAround` TypeError）。
-  两处都修：① 测试补载 `guide.js`（与 index.html 脚本顺序一致）；② `js/app.js` 加防御
-  （`window.XJGuide` 缺失时降级，不让整个 app 挂掉）。
+  路书回模板稿，**任务状态仍是 completed**（前端不会卡在「编纂中」）。
+- **历史**：语音层曾因 `guide` 为 undefined 在 `test_geofence.js` 崩溃，已通过 `app.js` 的 `window.XJGuide` 缺失降级修复；**该语音层已于 2026 年整体移除**（见顶部说明），相关测试文件亦删除。
 - **未做**：浏览器活体 GPS 验证（此环境无 msedge / 真实定位），逻辑已 node / curl 实跑。
 - **依赖约束**：前端零依赖、可 node 单测；后端纯 Python 标准库，无需 pip 安装。
 
@@ -125,7 +122,7 @@
 
 ## 4. LLM 接入状态：已可用，但默认仍是模板 Mock
 
-- **不再全是 MOCK**：`generate_roadbook()` / `generate_guide()` 已接 `server/llm.py` 的多供应商层。
+- **不再全是 MOCK**：`generate_roadbook()` 已接 `server/llm.py` 的多供应商层。（`generate_guide()` 随语音层移除。）
 - **默认行为仍是模板**：不设任何环境变量时 `resolve()` 回 None → 走模板 + 模拟进度（保证零 key 也能跑通整条链路）。
 - **开关**：`XJ_LLM_PROVIDER` + 对应 key（见 README「接真 LLM」表）。未配置或调用失败 → **自动降级**，前端永远拿得到东西。
 - **前端无需改动**：轮询 / 降级链路没动过（只加了 `injectPhotos` 这层渲染增强）。
@@ -137,9 +134,8 @@
 1. ~~**LLM 接入**~~ → **2026-10-27 已完成**（多供应商层 `server/llm.py` + 真链路实跑通过）。
    剩余待办：**选供应商并买 key**（对应实施方案 D2；建议 DeepSeek `deepseek-v4-flash` 成本最低，
    入境游客需强英文则 OpenAI `gpt-5.6-luna`/`-terra`），以及**内容安全审核**（D4，UGC 路书）。
-2. **语音**：前端现用 Web Speech API 模拟语音，正式版按实施方案换 `edge-tts` 预录音档。
-3. **体验增强（可选）**：前端现仅「进 zone 才预取」；可改为启动时预取全部 zone 讲解，做到首访即 AI 版。
-   （服务端已有 6 小时缓存，可支撑启动批量预取。）
+2. ~~**语音（已移除）**：原 LBS 语音导览层已删除，改为官网行程表内嵌语音（点击播放、预录人声、不定位）。~~
+3. ~~**体验增强（已不适用）**：原「进 zone 预取 zone 讲解」设计随语音层移除。~~
 4. **回归**：任何改动后跑全套 5 个测试（见 §3），保持全绿。
 5. **授权**：确认 TripStar / travel-bird 可商用后再量产 —— 见 §2 的 GPL-2.0 分析
    （内部使用不触发开源义务；对外散布/商用须以同许可发布源码）。
@@ -150,7 +146,7 @@
 ## 6. 运行方式
 
 - **前端**：纯静态，浏览器或任意静态服务器打开 `index.html` 即可。
-  - 脚本加载顺序（已在 `index.html` 固定）：`geo → zones → i18n → async → roadbook → guide → audio → app`。
+  - 脚本加载顺序（已在 `index.html` 固定）：`i18n → async → roadbook → zones → app`（`geo.js` 仅 `roadbook-upload.html` 使用）。
 - **后端**：`python3 server/roadbook_server.py`（监听 `:8787`，零依赖）。
   - 前端默认 `baseUrl = http://localhost:8787/api/...`，可用 `window.XJ_API_BASE` 或 `opts.baseUrl` 覆盖。
 
@@ -170,17 +166,12 @@ XJRoadbook.buildRoadbook(photos, zonesData, lang)  // → {html, totalPhotos, ch
 XJRoadbook.injectPhotos(html, photos)              // → 注入照片后的 HTML（纯函数）
 XJRoadbook.composeRoadbookHtml(result, photos)    // → 服务器结果 + 本地照片 → HTML
 
-// 讲解
-XJGuide.getGuide(zoneId, lang)                    // → text | null
-XJGuide.prefetchGuide(zoneId, lang,
-  { name, intro, context, baseUrl, pollMs, maxPoll, onReady })
-XJGuide.clearCache()
+// （讲解层 XJGuide 已随语音层移除，不再存在）
 
 // 后端 roadbook POST body
 { photos: [{zoneId, zoneName, thumb, ts}], lang, zones: [{zoneId, name, nameEn, intro, introEn}] }
-// 后端 guide POST body
-{ zoneId, lang, name, intro, context: { timeOfDay, photoCount } }
-// 终态 response.status === 'completed' 时含 result.text / result.html
+// 后端 guide POST body（已移除）
+// 终态 response.status === 'completed' 时含 result.html
 ```
 
 ### 后端 HTTP 端点
@@ -221,7 +212,7 @@ llm.cache_get / cache_set / cache_clear / cache_key_hash
 (a) 地理围栏基础：js/geo.js（WGS-84→GCJ-02、haversine、pointInPolygon）；js/zones.js（10 zone，point/linear/polygon 三形态，Z4 多边形、Z9 线性、Z3/Z10 多中心，带 intro/introEn）。
 (b) Smart Cooldown：同一 zone 5 分钟内不重复播报（state.zoneEnteredAt + COOLDOWN_MS），见 js/app.js enterZone。
 (c) 路书自动生成（AIGC 异步轮询）：js/roadbook.js（buildRoadbook 模板兜底 + requestRoadbook 轮询降级 + injectPhotos/composeRoadbookHtml 照片注入）；server/roadbook_server.py（POST /api/roadbook/generate 回 task_id → 后台生成 → GET /status/{id} 轮询）。
-(d) 进 zone 动态讲解（预取-缓存 + 静态兜底）：js/async.js（XJAsync.requestAsync 共享骨架）；js/guide.js（getGuide / prefetchGuide / clearCache）；js/app.js 缓存感知播报 + prefetchAround 预热「当前+接下来2站」；server /api/guide/generate + /api/guide/status/{id}。
+(d) ~~进 zone 动态讲解（**已移除**）：原 LBS 语音导览层（js/guide.js / js/audio.js + app.js #guide 路由）已于 2026 年整体删除，语音改为官网行程表内嵌模式。js/async.js 保留供 roadbook 共用轮询骨架。~~
 (e) 真 LLM 接入（2026-10-27 完成）：server/llm.py 多供应商层（deepseek/qwen/openai/local/custom/mock），环境变量配置、API key 只在后端、失败自动换备援、6 小时服务端缓存、宽松 JSON 解析、提示词硬约束「不得杜撰」。
 (f) 路书含照片 + 未归类不消失：服务端只回叙事 + 照片挂载点，照片由前端 injectPhotos 本地注入；后端 _ZONES 错位已修（前端请求带 zones 上送，js/zones.js 为唯一事实源）。
 
@@ -232,9 +223,9 @@ llm.cache_get / cache_set / cache_clear / cache_key_hash
 - ⚠️ 授权：TripStar 为 GPL-2.0 copyleft —— 内部使用不对外散布不触发开源义务；对外散布/商用须以同许可发布源码（量产前须确认是否构成衍生作品）。travel-bird 无 LICENSE（仅参考思路、未取用代码）。
 
 ## 3. 当前验证状态（2026-10-27 实测）
-- node tools/verify.js → 28 项全过；node tools/test_geofence.js → 15 项全过（原崩溃，已修）；
-  node tools/test_roadbook.js → 12 项全过；node tools/test_guide.js → 6 项全过；
+- node tools/verify.js → 28 项全过；node tools/test_roadbook.js → 12 项全过；
   python tools/test_llm.py → 20 项全过（含真连本机 LM Studio）。
+  （原 test_geofence.js / test_guide.js 随语音层删除，已不存在。）
 - 真 LLM 端到端（curl 实跑）：讲解贴合时段、路书每站独立叙事 + summary、章节地名正确、含未归类区。
 - 降级路径实跑（指向死端口）：fallback=True + 记录真实错误，讲解回静态 intro、路书回模板稿，状态仍 completed。
 - 未做：浏览器活体 GPS 验证（此环境无 msedge/真实定位），逻辑已 node/curl 实跑。
@@ -246,14 +237,14 @@ llm.cache_get / cache_set / cache_clear / cache_key_hash
 
 ## 5. 下一步待办
 1. 选供应商并买 key（实施方案 D2；成本最低 DeepSeek deepseek-v4-flash，入境游客需强英文用 OpenAI gpt-5.6-luna/-terra）+ 内容安全审核（D4）。
-2. 语音：Web Speech API → edge-tts 预录音档。
-3. 体验增强（可选）：启动时预取全部 zone 讲解，首访即 AI 版（服务端已有 6 小时缓存可支撑）。
+2. ~~语音：原 Web Speech API → edge-tts 预录音档（**已移除**，改官网行程表内嵌语音）。~~
+3. ~~体验增强（可选）：原「进 zone 预取 zone 讲解」设计随语音层移除。~~
 4. 回归：任何改动后跑全套 5 个测试保持全绿。
 5. 授权：确认 TripStar/travel-bird 可商用后再量产。
 6. 内容质量：LLM 输出可能繁简混用，需后处理统一。
 
 ## 6. 运行方式
-- 前端：纯静态，浏览器或任意静态服务器打开 index.html（脚本顺序：geo→zones→i18n→async→roadbook→guide→audio→app）。
+- 前端：纯静态，浏览器或任意静态服务器打开 index.html（脚本顺序：i18n→async→roadbook→zones→app；geo.js 仅 roadbook-upload.html 使用）。
 - 后端：python server/roadbook_server.py（监听 :8787，零依赖）。前端默认 baseUrl=http://localhost:8787/api/...，可用 window.XJ_API_BASE 覆盖。
 - 接真 LLM：设 XJ_LLM_PROVIDER + 对应 key（README 有完整环境变量表）；curl /api/llm/status 可查接了哪家。
 
@@ -263,10 +254,7 @@ llm.cache_get / cache_set / cache_clear / cache_key_hash
 - XJRoadbook.buildRoadbook(photos, zonesData, lang) → {html,totalPhotos,chapters,misc}
 - XJRoadbook.injectPhotos(html, photos) → 注入照片后的 HTML
 - XJRoadbook.composeRoadbookHtml(result, photos) → 服务器结果+本地照片 → HTML
-- XJGuide.getGuide(zoneId, lang) → text|null
-- XJGuide.prefetchGuide(zoneId, lang, {name,intro,context,baseUrl,pollMs,maxPoll,onReady})
-- XJGuide.clearCache()
 - 后端 roadbook POST body：{photos, lang, zones:[{zoneId,name,nameEn,intro,introEn}]}
-- 后端 guide POST body：{zoneId, lang, name, intro, context:{timeOfDay,photoCount}}
-- 后端端点：POST /api/{roadbook|guide}/generate、GET /api/{roadbook|guide}/status/{id}、GET /api/llm/status
+- 后端端点：POST /api/roadbook/generate、GET /api/roadbook/status/{id}、GET /api/llm/status
+- （原 XJGuide /api/guide/* 接口随语音层移除，不再存在。）
 ```

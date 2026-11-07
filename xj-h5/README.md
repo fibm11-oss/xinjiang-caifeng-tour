@@ -1,39 +1,35 @@
 # 新疆采風 · H5 原型（xj-h5）
 
-把小程序核心體驗（**LBS 地理圍欄語音導覽** + **定位相簿 → AIGC 路書**）用 vanilla HTML/CSS/JS 實作，
+把小程序核心體驗（**定位相簿 → AIGC 路書**）用 vanilla HTML/CSS/JS 實作，
 可在手機瀏覽器直接真測。
 
 > 前端零依賴、零構建；後端零依賴（只用 Python 標準庫）。
-> 語音用瀏覽器 **Web Speech API** 模擬，正式版替換為 edge-tts 預錄 mp3。
+> 語音導覽已移至官網行程表內嵌（點擊播放、不定位、不輪詢）；本原型不再含 LBS 語音層。
 > 功能規劃以 `C:\Users\tivol\Desktop\新疆旅遊H5_LLM接入實施方案.html` 為準。
 
 ## 檔案結構
 
 ```
 xj-h5/
-├── index.html            # SPA：3-view hash 路由 #guide / #album / #about
+├── index.html            # SPA：2-view hash 路由 #album / #about
 ├── css/style.css         # 深色移動端 UI
 ├── js/
-│   ├── geo.js            # WGS-84→GCJ-02 轉換 + 地理圍欄（多中心/線性/多邊形）
+│   ├── geo.js            # WGS-84→GCJ-02 轉換 + 地理圍欄（roadbook-upload.html 上傳照片定位用）
 │   ├── zones.js          # 10 個 zone + intro/introEn（唯一事實源）
 │   ├── i18n.js           # 中/英字典（語言存 localStorage）
 │   ├── async.js          # 共用非同步輪詢骨架（task_id + 輪詢 + 降級）
 │   ├── roadbook.js       # buildRoadbook / requestRoadbook / injectPhotos
-│   ├── guide.js          # 進 zone 預取 + 緩存（getGuide / prefetchGuide）
-│   ├── audio.js          # Web Speech API 語音（含不支援時優雅降級）
-│   └── app.js            # SPA router + LBS 邏輯 + 相簿/路書 + 模擬定位
+│   └── app.js            # SPA router + 相簿/路書
 ├── server/
 │   ├── roadbook_server.py # 非同步輪詢後端（POST generate → GET status）
 │   └── llm.py             # 多供應商 LLM 適配層（DeepSeek/通義/OpenAI/本機）
 └── tools/
     ├── verify.js         # 圍欄 + buildRoadbook 單測（28 項）
-    ├── test_geofence.js  # 多邊形 + Smart Cooldown 單測（15 項）
     ├── test_roadbook.js  # 路書輪詢/降級/照片注入單測（12 項）
-    ├── test_guide.js     # 預取/緩存/失敗靜默單測（6 項）
     └── test_llm.py       # LLM 層單測 + 真連本機端點（20 項）
 ```
 
-`index.html` 腳本載入順序固定：**geo → zones → i18n → async → roadbook → guide → audio → app**。
+`index.html` 腳本載入順序固定：**i18n → async → roadbook → zones → app**（`geo.js` 僅 `roadbook-upload.html` 上傳頁使用）。
 
 ## 本地運行
 
@@ -138,26 +134,24 @@ curl -X POST http://localhost:8787/api/guide/generate \
 
 ```bash
 node tools/verify.js         # 28 項：圍欄多中心/線性 + buildRoadbook
-node tools/test_geofence.js  # 15 項：多邊形 + Smart Cooldown
 node tools/test_roadbook.js  # 12 項：輪詢/降級/照片注入
-node tools/test_guide.js     #  6 項：預取/緩存/失敗靜默
 python tools/test_llm.py     # 20 項：供應商解析/寬鬆 JSON/提示詞/快取 + 真連本機端點
 ```
 
 ## 已知限制
 
-- 語音是即時 TTS，非預錄；正式版接 edge-tts 批次產生 mp3。
+- 語音導覽已移出本原型：改為官網行程表內嵌（點擊即播、預錄人聲、不定位）。
 - 相簿圖片以 base64 存 localStorage，手機容量有限；正式版走雲存儲 + fileID。
 - 路書的**照片由前端注入**（`injectPhotos`），伺服器只回敘事 —— 避免 base64 來回傳把回應撐到 MB 級。
 - LLM 輸出可能有繁簡混用；提示詞已要求繁體中文，必要時後處理統一。
-- iOS Safari 對 `speechSynthesis` 限制多，建議 Android Chrome 真測語音。
+- 路書上傳頁 `roadbook-upload.html` 依賴 `geo.js` 做坐標→zone 歸類，需 http(s) 環境（非 file://）。
 - 本機端點（LM Studio）未啟用時，`local` 供應商會自動退回模板模式。
 
 ## AI 生成內容標識（合規，已實作）
 
 依《人工智能生成合成內容標識辦法》（2025-09-01 施行）：
 
-- **顯式標識**：導覽頁與 AI 路書頂部都有醒目的 `.ai-notice` 區塊（中英雙語），
+- **顯式標識**：AI 路書頂部有醒目的 `.ai-notice` 區塊（中英雙語），
   帶框＋底色，**不做淺色隱藏**（審核要求「使用者明顯感知」，且禁止只放角落小字）。
 - **隱式標識三要素**：接口回傳 `aiGenerated`（屬性資訊）／`contentId`（內容編號）／
   `providerName`（服務提供者）—— 目前前端不匯出檔案，先隨結果回傳供日後匯出時寫入檔案元資料。

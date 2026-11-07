@@ -2093,7 +2093,7 @@ img {
 
 .sticky-bar-inner {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     max-width: 480px;
     margin: 0 auto;
 }
@@ -2132,7 +2132,8 @@ img {
 
 @media (max-width: 768px) {
     .sticky-contact-bar { display: block; }
-    body { padding-bottom: 64px; }
+    /* 固定條實測高 85px；預留量必须蓋過它，否則頁尾版權會被壓住半行 */
+    body { padding-bottom: 88px; }
     #backToTop { bottom: 76px !important; }
     .social-proof { bottom: 80px !important; }
 }
@@ -2598,4 +2599,84 @@ select:focus-visible,
 textarea:focus-visible {
     outline: 2px solid var(--primary, #c8102e);
     outline-offset: 2px;
+}
+
+/* ========== 手機版頁尾重新設計（≤768px） ==========
+   舊版：品牌 / 連結×2 / 版權各被 min-height:44px + line-height:44px 撐高，
+   文字只有 14px，每行上下各留 15px 空白，四行看起來散開。
+   新版：品牌當分組頭、8 個連結收進 4×2 膠囊網格、版權降為細線下的小字。
+   膠囊視覺高 38px + 6px 間距 = 44px 有效點擊帶，兼顧緊湊與觸控。
+   只作用於手機；桌機與首頁 hero 疊加版維持原樣。 */
+@media (max-width: 768px) {
+    body .site-minifoot {
+        position: relative;
+    }
+    body .site-minifoot::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 2px;
+        background: linear-gradient(90deg,
+                    var(--primary, #c8102e),
+                    var(--accent, #d4a24c) 55%,
+                    rgba(255,255,255,.22));
+    }
+    body .site-minifoot__inner {
+        display: block;
+        gap: 0;
+        padding: 14px 16px 12px;
+    }
+    /* 分組頭：不再用 44px 撐高 */
+    body .site-minifoot__brand {
+        display: block;
+        min-height: 0;
+        line-height: 1.4;
+        font-size: 14px !important;
+        letter-spacing: .08em;
+        color: #fff;
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+        border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    /* 8 個連結 → 4 欄 × 2 行膠囊 */
+    body .site-minifoot__links {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 6px;
+    }
+    body .site-minifoot__links a {
+        min-height: 38px;
+        line-height: 1.2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 4px 2px;
+        font-size: 14px !important;
+        white-space: normal;
+        color: rgba(255,255,255,.88);
+        background: rgba(255,255,255,.035);
+        border: 1px solid rgba(255,255,255,.17);
+        border-radius: 8px;
+        -webkit-tap-highlight-color: transparent;
+        transition: background .18s, border-color .18s;
+    }
+    body .site-minifoot__links a:hover,
+    body .site-minifoot__links a:active {
+        background: rgba(200,16,46,.24);
+        border-color: rgba(240,66,92,.70);
+        color: #fff;
+        text-decoration: none;
+    }
+    /* 版權：細線下的輔助小字；右側留白避開固定的「回到頂部」圓鈕 */
+    body .site-minifoot__contact {
+        margin: 10px 0 0 !important;
+        padding: 8px 64px 0 0;
+        border-top: 1px solid rgba(255,255,255,.08);
+        font-size: 12px !important;
+        line-height: 1.45;
+        color: rgba(255,255,255,.48);
+        text-align: left;
+        white-space: normal;
+    }
 }

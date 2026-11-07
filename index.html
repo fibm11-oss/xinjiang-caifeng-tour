@@ -87,32 +87,21 @@
         }
         .fade-in { animation: fadeInUp 0.7s ease-out both; }
 
-        /* 載入動畫 */
+        /* 載入遮罩：自包含隱藏機制，不依賴 style.css 快取版本。
+           即使外部 CSS 因 SW 快取為舊版而缺少 .hidden 規則，遮罩仍會淡出並釋出點擊，
+           避免全屏遮罩永久擋住 hero 按鈕與導覽（曾導致「旅遊攻略」點擊失效）。 */
         .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
+            position: fixed; inset: 0; z-index: 9999;
+            background: #ffffff;
+            display: flex; align-items: center; justify-content: center;
             transition: opacity 0.3s ease;
+            animation: xjLoadingHide 0.5s ease 1.8s forwards;
         }
-        .loading-overlay.hidden { opacity: 0; pointer-events: none; }
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid var(--border);
-            border-top: 3px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .loading-overlay.hidden { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+        @keyframes xjLoadingHide {
+            0%   { opacity: 1; visibility: visible; }
+            92%  { opacity: 1; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
         }
     </style>
 </head>
@@ -179,9 +168,8 @@
         </ul>
     </li>
     <li role="none" class="has-dropdown">
-        <a href="xj-h5/index.html#guide" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">福利 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <a href="xj-h5/index.html#album" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">福利 <span class="dropdown-caret" aria-hidden="true"></span></a>
         <ul class="dropdown" role="menu" aria-label="福利">
-            <li role="none"><a href="xj-h5/index.html#guide" role="menuitem">導覽</a></li>
             <li role="none"><a href="xj-h5/index.html#album" role="menuitem">路書</a></li>
         </ul>
     </li><li role="none" class="has-dropdown">
@@ -240,8 +228,7 @@
                 <a href="blog/index.html">旅遊攻略</a>
                 <a href="about.html">關於我們</a>
                 <a href="contact.html">聯絡我們</a>
-                <a href="xj-h5/index.html#guide">導覽 APP</a>
-            <a href="xj-h5/index.html#album">路書 APP</a>
+                <a href="xj-h5/index.html#album">路書 APP</a>
             </nav>
             <p class="site-minifoot__contact" style="margin:0;">&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved.</p>
         </div>
@@ -458,8 +445,7 @@
                     <li><a href="itinerary.html">行程範例</a></li>
                     <li><a href="about.html">關於我們</a></li>
                     <li><a href="contact.html">聯絡我們</a></li>
-                    <li><a href="xj-h5/index.html#guide">導覽 APP</a>
-            <a href="xj-h5/index.html#album">路書 APP</a></li>
+                    <li><a href="xj-h5/index.html#album">路書 APP</a></li>
                 </ul>
             </div>
             <div class="footer-col mobile-hide">
@@ -485,7 +471,7 @@
 
 <!-- 回到頂部按鈕 -->
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到頂部">↑</button>
-<script>window.addEventListener('load', function(){setTimeout(function(){var overlay = document.getElementById('loadingOverlay');if(overlay){overlay.classList.add('hidden');setTimeout(function(){overlay.style.display = 'none';}, 300);}}, 500);});function toggleMenu(){var menu = document.getElementById('navMenu');var btn = document.querySelector('.mobile-menu-btn');if(menu && btn){var isExpanded = menu.classList.contains('active');menu.classList.toggle('active');btn.classList.toggle('active');btn.setAttribute('aria-expanded', !isExpanded);}}document.addEventListener('keydown', function(e){if(e.key === 'Escape'){var menu = document.getElementById('navMenu');var btn = document.querySelector('.mobile-menu-btn');if(menu && menu.classList.contains('active')){menu.classList.remove('active');if(btn){btn.classList.remove('active');btn.setAttribute('aria-expanded','false');}}}});document.addEventListener('DOMContentLoaded', function(){var menu = document.getElementById('navMenu');if(menu){var links = menu.querySelectorAll('a');links.forEach(function(link){link.addEventListener('click', function(){menu.classList.remove('active');var btn = document.querySelector('.mobile-menu-btn');if(btn){btn.classList.remove('active');btn.setAttribute('aria-expanded','false');}});});}window.addEventListener('error', function(e){console.error('JavaScript 錯誤:', e.error);});window.addEventListener('online', function(){console.log('網路連線恢復');});window.addEventListener('offline', function(){console.log('網路連線中斷');});});</script>
+<script>setTimeout(function(){var overlay = document.getElementById('loadingOverlay');if(overlay){overlay.classList.add('hidden');setTimeout(function(){overlay.style.display = 'none';}, 300);}}, 600);function toggleMenu(){var menu = document.getElementById('navMenu');var btn = document.querySelector('.mobile-menu-btn');if(menu && btn){var isExpanded = menu.classList.contains('active');menu.classList.toggle('active');btn.classList.toggle('active');btn.setAttribute('aria-expanded', !isExpanded);}}document.addEventListener('keydown', function(e){if(e.key === 'Escape'){var menu = document.getElementById('navMenu');var btn = document.querySelector('.mobile-menu-btn');if(menu && menu.classList.contains('active')){menu.classList.remove('active');if(btn){btn.classList.remove('active');btn.setAttribute('aria-expanded','false');}}}});document.addEventListener('DOMContentLoaded', function(){var menu = document.getElementById('navMenu');if(menu){var links = menu.querySelectorAll('a');links.forEach(function(link){link.addEventListener('click', function(){menu.classList.remove('active');var btn = document.querySelector('.mobile-menu-btn');if(btn){btn.classList.remove('active');btn.setAttribute('aria-expanded','false');}});});}window.addEventListener('error', function(e){console.error('JavaScript 錯誤:', e.error);});window.addEventListener('online', function(){console.log('網路連線恢復');});window.addEventListener('offline', function(){console.log('網路連線中斷');});});</script>
 <script>
 /* 首頁內聯備援：即使外部 nav.js 被預覽環境屏蔽，也確保手機版點「新疆采風」能開關選單。
    若 nav.js 已成功綁定（window.__xjLogoMenuBound），則跳過，避免雙重觸發（點一下開、再點一下關）。 */

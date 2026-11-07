@@ -28,6 +28,21 @@
     <style>
         html { scroll-behavior: smooth; }
 
+        /* 載入遮罩：自包含隱藏機制（同 index.html），不依賴 style.css 快取版本 */
+        .loading-overlay {
+            position: fixed; inset: 0; z-index: 9999;
+            background: #ffffff;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.3s ease;
+            animation: xjLoadingHide 0.5s ease 1.8s forwards;
+        }
+        .loading-overlay.hidden { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+        @keyframes xjLoadingHide {
+            0%   { opacity: 1; visibility: visible; }
+            92%  { opacity: 1; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
         /* 攻略索引頁面樣式 */
         .blog-index { padding: 36px 24px 60px; max-width: 1100px; margin: 0 auto; }
 
@@ -203,9 +218,8 @@
         </ul>
     </li>
     <li role="none" class="has-dropdown">
-        <a href="../xj-h5/index.html#guide" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">福利 <span class="dropdown-caret" aria-hidden="true"></span></a>
+        <a href="../xj-h5/index.html#album" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">福利 <span class="dropdown-caret" aria-hidden="true"></span></a>
         <ul class="dropdown" role="menu" aria-label="福利">
-            <li role="none"><a href="../xj-h5/index.html#guide" role="menuitem">導覽</a></li>
             <li role="none"><a href="../xj-h5/index.html#album" role="menuitem">路書</a></li>
         </ul>
     </li><li role="none" class="has-dropdown">
@@ -345,6 +359,51 @@
             </div>
         </a>
 
+        <!-- 卡片 8：禾木村 City Walk -->
+        <a href="hemucun-citywalk.html" class="blog-card" style="text-decoration:none;color:inherit;">
+            <div class="blog-card-image" style="background:url('../images/blog/hemucun.webp') center/cover;"></div>
+            <div class="blog-card-body">
+                <div class="category">城市散步</div>
+                <h2>禾木村 City Walk 攻略</h2>
+                <div class="meta">
+                    <span>📅 2026年6月更新</span>
+                    <span>👁️ 閱讀約 5 分鐘</span>
+                </div>
+                <p>禾木橋、白樺林、哈登觀景台晨霧、圖瓦人家訪——被譽為神的自留地的圖瓦人木屋村落漫遊。</p>
+                <span class="read-more">閱讀完整文章 →</span>
+            </div>
+        </a>
+
+        <!-- 卡片 9：奎屯市 City Walk -->
+        <a href="kuitun-citywalk.html" class="blog-card" style="text-decoration:none;color:inherit;">
+            <div class="blog-card-image" style="background:url('../images/blog/kuitun.webp') center/cover;"></div>
+            <div class="blog-card-body">
+                <div class="category">城市散步</div>
+                <h2>奎屯市 City Walk 攻略</h2>
+                <div class="meta">
+                    <span>📅 2026年6月更新</span>
+                    <span>👁️ 閱讀約 5 分鐘</span>
+                </div>
+                <p>潤民河景觀帶、軍墾文化廣場、團結街美食、奎屯河大峽谷落日——獨庫公路出發前的休整補給站。</p>
+                <span class="read-more">閱讀完整文章 →</span>
+            </div>
+        </a>
+
+        <!-- 卡片 10：吐魯番市 City Walk -->
+        <a href="turpan-citywalk.html" class="blog-card" style="text-decoration:none;color:inherit;">
+            <div class="blog-card-image" style="background:url('../images/blog/turpan.webp') center/cover;"></div>
+            <div class="blog-card-body">
+                <div class="category">城市散步</div>
+                <h2>吐魯番市 City Walk 攻略</h2>
+                <div class="meta">
+                    <span>📅 2026年6月更新</span>
+                    <span>👁️ 閱讀約 5 分鐘</span>
+                </div>
+                <p>老城高昌路、蘇公塔、坎兒井民俗園、葡萄溝綠洲、夜市美食——中國最熱盆地與絲路重鎮的慢遊。</p>
+                <span class="read-more">閱讀完整文章 →</span>
+            </div>
+        </a>
+
     </div>
 </div>
 
@@ -359,7 +418,6 @@
             <a href="../blog/index.html">旅遊攻略</a>
             <a href="../about.html">關於我們</a>
             <a href="../contact.html">聯絡我們</a>
-            <a href="../xj-h5/index.html#guide">導覽 APP</a>
             <a href="../xj-h5/index.html#album">路書 APP</a>
         </nav>
         <p class="site-minifoot__contact" style="margin:0;">&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved.</p>
@@ -377,12 +435,11 @@
 <script src="../js/auth.js"></script>
 
 <script>
-    window.addEventListener('load', function(){
-        setTimeout(function(){
-            var o = document.getElementById('loadingOverlay');
-            if(o){ o.classList.add('hidden'); setTimeout(function(){ o.style.display='none'; }, 300); }
-        }, 500);
-    });
+    /* 遮罩移除不依賴 window.load（避免受限網路下外鏈 pending 導致 load 不觸發、遮罩永久擋住點擊） */
+    setTimeout(function(){
+        var o = document.getElementById('loadingOverlay');
+        if(o){ o.classList.add('hidden'); setTimeout(function(){ o.style.display='none'; }, 300); }
+    }, 600);
     window.addEventListener('error', function(e){ console.error('JavaScript 錯誤:', e.error); });
     window.addEventListener('online', function(){ console.log('網路連線恢復'); });
     window.addEventListener('offline', function(){ console.log('網路連線中斷'); });

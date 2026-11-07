@@ -78,3 +78,9 @@ FF="/c/Users/tivol/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft
 - `*.gz` 檔案（`index.html.gz` 等）是某次實驗殘留，未引用。
 - `archive-car-rental-backup.html.bak` 是備份檔。
 - 範例行程二「北疆經典 11 日」仍標 2026/06/21–07/01（已過往）；是否改成 2027 待歐陽決定。
+
+## 7. H5 原型與語音導覽現狀（2026 更新）
+
+- `xj-h5/` 是路書原型：**僅剩「路書 / 關於」兩個 tab**，LBS 語音導覽層（原 `js/guide.js`、`js/audio.js`、`js/app.js` 的 `#guide` 路由與 `renderGuide/startGuide/enterZone` 等）已於 2026 年整層移除；`js/geo.js` 保留供 `roadbook-upload.html` 上傳照片做坐標→zone 歸類。
+- 官網 nav「福利」下拉**只剩「路書」**（原「導覽」項已刪），頁尾「導覽 APP」連結**已刪**，僅留「路書 APP」。新增官網連結時**不要**指向 `xj-h5/index.html#guide`（該路由已不存在，會死鏈）。
+- **未來語音導覽改用「行程表內嵌」模式**：預先完成、直接放在行程表內（點擊即播、預錄人聲、不開啟定位、不輪詢），參考 `itinerary-selfdrive16.html` 的 `vg-` 播放器與 `語音行程表/` 範例。不要為語音新建 H5 獨立 app 或 LBS 邏輯。

@@ -2,7 +2,7 @@
 // ⚠️ 重要規矩：靜態資源走「快取優先」(cache-first)，改動 css/*.css 或 js/*.js 後
 //    必須 bump 這個 CACHE_NAME，否則線上用戶會繼續拿到舊快取、改動看不到。
 //    bump 後 install 會重新快取最新檔案，activate 會清掉舊版本快取。
-const CACHE_NAME = 'xjcaifeng-v1.2.7';
+const CACHE_NAME = 'xjcaifeng-v1.2.9';
 const urlsToCache = [
     '/',
     '/index.html',

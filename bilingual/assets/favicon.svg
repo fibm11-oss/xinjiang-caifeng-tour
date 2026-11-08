@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#c8102e"/>
+  <circle cx="32" cy="28" r="12" fill="#fff" opacity="0.9"/>
+  <polygon points="32,8 36,20 32,16 28,20" fill="#fff" opacity="0.9"/>
+  <text x="32" y="56" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#fff">疆</text>
+</svg>

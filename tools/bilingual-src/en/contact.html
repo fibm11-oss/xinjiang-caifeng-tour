@@ -1,0 +1,153 @@
+<!--@title Contact Us | Free Xinjiang Itinerary Consultation -->
+<!--@desc Tell us your dates, season and the landscapes you want to see. Xinjiang Caifeng replies within 24 hours with a first route proposal. No consultation fee, English spoken. -->
+
+<section class="page-hero">
+  <div class="page-hero__media"><img src="{{BASE}}assets/yizhao-highway.webp" alt="Alpine peaks and grassland along the Yizhao Highway" width="1536" height="949"></div>
+  <div class="page-hero__inner">
+    <p class="breadcrumb"><a href="{{HOME}}index.html">Home</a> / Contact</p>
+    <p class="page-hero__eyebrow">Get in touch</p>
+    <h1>Your Xinjiang trip starts with one message</h1>
+    <p class="page-hero__desc">Send the form below, or reach us on LINE. We reply within 24 hours by email or message with a first route idea and an indicative price range.</p>
+  </div>
+</section>
+
+<section class="section section--white">
+  <div class="shell contact-grid">
+    <div>
+      <div class="contact-card">
+        <h3>Free itinerary planning</h3>
+        <p>Tell us your travel dates, group size and the landscapes you care about. We will send back an unhurried, shop-free first draft. The consultation and the planning are both free.</p>
+        <a href="#inquiry-form" class="contact-link">Go to the form →</a>
+      </div>
+      <div class="contact-card" id="messaging">
+        <h3>LINE official account</h3>
+        <p>Add us and send "Xinjiang travel" to discuss your trip directly. The same channel stays open throughout your journey for on-road questions.</p>
+        <a href="https://line.me/ti/p/@xjcaifeng" class="contact-link" target="_blank" rel="noopener">@xjcaifeng →</a>
+      </div>
+      <div class="contact-card" id="email">
+        <h3>Response time &amp; language</h3>
+        <p>We normally reply within 24 hours; in peak season (Jun–Sep) please enquire 15–30 days ahead. We work in Chinese and English. For overseas travellers, airport transfers, dietary needs and any religious requirements are confirmed before departure.</p>
+      </div>
+    </div>
+
+    <div class="form-panel" id="inquiry-form">
+      <h2>Send an enquiry</h2>
+      <p>Fields marked <span style="color:#C8102E">*</span> are required. Your details are used only to answer this enquiry.</p>
+      <form id="inquiryForm" novalidate>
+        <input type="hidden" name="_subject" value="[Bilingual site / EN] Xinjiang travel enquiry">
+        <input type="hidden" name="source" value="bilingual-en">
+        <input type="text" name="_gotcha" hidden tabindex="-1" autocomplete="off">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="f-name">Your name <span class="req">*</span></label>
+            <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="What should we call you?">
+          </div>
+          <div class="form-field">
+            <label for="f-email">Email <span class="req">*</span></label>
+            <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="f-msg-app">WhatsApp / LINE ID</label>
+            <input id="f-msg-app" name="messenger" type="text" placeholder="Optional, for quicker replies">
+          </div>
+          <div class="form-field">
+            <label for="f-month">Preferred travel month</label>
+            <select id="f-month" name="month">
+              <option value="">Not decided yet</option>
+              <option>Jan–Feb</option><option>Mar–Apr</option><option>May</option>
+              <option>June</option><option>July</option><option>August</option>
+              <option>September</option><option>October</option><option>Nov–Dec</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="f-days">Trip length</label>
+            <select id="f-days" name="days">
+              <option value="">Please recommend</option>
+              <option>Up to 4 days</option><option>5–7 days</option><option>8–10 days</option>
+              <option>11–14 days</option><option>15+ days</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="f-pax">Group size</label>
+            <select id="f-pax" name="pax">
+              <option>2 people</option><option>3–4 people</option><option>5–6 people</option>
+              <option>7–9 people</option><option>10+ people</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="f-interest">Route of interest</label>
+          <select id="f-interest" name="interest">
+            <option value="">No idea yet — please suggest</option>
+            <option>Ili Valley · 10 days</option>
+            <option>Ili Grasslands · 8 days</option>
+            <option>Southern Silk Road · 9 days</option>
+            <option>Kanas · 8 days</option>
+            <option>Complete Northern Xinjiang · 10 days</option>
+            <option>Duku Highway · 4 days</option>
+            <option>Kashgar &amp; Pamirs · 7 days</option>
+            <option>Turpan &amp; Eastern Tianshan · 4 days</option>
+            <option>Grand North–South Loop · 15 days</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="f-message">Anything else we should know <span class="req">*</span></label>
+          <textarea id="f-message" name="message" required placeholder="Landscapes you want to see, preferred pace, children or older travellers in the group, dietary or accommodation needs..."></textarea>
+        </div>
+        <button type="submit" class="btn btn--red form-submit">Send enquiry</button>
+        <p class="form-note">We use your details only to reply to this enquiry, and never share them with third parties.</p>
+        <div id="formStatus" class="form-status" hidden></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section section--sand">
+  <div class="shell">
+    <div class="section__head">
+      <p class="section__eyebrow">FAQ</p>
+      <h2>Quick answers</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>Q: How far ahead should I book?</summary><p>For peak season (Jun–Sep) we suggest 15–30 days, and 7–10 days in the quieter months. If your dates are close, do still ask — we will check vehicle and room availability and do our best to make it work.</p></details>
+      <details><summary>Q: Do you charge a planning or booking fee?</summary><p>No. Consultation and itinerary planning are free, and we do not add a service charge when booking accommodation, tickets or vehicles on your behalf. We also look for package rates where they help.</p></details>
+      <details><summary>Q: When is the Duku Highway open?</summary><p>Usually early June to early October, depending on that year's weather and snowmelt. We share the latest road status in advance and keep an alternative routing ready so your itinerary never stalls.</p></details>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var form = document.getElementById('inquiryForm');
+  if (!form) return;
+  var status = document.getElementById('formStatus');
+  var btn = form.querySelector('button[type="submit"]');
+  var label = btn.textContent;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    btn.disabled = true; btn.textContent = 'Sending…'; status.hidden = true;
+    var data = {};
+    new FormData(form).forEach(function (v, k) { data[k] = v; });
+    fetch('https://formspree.io/f/mjyydlwa', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function (r) {
+      if (!r.ok) throw new Error('network');
+      status.className = 'form-status form-status--ok';
+      status.textContent = 'Thank you — we will reply within 24 hours by email or message.';
+      form.reset();
+    }).catch(function () {
+      status.className = 'form-status form-status--err';
+      status.textContent = 'Something went wrong. Please try again shortly, or reach us on LINE @xjcaifeng.';
+    }).finally(function () {
+      status.hidden = false; btn.disabled = false; btn.textContent = label;
+    });
+  });
+})();
+</script>

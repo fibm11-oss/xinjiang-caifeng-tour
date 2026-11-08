@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="hero-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a4a7a"/>
+      <stop offset="50%" style="stop-color:#2a6a9a"/>
+      <stop offset="100%" style="stop-color:#c8102e"/>
+    </linearGradient>
+    <linearGradient id="overlay" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(26,74,122,0.7)"/>
+      <stop offset="100%" style="stop-color:rgba(200,16,46,0.5)"/>
+    </linearGradient>
+  </defs>
+  <!-- 背景漸層 -->
+  <rect width="1200" height="630" fill="url(#hero-bg)"/>
+  
+  <!-- 裝飾圖形 - 山 -->
+  <polygon points="0,450 200,250 400,380 600,200 800,320 1000,180 1200,280 1200,630 0,630" fill="#ffffff" opacity="0.08"/>
+  <polygon points="0,500 200,320 500,450 700,280 1000,400 1200,250 1200,630 0,630" fill="#ffffff" opacity="0.06"/>
+  <polygon points="0,550 300,400 600,500 900,350 1200,480 1200,630 0,630" fill="#ffffff" opacity="0.04"/>
+  
+  <!-- 裝飾圓形（日出） -->
+  <circle cx="900" cy="180" r="80" fill="#f5a623" opacity="0.3"/>
+  <circle cx="900" cy="180" r="60" fill="#f8c15a" opacity="0.3"/>
+  <circle cx="900" cy="180" r="40" fill="#ffd700" opacity="0.2"/>
+  
+  <!-- Logo 區 -->
+  <rect x="60" y="60" width="60" height="60" rx="12" fill="#c8102e" opacity="0.9"/>
+  <text x="90" y="98" font-family="'Microsoft JhengHei',sans-serif" font-size="36" font-weight="900" fill="#fff" text-anchor="middle">新</text>
+  <text x="90" y="110" font-family="'Microsoft JhengHei',sans-serif" font-size="14" fill="#fff" text-anchor="middle" opacity="0.8">疆采風</text>
+
+  <!-- 主標題 -->
+  <text x="70" y="280" font-family="'Microsoft JhengHei','PingFang TC',sans-serif" font-size="64" font-weight="900" fill="#ffffff">新疆包車定制遊</text>
+  <text x="70" y="360" font-family="'Microsoft JhengHei','PingFang TC',sans-serif" font-size="32" fill="#ffffff" opacity="0.9" letter-spacing="3">客製化包車・私人導遊・深度行程</text>
+  
+  <!-- 分隔線 -->
+  <line x1="70" y1="400" x2="400" y2="400" stroke="#f5a623" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- 特色標籤 -->
+  <rect x="70" y="430" width="180" height="40" rx="20" fill="#f5a623" opacity="0.2"/>
+  <text x="160" y="456" font-family="'Microsoft JhengHei',sans-serif" font-size="18" fill="#ffffff" text-anchor="middle">北疆風光</text>
+  <rect x="270" y="430" width="180" height="40" rx="20" fill="#f5a623" opacity="0.2"/>
+  <text x="360" y="456" font-family="'Microsoft JhengHei',sans-serif" font-size="18" fill="#ffffff" text-anchor="middle">南疆人文</text>
+  <rect x="470" y="430" width="200" height="40" rx="20" fill="#f5a623" opacity="0.2"/>
+  <text x="570" y="456" font-family="'Microsoft JhengHei',sans-serif" font-size="18" fill="#ffffff" text-anchor="middle">全程專車專導</text>
+
+  <!-- 網址 -->
+  <text x="70" y="540" font-family="'Helvetica Neue',Arial,sans-serif" font-size="20" fill="#ffffff" opacity="0.7">xjcaifeng.com</text>
+  
+  <!-- Contact -->
+  <text x="70" y="580" font-family="'Microsoft JhengHei',sans-serif" font-size="18" fill="#ffffff" opacity="0.6">LINE：XJCaifeng ｜ 全年無休 09:00-22:00</text>
+</svg>

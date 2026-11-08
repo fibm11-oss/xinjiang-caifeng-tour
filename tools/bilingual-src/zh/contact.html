@@ -1,0 +1,153 @@
+<!--@title 聯絡我們｜免費新疆行程規劃諮詢 -->
+<!--@desc 告訴我們天數、季節與想看的風景，新疆采風在 24 小時內回覆專屬路線建議。亦可透過 LINE 官方帳號聯繫，諮詢不收服務費。 -->
+
+<section class="page-hero">
+  <div class="page-hero__media"><img src="{{BASE}}assets/yizhao-highway.webp" alt="伊昭公路沿途的高山與草原" width="1536" height="949"></div>
+  <div class="page-hero__inner">
+    <p class="breadcrumb"><a href="{{HOME}}index.html">首頁</a> / 聯絡我們</p>
+    <p class="page-hero__eyebrow">Get in touch</p>
+    <h1>你的新疆，從一句話開始</h1>
+    <p class="page-hero__desc">填寫下方表單，或透過 LINE 告訴我們想法。我們會在 24 小時內以 Email 或 LINE 回覆，附上初步路線與報價方向。</p>
+  </div>
+</section>
+
+<section class="section section--white">
+  <div class="shell contact-grid">
+    <div>
+      <div class="contact-card">
+        <h3>免費行程規劃</h3>
+        <p>告訴我們天數、出發月份、同行人數與想看的風景，我們會回一份不趕路、不進店的初步路書。諮詢與規劃都不收費。</p>
+        <a href="#inquiry-form" class="contact-link">直接填寫表單 →</a>
+      </div>
+      <div class="contact-card" id="messaging">
+        <h3>LINE 官方帳號</h3>
+        <p>加入後發送「新疆旅遊」，可直接與我們討論行程；旅途期間也透過同一個群組即時聯繫。</p>
+        <a href="https://line.me/ti/p/@xjcaifeng" class="contact-link" target="_blank" rel="noopener">@xjcaifeng →</a>
+      </div>
+      <div class="contact-card" id="email">
+        <h3>回覆時效與語言</h3>
+        <p>一般在 24 小時內回覆；旺季（6–9 月）建議提前 15–30 天詢問。中文與英文都可溝通，海外旅客的接送、飲食與需求會在出發前先確認。</p>
+      </div>
+    </div>
+
+    <div class="form-panel" id="inquiry-form">
+      <h2>填寫諮詢表單</h2>
+      <p>標註 <span style="color:#C8102E">*</span> 為必填。資料僅用於回覆你的行程諮詢。</p>
+      <form id="inquiryForm" novalidate>
+        <input type="hidden" name="_subject" value="[雙語站/中文] 新疆旅遊諮詢">
+        <input type="hidden" name="source" value="bilingual-zh">
+        <input type="text" name="_gotcha" hidden tabindex="-1" autocomplete="off">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="f-name">姓名 <span class="req">*</span></label>
+            <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="如何稱呼您">
+          </div>
+          <div class="form-field">
+            <label for="f-email">Email <span class="req">*</span></label>
+            <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="f-msg-app">LINE / WhatsApp ID</label>
+            <input id="f-msg-app" name="messenger" type="text" placeholder="選填，方便即時聯繫">
+          </div>
+          <div class="form-field">
+            <label for="f-month">預計出發月份</label>
+            <select id="f-month" name="month">
+              <option value="">尚未確定</option>
+              <option>1–2 月</option><option>3–4 月</option><option>5 月</option>
+              <option>6 月</option><option>7 月</option><option>8 月</option>
+              <option>9 月</option><option>10 月</option><option>11–12 月</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="f-days">預計天數</label>
+            <select id="f-days" name="days">
+              <option value="">由你們建議</option>
+              <option>4 日以內</option><option>5–7 日</option><option>8–10 日</option>
+              <option>11–14 日</option><option>15 日以上</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="f-pax">同行人數</label>
+            <select id="f-pax" name="pax">
+              <option>2 人</option><option>3–4 人</option><option>5–6 人</option>
+              <option>7–9 人</option><option>10 人以上</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="f-interest">感興趣的路線</label>
+          <select id="f-interest" name="interest">
+            <option value="">還沒有想法，想聽建議</option>
+            <option>伊犁河谷小包團 10 日</option>
+            <option>伊犁草原 8 日</option>
+            <option>南疆絲路秘境 9 日</option>
+            <option>北疆喀納斯 8 日</option>
+            <option>北疆全景 10 日</option>
+            <option>獨庫公路 4 日</option>
+            <option>喀什 ＋ 帕米爾 7 日</option>
+            <option>吐魯番 ＋ 東天山 4 日</option>
+            <option>南北疆大環線 15 日</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="f-message">想告訴我們的 <span class="req">*</span></label>
+          <textarea id="f-message" name="message" required placeholder="想看的風景、旅行節奏、同行是否有長輩或小孩、飲食或住宿需求……"></textarea>
+        </div>
+        <button type="submit" class="btn btn--red form-submit">送出諮詢</button>
+        <p class="form-note">您的資料僅用於回覆本次諮詢，不會提供給第三方。</p>
+        <div id="formStatus" class="form-status" hidden></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section section--sand">
+  <div class="shell">
+    <div class="section__head">
+      <p class="section__eyebrow">FAQ</p>
+      <h2>常見問題快速解答</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>Q：需要提早多久預訂？</summary><p>旺季（6–9 月）建議提前 15–30 天，淡季提前 7–10 天即可。若時間較趕，也歡迎直接詢問是否有空車與空房，我們會盡量安排。</p></details>
+      <details><summary>Q：諮詢或代訂會收服務費嗎？</summary><p>諮詢與路書規劃不收費。代訂住宿、門票與車輛也不另收服務費，僅按實際價格計算，並盡量為你爭取套裝優惠。</p></details>
+      <details><summary>Q：獨庫公路什麼時候開放？</summary><p>通常 6 月初至 10 月初開放，視當年天氣與融雪情況而定。我們會提前通知最新路況，並在必要時準備替代動線，不讓行程卡住。</p></details>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var form = document.getElementById('inquiryForm');
+  if (!form) return;
+  var status = document.getElementById('formStatus');
+  var btn = form.querySelector('button[type="submit"]');
+  var label = btn.textContent;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    btn.disabled = true; btn.textContent = '送出中…'; status.hidden = true;
+    var data = {};
+    new FormData(form).forEach(function (v, k) { data[k] = v; });
+    fetch('https://formspree.io/f/mjyydlwa', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function (r) {
+      if (!r.ok) throw new Error('network');
+      status.className = 'form-status form-status--ok';
+      status.textContent = '已收到！我們會在 24 小時內以 Email 或 LINE 回覆你。';
+      form.reset();
+    }).catch(function () {
+      status.className = 'form-status form-status--err';
+      status.textContent = '送出失敗，請稍後重試，或直接透過 LINE @xjcaifeng 聯繫我們。';
+    }).finally(function () {
+      status.hidden = false; btn.disabled = false; btn.textContent = label;
+    });
+  });
+})();
+</script>

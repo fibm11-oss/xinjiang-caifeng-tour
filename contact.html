@@ -217,7 +217,7 @@
                     <div style="flex:1;">
                         <strong style="color:#333;display:block;margin-bottom:2px;">電子郵件</strong>
                         <div style="display:flex;align-items:center;gap:8px;">
-                            <span id="emailText" style="color:#1a4a7a;font-size:15px;">info@xjcaifeng.com</span>
+                            <span id="emailText" style="color:#1a4a7a;font-size:15px;">zmmv9577@agent.qq.com</span>
                             <button onclick="copyEmail()" style="background:#f0f6ff;border:1px solid #cdd9ec;border-radius:8px;min-height:44px;padding:0 16px;display:inline-flex;align-items:center;font-size:14px;font-weight:600;cursor:pointer;color:#1a4a7a;" aria-label="複製電子郵件">📋 複製</button>
                         </div>
                         <p style="color:#888;font-size:13px;margin-top:4px;">24小時內回覆</p>
@@ -321,7 +321,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary" style="width:100%;padding:16px;font-size:17px;margin-top:8px;">送出諮詢表單</button>
             </form>
-            <p style="color:#888;font-size:13px;text-align:center;margin-top:12px;">我們將在 24 小時內透過微信或 Email 回覆您</p>
+            <p style="color:#888;font-size:13px;text-align:center;margin-top:12px;">我們將在 24 小時內透過 Email 或 LINE 與您聯絡</p>
         </div>
 
     </div>
@@ -366,6 +366,8 @@
 </footer>
 
 <script>
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mjyydlwa';
+
 function handleSubmit(e) {
     e.preventDefault();
     var name = document.getElementById('name').value.trim();
@@ -387,12 +389,53 @@ function handleSubmit(e) {
     }
     var existingErr = document.getElementById('formError');
     if (existingErr) existingErr.remove();
-    // 模擬送出成功
+    var data = {
+        name: name,
+        line: document.getElementById('line').value.trim(),
+        email: email,
+        departure: document.getElementById('departure').value.trim(),
+        days: document.getElementById('days').value,
+        people: document.getElementById('people').value.trim(),
+        route: document.getElementById('route').value,
+        budget: document.getElementById('budget').value,
+        message: document.getElementById('message').value.trim()
+    };
+
+    var btn = e.target.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = '送出中…'; }
+
+    fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(function(r) {
+        if (r.ok) { showThankYou(); }
+        else { throw new Error('formspree status ' + r.status); }
+    }).catch(function() {
+        var err = document.getElementById('formError');
+        if (!err) {
+            err = document.createElement('p');
+            err.id = 'formError';
+            err.style.cssText = 'color:#c8102e;font-size:14px;margin:0;';
+            document.getElementById('contactForm').prepend(err);
+        }
+        err.textContent = '送出失敗，請稍後再試，或直接來信 zmmv9577@agent.qq.com';
+        err.setAttribute('role','alert');
+        if (btn) { btn.disabled = false; btn.textContent = '送出諮詢表單'; }
+    });
+}
+
+function showThankYou() {
     document.getElementById('contactForm').style.display = 'none';
-    var thankYou = document.createElement('div');
-    thankYou.style.cssText = 'text-align:center;padding:40px;background:#f0faf0;border-radius:12px;';
-    thankYou.innerHTML = '<div style="font-size:48px;margin-bottom:16px;">✅</div><h3 style="color:#2e7d32;font-size:22px;margin-bottom:12px;">諮詢表單已送出！</h3><p style="color:#666;font-size:15px;line-height:1.8;">感謝您的諮詢，我們將在 <strong>24 小時內</strong>透過微信或 Email 與您聯絡。<br>如需緊急諮詢，請直接加微信 <strong>XJCaifeng</strong>。</p>';
-    document.getElementById('contactForm').parentNode.appendChild(thankYou);
+    var thankYou = document.getElementById('thankYou');
+    if (!thankYou) {
+        thankYou = document.createElement('div');
+        thankYou.id = 'thankYou';
+        thankYou.style.cssText = 'text-align:center;padding:40px;background:#f0faf0;border-radius:12px;';
+        thankYou.innerHTML = '<div style="font-size:48px;margin-bottom:16px;">✅</div><h3 style="color:#2e7d32;font-size:22px;margin-bottom:12px;">諮詢表單已送出！</h3><p style="color:#666;font-size:15px;line-height:1.8;">感謝您的諮詢，我們將在 <strong>24 小時內</strong>透過 Email 與您聯絡。<br>如需緊急諮詢，請直接加 LINE <strong>XJCaifeng</strong>。</p>';
+        document.getElementById('contactForm').parentNode.appendChild(thankYou);
+    }
+    thankYou.style.display = 'block';
 }
 
 function copyLineId() {
@@ -404,10 +447,10 @@ function copyLineId() {
 }
 
 function copyEmail() {
-    navigator.clipboard.writeText('info@xjcaifeng.com').then(function() {
-        alert('電子郵件已複製：info@xjcaifeng.com');
+    navigator.clipboard.writeText('zmmv9577@agent.qq.com').then(function() {
+        alert('電子郵件已複製：zmmv9577@agent.qq.com');
     }).catch(function() {
-        prompt('請手動複製電子郵件:', 'info@xjcaifeng.com');
+        prompt('請手動複製電子郵件:', 'zmmv9577@agent.qq.com');
     });
 }
 </script>
@@ -555,7 +598,7 @@ if ('serviceWorker' in navigator) {
 <script src="js/sitemap.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    XJBooking.bind('contactForm');
+    // XJBooking.bind('contactForm'); // 2026-11-08 停用：原只存本地 IndexedDB（不會上傳），已改由 Formspree 接收（見 handleSubmit）
 });
 </script>
 

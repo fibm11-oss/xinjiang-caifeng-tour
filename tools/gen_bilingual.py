@@ -125,12 +125,19 @@ def esc(s: str) -> str:
     return s.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;").replace(">", "&gt;")
 
 
+# 字面雙括號佔位符：必須是普通字串，不能用 f-string（f-string 中 {{ }} 會被轉義成單括號）。
+_GALLERY_BASE = "{{BASE}}"
+
 def build_gallery(lang: str) -> str:
     """從 tools/gallery.json 產生 .xj-gallery 區塊（中/英各一份圖說）。
 
     每個條目：name（圖檔基名，m/ 縮圖、l/ 放大圖同名）、
     cap_zh / cap_en（各語言圖說）。縮圖與放大圖必須已存在於
     bilingual/assets/gallery/{m,l}/，否則 check() 會報資源不存在。
+
+    注意：圖片路徑裡的 {{BASE}} 必須是「雙括號」字面量，交由後續
+    build_html 的 body.replace("{{BASE}}", base) 統一替換。若在 f-string
+    裡直接寫 {{BASE}} 會被轉義成單括號 {BASE}，導致替換失效、圖片 404。
     """
     try:
         data = json.loads(GALLERY_JSON.read_text(encoding="utf-8"))
@@ -141,8 +148,8 @@ def build_gallery(lang: str) -> str:
         name = it["name"]
         cap = it["cap_zh"] if lang == "zh" else it["cap_en"]
         items.append(
-            f'      <figure class="xj-gallery__item"><img src="{{BASE}}assets/gallery/m/{name}.webp" '
-            f'data-full="{{BASE}}assets/gallery/l/{name}.webp" alt="{esc(cap)}" loading="lazy">'
+            f'      <figure class="xj-gallery__item"><img src="{_GALLERY_BASE}assets/gallery/m/{name}.webp" '
+            f'data-full="{_GALLERY_BASE}assets/gallery/l/{name}.webp" alt="{esc(cap)}" loading="lazy">'
             f'<figcaption>{esc(cap)}</figcaption></figure>'
         )
     return '<div class="xj-gallery">\n' + "\n".join(items) + "\n      </div>"
@@ -308,8 +315,8 @@ def check(entries) -> list[str]:
         target = (path.parent / sw).resolve()
         if target not in out_paths:
             problems.append(f"{page}/{lang}: 切換目標不存在 {target.name}")
-        # 片段中不應殘留佔位符
-        if "{{BASE}}" in html or "{{HOME}}" in html:
+        # 片段中不應殘留佔位符（含 f-string 轉義錯誤導致的單括號 {BASE}）
+        if "{{BASE}}" in html or "{{HOME}}" in html or "{BASE}" in html or "{HOME}" in html:
             problems.append(f"{page}/{lang}: 佔位符未替換")
         # 共用資源路徑必須存在
         for m in re.finditer(r'(?:href|src)="((?:\.\./)*)(css|js|assets)/([^"?#]+)"', html):

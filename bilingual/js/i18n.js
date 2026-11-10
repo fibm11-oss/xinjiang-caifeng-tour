@@ -23,9 +23,12 @@
       brandSub: '專屬包車定制 · 北疆 / 南疆 / 絲路',
       footerDesc: '我們以在地司機與私人導遊，為每一位旅人量身打造不趕路、不進店的新疆旅程。',
       quickLinks: '快速連結',
-      itinerary: '推薦行程',
+      recommendedTours: '推薦行程',
       aboutUs: '關於我們',
       contactUs: '聯絡我們',
+      aboutContact: '關於與聯絡',
+      popularRoutes: '熱門路線',
+      faq: '常見問題',
       copyright: '© 2026 新疆采風 Xinjiang Caifeng. 版權所有。',
       nav: [
         { t: '首頁', p: 'index.html', cls: 'mobile-home-link' },
@@ -35,16 +38,9 @@
           { t: '獨庫公路全線 4 日穿越', p: 'routes.html#tour6' },
           { t: '查看全部 9 條路線 →', p: 'routes.html' }
         ]},
-        { t: '行程範例', p: 'itinerary.html', children: [
-          { t: '行程範例總覽', p: 'itinerary.html' },
-          { t: '北疆大環線 17 日', p: 'itinerary-loop17.html' },
-          { t: '北疆經典 11 日', p: 'itinerary-classic11.html' },
-          { t: '北疆＋伊犁＋獨庫 16 日', p: 'itinerary-selfdrive16.html' }
-        ]},
         { t: '小包團', p: 'car-rental.html', children: [
           { t: '服務總覽', p: 'car-rental.html#services' },
-          { t: '推薦車型', p: 'car-rental.html#cars' },
-          { t: '費用說明', p: 'car-rental.html#pricing' }
+          { t: '推薦車型', p: 'car-rental.html#cars' }
         ]},
         { t: '旅遊攻略', p: 'blog/index.html', children: [
           { t: '2026 完整攻略', p: 'blog/xinjiang-travel-guide.html' },
@@ -58,15 +54,6 @@
           { t: '奎屯市 City Walk', p: 'blog/kuitun-citywalk.html' },
           { t: '吐魯番市 City Walk', p: 'blog/turpan-citywalk.html' }
         ]},
-        { t: '福利', p: 'https://fibm11-oss.github.io/xinjiang-caifeng-tour/xj-h5/index.html#album', children: [
-          { t: '路書', p: 'https://fibm11-oss.github.io/xinjiang-caifeng-tour/xj-h5/index.html#album' }
-        ]},
-        { t: '關於我們', p: 'about.html', children: [
-          { t: '3 步定制你的新疆', p: 'about.html#steps' },
-          { t: '為什麼選擇我們', p: 'about.html#trust' },
-          { t: '新疆實景', p: 'about.html#scenery' },
-          { t: '常見問題', p: 'about.html#faq' }
-        ]},
         { t: '聯絡我們', p: 'contact.html', children: [
           { t: '諮詢表單', p: 'contact.html' },
           { t: '電子郵件', p: 'contact.html#email' },
@@ -75,7 +62,8 @@
       ],
       sticky: [
         { t: '立即詢價', p: 'contact.html' },
-        { t: '路書', p: 'https://fibm11-oss.github.io/xinjiang-caifeng-tour/xj-h5/index.html#album' }
+        { t: '精選路線', p: 'routes.html' },
+        { t: '旅遊攻略', p: 'blog/index.html' }
       ],
       suggest: '看起來你偏好英文，要切換到 English 版本嗎？',
       suggestGo: '切換語言',
@@ -83,14 +71,17 @@
       upcoming: '即將上線'
     },
     en: {
-      brand: 'Xinjiang Caifeng',
+      brand: 'Curated Xinjiang',
       brandSub: 'Private tailor-made journeys · Northern / Southern Xinjiang & the Silk Road',
       footerDesc: 'With local drivers and private guides, we craft unhurried, shop-free Xinjiang journeys made entirely around you.',
       quickLinks: 'Quick Links',
-      itinerary: 'Itineraries',
+      recommendedTours: 'Itineraries',
       aboutUs: 'About Us',
       contactUs: 'Contact',
-      copyright: '© 2026 Xinjiang Caifeng. All rights reserved.',
+      aboutContact: 'About & Contact',
+      popularRoutes: 'Popular Routes',
+      faq: 'FAQ',
+      copyright: '© 2026 Curated Xinjiang. All rights reserved.',
       nav: [
         { t: 'Home', p: 'index.html', cls: 'mobile-home-link' },
         { t: 'Recommended Tours', p: 'routes.html', children: [
@@ -99,16 +90,9 @@
           { t: 'Duku Highway Crossing · 4 Days', p: 'routes.html#tour6' },
           { t: 'View all 9 routes →', p: 'routes.html' }
         ]},
-        { t: 'Sample Itineraries', p: 'itinerary.html', children: [
-          { t: 'Overview', p: 'itinerary.html' },
-          { t: 'Grand Northern Loop · 17 Days', p: 'itinerary-loop17.html' },
-          { t: 'Northern Classics · 11 Days', p: 'itinerary-classic11.html' },
-          { t: 'North + Ili + Duku · 16 Days', p: 'itinerary-selfdrive16.html' }
-        ]},
         { t: 'Private Groups', p: 'car-rental.html', children: [
           { t: 'Services', p: 'car-rental.html#services' },
-          { t: 'Vehicles', p: 'car-rental.html#cars' },
-          { t: 'Pricing', p: 'car-rental.html#pricing' }
+          { t: 'Vehicles', p: 'car-rental.html#cars' }
         ]},
         { t: 'Travel Guides', p: 'blog/index.html', children: [
           { t: 'The Complete Guide', p: 'blog/xinjiang-travel-guide.html' },
@@ -122,15 +106,6 @@
           { t: 'Kuitun City Walk', p: 'blog/kuitun-citywalk.html' },
           { t: 'Turpan City Walk', p: 'blog/turpan-citywalk.html' }
         ]},
-        { t: 'Perks', p: 'https://fibm11-oss.github.io/xinjiang-caifeng-tour/xj-h5/index.html#album', children: [
-          { t: 'Roadbook', p: 'https://fibm11-oss.github.io/xinjiang-caifeng-tour/xj-h5/index.html#album' }
-        ]},
-        { t: 'About Us', p: 'about.html', children: [
-          { t: 'Plan in 3 Steps', p: 'about.html#steps' },
-          { t: 'Why Travel With Us', p: 'about.html#trust' },
-          { t: 'Xinjiang in Focus', p: 'about.html#scenery' },
-          { t: 'FAQ', p: 'about.html#faq' }
-        ]},
         { t: 'Contact', p: 'contact.html', children: [
           { t: 'Enquiry Form', p: 'contact.html' },
           { t: 'Email', p: 'contact.html#email' },
@@ -139,7 +114,8 @@
       ],
       sticky: [
         { t: 'Get a Quote', p: 'contact.html' },
-        { t: 'Roadbook', p: 'https://fibm11-oss.github.io/xinjiang-caifeng-tour/xj-h5/index.html#album' }
+        { t: 'Explore Routes', p: 'routes.html' },
+        { t: 'Travel Guides', p: 'blog/index.html' }
       ],
       suggest: 'Looks like you prefer Chinese. Switch to the 中文 version?',
       suggestGo: 'Switch language',
@@ -151,7 +127,7 @@
   var T = DICT[lang];
 
   /* 同語言頁面連結：data-home 由生成腳本依深度寫入；
-     絕對 URL（如指向主站 H5 路書）原樣返回 */
+     絕對 URL（跨域外鏈）原樣返回 */
   function href(p) { return /^https?:/.test(p) ? p : home + p; }
   /* 共用資源連結 */
   function asset(p) { return base + 'assets/' + p; }

@@ -28,11 +28,13 @@ import argparse
 import re
 import sys
 from datetime import date, timezone
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BILINGUAL = ROOT / "bilingual"
 SRC = ROOT / "tools" / "bilingual-src"
+GALLERY_JSON = ROOT / "tools" / "gallery.json"
 
 # ── 唯一 SEO 主域（Q5：GitHub Pages）。換域只改這一行 ──────────────
 CANONICAL_BASE = "https://fibm11-oss.github.io/xinjiang-caifeng-tour"
@@ -41,16 +43,12 @@ SITE_PREFIX = "/bilingual"
 LANGS = ("zh", "en")
 LANG_TAG = {"zh": "zh-Hant", "en": "en"}
 
-# 22 個頁面（相對語言根）。admin/member 為內部頁，不進 sitemap。
+# 頁面清單（相對語言根）。實際以對應片段是否存在決定是否生成；admin/member 為內部頁，不進 sitemap。
 PAGES = (
     "index.html",
     "about.html",
     "car-rental.html",
     "contact.html",
-    "itinerary.html",
-    "itinerary-classic11.html",
-    "itinerary-loop17.html",
-    "itinerary-selfdrive16.html",
     "routes.html",
     "blog/index.html",
     "blog/beijiang-vs-nanjiang.html",
@@ -74,7 +72,7 @@ RE_DESC = re.compile(r"^<!--\s*@desc\s+(.+?)\s*-->\s*$", re.M)
 
 DEFAULT_META = {
     "zh": ("新疆采風｜新疆包車旅遊・定制包車", "新疆采風－專業新疆包車旅遊服務"),
-    "en": ("Xinjiang Caifeng | Private Xinjiang Tours", "Tailor-made private tours across Xinjiang"),
+    "en": ("Curated Xinjiang | Private Xinjiang Tours", "Tailor-made private tours across Xinjiang"),
 }
 
 
@@ -127,9 +125,39 @@ def esc(s: str) -> str:
     return s.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;").replace(">", "&gt;")
 
 
+def build_gallery(lang: str) -> str:
+    """從 tools/gallery.json 產生 .xj-gallery 區塊（中/英各一份圖說）。
+
+    每個條目：name（圖檔基名，m/ 縮圖、l/ 放大圖同名）、
+    cap_zh / cap_en（各語言圖說）。縮圖與放大圖必須已存在於
+    bilingual/assets/gallery/{m,l}/，否則 check() 會報資源不存在。
+    """
+    try:
+        data = json.loads(GALLERY_JSON.read_text(encoding="utf-8"))
+    except Exception:
+        data = []
+    items = []
+    for it in data:
+        name = it["name"]
+        cap = it["cap_zh"] if lang == "zh" else it["cap_en"]
+        items.append(
+            f'      <figure class="xj-gallery__item"><img src="{{BASE}}assets/gallery/m/{name}.webp" '
+            f'data-full="{{BASE}}assets/gallery/l/{name}.webp" alt="{esc(cap)}" loading="lazy">'
+            f'<figcaption>{esc(cap)}</figcaption></figure>'
+        )
+    return '<div class="xj-gallery">\n' + "\n".join(items) + "\n      </div>"
+
+
 def build_html(page: str, lang: str, body: str, title: str, desc: str,
                available: str) -> str:
     base, home = prefixes(page, lang)
+    # 防快取版本號：依 js/css 最新修改時間產生，檔案變動才變號，
+    # 避免瀏覽器吃舊 nav.js / style.css 導致新功能（如頁首三鈕）不生效。
+    try:
+        _assets = list(BILINGUAL.glob("js/*.js")) + list(BILINGUAL.glob("css/*.css"))
+        build_ver = str(int(max(p.stat().st_mtime for p in _assets)))
+    except Exception:
+        build_ver = "1"
     tag = LANG_TAG[lang]
     canonical = lang_url(page, lang)
     zh_url = lang_url(page, "zh")
@@ -139,7 +167,7 @@ def build_html(page: str, lang: str, body: str, title: str, desc: str,
         "og-image.svg" if lang == "zh" else "og-image-en.svg"
     )
 
-    logo = "新疆<span>采風</span>" if lang == "zh" else "Xinjiang <span>Caifeng</span>"
+    logo = "新疆<span>采風</span>" if lang == "zh" else "Curated <span>Xinjiang</span>"
     cta = "免費諮詢" if lang == "zh" else "Get a Quote"
     switch_label = "EN" if lang == "zh" else "中文"
     skip = "跳至主要內容" if lang == "zh" else "Skip to main content"
@@ -147,6 +175,7 @@ def build_html(page: str, lang: str, body: str, title: str, desc: str,
     menu_aria = "網站導覽選單" if lang == "zh" else "Site menu"
     toggle_aria = "開啟選單" if lang == "zh" else "Open menu"
 
+    body = body.replace("<!-- GALLERY -->", build_gallery(lang))
     body = body.replace("{{BASE}}", base).replace("{{HOME}}", home)
 
     return f"""<!DOCTYPE html>
@@ -175,7 +204,7 @@ def build_html(page: str, lang: str, body: str, title: str, desc: str,
 
 <link rel="icon" href="{base}assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="{base}assets/hero-xinjiang.webp" as="image">
-<link rel="stylesheet" href="{base}css/style.css">
+<link rel="stylesheet" href="{base}css/style.css?v={build_ver}">
 </head>
 <body class="page-{page.replace('.html','').replace('/','-')}">
 
@@ -183,13 +212,12 @@ def build_html(page: str, lang: str, body: str, title: str, desc: str,
 
 <nav class="navbar" role="navigation" aria-label="{nav_aria}">
   <div class="nav-container">
-    <input type="checkbox" id="navMenuToggle" class="nav-menu-toggle-cb" aria-hidden="true" tabindex="-1">
     <a href="{home}index.html" class="logo logo-link">{logo}</a>
-    <label for="navMenuToggle" class="logo logo-css-toggle" aria-label="{toggle_aria}">{logo}</label>
+    <div class="nav-quick" id="navQuick"></div>
     <ul class="nav-menu" id="navMenu" role="menubar" aria-label="{menu_aria}"></ul>
     <div class="nav-actions">
-      <a href="{other}" class="lang-switch" id="langSwitch" hreflang="{LANG_TAG['en' if lang == 'zh' else 'zh']}" lang="{LANG_TAG['en' if lang == 'zh' else 'zh']}">{switch_label}</a>
       <a href="{home}contact.html" class="nav-cta">{cta}</a>
+      <a href="{other}" class="lang-switch" id="langSwitch" hreflang="{LANG_TAG['en' if lang == 'zh' else 'zh']}" lang="{LANG_TAG['en' if lang == 'zh' else 'zh']}">{switch_label}</a>
     </div>
   </div>
 </nav>
@@ -202,9 +230,10 @@ def build_html(page: str, lang: str, body: str, title: str, desc: str,
 <div id="siteSticky"></div>
 <div id="langSuggest" class="lang-suggest" hidden></div>
 
-<script src="{base}js/i18n.js"></script>
-<script src="{base}js/nav.js"></script>
-<script src="{base}js/promotion.js"></script>
+<script src="{base}js/i18n.js?v={build_ver}"></script>
+<script src="{base}js/nav.js?v={build_ver}"></script>
+<script src="{base}js/promotion.js?v={build_ver}"></script>
+<script src="{base}js/gallery.js?v={build_ver}"></script>
 </body>
 </html>
 """
@@ -283,7 +312,7 @@ def check(entries) -> list[str]:
         if "{{BASE}}" in html or "{{HOME}}" in html:
             problems.append(f"{page}/{lang}: 佔位符未替換")
         # 共用資源路徑必須存在
-        for m in re.finditer(r'(?:href|src)="((?:\.\./)*)(css|js|assets)/([^"]+)"', html):
+        for m in re.finditer(r'(?:href|src)="((?:\.\./)*)(css|js|assets)/([^"?#]+)"', html):
             rel = BILINGUAL / m.group(2) / m.group(3)
             if not rel.exists():
                 problems.append(f"{page}/{lang}: 資源不存在 {rel.relative_to(ROOT)}")

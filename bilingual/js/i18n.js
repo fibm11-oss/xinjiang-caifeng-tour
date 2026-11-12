@@ -57,7 +57,7 @@
         { t: '聯絡我們', p: 'contact.html', children: [
           { t: '諮詢表單', p: 'contact.html' },
           { t: '電子郵件', p: 'contact.html#email' },
-          { t: 'LINE / WhatsApp', p: 'contact.html#messaging' }
+          { t: 'WhatsApp', p: 'contact.html#messaging' }
         ]}
       ],
       sticky: [
@@ -109,7 +109,7 @@
         { t: 'Contact', p: 'contact.html', children: [
           { t: 'Enquiry Form', p: 'contact.html' },
           { t: 'Email', p: 'contact.html#email' },
-          { t: 'LINE / WhatsApp', p: 'contact.html#messaging' }
+          { t: 'WhatsApp', p: 'contact.html#messaging' }
         ]}
       ],
       sticky: [

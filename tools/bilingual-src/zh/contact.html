@@ -1,5 +1,5 @@
 <!--@title 聯絡我們｜免費新疆行程規劃諮詢 -->
-<!--@desc 告訴我們天數、季節與想看的風景，新疆采風在 24 小時內回覆專屬路線建議。亦可透過 LINE 官方帳號聯繫，諮詢不收服務費。 -->
+<!--@desc 告訴我們天數、季節與想看的風景，新疆采風在 24 小時內回覆專屬路線建議。亦可透過 WhatsApp 聯繫，諮詢不收服務費。 -->
 
 <section class="page-hero">
   <div class="page-hero__media"><img src="{{BASE}}assets/yizhao-highway.webp" alt="伊昭公路沿途的高山與草原" width="1536" height="949"></div>
@@ -7,7 +7,7 @@
     <p class="breadcrumb"><a href="{{HOME}}index.html">首頁</a> / 聯絡我們</p>
     <p class="page-hero__eyebrow">Get in touch</p>
     <h1>你的新疆，從一句話開始</h1>
-    <p class="page-hero__desc">填寫下方表單，或透過 LINE 告訴我們想法。我們會在 24 小時內以 Email 或 LINE 回覆，附上初步路線與報價方向。</p>
+    <p class="page-hero__desc">填寫下方表單，或透過 WhatsApp 告訴我們想法。我們會在 24 小時內以 Email 或 WhatsApp 回覆，附上初步路線與報價方向。</p>
   </div>
 </section>
 
@@ -20,9 +20,8 @@
         <a href="#inquiry-form" class="contact-link">直接填寫表單 →</a>
       </div>
       <div class="contact-card" id="messaging">
-        <h3>LINE 官方帳號</h3>
-        <p>加入後發送「新疆旅遊」，可直接與我們討論行程；旅途期間也透過同一個群組即時聯繫。</p>
-        <a href="https://line.me/ti/p/@xjcaifeng" class="contact-link" target="_blank" rel="noopener">@xjcaifeng →</a>
+        <h3>WhatsApp 即時聯繫</h3>
+        <p>在表單留下你的 WhatsApp ID，我們會主動加你，直接討論行程；旅途期間也透過同一個窗口即時聯繫。</p>
       </div>
       <div class="contact-card" id="email">
         <h3>回覆時效與語言</h3>
@@ -49,7 +48,7 @@
         </div>
         <div class="form-row">
           <div class="form-field">
-            <label for="f-msg-app">LINE / WhatsApp ID</label>
+            <label for="f-msg-app">WhatsApp ID</label>
             <input id="f-msg-app" name="messenger" type="text" placeholder="選填，方便即時聯繫">
           </div>
           <div class="form-field">
@@ -79,21 +78,29 @@
             </select>
           </div>
         </div>
-        <div class="form-field">
-          <label for="f-interest">感興趣的路線</label>
-          <select id="f-interest" name="interest">
-            <option value="">還沒有想法，想聽建議</option>
-            <option>伊犁河谷小包團 10 日</option>
-            <option>伊犁草原 8 日</option>
-            <option>南疆絲路秘境 9 日</option>
-            <option>北疆喀納斯 8 日</option>
-            <option>北疆全景 10 日</option>
-            <option>獨庫公路 4 日</option>
-            <option>喀什 ＋ 帕米爾 7 日</option>
-            <option>吐魯番 ＋ 東天山 4 日</option>
-            <option>南北疆大環線 15 日</option>
-          </select>
-        </div>
+          <div class="form-field">
+            <label for="f-interest">感興趣的路線</label>
+            <select id="f-interest" name="interest">
+              <option value="">請選擇</option>
+              <option>北疆大環線（阿勒泰先行 12 天／獨庫伊犁先行 13 天）</option>
+              <option>伊犁草原環線（賽湖＋伊寧＋那拉提／小眾深度）</option>
+              <option>阿勒泰深度環線（喀納斯＋禾木＋可可托海）</option>
+              <option>南疆大環線・沙漠公路（全公路閉環 9–12 天）</option>
+              <option>喀什帕米爾高原線（塔縣＋盤龍古道＋紅其拉甫）</option>
+              <option>庫車龜茲人文線（庫車＋阿克蘇＋溫宿大峽谷）</option>
+              <option>吐魯番庫車小環線（天數少時唯一公路閉環解）</option>
+              <option>南北疆全景大環線（18–25 天，一次看全）</option>
+              <option>南北疆 17 天取捨型（先北後南／先南後北）</option>
+              <option>北疆秋色攝影線（喀納斯／禾木金秋 9 月中–10 月初）</option>
+              <option>塔克拉瑪干胡楊線（輪台／澤普金胡楊 10 月中–11 月初）</option>
+              <option>阿勒泰冬季冰雪定點線（禾木連住 ＋ 滑雪 7 日）</option>
+              <option>南疆冬季暖陽人文線（喀什＋帕米爾 7 日）</option>
+              <option>伊犁冬季慢遊線（伊寧＋那拉提溫泉 7 日）</option>
+              <option>東疆吐魯番哈密線（火洲＋大海道星空 2–4 天）</option>
+              <option>獨庫公路天路穿越線（季節限定 6 月中–10 月初，4–6 天）</option>
+              <option>尚未確定，需要建議</option>
+            </select>
+          </div>
         <div class="form-field">
           <label for="f-message">想告訴我們的 <span class="req">*</span></label>
           <textarea id="f-message" name="message" required placeholder="想看的風景、旅行節奏、同行是否有長輩或小孩、飲食或住宿需求……"></textarea>
@@ -126,11 +133,11 @@
     }).then(function (r) {
       if (!r.ok) throw new Error('network');
       status.className = 'form-status form-status--ok';
-      status.textContent = '已收到！我們會在 24 小時內以 Email 或 LINE 回覆你。';
+      status.textContent = '已收到！我們會在 24 小時內以 Email 或 WhatsApp 回覆你。';
       form.reset();
     }).catch(function () {
       status.className = 'form-status form-status--err';
-      status.textContent = '送出失敗，請稍後重試，或直接透過 LINE @xjcaifeng 聯繫我們。';
+      status.textContent = '送出失敗，請稍後重試，或直接透過 WhatsApp 和 Email 聯絡我們。';
     }).finally(function () {
       status.hidden = false; btn.disabled = false; btn.textContent = label;
     });

@@ -7,7 +7,7 @@
     <p class="breadcrumb"><a href="{{HOME}}index.html">Home</a> / Contact</p>
     <p class="page-hero__eyebrow">Get in touch</p>
     <h1>Your Xinjiang trip starts with one message</h1>
-    <p class="page-hero__desc">Send the form below, or reach us on LINE. We reply within 24 hours by email or message with a first route idea and an indicative price range.</p>
+    <p class="page-hero__desc">Send the form below, or reach us on WhatsApp. We reply within 24 hours by email or WhatsApp with a first route idea and an indicative price range.</p>
   </div>
 </section>
 
@@ -20,9 +20,8 @@
         <a href="#inquiry-form" class="contact-link">Go to the form →</a>
       </div>
       <div class="contact-card" id="messaging">
-        <h3>LINE official account</h3>
-        <p>Add us and send "Xinjiang travel" to discuss your trip directly. The same channel stays open throughout your journey for on-road questions.</p>
-        <a href="https://line.me/ti/p/@xjcaifeng" class="contact-link" target="_blank" rel="noopener">@xjcaifeng →</a>
+        <h3>WhatsApp instant contact</h3>
+        <p>Leave your WhatsApp ID in the form and we will add you to discuss your trip directly. The same channel stays open throughout your journey for on-road questions.</p>
       </div>
       <div class="contact-card" id="email">
         <h3>Response time &amp; language</h3>
@@ -49,7 +48,7 @@
         </div>
         <div class="form-row">
           <div class="form-field">
-            <label for="f-msg-app">WhatsApp / LINE ID</label>
+            <label for="f-msg-app">WhatsApp ID</label>
             <input id="f-msg-app" name="messenger" type="text" placeholder="Optional, for quicker replies">
           </div>
           <div class="form-field">
@@ -79,21 +78,28 @@
             </select>
           </div>
         </div>
-        <div class="form-field">
-          <label for="f-interest">Route of interest</label>
-          <select id="f-interest" name="interest">
-            <option value="">No idea yet — please suggest</option>
-            <option>Ili Valley · 10 days</option>
-            <option>Ili Grasslands · 8 days</option>
-            <option>Southern Silk Road · 9 days</option>
-            <option>Kanas · 8 days</option>
-            <option>Complete Northern Xinjiang · 10 days</option>
-            <option>Duku Highway · 4 days</option>
-            <option>Kashgar &amp; Pamirs · 7 days</option>
-            <option>Turpan &amp; Eastern Tianshan · 4 days</option>
-            <option>Grand North–South Loop · 15 days</option>
-          </select>
-        </div>
+          <div class="form-field">
+            <label for="f-interest">Route of interest</label>
+            <select id="f-interest" name="interest">
+              <option value="">Not sure yet — please suggest</option>
+              <option>Grand Northern Xinjiang Loop (Altay-first 12 days / Duku-Ili-first 13 days)</option>
+              <option>Ili Grassland Loop (Sayram Lake + Yining + Nalati / off-the-beaten-path)</option>
+              <option>Altay In-depth Loop (Kanas + Hemu + Koktokay)</option>
+              <option>Grand Southern Xinjiang Loop · Desert Highway (full road loop, 9–12 days)</option>
+              <option>Kashgar &amp; Pamir Plateau Line (Taxkorgan + Panlong Ancient Road + Khunjerab)</option>
+              <option>Kuqa &amp; Kucha Culture Line (Kuqa + Aksu + Wensu Grand Canyon)</option>
+              <option>Turpan–Kuqa Mini Loop (the only road loop for short trips)</option>
+              <option>Grand North–South Xinjiang Panorama Loop (18–25 days, see it all)</option>
+              <option>17-Day North–South Xinjiang (north-first or south-first)</option>
+              <option>Northern Xinjiang Autumn Photography Line (Kanas/Hemu golden autumn, mid-Sep–early-Oct)</option>
+              <option>Taklamakan Poplar Line (Luntai / Zepu golden poplars, mid-Oct–early-Nov)</option>
+              <option>Altay Winter Snow Base Line (multi-night Hemu + skiing, 7 days)</option>
+              <option>Southern Xinjiang Winter Sun &amp; Culture Line (Kashgar + Pamirs, 7 days)</option>
+              <option>Ili Winter Slow Tour (Yining + Nalati hot springs, 7 days)</option>
+              <option>Eastern Xinjiang Turpan–Hami Line (fiery basin + Dahaidao starry sky, 2–4 days)</option>
+              <option>Duku Highway Sky-Road Crossing (seasonal mid-Jun–early-Oct, 4–6 days)</option>
+            </select>
+          </div>
         <div class="form-field">
           <label for="f-message">Anything else we should know <span class="req">*</span></label>
           <textarea id="f-message" name="message" required placeholder="Landscapes you want to see, preferred pace, children or older travellers in the group, dietary or accommodation needs..."></textarea>
@@ -126,11 +132,11 @@
     }).then(function (r) {
       if (!r.ok) throw new Error('network');
       status.className = 'form-status form-status--ok';
-      status.textContent = 'Thank you — we will reply within 24 hours by email or message.';
+      status.textContent = 'Thank you — we will reply within 24 hours by email or WhatsApp.';
       form.reset();
     }).catch(function () {
       status.className = 'form-status form-status--err';
-      status.textContent = 'Something went wrong. Please try again shortly, or reach us on LINE @xjcaifeng.';
+      status.textContent = 'Something went wrong. Please try again shortly, or reach us on WhatsApp or by email.';
     }).finally(function () {
       status.hidden = false; btn.disabled = false; btn.textContent = label;
     });

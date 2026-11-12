@@ -12,7 +12,7 @@
         { icon: '👨‍✈️', title: '專業司機', desc: '持證上崗·熟悉路況' },
         { icon: '🛡️', title: '全面保險', desc: '旅遊責任險+車輛險' },
         { icon: '⭐', title: '200+好評', desc: '真實客戶五星評價' },
-        { icon: '💬', title: '即時支援', desc: 'LINE/微信全天在線' },
+        { icon: '💬', title: '即時支援', desc: '微信全天在線' },
         { icon: '📋', title: '合法資質', desc: '正規旅遊營運執照' }
     ];
 

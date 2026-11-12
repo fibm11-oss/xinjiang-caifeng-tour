@@ -62,7 +62,6 @@
                 await XJ.db.addInquiry({
                     userId: (XJ.auth && XJ.auth.currentUser && XJ.auth.currentUser() ? XJ.auth.currentUser().uid : null),
                     name: data.name,
-                    line: data.line || '',
                     email: data.email || '',
                     departure: data.departure || '',
                     days: data.days || '',
@@ -82,8 +81,7 @@
                     '  <div style="font-size:56px;margin-bottom:16px;">✅</div>',
                     '  <h3 style="color:#2e7d32;font-size:22px;margin-bottom:12px;">諮詢表單已送出！</h3>',
                     '  <p style="color:#555;font-size:15px;line-height:1.8;">',
-                    '    感謝您的諮詢，我們將在 <strong>24 小時內</strong> 與您聯絡。<br>',
-                    '    如需緊急諮詢，請直接加 LINE <strong>XJCaifeng</strong>。',
+                    '    感謝您的諮詢，我們將在 <strong>24 小時內</strong> 與您聯絡。',
                     '  </p>',
                     '  <div style="margin-top:20px;padding:12px 20px;background:#fff;border-radius:8px;',
                     '        display:inline-block;font-size:13px;color:#666;">',
@@ -97,7 +95,7 @@
 
             } catch (err) {
                 console.error('提交失敗:', err);
-                XJ.toast('提交失敗，請稍後再試或直接加 LINE 諮詢', 'error');
+                XJ.toast('提交失敗，請稍後再試', 'error');
                 if (btn) {
                     btn.disabled = false;
                     btn.textContent = '送出諮詢表單';
@@ -146,7 +144,6 @@
                             '<td style="padding:10px 12px;color:#888;">' + dateStr + '</td>' +
                             '<td style="padding:10px 12px;font-weight:600;">' + escapeHtml(item.name) + '</td>' +
                             '<td style="padding:10px 12px;">' +
-                            (item.line ? 'LINE: ' + escapeHtml(item.line) + '<br>' : '') +
                             (item.email ? escapeHtml(item.email) : '') +
                             '</td>' +
                             '<td style="padding:10px 12px;">' +

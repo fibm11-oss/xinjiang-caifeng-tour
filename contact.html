@@ -289,17 +289,6 @@
                     </div>
                 </div>
                 <div>
-                    <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">預算參考（每人・人民幣）</label>
-                    <select id="budget" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;background:#fff;transition:border 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'">
-                        <option value="">請選擇</option>
-                        <option>5,000元以下</option>
-                        <option>5,000–8,000元</option>
-                        <option>8,000–12,000元</option>
-                        <option>12,000元以上</option>
-                        <option>尚無預算概念</option>
-                    </select>
-                </div>
-                <div>
                     <label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px;">其他需求或備註</label>
                     <textarea id="message" rows="4" placeholder="例如：想拍攝星空、有長輩同行需要舒適行程、素食需求..." style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;resize:vertical;transition:border 0.2s;" onfocus="this.style.borderColor='#c8102e'" onblur="this.style.borderColor='#ddd'"></textarea>
                 </div>
@@ -358,7 +347,6 @@ function handleSubmit(e) {
         days: document.getElementById('days').value,
         people: document.getElementById('people').value.trim(),
         route: document.getElementById('route').value,
-        budget: document.getElementById('budget').value,
         message: document.getElementById('message').value.trim()
     };
 

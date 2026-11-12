@@ -67,7 +67,6 @@
                     days: data.days || '',
                     people: data.people || '',
                     route: data.route || '',
-                    budget: data.budget || '',
                     message: data.message || ''
                 });
 

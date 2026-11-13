@@ -1,4 +1,4 @@
-/* 新疆實景 圖片庫 燈箱 —— 僅在頁面含 .xj-gallery 時啟用 */
+/* 新疆实景 图片库 灯箱 —— 仅在页面含 .xj-gallery 时启用 */
 (function () {
   'use strict';
   function init() {
@@ -16,7 +16,7 @@
       };
     });
 
-    // 建立燈箱 DOM
+    // 建立灯箱 DOM
     var box = document.createElement('div');
     box.className = 'xj-lightbox';
     box.innerHTML =

@@ -8,7 +8,7 @@
   </defs>
   <rect width="1200" height="630" fill="url(#hero-bg)"/>
 
-  <!-- 山形裝飾（沿用主站識別） -->
+  <!-- 山形装饰（沿用主站识别） -->
   <polygon points="0,450 200,250 400,380 600,200 800,320 1000,180 1200,280 1200,630 0,630" fill="#ffffff" opacity="0.08"/>
   <polygon points="0,500 200,320 500,450 700,280 1000,400 1200,250 1200,630 0,630" fill="#ffffff" opacity="0.06"/>
   <polygon points="0,550 300,400 600,500 900,350 1200,480 1200,630 0,630" fill="#ffffff" opacity="0.04"/>
@@ -16,17 +16,17 @@
   <circle cx="900" cy="180" r="60" fill="#f8c15a" opacity="0.30"/>
   <circle cx="900" cy="180" r="40" fill="#ffd700" opacity="0.20"/>
 
-  <!-- 品牌標記 -->
+  <!-- 品牌标记 -->
   <rect x="60" y="60" width="60" height="60" rx="12" fill="#c8102e" opacity="0.9"/>
   <text x="90" y="103" font-family="'Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="900" fill="#fff" text-anchor="middle">XC</text>
 
-  <!-- 主標 -->
+  <!-- 主标 -->
   <text x="70" y="270" font-family="'Helvetica Neue',Arial,sans-serif" font-size="66" font-weight="900" fill="#ffffff">Private Xinjiang Tours</text>
   <text x="70" y="350" font-family="'Helvetica Neue',Arial,sans-serif" font-size="30" fill="#ffffff" opacity="0.92" letter-spacing="1">Tailor-made routes · Private guide · Your own vehicle</text>
 
   <line x1="70" y1="400" x2="400" y2="400" stroke="#f5a623" stroke-width="4" stroke-linecap="round"/>
 
-  <!-- 特色標籤 -->
+  <!-- 特色标签 -->
   <rect x="70" y="430" width="230" height="40" rx="20" fill="#f5a623" opacity="0.2"/>
   <text x="185" y="456" font-family="'Helvetica Neue',Arial,sans-serif" font-size="18" fill="#ffffff" text-anchor="middle">Northern Xinjiang</text>
   <rect x="320" y="430" width="230" height="40" rx="20" fill="#f5a623" opacity="0.2"/>

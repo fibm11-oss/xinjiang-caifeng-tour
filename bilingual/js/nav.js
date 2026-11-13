@@ -1,9 +1,9 @@
 /* ==========================================================
-   新疆采風 · 中英雙語站  nav.js
+   新疆采风 · 中英双语站  nav.js
    ----------------------------------------------------------
-   導覽選單與頁尾由字典注入（改一次字典，44 頁同步）。
-   語言切換鈕與 nav-cta 由生成腳本靜態寫入 HTML，不在此處理。
-   導覽列在所有寬度保持橫排常顯，不折疊漢堡選單；本檔不綁任何點擊、不依賴 .active。
+   导览选单与页尾由字典注入（改一次字典，44 页同步）。
+   语言切换钮与 nav-cta 由生成脚本静态写入 HTML，不在此处理。
+   导览列在所有宽度保持横排常显，不折叠汉堡选单；本档不绑任何点击、不依赖 .active。
    ========================================================== */
 (function () {
   'use strict';
@@ -13,15 +13,15 @@
       .replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  /* 生成腳本把「目前實際已生成的頁面」寫進 <html data-pages>。
-     尚未生成的連結降級為不可點的「即將上線」，每補一頁重新生成即自動恢復。 */
+  /* 生成脚本把「目前实际已生成的页面」写进 <html data-pages>。
+     尚未生成的连结降级为不可点的「即将上线」，每补一页重新生成即自动恢复。 */
   var AVAIL = (document.documentElement.getAttribute('data-pages') || '')
     .split('|').filter(Boolean);
 
   function isLive(p) {
-    if (/^https?:/.test(p)) return true;          // 外部連結（跨域）
+    if (/^https?:/.test(p)) return true;          // 外部连结（跨域）
     var path = p.split('#')[0];
-    return !path || AVAIL.indexOf(path) !== -1;   // 純錨點或已生成頁
+    return !path || AVAIL.indexOf(path) !== -1;   // 纯锚点或已生成页
   }
 
   function aTag(p, text, attrs, cls, inner) {
@@ -56,7 +56,7 @@
     menu.innerHTML = html;
   }
 
-  /* 頁首品牌名旁的三顆直達按鈕：推薦行程 / 小包團 / 旅遊攻略 */
+  /* 页首品牌名旁的三颗直达按钮：推荐行程 / 小包团 / 旅游攻略 */
   function renderTopQuick() {
     var box = document.getElementById('navQuick');
     if (!box || !window.XJ) return;

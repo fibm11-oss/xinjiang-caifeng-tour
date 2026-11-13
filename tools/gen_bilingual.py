@@ -1,25 +1,25 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-新疆采風 · 中英雙語站頁面生成器
+新疆采风 · 中英双语站页面生成器
 ================================
-產出 /bilingual/ 與 /bilingual/en/ 下的 HTML，並生成 sitemap.xml。
+产出 /bilingual/ 与 /bilingual/en/ 下的 HTML，并生成 sitemap.xml。
 
-設計要點
+设计要点
 --------
-* 現站（純中文）完全不動；本腳本只寫 /bilingual/ 子樹。
-* 正文與外殼分離：正文片段放 tools/bilingual-src/{zh,en}/<page>.html，
-  本腳本負責套 <head>（canonical / hreflang / og）、導覽外殼與前綴。
-* 片段可用兩個佔位符，由腳本依頁面深度替換：
-    {{BASE}}  → 到 /bilingual/ 根（共用資源 css/js/assets）
-    {{HOME}}  → 到當前語言根（同語言頁面互連）
-* 語言切換連結由腳本靜態算好寫進 HTML（爬蟲可抓），JS 只負責記憶偏好。
-* 只有存在對應片段的頁面才會生成 → 隨翻譯進度自然擴充，sitemap 同步。
+* 现站（纯中文）完全不动；本脚本只写 /bilingual/ 子树。
+* 正文与外壳分离：正文片段放 tools/bilingual-src/{zh,en}/<page>.html，
+  本脚本负责套 <head>（canonical / hreflang / og）、导览外壳与前缀。
+* 片段可用两个占位符，由脚本依页面深度替换：
+    {{BASE}}  → 到 /bilingual/ 根（共用资源 css/js/assets）
+    {{HOME}}  → 到当前语言根（同语言页面互连）
+* 语言切换连结由脚本静态算好写进 HTML（爬虫可抓），JS 只负责记忆偏好。
+* 只有存在对应片段的页面才会生成 → 随翻译进度自然扩充，sitemap 同步。
 
 用法
 ----
-  python tools/gen_bilingual.py              # 生成所有已有片段的頁面 + sitemap
-  python tools/gen_bilingual.py --check      # 只做校驗，不寫檔
+  python tools/gen_bilingual.py              # 生成所有已有片段的页面 + sitemap
+  python tools/gen_bilingual.py --check      # 只做校验，不写档
   python tools/gen_bilingual.py --only index.html
 """
 from __future__ import annotations
@@ -36,14 +36,14 @@ BILINGUAL = ROOT / "bilingual"
 SRC = ROOT / "tools" / "bilingual-src"
 GALLERY_JSON = ROOT / "tools" / "gallery.json"
 
-# ── 唯一 SEO 主域（Q5：GitHub Pages）。換域只改這一行 ──────────────
+# ── 唯一 SEO 主域（Q5：GitHub Pages）。换域只改这一行 ──────────────
 CANONICAL_BASE = "https://fibm11-oss.github.io/xinjiang-caifeng-tour"
 SITE_PREFIX = "/bilingual"
 
 LANGS = ("zh", "en")
-LANG_TAG = {"zh": "zh-Hant", "en": "en"}
+LANG_TAG = {"zh": "zh-CN", "en": "en"}
 
-# 頁面清單（相對語言根）。實際以對應片段是否存在決定是否生成；admin/member 為內部頁，不進 sitemap。
+# 页面清单（相对语言根）。实际以对应片段是否存在决定是否生成；admin/member 为内部页，不进 sitemap。
 PAGES = (
     "index.html",
     "about.html",
@@ -66,21 +66,21 @@ PAGES = (
 )
 INTERNAL_PAGES = {"admin.html", "member.html"}
 
-# 片段開頭可選的兩行註記，用來指定 title / description
+# 片段开头可选的两行註记，用来指定 title / description
 RE_TITLE = re.compile(r"^<!--\s*@title\s+(.+?)\s*-->\s*$", re.M)
 RE_DESC = re.compile(r"^<!--\s*@desc\s+(.+?)\s*-->\s*$", re.M)
 
 DEFAULT_META = {
-    "zh": ("新疆采風｜新疆包車旅遊・定制包車", "新疆采風－專業新疆包車旅遊服務"),
+    "zh": ("新疆采风｜新疆包车旅游・定制包车", "新疆采风－专业新疆包车旅游服务"),
     "en": ("Curated Xinjiang | Private Xinjiang Tours", "Tailor-made private tours across Xinjiang"),
 }
 
 
 def prefixes(page: str, lang: str) -> tuple[str, str]:
-    """回傳 (data-base, data-home)。
+    """回传 (data-base, data-home)。
 
-    data-base：目前頁面 → /bilingual/（css/js/assets 共用）
-    data-home：目前頁面 → 目前語言根（/bilingual/ 或 /bilingual/en/）
+    data-base：目前页面 → /bilingual/（css/js/assets 共用）
+    data-home：目前页面 → 目前语言根（/bilingual/ 或 /bilingual/en/）
     """
     depth = page.count("/")
     base = "../" * (depth + (1 if lang == "en" else 0))
@@ -94,15 +94,15 @@ def lang_url(page: str, lang: str) -> str:
 
 
 def other_lang_url(page: str, lang: str) -> str:
-    """SEO 用：另一語言的絕對 URL（hreflang 必須絕對）。"""
+    """SEO 用：另一语言的绝对 URL（hreflang 必须绝对）。"""
     return lang_url(page, "en" if lang == "zh" else "zh")
 
 
 def switch_href(page: str, lang: str, base: str) -> str:
-    """切換鈕用：相對路徑。
+    """切换钮用：相对路径。
 
-    相對路徑同時適用本機預覽、GitHub Pages 子路徑與 WorkBuddy 根域；
-    絕對 URL 只留在 canonical / hreflang / og（SEO 需要）。
+    相对路径同时适用本机预览、GitHub Pages 子路径与 WorkBuddy 根域；
+    绝对 URL 只留在 canonical / hreflang / og（SEO 需要）。
     """
     return base + ("en/" + page if lang == "zh" else page)
 
@@ -125,19 +125,19 @@ def esc(s: str) -> str:
     return s.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-# 字面雙括號佔位符：必須是普通字串，不能用 f-string（f-string 中 {{ }} 會被轉義成單括號）。
+# 字面双括号占位符：必须是普通字串，不能用 f-string（f-string 中 {{ }} 会被转义成单括号）。
 _GALLERY_BASE = "{{BASE}}"
 
 def build_gallery(lang: str) -> str:
-    """從 tools/gallery.json 產生 .xj-gallery 區塊（中/英各一份圖說）。
+    """从 tools/gallery.json 产生 .xj-gallery 区块（中/英各一份图说）。
 
-    每個條目：name（圖檔基名，m/ 縮圖、l/ 放大圖同名）、
-    cap_zh / cap_en（各語言圖說）。縮圖與放大圖必須已存在於
-    bilingual/assets/gallery/{m,l}/，否則 check() 會報資源不存在。
+    每个条目：name（图档基名，m/ 缩图、l/ 放大图同名）、
+    cap_zh / cap_en（各语言图说）。缩图与放大图必须已存在于
+    bilingual/assets/gallery/{m,l}/，否则 check() 会报资源不存在。
 
-    注意：圖片路徑裡的 {{BASE}} 必須是「雙括號」字面量，交由後續
-    build_html 的 body.replace("{{BASE}}", base) 統一替換。若在 f-string
-    裡直接寫 {{BASE}} 會被轉義成單括號 {BASE}，導致替換失效、圖片 404。
+    注意：图片路径里的 {{BASE}} 必须是「双括号」字面量，交由后续
+    build_html 的 body.replace("{{BASE}}", base) 统一替换。若在 f-string
+    里直接写 {{BASE}} 会被转义成单括号 {BASE}，导致替换失效、图片 404。
     """
     try:
         data = json.loads(GALLERY_JSON.read_text(encoding="utf-8"))
@@ -158,8 +158,8 @@ def build_gallery(lang: str) -> str:
 def build_html(page: str, lang: str, body: str, title: str, desc: str,
                available: str) -> str:
     base, home = prefixes(page, lang)
-    # 防快取版本號：依 js/css 最新修改時間產生，檔案變動才變號，
-    # 避免瀏覽器吃舊 nav.js / style.css 導致新功能（如頁首三鈕）不生效。
+    # 防快取版本号：依 js/css 最新修改时间产生，档案变动才变号，
+    # 避免浏览器吃旧 nav.js / style.css 导致新功能（如页首三钮）不生效。
     try:
         _assets = list(BILINGUAL.glob("js/*.js")) + list(BILINGUAL.glob("css/*.css"))
         build_ver = str(int(max(p.stat().st_mtime for p in _assets)))
@@ -174,13 +174,13 @@ def build_html(page: str, lang: str, body: str, title: str, desc: str,
         "og-image.svg" if lang == "zh" else "og-image-en.svg"
     )
 
-    logo = "新疆<span>采風</span>" if lang == "zh" else "Curated <span>Xinjiang</span>"
-    cta = "免費諮詢" if lang == "zh" else "Get a Quote"
+    logo = "新疆<span>采风</span>" if lang == "zh" else "Curated <span>Xinjiang</span>"
+    cta = "免费咨询" if lang == "zh" else "Get a Quote"
     switch_label = "EN" if lang == "zh" else "中文"
-    skip = "跳至主要內容" if lang == "zh" else "Skip to main content"
-    nav_aria = "主導航" if lang == "zh" else "Main navigation"
-    menu_aria = "網站導覽選單" if lang == "zh" else "Site menu"
-    toggle_aria = "開啟選單" if lang == "zh" else "Open menu"
+    skip = "跳至主要内容" if lang == "zh" else "Skip to main content"
+    nav_aria = "主导航" if lang == "zh" else "Main navigation"
+    menu_aria = "网站导览选单" if lang == "zh" else "Site menu"
+    toggle_aria = "开启选单" if lang == "zh" else "Open menu"
 
     body = body.replace("<!-- GALLERY -->", build_gallery(lang))
     body = body.replace("{{BASE}}", base).replace("{{HOME}}", home)
@@ -195,7 +195,7 @@ def build_html(page: str, lang: str, body: str, title: str, desc: str,
 <meta name="robots" content="index, follow">
 
 <link rel="canonical" href="{canonical}">
-<link rel="alternate" hreflang="zh-Hant" href="{zh_url}">
+<link rel="alternate" hreflang="zh-CN" href="{zh_url}">
 <link rel="alternate" hreflang="en" href="{en_url}">
 <link rel="alternate" hreflang="x-default" href="{zh_url}">
 
@@ -247,10 +247,10 @@ def build_html(page: str, lang: str, body: str, title: str, desc: str,
 
 
 def collect() -> list[tuple[str, str, str, str, str]]:
-    """回傳所有可生成的 (page, lang, html, out_path, url)。
+    """回传所有可生成的 (page, lang, html, out_path, url)。
 
-    data-pages 記錄「目前實際已生成的頁面」，導覽 JS 據此把尚未上線的
-    連結降級為「即將上線」；每補一頁重新生成即自動恢復，不需改字典。
+    data-pages 记录「目前实际已生成的页面」，导览 JS 据此把尚未上线的
+    连结降级为「即将上线」；每补一页重新生成即自动恢复，不需改字典。
     """
     found = []
     for lang in LANGS:
@@ -282,7 +282,7 @@ def build_sitemap(entries) -> str:
         lines.append("  <url>")
         lines.append(f"    <loc>{url}</loc>")
         lines.append(f"    <lastmod>{today}</lastmod>")
-        lines.append(f'    <xhtml:link rel="alternate" hreflang="zh-Hant" href="{lang_url(page, "zh")}"/>')
+        lines.append(f'    <xhtml:link rel="alternate" hreflang="zh-CN" href="{lang_url(page, "zh")}"/>')
         lines.append(f'    <xhtml:link rel="alternate" hreflang="en" href="{lang_url(page, "en")}"/>')
         lines.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{lang_url(page, "zh")}"/>')
         lines.append("  </url>")
@@ -298,59 +298,59 @@ def check(entries) -> list[str]:
         pairs.setdefault(page, set()).add(lang)
         if f'<link rel="canonical" href="{url}">' not in html:
             problems.append(f"{page}/{lang}: canonical 未自指")
-        for tag in ("zh-Hant", "en", "x-default"):
+        for tag in ("zh-CN", "en", "x-default"):
             if f'hreflang="{tag}"' not in html:
                 problems.append(f"{page}/{lang}: 缺 hreflang {tag}")
         base, home = prefixes(page, lang)
         if f'data-base="{base}"' not in html or f'data-home="{home}"' not in html:
-            problems.append(f"{page}/{lang}: 前綴錯誤 (期望 base={base!r}, home={home!r})")
+            problems.append(f"{page}/{lang}: 前缀错误 (期望 base={base!r}, home={home!r})")
         if 'data-pages="' not in html:
-            problems.append(f"{page}/{lang}: 缺 data-pages（導覽降級依據）")
-        # 切換鈕必須是相對路徑，且解析後指向真的存在的另一語言頁面
+            problems.append(f"{page}/{lang}: 缺 data-pages（导览降级依据）")
+        # 切换钮必须是相对路径，且解析后指向真的存在的另一语言页面
         sw = switch_href(page, lang, base)
         if f'id="langSwitch" href="{sw}"' not in html.replace('class="lang-switch" ', ''):
             m = re.search(r'<a href="([^"]+)" class="lang-switch"', html)
             if not m or m.group(1) != sw:
-                problems.append(f"{page}/{lang}: 切換鈕路徑錯誤 (期望 {sw!r})")
+                problems.append(f"{page}/{lang}: 切换钮路径错误 (期望 {sw!r})")
         target = (path.parent / sw).resolve()
         if target not in out_paths:
-            problems.append(f"{page}/{lang}: 切換目標不存在 {target.name}")
-        # 片段中不應殘留佔位符（含 f-string 轉義錯誤導致的單括號 {BASE}）
+            problems.append(f"{page}/{lang}: 切换目标不存在 {target.name}")
+        # 片段中不应残留占位符（含 f-string 转义错误导致的单括号 {BASE}）
         if "{{BASE}}" in html or "{{HOME}}" in html or "{BASE}" in html or "{HOME}" in html:
-            problems.append(f"{page}/{lang}: 佔位符未替換")
-        # 共用資源路徑必須存在
+            problems.append(f"{page}/{lang}: 占位符未替换")
+        # 共用资源路径必须存在
         for m in re.finditer(r'(?:href|src)="((?:\.\./)*)(css|js|assets)/([^"?#]+)"', html):
             rel = BILINGUAL / m.group(2) / m.group(3)
             if not rel.exists():
-                problems.append(f"{page}/{lang}: 資源不存在 {rel.relative_to(ROOT)}")
+                problems.append(f"{page}/{lang}: 资源不存在 {rel.relative_to(ROOT)}")
     for page, got in pairs.items():
         if got != set(LANGS):
-            problems.append(f"{page}: 語言不成對，僅有 {sorted(got)}")
+            problems.append(f"{page}: 语言不成对，仅有 {sorted(got)}")
     return problems
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--only", help="只生成指定頁面，如 index.html")
-    ap.add_argument("--check", action="store_true", help="只校驗不寫檔")
+    ap.add_argument("--only", help="只生成指定页面，如 index.html")
+    ap.add_argument("--check", action="store_true", help="只校验不写档")
     args = ap.parse_args()
 
     entries = collect()
     if args.only:
         entries = [e for e in entries if e[0] == args.only]
     if not entries:
-        print("沒有任何可生成的頁面（片段不存在）。", file=sys.stderr)
+        print("没有任何可生成的页面（片段不存在）。", file=sys.stderr)
         return 1
 
     problems = check(entries)
     if problems:
-        print("校驗失敗：", file=sys.stderr)
+        print("校验失败：", file=sys.stderr)
         for p in problems:
             print("  - " + p, file=sys.stderr)
         return 2
 
     if args.check:
-        print(f"校驗通過：{len(entries)} 頁，0 問題。")
+        print(f"校验通过：{len(entries)} 页，0 问题。")
         return 0
 
     written = []
@@ -363,7 +363,7 @@ def main() -> int:
     (BILINGUAL / "sitemap.xml").write_text(sitemap, encoding="utf-8")
     written.append("bilingual/sitemap.xml")
 
-    print(f"生成 {len(entries)} 頁 + sitemap，校驗 0 問題：")
+    print(f"生成 {len(entries)} 页 + sitemap，校验 0 问题：")
     for w in written:
         print("  " + w)
     return 0

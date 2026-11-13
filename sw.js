@@ -1,15 +1,15 @@
 // 服務工作線程 - PWA 支援
-// ⚠️ 重要規矩：靜態資源走「快取優先」(cache-first)，改動 css/*.css 或 js/*.js 後
-//    必須 bump 這個 CACHE_NAME，否則線上用戶會繼續拿到舊快取、改動看不到。
-//    bump 後 install 會重新快取最新檔案，activate 會清掉舊版本快取。
-const CACHE_NAME = 'xjcaifeng-v1.2.11';
+// 快取策略：所有請求（含 CSS/JS/圖片）一律「網路優先、失敗才回快取」，
+//    在線時順手把新版本寫回快取，離線瀏覽仍可用，不會再被舊快取卡住。
+//    改動 css/*.css 或 js/*.js 仍建議 bump CACHE_NAME：activate 會清掉舊版本
+//    快取桶、避免磁碟上堆積歷代舊檔；但已不影響使用者能否看到新內容。
+const CACHE_NAME = 'xjcaifeng-v1.2.28';
 const urlsToCache = [
     '/',
     '/index.html',
     '/routes.html',
     '/car-rental.html',
     '/contact.html',
-    '/about.html',
     '/itinerary.html',
     '/manifest.json',
     '/css/style.css',
@@ -66,9 +66,11 @@ self.addEventListener('install', function(event) {
 });
 
 // 攔截網路請求
-// 頁面導航（navigate）一律「網路優先」，確保改完頁面直接刷新就能看到最新內容，
+// 頁面導航一律「網路優先」，確保改完頁面直接刷新就能看到最新內容，
 // 不再被舊版快取卡住；離線時才回退到已快取的首頁。
-// 其餘靜態資源（CSS/JS/圖片）維持快取優先，支援離線瀏覽。
+// 其餘靜態資源（CSS/JS/圖片）同樣改為「網路優先、失敗回快取」：
+// 已註冊舊 SW 的瀏覽器（尤其本機預覽）不會再長期吃到數月前的舊 JS/CSS，
+// 連線時順手把新版本寫回快取，離線瀏覽仍完全可用。
 self.addEventListener('fetch', function(event) {
     if (event.request.mode === 'navigate') {
         event.respondWith(
@@ -81,10 +83,19 @@ self.addEventListener('fetch', function(event) {
         return;
     }
     event.respondWith(
-        caches.match(event.request)
+        fetch(event.request)
             .then(function(response) {
-                return response || fetch(event.request).catch(function() {
-                    return Response.error();
+                if (response && response.ok && response.type === 'basic') {
+                    var copy = response.clone();
+                    caches.open(CACHE_NAME).then(function(cache) {
+                        return cache.put(event.request, copy);
+                    }).catch(function() {});
+                }
+                return response;
+            })
+            .catch(function() {
+                return caches.match(event.request).then(function(r) {
+                    return r || Response.error();
                 });
             })
     );

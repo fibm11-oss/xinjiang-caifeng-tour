@@ -370,7 +370,7 @@ p { margin: 0; }
 .post-grid .card__media { height: 200px; }
 
 /* ---------- 联络两栏 + 表单 ---------- */
-.contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 48px; align-items: start; }
+.contact-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: start; }
 .contact-card {
   background: var(--white); border-radius: var(--radius);
   padding: 30px; box-shadow: var(--shadow); margin-bottom: 20px;
@@ -481,6 +481,24 @@ p { margin: 0; }
   color: var(--muted); font-size: 13px; text-decoration: underline;
 }
 
+/* ---------- 中文版页首文案置中（英文版维持左对齐） ----------
+   生成脚本为每页写入 lang="zh-CN" / lang="en"，两者互斥，
+   所以以下规则只作用于中文版，英文版一行都不受影响。
+   垂直置中由 .hero / .page-hero 的 flex align-items:center 负责，
+   这里补的是水平：小标、主标、副标整组一起置中，
+   避免只挪 h1 造成三行参差。 */
+html[lang="zh-CN"] .hero__inner,
+html[lang="zh-CN"] .page-hero__inner { text-align: center; }
+html[lang="zh-CN"] .hero h1,
+html[lang="zh-CN"] .page-hero h1,
+html[lang="zh-CN"] .hero__desc,
+html[lang="zh-CN"] .page-hero__desc {
+    margin-left: auto;
+    margin-right: auto;
+}
+html[lang="zh-CN"] .hero__actions,
+html[lang="zh-CN"] .page-hero__actions { justify-content: center; }
+
 /* ---------- 英文版微调（英文比中文宽 2–3 倍） ---------- */
 html[lang="en"] { font-family: var(--font-en); }
 html[lang="en"] body { letter-spacing: 0; }
@@ -588,8 +606,12 @@ html[lang="en"] .logo-link {
   .lang-suggest p { margin-bottom: 10px; }
 
   /* 内页元件 */
-  .page-hero { min-height: 250px; }
+  .page-hero { min-height: 82vh; } /* 手机：比照首页 .hero，标题照片拉满整屏 */
   .page-hero__inner { padding: 42px var(--pad); }
+  /* 中文版内页标题位置比照首页：整组靠上，起点与 .hero 一致；
+     英文版维持原本的垂直居中，不受影响。 */
+  html[lang="zh-CN"] .page-hero { align-items: flex-start; }
+  html[lang="zh-CN"] .page-hero__inner { padding: 44px var(--pad); }
   .feature-grid, .feature-grid--4, .post-grid, .form-row { grid-template-columns: 1fr; }
   .faq summary { padding: 16px 18px; font-size: 15px; }
   .faq details p { padding: 16px 18px 20px; }

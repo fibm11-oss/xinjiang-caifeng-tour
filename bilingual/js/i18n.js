@@ -61,7 +61,7 @@
         ]}
       ],
       sticky: [
-        { t: '立即询价', p: 'contact.html' },
+        { t: '免费咨询', p: 'contact.html' },
         { t: '精选路线', p: 'routes.html' },
         { t: '旅游攻略', p: 'blog/index.html' }
       ],
@@ -113,7 +113,7 @@
         ]}
       ],
       sticky: [
-        { t: 'Get a Quote', p: 'contact.html' },
+        { t: 'Free Consultation', p: 'contact.html' },
         { t: 'Explore Routes', p: 'routes.html' },
         { t: 'Travel Guides', p: 'blog/index.html' }
       ],

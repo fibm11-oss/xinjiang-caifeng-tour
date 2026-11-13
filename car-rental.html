@@ -24,7 +24,7 @@
     <meta property="twitter:image" content="https://xjcaifeng.com/images/og-image.svg">
 
     <!-- 預載入關鍵資源 -->
-    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="css/style.css?v=20261113c" as="style">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
@@ -39,7 +39,7 @@
     <link rel="apple-touch-icon" href="images/favicon-192.png" sizes="192x192">
     <link rel="apple-touch-icon" href="images/favicon-512.png" sizes="512x512">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20261113c">
 
     <!-- 結構化數據 -->
     <script type="application/ld+json">
@@ -149,19 +149,6 @@
             <li role="none"><a href="blog/turpan-citywalk.html" role="menuitem">吐魯番市 City Walk</a></li>
         </ul>
     </li>
-    <li role="none" class="has-dropdown">
-        <a href="xj-h5/index.html#album" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">福利 <span class="dropdown-caret" aria-hidden="true"></span></a>
-        <ul class="dropdown" role="menu" aria-label="福利">
-            <li role="none"><a href="xj-h5/index.html#album" role="menuitem">路書</a></li>
-        </ul>
-    </li><li role="none" class="has-dropdown">
-        <a href="about.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">關於我們 <span class="dropdown-caret" aria-hidden="true"></span></a>
-        <ul class="dropdown" role="menu" aria-label="關於我們">
-            <li role="none"><a href="about.html#steps" role="menuitem">3 步定制你的新疆</a></li>
-            <li role="none"><a href="about.html#trust" role="menuitem">為什麼選擇我們</a></li>
-            <li role="none"><a href="about.html#faq" role="menuitem">常見問題</a></li>
-        </ul>
-    </li>
         <li role="none" class="has-dropdown">
         <a href="contact.html" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown-parent">聯絡我們 <span class="dropdown-caret" aria-hidden="true"></span></a>
         <ul class="dropdown" role="menu" aria-label="聯絡我們">
@@ -176,18 +163,16 @@
     </div>
 </nav>
 
-<section class="page-hero" id="main-content" style="background:url('images/hero-xinjiang.webp') center/cover;">
-    <h1>小包團服務</h1>
-    <p>專屬司機・私人導遊・不和陌生人拼團</p>
+<section class="page-hero" id="main-content" style="background:url('images/hero-xinjiang.webp') center 45%/cover no-repeat;">
+    <h1>小包團旅遊服務</h1>
+    <p>新疆幅員遼闊，景點之間動輒數百公里<br>專屬車輛，專屬行程</p>
 </section>
 
 <div class="container" style="padding:60px 24px;">
 
     <!-- 服務說明 -->
     <section id="services" style="margin-bottom:64px;">
-        <h2 class="section-title">小包團旅遊服務</h2>
-        <p class="section-subtitle cr-subtitle">新疆幅員遼闊，景點之間動輒數百公里<br>最佳選擇小包團，<br>專屬車輛+司機+導遊，不和陌生人共享旅程</p>
-        <div class="cr-cards" style="display:grid;gap:32px;margin-top:40px;">
+        <div class="cr-cards" style="display:grid;gap:32px;margin-top:0;">
             <div style="background:#FBF4E6;border-radius:12px;padding:36px 28px;">
                 <h3 style="font-size:20px;color:#1a4a7a;margin-bottom:12px;">專屬車輛與司機</h3>
                 <p style="color:#666;line-height:1.8;">每團專屬一台車輛，不與他人拼車。司機均為新疆本地資深司機，熟悉路況、懂維吾爾語，兼顧安全與深度體驗。</p>
@@ -314,15 +299,13 @@
 
 <footer class="site-minifoot">
     <div class="site-minifoot__inner">
-        <a href="index.html" class="site-minifoot__brand">新疆采風 · 專屬包車定制</a>
+        <a href="index.html" class="site-minifoot__brand">新疆采風 · 專屬包車客制</a>
         <nav class="site-minifoot__links" aria-label="頁尾導覽">
             <a href="routes.html">推薦行程</a>
             <a href="car-rental.html">小包團</a>
             <a href="itinerary.html">行程範例</a>
             <a href="blog/index.html">旅遊攻略</a>
-            <a href="about.html">關於我們</a>
             <a href="contact.html">聯絡我們</a>
-            <a href="xj-h5/index.html#album">路書 APP</a>
         </nav>
         <p class="site-minifoot__contact" style="margin:0;">&copy; 2026 新疆采風 Xinjiang Caifeng. All rights reserved.</p>
     </div>
@@ -455,7 +438,7 @@ if ('performance' in window && 'PerformanceObserver' in window) {
 // PWA 支援
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' })
             .then(function(registration) {
                 console.log('ServiceWorker 註冊成功');
             })
@@ -467,7 +450,7 @@ if ('serviceWorker' in navigator) {
 </script>
 
 <script src="js/app.js"></script>
-<script src="js/promotion.js"></script>
+<script src="js/promotion.js?v=20261113c"></script>
 <script src="js/nav.js"></script>
 <script src="js/sitemap.js"></script>
 

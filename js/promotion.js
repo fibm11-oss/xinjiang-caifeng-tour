@@ -82,38 +82,30 @@
     };
 
     /* ==========================================
-     * 2. 粘性聯繫欄（底部固定）
+     * 2. 粘性聯繫欄（底部固定，手機版三顆）
      * ========================================== */
     const StickyBar = {
         render: function() {
             // 避免重複
             if (document.querySelector('.sticky-contact-bar')) return;
 
+            // blog/ 子頁需回上一層，其餘頁面由根目錄出發
+            var inBlog = /\/blog\//.test((location.pathname || '').toLowerCase());
+            var pre = inBlog ? '../' : '';
+            var items = [
+                { href: pre + 'contact.html', text: '免費諮詢', key: 'quote' },
+                { href: pre + 'routes.html', text: '精選路線', key: 'routes' },
+                { href: inBlog ? 'index.html' : 'blog/index.html', text: '旅遊攻略', key: 'blog' }
+            ];
+
             var bar = document.createElement('div');
             bar.className = 'sticky-contact-bar';
-            bar.innerHTML = [
-                '<div class="sticky-bar-inner">',
-                                '  <a href="contact.html" class="sticky-btn quote-btn" aria-label="立即詢價">',
-                '    <span class="sticky-icon">📋</span>',
-                '    <span class="sticky-text">立即詢價</span>',
-                '  </a>',
-                '  <a href="xj-h5/index.html#album" class="sticky-btn call-btn" aria-label="路書">',
-                '    <span class="sticky-icon">📖</span>',
-                '    <span class="sticky-text">路書</span>',
-                '  </a>',
-                '</div>'
-            ].join('\n');
+            bar.innerHTML = '<div class="sticky-bar-inner">' + items.map(function(i) {
+                return '<a href="' + i.href + '" class="sticky-btn" data-key="' + i.key + '">' +
+                       escapeHtml(i.text) + '</a>';
+            }).join('') + '</div>';
 
             document.body.appendChild(bar);
-
-            // 根據當前頁面標示 active
-            var path = (location.pathname || '').toLowerCase();
-            var activeBtn = null;
-            // 導覽層已移除；吸底欄僅剩「立即詢價」「路書」兩項。
-            // 路書為預設 active（亦涵蓋 xj-h5 頁）；contact 頁改標「立即詢價」。
-            if (path.indexOf('contact') !== -1) activeBtn = bar.querySelector('.quote-btn');
-            else activeBtn = bar.querySelector('.call-btn');
-            if (activeBtn) activeBtn.classList.add('active');
         }
     };
 
@@ -272,8 +264,7 @@
 
                 var label = '';
                 if (target.classList.contains('sticky-btn')) {
-                    label = 'sticky_' + (target.classList.contains('line-btn') ? 'line' :
-                                          target.classList.contains('quote-btn') ? 'quote' : 'call');
+                    label = 'sticky_' + (target.getAttribute('data-key') || 'click');
                 } else if (target.classList.contains('btn-primary') || target.classList.contains('btn-secondary')) {
                     label = 'cta_' + (target.textContent || '').trim().substring(0, 20);
                 }

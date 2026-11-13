@@ -66,6 +66,11 @@
     --border: #e0e0e0;
     --border-light: #f0f0f0;
 
+    /* 頁首大圖濾鏡：首頁 hero 與所有子頁 page-hero 共用同一套深色雙層漸層 */
+    --hero-filter:
+        linear-gradient(90deg, rgba(16, 14, 12, .78) 0%, rgba(16, 14, 12, .58) 42%, rgba(16, 14, 12, .30) 100%),
+        linear-gradient(180deg, rgba(16, 14, 12, .38) 0%, rgba(16, 14, 12, .10) 45%, rgba(16, 14, 12, .55) 100%);
+
     /* 間距與圓角 */
     --radius: 10px;
     --radius-lg: 16px;
@@ -608,39 +613,32 @@ img[loading="lazy"] {
     z-index: 2;
 }
 
+/* 與首頁大圖同一套深色雙層漸層濾鏡（--hero-filter 定義於 :root），
+   覆蓋整張墊圖；標題以 z-index 抬到濾鏡之上，避免被壓暗。 */
 .page-hero::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: linear-gradient(to top, var(--bg-light), transparent);
+    inset: 0;
+    z-index: 0;
+    background: var(--hero-filter);
     pointer-events: none;
 }
 
-/* 行程範例頁首圖：改用與首頁大圖同一套虛化處理（深色雙層漸層），
-   取代原本底部 60px 的淺色漸層帶；文字需置 z-index 才不會被遮罩蓋住。 */
-.page-hero--v2::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    width: auto;
-    height: auto;
-    pointer-events: none;
-    z-index: 0;
-    background: none;
-}
-.page-hero--v2 > h1,
-.page-hero--v2 > p {
+.page-hero > h1,
+.page-hero > p {
     position: relative;
     z-index: 1;
 }
 
+/* 行程範例頁（.page-hero--v2）沿用同一套濾鏡，不再另外覆寫 ::after。 */
+
 .page-hero h1 {
+    /* 全站頁首標題字型基準（以「推薦行程」為準），明確宣告避免靠 body 繼承而漂移 */
+    font-family: var(--font-sans);
     font-size: var(--font-size-3xl);
     font-weight: 800;
     margin-bottom: 12px;
+    -webkit-text-stroke: 0.5px rgba(0,0,0,0.9);
     text-shadow: 0 2px 16px rgba(0,0,0,0.35);
     letter-spacing: -0.5px;
 }
@@ -1415,7 +1413,7 @@ tbody tr:last-child {
         font-size: 15px;
         margin-bottom: 28px;
     }
-    /* 關於我們頁的區塊標題（v2-head h2）同步降到 20px，限定 page-about 以免動到首頁 */
+    /* 子頁的區塊標題（v2-head h2）同步降到 20px，限定 page-about 以免動到首頁 */
     body.page-about .v2-head h2 {
         font-size: 20px;
     }
@@ -1465,11 +1463,8 @@ tbody tr:last-child {
     body.page-contact div[style*="grid-template-columns:repeat(3,1fr)"] > div {
         border-radius: 0;
     }
-    /* 聯絡頁 Hero 在手機上過高（inline 280px），降到 200px 更合手機比例 */
-    body.page-contact .page-hero {
-        height: 200px !important;
-    }
-    /* 關於我們頁：.v2-shell 出血，文字區塊保留邊距，卡片/照片貼邊（首頁共用 v2 系統，故限定 page-about） */
+    /* 聯絡頁 Hero 高度回歸全站 .page-hero（原本 inline 280px 已移除，統一設定） */
+    /* 子頁：.v2-shell 出血，文字區塊保留邊距，卡片/照片貼邊（首頁共用 v2 系統，故限定 page-about） */
     body.page-about .v2-shell {
         padding-left: 0;
         padding-right: 0;
@@ -2087,51 +2082,44 @@ img {
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 -2px 16px rgba(0,0,0,0.08);
     display: none; /* 僅手機顯示 */
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
 }
 
 .sticky-bar-inner {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-width: 480px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-width: 640px;
     margin: 0 auto;
 }
 
+/* 比照中英版：白底紅框圓角按钮，三格等寬 */
 .sticky-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 48px;
-    padding: 6px 4px 8px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text);
-    gap: 2px;
+    display: block;
+    text-align: center;
+    padding: 11px 4px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 800;
+    background: #fff;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    white-space: nowrap;
     text-decoration: none;
-    transition: background 0.2s, color 0.2s;
-    border-top: 2px solid transparent;
+    transition: background-color .15s ease, color .15s ease;
     -webkit-tap-highlight-color: transparent;
 }
 
-.sticky-btn:hover {
-    background: var(--bg-light);
+.sticky-btn:hover,
+.sticky-btn:active {
+    background: var(--primary);
+    color: #fff;
 }
-
-.sticky-btn { color: var(--text-muted, #888); border-top-color: transparent; }
-.sticky-btn .sticky-icon { filter: grayscale(100%); opacity: .55; transition: filter .2s, opacity .2s; }
-.sticky-btn.active { color: var(--text); border-top-width: 3px; }
-.sticky-btn.active .sticky-icon { filter: none; opacity: 1; }
-.sticky-btn.active.line-btn { color: #06c755; border-top-color: #06c755; }
-.sticky-btn.active.quote-btn { color: var(--primary); border-top-color: var(--primary); }
-.sticky-btn.active.call-btn { color: var(--secondary); border-top-color: var(--secondary); }
-
-.sticky-icon { font-size: 20px; }
-.sticky-text { font-size: 12px; font-weight: 700; }
 
 @media (max-width: 768px) {
     .sticky-contact-bar { display: block; }
-    /* 固定條實測高 85px；預留量必须蓋過它，否則頁尾版權會被壓住半行 */
-    body { padding-bottom: 88px; }
+    /* 固定條實測約 62px；預留 72px 避免頁尾版權被壓住 */
+    body { padding-bottom: 72px; }
     #backToTop { bottom: 76px !important; }
     .social-proof { bottom: 80px !important; }
 }
@@ -2558,12 +2546,9 @@ img {
 
     /* 底部 sticky bar 觸控高度 */
     .sticky-btn {
-        min-height: 48px;
-        padding: 10px 4px 12px;
+        padding: 10px 2px;
         font-size: 12px;
     }
-    .sticky-icon { font-size: 22px; }
-    .sticky-text { font-size: 12px; }
 
     /* site-minifoot 連結 */
     .site-minifoot__links a {
@@ -2599,82 +2584,94 @@ textarea:focus-visible {
     outline-offset: 2px;
 }
 
-/* ========== 手機版頁尾重新設計（≤768px） ==========
-   舊版：品牌 / 連結×2 / 版權各被 min-height:44px + line-height:44px 撐高，
-   文字只有 14px，每行上下各留 15px 空白，四行看起來散開。
-   新版：品牌當分組頭、8 個連結收進 4×2 膠囊網格、版權降為細線下的小字。
-   膠囊視覺高 38px + 6px 間距 = 44px 有效點擊帶，兼顧緊湊與觸控。
-   只作用於手機；桌機與首頁 hero 疊加版維持原樣。 */
+/* ========== 手機版頁尾（≤768px） ==========
+   除首頁外，各頁黑底 site-minifoot 導覽與底部三顆按鈕功能重複，
+   手機版整塊移除；桌機維持原樣，首頁 hero 疊加版（--overlay）不受影響。 */
 @media (max-width: 768px) {
-    body .site-minifoot {
-        position: relative;
-    }
-    body .site-minifoot::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 2px;
-        background: linear-gradient(90deg,
-                    var(--primary, #c8102e),
-                    var(--accent, #d4a24c) 55%,
-                    rgba(255,255,255,.22));
-    }
-    body .site-minifoot__inner {
-        display: block;
-        gap: 0;
-        padding: 14px 16px 12px;
-    }
-    /* 分組頭：不再用 44px 撐高 */
-    body .site-minifoot__brand {
-        display: block;
-        min-height: 0;
-        line-height: 1.4;
-        font-size: 14px !important;
-        letter-spacing: .08em;
-        color: #fff;
-        padding-bottom: 8px;
-        margin-bottom: 8px;
-        border-bottom: 1px solid rgba(255,255,255,.10);
-    }
-    /* 8 個連結 → 4 欄 × 2 行膠囊 */
-    body .site-minifoot__links {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 6px;
-    }
-    body .site-minifoot__links a {
-        min-height: 38px;
-        line-height: 1.2;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 4px 2px;
-        font-size: 14px !important;
-        white-space: normal;
-        color: rgba(255,255,255,.88);
-        background: rgba(255,255,255,.035);
-        border: 1px solid rgba(255,255,255,.17);
-        border-radius: 8px;
-        -webkit-tap-highlight-color: transparent;
-        transition: background .18s, border-color .18s;
-    }
-    body .site-minifoot__links a:hover,
-    body .site-minifoot__links a:active {
-        background: rgba(200,16,46,.24);
-        border-color: rgba(240,66,92,.70);
-        color: #fff;
-        text-decoration: none;
-    }
-    /* 版權：細線下的輔助小字；右側留白避開固定的「回到頂部」圓鈕 */
-    body .site-minifoot__contact {
-        margin: 10px 0 0 !important;
-        padding: 8px 64px 0 0;
-        border-top: 1px solid rgba(255,255,255,.08);
-        font-size: 12px !important;
-        line-height: 1.45;
-        color: rgba(255,255,255,.48);
-        text-align: left;
-        white-space: normal;
+    body .site-minifoot:not(.site-minifoot--overlay) {
+        display: none;
     }
 }
+
+/* ===== 三步客制（比照中英版設計，獨立命名空間避免與 v2 系統衝突） ===== */
+.xj-steps {
+    padding: 88px 0;
+    background: #FFFFFF;
+}
+.xj-steps__head {
+    margin-bottom: 44px;
+    max-width: 760px;
+}
+.xj-steps__eyebrow {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    color: #C0392B;
+    margin-bottom: 14px;
+}
+.xj-steps__head h2 {
+    font-family: var(--font-sans);
+    font-size: clamp(28px, 3.4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin: 0 0 16px;
+}
+.xj-steps__head p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #5A5048;
+    margin: 0;
+}
+.xj-steps__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.xj-steps__card {
+    background: #FFFFFF;
+    border-radius: 18px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 10px 30px rgba(26, 23, 20, .06);
+    transition: transform .25s, box-shadow .25s;
+}
+.xj-steps__card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 44px rgba(26, 23, 20, .12);
+}
+.xj-steps__no {
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1;
+    color: #0F8B8D;
+}
+.xj-steps__card:nth-child(2) .xj-steps__no { color: #F2C14E; }
+.xj-steps__card:nth-child(3) .xj-steps__no { color: #C8102E; }
+.xj-steps__card h3 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 0;
+}
+.xj-steps__card p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #5A5048;
+    flex: 1;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .xj-steps__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .xj-steps { padding: 56px 0; }
+    .xj-steps__grid { grid-template-columns: 1fr; }
+    .xj-steps__head h2 { font-size: 28px; }
+}
+
+/* 联络我们页：桌面表单在左(宽)、联系方式在右(窄)；手机单列则表单在上 */
+.contact-split { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: start; }
+@media (max-width: 768px) { .contact-split { grid-template-columns: 1fr; gap: 32px; } }

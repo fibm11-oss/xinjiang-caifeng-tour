@@ -129,7 +129,9 @@ body {
     margin-top: 76px;
     min-height: 780px;
     display: flex;
-    align-items: flex-start;
+    /* 文案組上下置中：.v2-hero__inner 是唯一的 flex 子項（迷你頁尾為 absolute），
+       置中後小標不再被固定導覽列壓住。 */
+    align-items: center;
     overflow: hidden;
     isolation: isolate;
 }
@@ -153,15 +155,15 @@ body {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background:
-        linear-gradient(90deg, rgba(16, 14, 12, .78) 0%, rgba(16, 14, 12, .58) 42%, rgba(16, 14, 12, .30) 100%),
-        linear-gradient(180deg, rgba(16, 14, 12, .38) 0%, rgba(16, 14, 12, .10) 45%, rgba(16, 14, 12, .55) 100%);
+    /* 與所有子頁 .page-hero 共用同一套濾鏡（定義於 style.css 的 :root） */
+    background: var(--hero-filter);
 }
 
 .v2-hero__inner {
     max-width: var(--v2-shell);
     margin: 0 auto;
-    padding: 56px 110px 0;
+    /* 上下置中：不留單側 padding，否则 flex 居中會把文案整組往下推半個 padding */
+    padding: 0 110px;
     width: 100%;
     text-align: center;
 }
@@ -175,11 +177,17 @@ body {
 }
 
 .v2-hero h1 {
+    /* 頁首標題字型統一：與各子頁 .page-hero h1（推薦行程）同一套。
+       特異度高於 .v2-title，故不會被首頁區塊標題的 Noto Sans TC / 900 覆蓋。 */
+    font-family: var(--font-sans);
+    font-weight: 800;
+    letter-spacing: -0.5px;
     font-size: 60px;
     line-height: 1.14;
     color: #fff;
     margin: 0 auto 22px;
     max-width: 1120px;
+    -webkit-text-stroke: 0.5px rgba(0, 0, 0, .9);
     text-shadow: 0 4px 30px rgba(0, 0, 0, .35);
 }
 
@@ -187,14 +195,15 @@ body {
     font-size: 19px;
     line-height: 1.75;
     color: var(--v2-sand);
-    margin: 0 auto 34px;
+    /* 原 34px 下留白是給已移除的 hero 按鈕，留著會讓置中後的文案組視覺偏上 */
+    margin: 0 auto;
     max-width: 760px;
 }
 
 /* 手機版 hero 描述：預設（桌機）顯示兩段，手機版切換為三段 */
 .desc-m { display: none; }
 
-/* 手機版 hero 主標：預設（桌機）單行，手機版改為兩行斷行 */
+/* hero 主標：桌機 (.title-pc) 與手機 (.title-m) 皆為「新疆／您的私人花園」兩行斷行 */
 .title-m { display: none; }
 
 .v2-hero__actions {
@@ -255,7 +264,7 @@ body {
     box-shadow: 0 10px 30px rgba(200, 16, 46, .32);
 }
 
-/* ---------- 三步定制 ---------- */
+/* ---------- 三步客制 ---------- */
 .v2-steps {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -707,10 +716,10 @@ body {
         /* 手機單屏模式：hero 佔 88vh，下方區塊露出邊緣作為「可捲動」提示，
            避免首屏被 hero 完全吃滿、使用者以為頁面到頭 */
         min-height: 88vh;
-        align-items: flex-start;
+        align-items: center;
     }
 
-    .v2-hero__inner { padding: 14px 20px 0; margin-top: 0; }
+    .v2-hero__inner { padding: 0 20px; margin-top: 0; }
 
     .v2-hero h1 {
         font-size: 34px;
@@ -799,7 +808,7 @@ body {
  * 手機（<1025px）：維持原本可捲動的完整首頁（內容包在 .home-rich 內）
  * ========================================== */
 
-/* 手機版首頁不顯示「旅客真實好評」（該區塊保留在「關於我們」頁） */
+/* 手機版首頁不顯示「旅客真實好評」（手機版不顯示） */
 @media (max-width: 1024px) {
     .page-home #testimonialsContainer { display: none; }
 }
@@ -858,10 +867,11 @@ body {
         margin-top: calc(64px + env(safe-area-inset-top, 0px));
         min-height: calc(100vh - 124px - env(safe-area-inset-top, 0px));
         height: calc(100vh - 124px - env(safe-area-inset-top, 0px));
+        /* 手機首頁文案位置比照中英版中文：整組靠上，主標題頂落在畫面約 150px */
         align-items: flex-start;
     }
     .page-home .v2-hero__inner {
-        padding: 16px 20px 0;
+        padding: 86px 20px 0;
     }
     .page-home .v2-hero__eyebrow {
         display: none;
@@ -870,4 +880,19 @@ body {
     .page-home .footer {
         display: none !important;
     }
+}
+
+/* ===== 首頁三步客制區塊：讓單屏首頁可往下捲動 =====
+   原本 ≥1025px 與 ≤768px 都把 .home-rich / .footer 隱藏，並鎖死 html/body 高度，
+   首頁無法捲動。三步區塊已移到 .home-rich 之外，這裡只放開捲動與完整頁尾，
+   其餘 .home-rich 內容（精選路線、相片牆、FAQ 等）維持原本隱藏策略。 */
+@media (min-width: 1025px) {
+    .page-home { overflow: visible; }
+    .page-home .footer { display: block; }
+    .page-home .v2-hero__minifoot { display: none; }
+}
+@media (max-width: 768px) {
+    html:has(body.page-home) { overflow: visible !important; height: auto !important; }
+    body.page-home { overflow: visible !important; height: auto !important; }
+    .page-home .footer { display: block !important; }
 }

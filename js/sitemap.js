@@ -20,11 +20,6 @@ const siteMap = {
         description: '有任何問題歡迎聯絡',
         keywords: ['聯絡方式', '諮詢', '新疆旅遊諮詢']
     },
-    '/about.html': {
-        title: '關於我們・服務保障 - 新疆采風',
-        description: '3 步定制、在地司機與私人導遊、專屬微信群全程照應、不趕路不進店，附新疆旅遊常見問題與真實旅客好評',
-        keywords: ['新疆包車服務', '新疆旅遊常見問題', '新疆包車評價', '定制行程']
-    },
     '/itinerary.html': {
         title: '行程範例 - 新疆采風',
         description: '三個真實行程範例：北疆大環線17日、北疆經典11日、北疆＋伊犁＋獨庫16日，含航班、每日路線與車程統計',
@@ -77,7 +72,7 @@ function preloadCriticalPages() {
 /* 服務工作線程註冊（PWA 支援） */
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' })
             .then(function(registration) {
                 console.log('ServiceWorker 註冊成功');
             })

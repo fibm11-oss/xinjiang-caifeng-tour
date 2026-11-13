@@ -46,6 +46,8 @@
 
     <link rel="stylesheet" href="css/style.css?v=4">
     <link rel="stylesheet" href="css/v2-home.css?v=4">
+    <!-- 与中英版共用的图片库样式（原版 / 中英版同一份） -->
+    <link rel="stylesheet" href="bilingual/css/gallery.css">
 
     <!-- 結構化數據 -->
     <script type="application/ld+json">
@@ -344,32 +346,140 @@
     </div>
 </section>
 
-<!-- 新疆實景 -->
-<section class="v2-section v2-section--sand mobile-hide">
+<!-- 新疆實景 · 圖片庫（與中英版共用 tools/gallery.json，由 tools/build_all.py 生成） -->
+<section class="v2-section v2-section--sand">
     <div class="v2-shell">
         <div class="v2-head">
             <span class="v2-eyebrow">新疆實景</span>
             <h2 class="v2-title">真實鏡頭下的新疆</h2>
-            <p>四季更迭，處處皆風景——這些畫面，等你親自走進。</p>
+            <p>四季更迭，處處皆風景——點圖可放大，這些畫面，等你親自走進。</p>
         </div>
-        <div class="v2-scenery">
-            <figure>
-                <img src="images/photos/anjihai-canyon.webp" alt="安集海大峽谷" width="1600" height="899" loading="lazy">
-                <figcaption>安集海大峽谷</figcaption>
-            </figure>
-            <figure>
-                <img src="images/photos/duku-road-summer.webp" alt="獨庫公路夏季景色" width="900" height="1200" loading="lazy">
-                <figcaption>獨庫公路 · 夏</figcaption>
-            </figure>
-            <figure>
-                <img src="images/photos/hemu-starry-night.webp" alt="禾木村星空夜景" width="1400" height="1049" loading="lazy">
-                <figcaption>禾木村 · 星空</figcaption>
-            </figure>
-            <figure>
-                <img src="images/tours/tour4-kanas.webp" alt="喀納斯湖秋色" width="1024" height="768" loading="lazy">
-                <figcaption>喀納斯湖</figcaption>
-            </figure>
+    </div>
+    <div class="v2-shell">
+        <!-- GALLERY:ORIGINAL:START -->
+        <div class="xj-gallery">
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/anjihai.webp" data-full="bilingual/assets/gallery/l/anjihai.webp" alt="安集海大峽谷" loading="lazy"><figcaption>安集海大峽谷</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/burqin.webp" data-full="bilingual/assets/gallery/l/burqin.webp" alt="布爾津河" loading="lazy"><figcaption>布爾津河</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/devil-city.webp" data-full="bilingual/assets/gallery/l/devil-city.webp" alt="烏爾禾魔鬼城" loading="lazy"><figcaption>烏爾禾魔鬼城</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/duku-summer.webp" data-full="bilingual/assets/gallery/l/duku-summer.webp" alt="獨庫公路·夏" loading="lazy"><figcaption>獨庫公路·夏</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/hemu-night.webp" data-full="bilingual/assets/gallery/l/hemu-night.webp" alt="禾木·星夜" loading="lazy"><figcaption>禾木·星夜</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/hemu-village.webp" data-full="bilingual/assets/gallery/l/hemu-village.webp" alt="禾木村" loading="lazy"><figcaption>禾木村</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/kuitun.webp" data-full="bilingual/assets/gallery/l/kuitun.webp" alt="奎屯" loading="lazy"><figcaption>奎屯</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/turpan.webp" data-full="bilingual/assets/gallery/l/turpan.webp" alt="吐魯番" loading="lazy"><figcaption>吐魯番</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/urumqi.webp" data-full="bilingual/assets/gallery/l/urumqi.webp" alt="烏魯木齊" loading="lazy"><figcaption>烏魯木齊</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/yining.webp" data-full="bilingual/assets/gallery/l/yining.webp" alt="伊寧" loading="lazy"><figcaption>伊寧</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/yizhao.webp" data-full="bilingual/assets/gallery/l/yizhao.webp" alt="伊昭公路" loading="lazy"><figcaption>伊昭公路</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/tianchi.webp" data-full="bilingual/assets/gallery/l/tianchi.webp" alt="天山天池" loading="lazy"><figcaption>天山天池</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/pamir.webp" data-full="bilingual/assets/gallery/l/pamir.webp" alt="帕米爾高原" loading="lazy"><figcaption>帕米爾高原</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/nomad.webp" data-full="bilingual/assets/gallery/l/nomad.webp" alt="草原牧歌" loading="lazy"><figcaption>草原牧歌</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/zhaosu.webp" data-full="bilingual/assets/gallery/l/zhaosu.webp" alt="昭蘇" loading="lazy"><figcaption>昭蘇</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/wucaitan.webp" data-full="bilingual/assets/gallery/l/wucaitan.webp" alt="五彩灘" loading="lazy"><figcaption>五彩灘</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/tashkurgan.webp" data-full="bilingual/assets/gallery/l/tashkurgan.webp" alt="塔什庫爾干" loading="lazy"><figcaption>塔什庫爾干</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/lake.webp" data-full="bilingual/assets/gallery/l/lake.webp" alt="高山湖泊" loading="lazy"><figcaption>高山湖泊</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/snow.webp" data-full="bilingual/assets/gallery/l/snow.webp" alt="雪嶺" loading="lazy"><figcaption>雪嶺</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/highway.webp" data-full="bilingual/assets/gallery/l/highway.webp" alt="通疆公路" loading="lazy"><figcaption>通疆公路</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/nalati.webp" data-full="bilingual/assets/gallery/l/nalati.webp" alt="那拉提草原" loading="lazy"><figcaption>那拉提草原</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/tour1-ili-10days.webp" data-full="bilingual/assets/gallery/l/tour1-ili-10days.webp" alt="伊犁·賽里木湖" loading="lazy"><figcaption>伊犁·賽里木湖</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/tour2-grassland.webp" data-full="bilingual/assets/gallery/l/tour2-grassland.webp" alt="綠野羊群" loading="lazy"><figcaption>綠野羊群</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/tour3-south-xj.webp" data-full="bilingual/assets/gallery/l/tour3-south-xj.webp" alt="喀什老城" loading="lazy"><figcaption>喀什老城</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/tour6-duku.webp" data-full="bilingual/assets/gallery/l/tour6-duku.webp" alt="獨庫峽谷公路" loading="lazy"><figcaption>獨庫峽谷公路</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/tour7-kashgar.webp" data-full="bilingual/assets/gallery/l/tour7-kashgar.webp" alt="帕米爾·高山湖" loading="lazy"><figcaption>帕米爾·高山湖</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/tour8-turpan.webp" data-full="bilingual/assets/gallery/l/tour8-turpan.webp" alt="庫木塔格沙漠" loading="lazy"><figcaption>庫木塔格沙漠</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/tour9-full-loop.webp" data-full="bilingual/assets/gallery/l/tour9-full-loop.webp" alt="大漠·雪峰" loading="lazy"><figcaption>大漠·雪峰</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/3341112_Vined.webp" data-full="bilingual/assets/gallery/l/3341112_Vined.webp" alt="峽谷河流" loading="lazy"><figcaption>峽谷河流</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/3775967_emirzhang2018.webp" data-full="bilingual/assets/gallery/l/3775967_emirzhang2018.webp" alt="雪原公路" loading="lazy"><figcaption>雪原公路</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2550679_nhluoj.webp" data-full="bilingual/assets/gallery/l/2550679_nhluoj.webp" alt="雪山湖泊" loading="lazy"><figcaption>雪山湖泊</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/3139467_miradil.webp" data-full="bilingual/assets/gallery/l/3139467_miradil.webp" alt="雪域城市" loading="lazy"><figcaption>雪域城市</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/1985027_12019.webp" data-full="bilingual/assets/gallery/l/1985027_12019.webp" alt="航拍山脈" loading="lazy"><figcaption>航拍山脈</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/6970919_Jerry明.webp" data-full="bilingual/assets/gallery/l/6970919_Jerry明.webp" alt="秋日牧場" loading="lazy"><figcaption>秋日牧場</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2077003_ccp877.webp" data-full="bilingual/assets/gallery/l/2077003_ccp877.webp" alt="喀納斯秋色" loading="lazy"><figcaption>喀納斯秋色</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2686063_Y_C_LO.webp" data-full="bilingual/assets/gallery/l/2686063_Y_C_LO.webp" alt="沙漠駝群" loading="lazy"><figcaption>沙漠駝群</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2356431_xiaofengzi-traveler.webp" data-full="bilingual/assets/gallery/l/2356431_xiaofengzi-traveler.webp" alt="雪山冰川" loading="lazy"><figcaption>雪山冰川</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/1489016_nadkol19.webp" data-full="bilingual/assets/gallery/l/1489016_nadkol19.webp" alt="慕士塔格雪山" loading="lazy"><figcaption>慕士塔格雪山</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/4606064_Makalu.webp" data-full="bilingual/assets/gallery/l/4606064_Makalu.webp" alt="高山峽谷" loading="lazy"><figcaption>高山峽谷</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/1151789_gz320142117.webp" data-full="bilingual/assets/gallery/l/1151789_gz320142117.webp" alt="天池秋色" loading="lazy"><figcaption>天池秋色</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/5532073_chire.webp" data-full="bilingual/assets/gallery/l/5532073_chire.webp" alt="戈壁荒漠" loading="lazy"><figcaption>戈壁荒漠</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2356428_xiaofengzi-traveler.webp" data-full="bilingual/assets/gallery/l/2356428_xiaofengzi-traveler.webp" alt="帕米爾雪山" loading="lazy"><figcaption>帕米爾雪山</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/5013900_RionZhang.webp" data-full="bilingual/assets/gallery/l/5013900_RionZhang.webp" alt="雲霧高山湖" loading="lazy"><figcaption>雲霧高山湖</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/6554546_XJaiwanke.webp" data-full="bilingual/assets/gallery/l/6554546_XJaiwanke.webp" alt="日照金山" loading="lazy"><figcaption>日照金山</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/3087408_JoeJiao.webp" data-full="bilingual/assets/gallery/l/3087408_JoeJiao.webp" alt="金秋胡楊" loading="lazy"><figcaption>金秋胡楊</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/5129150_It_was_a_pleasure.webp" data-full="bilingual/assets/gallery/l/5129150_It_was_a_pleasure.webp" alt="紅岩峽谷" loading="lazy"><figcaption>紅岩峽谷</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/5168842_It_was_a_pleasure.webp" data-full="bilingual/assets/gallery/l/5168842_It_was_a_pleasure.webp" alt="高原湖泊" loading="lazy"><figcaption>高原湖泊</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/3778364_emirzhang2018.webp" data-full="bilingual/assets/gallery/l/3778364_emirzhang2018.webp" alt="草原暮色" loading="lazy"><figcaption>草原暮色</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/1562859_iamangela9.webp" data-full="bilingual/assets/gallery/l/1562859_iamangela9.webp" alt="冬日冰湖" loading="lazy"><figcaption>冬日冰湖</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/198584_LoggaWiggler.webp" data-full="bilingual/assets/gallery/l/198584_LoggaWiggler.webp" alt="牧民氈房" loading="lazy"><figcaption>牧民氈房</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/9883651_Dragon_XXC.webp" data-full="bilingual/assets/gallery/l/9883651_Dragon_XXC.webp" alt="高山冰川" loading="lazy"><figcaption>高山冰川</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/9883659_Dragon_XXC.webp" data-full="bilingual/assets/gallery/l/9883659_Dragon_XXC.webp" alt="喀拉庫勒湖" loading="lazy"><figcaption>喀拉庫勒湖</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/3775968_emirzhang2018.webp" data-full="bilingual/assets/gallery/l/3775968_emirzhang2018.webp" alt="雪原晨光" loading="lazy"><figcaption>雪原晨光</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2639449_mantfly.webp" data-full="bilingual/assets/gallery/l/2639449_mantfly.webp" alt="賽里木湖" loading="lazy"><figcaption>賽里木湖</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/6521371_XJaiwanke.webp" data-full="bilingual/assets/gallery/l/6521371_XJaiwanke.webp" alt="城市黃昏天際線" loading="lazy"><figcaption>城市黃昏天際線</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/7151302_gdmoonkiller.webp" data-full="bilingual/assets/gallery/l/7151302_gdmoonkiller.webp" alt="春日花谷" loading="lazy"><figcaption>春日花谷</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2356424_xiaofengzi-traveler.webp" data-full="bilingual/assets/gallery/l/2356424_xiaofengzi-traveler.webp" alt="雪山湖泊" loading="lazy"><figcaption>雪山湖泊</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/9883723_Dragon_XXC.webp" data-full="bilingual/assets/gallery/l/9883723_Dragon_XXC.webp" alt="高原公路" loading="lazy"><figcaption>高原公路</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/4614259_Makalu.webp" data-full="bilingual/assets/gallery/l/4614259_Makalu.webp" alt="高原牧場" loading="lazy"><figcaption>高原牧場</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/10389998_Makalu.webp" data-full="bilingual/assets/gallery/l/10389998_Makalu.webp" alt="沙漠綠洲" loading="lazy"><figcaption>沙漠綠洲</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/6931945_Jerry明.webp" data-full="bilingual/assets/gallery/l/6931945_Jerry明.webp" alt="風力發電場" loading="lazy"><figcaption>風力發電場</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2808476_selinahiew.webp" data-full="bilingual/assets/gallery/l/2808476_selinahiew.webp" alt="喀納斯秋色" loading="lazy"><figcaption>喀納斯秋色</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/8265937_jdblack.webp" data-full="bilingual/assets/gallery/l/8265937_jdblack.webp" alt="峽谷激流" loading="lazy"><figcaption>峽谷激流</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/3778370_emirzhang2018.webp" data-full="bilingual/assets/gallery/l/3778370_emirzhang2018.webp" alt="湖畔牧場" loading="lazy"><figcaption>湖畔牧場</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/9825733_mr_qiuqiu.webp" data-full="bilingual/assets/gallery/l/9825733_mr_qiuqiu.webp" alt="賽里木湖" loading="lazy"><figcaption>賽里木湖</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/198586_LoggaWiggler.webp" data-full="bilingual/assets/gallery/l/198586_LoggaWiggler.webp" alt="草原氈房" loading="lazy"><figcaption>草原氈房</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/9883703_Dragon_XXC.webp" data-full="bilingual/assets/gallery/l/9883703_Dragon_XXC.webp" alt="白沙湖" loading="lazy"><figcaption>白沙湖</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/6869809_Jerry明.webp" data-full="bilingual/assets/gallery/l/6869809_Jerry明.webp" alt="湖畔雪嶺" loading="lazy"><figcaption>湖畔雪嶺</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/4595560_liming0759.webp" data-full="bilingual/assets/gallery/l/4595560_liming0759.webp" alt="盤龍古道" loading="lazy"><figcaption>盤龍古道</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/3137498_miradil.webp" data-full="bilingual/assets/gallery/l/3137498_miradil.webp" alt="城市夜景" loading="lazy"><figcaption>城市夜景</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/8344601_Sunriseforever.webp" data-full="bilingual/assets/gallery/l/8344601_Sunriseforever.webp" alt="暮色山巒" loading="lazy"><figcaption>暮色山巒</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/1983576_jiankangbidu.webp" data-full="bilingual/assets/gallery/l/1983576_jiankangbidu.webp" alt="喀納斯河" loading="lazy"><figcaption>喀納斯河</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/5053052_liuguangxi.webp" data-full="bilingual/assets/gallery/l/5053052_liuguangxi.webp" alt="喀什老城" loading="lazy"><figcaption>喀什老城</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/4616473_Makalu.webp" data-full="bilingual/assets/gallery/l/4616473_Makalu.webp" alt="荒原公路" loading="lazy"><figcaption>荒原公路</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/6181352_NorKu.webp" data-full="bilingual/assets/gallery/l/6181352_NorKu.webp" alt="沙漠沙丘" loading="lazy"><figcaption>沙漠沙丘</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/3087409_JoeJiao.webp" data-full="bilingual/assets/gallery/l/3087409_JoeJiao.webp" alt="胡楊林與駱駝" loading="lazy"><figcaption>胡楊林與駱駝</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/3341118_Vined.webp" data-full="bilingual/assets/gallery/l/3341118_Vined.webp" alt="高山草原" loading="lazy"><figcaption>高山草原</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2603343_oo1029.webp" data-full="bilingual/assets/gallery/l/2603343_oo1029.webp" alt="城市濱湖" loading="lazy"><figcaption>城市濱湖</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2569216_StockSnap.webp" data-full="bilingual/assets/gallery/l/2569216_StockSnap.webp" alt="草原氈房" loading="lazy"><figcaption>草原氈房</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/680715_cowins.webp" data-full="bilingual/assets/gallery/l/680715_cowins.webp" alt="秋色林谷" loading="lazy"><figcaption>秋色林谷</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/7324934_liuguangxi.webp" data-full="bilingual/assets/gallery/l/7324934_liuguangxi.webp" alt="草原氈房營地" loading="lazy"><figcaption>草原氈房營地</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2686061_Y_C_LO.webp" data-full="bilingual/assets/gallery/l/2686061_Y_C_LO.webp" alt="風蝕地貌" loading="lazy"><figcaption>風蝕地貌</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/9842371_ahmetyuksek.webp" data-full="bilingual/assets/gallery/l/9842371_ahmetyuksek.webp" alt="山巒剪影" loading="lazy"><figcaption>山巒剪影</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2389763_neaster.webp" data-full="bilingual/assets/gallery/l/2389763_neaster.webp" alt="高原藍湖" loading="lazy"><figcaption>高原藍湖</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/4616826_Makalu.webp" data-full="bilingual/assets/gallery/l/4616826_Makalu.webp" alt="高山牧場" loading="lazy"><figcaption>高山牧場</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/748979_Shevong.webp" data-full="bilingual/assets/gallery/l/748979_Shevong.webp" alt="雅丹地貌" loading="lazy"><figcaption>雅丹地貌</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/6559399_liuguangxi.webp" data-full="bilingual/assets/gallery/l/6559399_liuguangxi.webp" alt="維吾爾族男子" loading="lazy"><figcaption>維吾爾族男子</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/7051312_WaterKing25.webp" data-full="bilingual/assets/gallery/l/7051312_WaterKing25.webp" alt="木屋村落" loading="lazy"><figcaption>木屋村落</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2728088_bou_dee.webp" data-full="bilingual/assets/gallery/l/2728088_bou_dee.webp" alt="草原氈房" loading="lazy"><figcaption>草原氈房</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/7033350_Jerry明.webp" data-full="bilingual/assets/gallery/l/7033350_Jerry明.webp" alt="秋色山村" loading="lazy"><figcaption>秋色山村</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2242457_jingsongyan123.webp" data-full="bilingual/assets/gallery/l/2242457_jingsongyan123.webp" alt="草原湖泊" loading="lazy"><figcaption>草原湖泊</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/1983579_jiankangbidu.webp" data-full="bilingual/assets/gallery/l/1983579_jiankangbidu.webp" alt="五彩灘" loading="lazy"><figcaption>五彩灘</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2551046_nhluoj.webp" data-full="bilingual/assets/gallery/l/2551046_nhluoj.webp" alt="高山湖泊" loading="lazy"><figcaption>高山湖泊</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/4618416_Makalu.webp" data-full="bilingual/assets/gallery/l/4618416_Makalu.webp" alt="高原山路" loading="lazy"><figcaption>高原山路</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/7559993_Barni1.webp" data-full="bilingual/assets/gallery/l/7559993_Barni1.webp" alt="沙漠沙丘" loading="lazy"><figcaption>沙漠沙丘</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/680716_cowins.webp" data-full="bilingual/assets/gallery/l/680716_cowins.webp" alt="秋色木屋村" loading="lazy"><figcaption>秋色木屋村</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/4652099_Makalu.webp" data-full="bilingual/assets/gallery/l/4652099_Makalu.webp" alt="草原雪山" loading="lazy"><figcaption>草原雪山</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/7573987_It_was_a_pleasure.webp" data-full="bilingual/assets/gallery/l/7573987_It_was_a_pleasure.webp" alt="紅岩乾河谷" loading="lazy"><figcaption>紅岩乾河谷</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2397926_AilsaPeng85.webp" data-full="bilingual/assets/gallery/l/2397926_AilsaPeng85.webp" alt="湖畔駱駝" loading="lazy"><figcaption>湖畔駱駝</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/6559397_liuguangxi.webp" data-full="bilingual/assets/gallery/l/6559397_liuguangxi.webp" alt="民族聚會" loading="lazy"><figcaption>民族聚會</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/3778367_emirzhang2018.webp" data-full="bilingual/assets/gallery/l/3778367_emirzhang2018.webp" alt="湖映雪山" loading="lazy"><figcaption>湖映雪山</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/4618420_Makalu.webp" data-full="bilingual/assets/gallery/l/4618420_Makalu.webp" alt="雪山荒漠" loading="lazy"><figcaption>雪山荒漠</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/9746119_Dragon_XXC.webp" data-full="bilingual/assets/gallery/l/9746119_Dragon_XXC.webp" alt="沙漠沙丘" loading="lazy"><figcaption>沙漠沙丘</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/4652109_Makalu.webp" data-full="bilingual/assets/gallery/l/4652109_Makalu.webp" alt="草原牧營地" loading="lazy"><figcaption>草原牧營地</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/9883658_Dragon_XXC.webp" data-full="bilingual/assets/gallery/l/9883658_Dragon_XXC.webp" alt="雪山濕地" loading="lazy"><figcaption>雪山濕地</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2685983_Y_C_LO.webp" data-full="bilingual/assets/gallery/l/2685983_Y_C_LO.webp" alt="湖畔棧道" loading="lazy"><figcaption>湖畔棧道</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/5127137_It_was_a_pleasure.webp" data-full="bilingual/assets/gallery/l/5127137_It_was_a_pleasure.webp" alt="雪山犛牛" loading="lazy"><figcaption>雪山犛牛</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/6625836_nikocheng.webp" data-full="bilingual/assets/gallery/l/6625836_nikocheng.webp" alt="湖上帆船" loading="lazy"><figcaption>湖上帆船</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/4620703_Makalu.webp" data-full="bilingual/assets/gallery/l/4620703_Makalu.webp" alt="雪山埡口路" loading="lazy"><figcaption>雪山埡口路</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/4659178_Makalu.webp" data-full="bilingual/assets/gallery/l/4659178_Makalu.webp" alt="草原牧營地" loading="lazy"><figcaption>草原牧營地</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/9883666_Dragon_XXC.webp" data-full="bilingual/assets/gallery/l/9883666_Dragon_XXC.webp" alt="高原雪山" loading="lazy"><figcaption>高原雪山</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/3778365_emirzhang2018.webp" data-full="bilingual/assets/gallery/l/3778365_emirzhang2018.webp" alt="湖畔黃昏" loading="lazy"><figcaption>湖畔黃昏</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/6530541_XJaiwanke.webp" data-full="bilingual/assets/gallery/l/6530541_XJaiwanke.webp" alt="雪山清真寺" loading="lazy"><figcaption>雪山清真寺</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/5006537_zhugher.webp" data-full="bilingual/assets/gallery/l/5006537_zhugher.webp" alt="秋色林谷" loading="lazy"><figcaption>秋色林谷</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/4620903_Makalu.webp" data-full="bilingual/assets/gallery/l/4620903_Makalu.webp" alt="高原牧場鎮" loading="lazy"><figcaption>高原牧場鎮</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/4659179_Makalu.webp" data-full="bilingual/assets/gallery/l/4659179_Makalu.webp" alt="草原牧營地" loading="lazy"><figcaption>草原牧營地</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/9883667_Dragon_XXC.webp" data-full="bilingual/assets/gallery/l/9883667_Dragon_XXC.webp" alt="雪山牧場" loading="lazy"><figcaption>雪山牧場</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/9825732_mr_qiuqiu.webp" data-full="bilingual/assets/gallery/l/9825732_mr_qiuqiu.webp" alt="湖畔草原" loading="lazy"><figcaption>湖畔草原</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/2259538_naomiafy.webp" data-full="bilingual/assets/gallery/l/2259538_naomiafy.webp" alt="冬日雪林" loading="lazy"><figcaption>冬日雪林</figcaption></figure>
+        <figure class="xj-gallery__item"><img src="bilingual/assets/gallery/m/5093271_larcomar.webp" data-full="bilingual/assets/gallery/l/5093271_larcomar.webp" alt="林間碧河" loading="lazy"><figcaption>林間碧河</figcaption></figure>
         </div>
+        <!-- GALLERY:ORIGINAL:END -->
     </div>
 </section>
 
@@ -492,6 +602,8 @@
 <script src="js/promotion.js"></script>
 <script src="js/nav.js"></script>
 <script src="js/sitemap.js"></script>
+<!-- 与中英版共用的相片墙灯箱（仅在页面含 .xj-gallery 时启用） -->
+<script src="bilingual/js/gallery.js"></script>
 
 </body>
 </html>

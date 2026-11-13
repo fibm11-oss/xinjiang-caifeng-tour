@@ -212,6 +212,7 @@ def build_html(page: str, lang: str, body: str, title: str, desc: str,
 <link rel="icon" href="{base}assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="{base}assets/hero-xinjiang.webp" as="image">
 <link rel="stylesheet" href="{base}css/style.css?v={build_ver}">
+<link rel="stylesheet" href="{base}css/gallery.css?v={build_ver}">
 </head>
 <body class="page-{page.replace('.html','').replace('/','-')}">
 

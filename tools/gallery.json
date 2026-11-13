@@ -2,700 +2,721 @@
   {
     "name": "anjihai",
     "cap_zh": "安集海大峡谷",
+    "cap_zh_tw": "安集海大峽谷",
     "cap_en": "Anjihai Canyon"
   },
   {
     "name": "burqin",
     "cap_zh": "布尔津河",
+    "cap_zh_tw": "布爾津河",
     "cap_en": "Burqin River"
   },
   {
     "name": "devil-city",
     "cap_zh": "乌尔禾魔鬼城",
+    "cap_zh_tw": "烏爾禾魔鬼城",
     "cap_en": "Urho Devil's City"
   },
   {
     "name": "duku-summer",
     "cap_zh": "独库公路·夏",
+    "cap_zh_tw": "獨庫公路·夏",
     "cap_en": "Duku Highway · Summer"
   },
   {
     "name": "hemu-night",
     "cap_zh": "禾木·星夜",
+    "cap_zh_tw": "禾木·星夜",
     "cap_en": "Hemu · Starry Night"
   },
   {
     "name": "hemu-village",
     "cap_zh": "禾木村",
+    "cap_zh_tw": "禾木村",
     "cap_en": "Hemu Village"
   },
   {
     "name": "kuitun",
     "cap_zh": "奎屯",
+    "cap_zh_tw": "奎屯",
     "cap_en": "Kuitun"
   },
   {
     "name": "turpan",
     "cap_zh": "吐鲁番",
+    "cap_zh_tw": "吐魯番",
     "cap_en": "Turpan"
   },
   {
     "name": "urumqi",
     "cap_zh": "乌鲁木齐",
+    "cap_zh_tw": "烏魯木齊",
     "cap_en": "Urumqi"
   },
   {
     "name": "yining",
     "cap_zh": "伊宁",
+    "cap_zh_tw": "伊寧",
     "cap_en": "Yining"
   },
   {
     "name": "yizhao",
     "cap_zh": "伊昭公路",
+    "cap_zh_tw": "伊昭公路",
     "cap_en": "Yizhao Highway"
   },
   {
     "name": "tianchi",
     "cap_zh": "天山天池",
+    "cap_zh_tw": "天山天池",
     "cap_en": "Heavenly Lake"
   },
   {
     "name": "pamir",
     "cap_zh": "帕米尔高原",
+    "cap_zh_tw": "帕米爾高原",
     "cap_en": "Pamir Plateau"
   },
   {
     "name": "nomad",
     "cap_zh": "草原牧歌",
+    "cap_zh_tw": "草原牧歌",
     "cap_en": "Nomads of the Grassland"
   },
   {
     "name": "zhaosu",
     "cap_zh": "昭苏",
+    "cap_zh_tw": "昭蘇",
     "cap_en": "Zhaosu"
   },
   {
     "name": "wucaitan",
     "cap_zh": "五彩滩",
+    "cap_zh_tw": "五彩灘",
     "cap_en": "Wucaitan"
   },
   {
     "name": "tashkurgan",
     "cap_zh": "塔什库尔干",
+    "cap_zh_tw": "塔什庫爾干",
     "cap_en": "Tashkurgan"
   },
   {
     "name": "lake",
     "cap_zh": "高山湖泊",
+    "cap_zh_tw": "高山湖泊",
     "cap_en": "Alpine Lakes"
   },
   {
     "name": "snow",
     "cap_zh": "雪岭",
+    "cap_zh_tw": "雪嶺",
     "cap_en": "Snow Mountains"
   },
   {
     "name": "highway",
     "cap_zh": "通疆公路",
+    "cap_zh_tw": "通疆公路",
     "cap_en": "Highways"
   },
   {
     "name": "nalati",
     "cap_zh": "那拉提草原",
+    "cap_zh_tw": "那拉提草原",
     "cap_en": "Nalati Grassland"
   },
   {
     "name": "tour1-ili-10days",
-    "src": "02-旅遊網站照片/tour1-ili-10days.webp",
     "cap_zh": "伊犁·赛里木湖",
+    "cap_zh_tw": "伊犁·賽里木湖",
     "cap_en": "Ili · Sayram Lake"
   },
   {
     "name": "tour2-grassland",
-    "src": "02-旅遊網站照片/tour2-grassland.webp",
     "cap_zh": "绿野羊群",
+    "cap_zh_tw": "綠野羊群",
     "cap_en": "Green Pastures & Sheep"
   },
   {
     "name": "tour3-south-xj",
-    "src": "02-旅遊網站照片/tour3-south-xj.webp",
     "cap_zh": "喀什老城",
+    "cap_zh_tw": "喀什老城",
     "cap_en": "Kashgar Old Town"
   },
   {
     "name": "tour6-duku",
-    "src": "02-旅遊網站照片/tour6-duku.webp",
     "cap_zh": "独库峡谷公路",
+    "cap_zh_tw": "獨庫峽谷公路",
     "cap_en": "Duku Canyon Highway"
   },
   {
     "name": "tour7-kashgar",
-    "src": "02-旅遊網站照片/tour7-kashgar.webp",
     "cap_zh": "帕米尔·高山湖",
+    "cap_zh_tw": "帕米爾·高山湖",
     "cap_en": "Pamir · Alpine Lake"
   },
   {
     "name": "tour8-turpan",
-    "src": "02-旅遊網站照片/tour8-turpan.webp",
     "cap_zh": "库木塔格沙漠",
+    "cap_zh_tw": "庫木塔格沙漠",
     "cap_en": "Kumtagh Desert"
   },
   {
     "name": "tour9-full-loop",
-    "src": "02-旅遊網站照片/tour9-full-loop.webp",
     "cap_zh": "大漠·雪峰",
+    "cap_zh_tw": "大漠·雪峰",
     "cap_en": "Desert & Snow Peaks"
   },
   {
     "name": "3341112_Vined",
     "cap_zh": "峡谷河流",
-    "cap_en": "Canyon river",
-    "src": "baihaba/3341112_Vined.jpg"
+    "cap_zh_tw": "峽谷河流",
+    "cap_en": "Canyon river"
   },
   {
     "name": "3775967_emirzhang2018",
     "cap_zh": "雪原公路",
-    "cap_en": "Snowfield road",
-    "src": "bayanbulak/3775967_emirzhang2018.jpg"
+    "cap_zh_tw": "雪原公路",
+    "cap_en": "Snowfield road"
   },
   {
     "name": "2550679_nhluoj",
     "cap_zh": "雪山湖泊",
-    "cap_en": "Alpine lake",
-    "src": "burqin/2550679_nhluoj.jpg"
+    "cap_zh_tw": "雪山湖泊",
+    "cap_en": "Alpine lake"
   },
   {
     "name": "3139467_miradil",
     "cap_zh": "雪域城市",
-    "cap_en": "Snowy cityscape",
-    "src": "devil-city/3139467_miradil.jpg"
+    "cap_zh_tw": "雪域城市",
+    "cap_en": "Snowy cityscape"
   },
   {
     "name": "1985027_12019",
     "cap_zh": "航拍山脉",
-    "cap_en": "Aerial mountains",
-    "src": "flaming-mountains/1985027_12019.jpg"
+    "cap_zh_tw": "航拍山脈",
+    "cap_en": "Aerial mountains"
   },
   {
     "name": "6970919_Jerry明",
     "cap_zh": "秋日牧场",
-    "cap_en": "Autumn pasture",
-    "src": "kalajun/6970919_Jerry明.jpg"
+    "cap_zh_tw": "秋日牧場",
+    "cap_en": "Autumn pasture"
   },
   {
     "name": "2077003_ccp877",
     "cap_zh": "喀纳斯秋色",
-    "cap_en": "Kanas autumn",
-    "src": "kanas/2077003_ccp877.jpg"
+    "cap_zh_tw": "喀納斯秋色",
+    "cap_en": "Kanas autumn"
   },
   {
     "name": "2686063_Y_C_LO",
     "cap_zh": "沙漠驼群",
-    "cap_en": "Desert camels",
-    "src": "karez/2686063_Y_C_LO.jpg"
+    "cap_zh_tw": "沙漠駝群",
+    "cap_en": "Desert camels"
   },
   {
     "name": "2356431_xiaofengzi-traveler",
     "cap_zh": "雪山冰川",
-    "cap_en": "Glacier peak",
-    "src": "kashgar/2356431_xiaofengzi-traveler.jpg"
+    "cap_zh_tw": "雪山冰川",
+    "cap_en": "Glacier peak"
   },
   {
     "name": "1489016_nadkol19",
     "cap_zh": "慕士塔格雪山",
-    "cap_en": "Muztagh Ata",
-    "src": "muztagh/1489016_nadkol19.jpg"
+    "cap_zh_tw": "慕士塔格雪山",
+    "cap_en": "Muztagh Ata"
   },
   {
     "name": "4606064_Makalu",
     "cap_zh": "高山峡谷",
-    "cap_en": "Mountain gorge",
-    "src": "pamir/4606064_Makalu.jpg"
+    "cap_zh_tw": "高山峽谷",
+    "cap_en": "Mountain gorge"
   },
   {
     "name": "1151789_gz320142117",
     "cap_zh": "天池秋色",
-    "cap_en": "Tianchi autumn",
-    "src": "sayram/1151789_gz320142117.jpg"
+    "cap_zh_tw": "天池秋色",
+    "cap_en": "Tianchi autumn"
   },
   {
     "name": "5532073_chire",
     "cap_zh": "戈壁荒漠",
-    "cap_en": "Desert steppe",
-    "src": "taklamakan/5532073_chire.jpg"
+    "cap_zh_tw": "戈壁荒漠",
+    "cap_en": "Desert steppe"
   },
   {
     "name": "2356428_xiaofengzi-traveler",
     "cap_zh": "帕米尔雪山",
-    "cap_en": "Pamir snow peaks",
-    "src": "tashkurgan/2356428_xiaofengzi-traveler.jpg"
+    "cap_zh_tw": "帕米爾雪山",
+    "cap_en": "Pamir snow peaks"
   },
   {
     "name": "5013900_RionZhang",
     "cap_zh": "云雾高山湖",
-    "cap_en": "Misty alpine lake",
-    "src": "tianchi/5013900_RionZhang.jpg"
+    "cap_zh_tw": "雲霧高山湖",
+    "cap_en": "Misty alpine lake"
   },
   {
     "name": "6554546_XJaiwanke",
     "cap_zh": "日照金山",
-    "cap_en": "Golden snow peaks",
-    "src": "urumqi/6554546_XJaiwanke.jpg"
+    "cap_zh_tw": "日照金山",
+    "cap_en": "Golden snow peaks"
   },
   {
     "name": "3087408_JoeJiao",
     "cap_zh": "金秋胡杨",
-    "cap_en": "Golden poplar",
-    "src": "xinjiang-autumn/3087408_JoeJiao.jpg"
+    "cap_zh_tw": "金秋胡楊",
+    "cap_en": "Golden poplar"
   },
   {
     "name": "5129150_It_was_a_pleasure",
     "cap_zh": "红岩峡谷",
-    "cap_en": "Red rock canyon",
-    "src": "xinjiang-canyon/5129150_It_was_a_pleasure.jpg"
+    "cap_zh_tw": "紅岩峽谷",
+    "cap_en": "Red rock canyon"
   },
   {
     "name": "5168842_It_was_a_pleasure",
     "cap_zh": "高原湖泊",
-    "cap_en": "Highland lake",
-    "src": "xinjiang-desert/5168842_It_was_a_pleasure.jpg"
+    "cap_zh_tw": "高原湖泊",
+    "cap_en": "Highland lake"
   },
   {
     "name": "3778364_emirzhang2018",
     "cap_zh": "草原暮色",
-    "cap_en": "Twilight grassland",
-    "src": "xinjiang-grassland/3778364_emirzhang2018.jpg"
+    "cap_zh_tw": "草原暮色",
+    "cap_en": "Twilight grassland"
   },
   {
     "name": "1562859_iamangela9",
     "cap_zh": "冬日冰湖",
-    "cap_en": "Winter frozen lake",
-    "src": "xinjiang-lake/1562859_iamangela9.jpg"
+    "cap_zh_tw": "冬日冰湖",
+    "cap_en": "Winter frozen lake"
   },
   {
     "name": "198584_LoggaWiggler",
     "cap_zh": "牧民毡房",
-    "cap_en": "Yurt camp",
-    "src": "xinjiang-nomad/198584_LoggaWiggler.jpg"
+    "cap_zh_tw": "牧民氈房",
+    "cap_en": "Yurt camp"
   },
   {
     "name": "9883651_Dragon_XXC",
     "cap_zh": "高山冰川",
-    "cap_en": "Mountain glacier",
-    "src": "xinjiang-snow/9883651_Dragon_XXC.jpg"
+    "cap_zh_tw": "高山冰川",
+    "cap_en": "Mountain glacier"
   },
   {
     "name": "9883659_Dragon_XXC",
     "cap_zh": "喀拉库勒湖",
-    "cap_en": "Karakul Lake",
-    "src": "baihaba/9883659_Dragon_XXC.jpg"
+    "cap_zh_tw": "喀拉庫勒湖",
+    "cap_en": "Karakul Lake"
   },
   {
     "name": "3775968_emirzhang2018",
     "cap_zh": "雪原晨光",
-    "cap_en": "Snowy plateau at dawn",
-    "src": "bayanbulak/3775968_emirzhang2018.jpg"
+    "cap_zh_tw": "雪原晨光",
+    "cap_en": "Snowy plateau at dawn"
   },
   {
     "name": "2639449_mantfly",
     "cap_zh": "赛里木湖",
-    "cap_en": "Sayram Lake",
-    "src": "burqin/2639449_mantfly.jpg"
+    "cap_zh_tw": "賽里木湖",
+    "cap_en": "Sayram Lake"
   },
   {
     "name": "6521371_XJaiwanke",
     "cap_zh": "城市黄昏天际线",
-    "cap_en": "City skyline at dusk",
-    "src": "devil-city/6521371_XJaiwanke.jpg"
+    "cap_zh_tw": "城市黃昏天際線",
+    "cap_en": "City skyline at dusk"
   },
   {
     "name": "7151302_gdmoonkiller",
     "cap_zh": "春日花谷",
-    "cap_en": "Spring blossom valley",
-    "src": "flaming-mountains/7151302_gdmoonkiller.jpg"
+    "cap_zh_tw": "春日花谷",
+    "cap_en": "Spring blossom valley"
   },
   {
     "name": "2356424_xiaofengzi-traveler",
     "cap_zh": "雪山湖泊",
-    "cap_en": "Alpine lake with snow peaks",
-    "src": "kanas/2356424_xiaofengzi-traveler.jpg"
+    "cap_zh_tw": "雪山湖泊",
+    "cap_en": "Alpine lake with snow peaks"
   },
   {
     "name": "9883723_Dragon_XXC",
     "cap_zh": "高原公路",
-    "cap_en": "Highland road",
-    "src": "kashgar/9883723_Dragon_XXC.jpg"
+    "cap_zh_tw": "高原公路",
+    "cap_en": "Highland road"
   },
   {
     "name": "4614259_Makalu",
     "cap_zh": "高原牧场",
-    "cap_en": "Highland pasture",
-    "src": "pamir/4614259_Makalu.jpg"
+    "cap_zh_tw": "高原牧場",
+    "cap_en": "Highland pasture"
   },
   {
     "name": "10389998_Makalu",
     "cap_zh": "沙漠绿洲",
-    "cap_en": "Desert oasis",
-    "src": "taklamakan/10389998_Makalu.jpg"
+    "cap_zh_tw": "沙漠綠洲",
+    "cap_en": "Desert oasis"
   },
   {
     "name": "6931945_Jerry明",
     "cap_zh": "风力发电场",
-    "cap_en": "Wind farm",
-    "src": "urumqi/6931945_Jerry明.jpg"
+    "cap_zh_tw": "風力發電場",
+    "cap_en": "Wind farm"
   },
   {
     "name": "2808476_selinahiew",
     "cap_zh": "喀纳斯秋色",
-    "cap_en": "Kanas autumn",
-    "src": "xinjiang-autumn/2808476_selinahiew.jpg"
+    "cap_zh_tw": "喀納斯秋色",
+    "cap_en": "Kanas autumn"
   },
   {
     "name": "8265937_jdblack",
     "cap_zh": "峡谷激流",
-    "cap_en": "River canyon rapids",
-    "src": "xinjiang-canyon/8265937_jdblack.jpg"
+    "cap_zh_tw": "峽谷激流",
+    "cap_en": "River canyon rapids"
   },
   {
     "name": "3778370_emirzhang2018",
     "cap_zh": "湖畔牧场",
-    "cap_en": "Lakeside pasture",
-    "src": "xinjiang-grassland/3778370_emirzhang2018.jpg"
+    "cap_zh_tw": "湖畔牧場",
+    "cap_en": "Lakeside pasture"
   },
   {
     "name": "9825733_mr_qiuqiu",
     "cap_zh": "赛里木湖",
-    "cap_en": "Sayram Lake",
-    "src": "xinjiang-lake/9825733_mr_qiuqiu.jpg"
+    "cap_zh_tw": "賽里木湖",
+    "cap_en": "Sayram Lake"
   },
   {
     "name": "198586_LoggaWiggler",
     "cap_zh": "草原毡房",
-    "cap_en": "Nomad yurts",
-    "src": "xinjiang-nomad/198586_LoggaWiggler.jpg"
+    "cap_zh_tw": "草原氈房",
+    "cap_en": "Nomad yurts"
   },
   {
     "name": "9883703_Dragon_XXC",
     "cap_zh": "白沙湖",
-    "cap_en": "White Sand Lake",
-    "src": "baihaba/9883703_Dragon_XXC.jpg"
+    "cap_zh_tw": "白沙湖",
+    "cap_en": "White Sand Lake"
   },
   {
     "name": "6869809_Jerry明",
     "cap_zh": "湖畔雪岭",
-    "cap_en": "Lakeside snow peaks",
-    "src": "bayanbulak/6869809_Jerry明.jpg"
+    "cap_zh_tw": "湖畔雪嶺",
+    "cap_en": "Lakeside snow peaks"
   },
   {
     "name": "4595560_liming0759",
     "cap_zh": "盘龙古道",
-    "cap_en": "Panlong Ancient Road",
-    "src": "burqin/4595560_liming0759.jpg"
+    "cap_zh_tw": "盤龍古道",
+    "cap_en": "Panlong Ancient Road"
   },
   {
     "name": "3137498_miradil",
     "cap_zh": "城市夜景",
-    "cap_en": "City nightscape",
-    "src": "devil-city/3137498_miradil.jpg"
+    "cap_zh_tw": "城市夜景",
+    "cap_en": "City nightscape"
   },
   {
     "name": "8344601_Sunriseforever",
     "cap_zh": "暮色山峦",
-    "cap_en": "Mountains at sunset",
-    "src": "flaming-mountains/8344601_Sunriseforever.jpg"
+    "cap_zh_tw": "暮色山巒",
+    "cap_en": "Mountains at sunset"
   },
   {
     "name": "1983576_jiankangbidu",
     "cap_zh": "喀纳斯河",
-    "cap_en": "Kanas River",
-    "src": "kanas/1983576_jiankangbidu.jpg"
+    "cap_zh_tw": "喀納斯河",
+    "cap_en": "Kanas River"
   },
   {
     "name": "5053052_liuguangxi",
     "cap_zh": "喀什老城",
-    "cap_en": "Kashgar Old Town",
-    "src": "kashgar/5053052_liuguangxi.jpg"
+    "cap_zh_tw": "喀什老城",
+    "cap_en": "Kashgar Old Town"
   },
   {
     "name": "4616473_Makalu",
     "cap_zh": "荒原公路",
-    "cap_en": "Highland road",
-    "src": "pamir/4616473_Makalu.jpg"
+    "cap_zh_tw": "荒原公路",
+    "cap_en": "Highland road"
   },
   {
     "name": "6181352_NorKu",
     "cap_zh": "沙漠沙丘",
-    "cap_en": "Desert Dunes",
-    "src": "taklamakan/6181352_NorKu.jpg"
+    "cap_zh_tw": "沙漠沙丘",
+    "cap_en": "Desert Dunes"
   },
   {
     "name": "3087409_JoeJiao",
     "cap_zh": "胡杨林与骆驼",
-    "cap_en": "Poplar Grove & Camel",
-    "src": "xinjiang-autumn/3087409_JoeJiao.jpg"
+    "cap_zh_tw": "胡楊林與駱駝",
+    "cap_en": "Poplar Grove & Camel"
   },
   {
     "name": "3341118_Vined",
     "cap_zh": "高山草原",
-    "cap_en": "Alpine Grassland",
-    "src": "xinjiang-grassland/3341118_Vined.jpg"
+    "cap_zh_tw": "高山草原",
+    "cap_en": "Alpine Grassland"
   },
   {
     "name": "2603343_oo1029",
     "cap_zh": "城市滨湖",
-    "cap_en": "Urban Lakeside",
-    "src": "xinjiang-lake/2603343_oo1029.jpg"
+    "cap_zh_tw": "城市濱湖",
+    "cap_en": "Urban Lakeside"
   },
   {
     "name": "2569216_StockSnap",
     "cap_zh": "草原毡房",
-    "cap_en": "Grassland Yurts",
-    "src": "xinjiang-nomad/2569216_StockSnap.jpg"
+    "cap_zh_tw": "草原氈房",
+    "cap_en": "Grassland Yurts"
   },
   {
     "name": "680715_cowins",
     "cap_zh": "秋色林谷",
-    "cap_en": "Autumn Forest Valley",
-    "src": "baihaba/680715_cowins.jpg"
+    "cap_zh_tw": "秋色林谷",
+    "cap_en": "Autumn Forest Valley"
   },
   {
     "name": "7324934_liuguangxi",
     "cap_zh": "草原毡房营地",
-    "cap_en": "Grassland Yurt Camp",
-    "src": "bayanbulak/7324934_liuguangxi.jpg"
+    "cap_zh_tw": "草原氈房營地",
+    "cap_en": "Grassland Yurt Camp"
   },
   {
     "name": "2686061_Y_C_LO",
     "cap_zh": "风蚀地貌",
-    "cap_en": "Eroded Landform",
-    "src": "burqin/2686061_Y_C_LO.jpg"
+    "cap_zh_tw": "風蝕地貌",
+    "cap_en": "Eroded Landform"
   },
   {
     "name": "9842371_ahmetyuksek",
     "cap_zh": "山峦剪影",
-    "cap_en": "Mountain Silhouette",
-    "src": "flaming-mountains/9842371_ahmetyuksek.jpg"
+    "cap_zh_tw": "山巒剪影",
+    "cap_en": "Mountain Silhouette"
   },
   {
     "name": "2389763_neaster",
     "cap_zh": "高原蓝湖",
-    "cap_en": "Highland Blue Lake",
-    "src": "kanas/2389763_neaster.jpg"
+    "cap_zh_tw": "高原藍湖",
+    "cap_en": "Highland Blue Lake"
   },
   {
     "name": "4616826_Makalu",
     "cap_zh": "高山牧场",
-    "cap_en": "Alpine Pasture",
-    "src": "pamir/4616826_Makalu.jpg"
+    "cap_zh_tw": "高山牧場",
+    "cap_en": "Alpine Pasture"
   },
   {
     "name": "748979_Shevong",
     "cap_zh": "雅丹地貌",
-    "cap_en": "Yardang Landform",
-    "src": "taklamakan/748979_Shevong.jpg"
+    "cap_zh_tw": "雅丹地貌",
+    "cap_en": "Yardang Landform"
   },
   {
     "name": "6559399_liuguangxi",
     "cap_zh": "维吾尔族男子",
-    "cap_en": "Uyghur Men",
-    "src": "xinjiang-autumn/6559399_liuguangxi.jpg"
+    "cap_zh_tw": "維吾爾族男子",
+    "cap_en": "Uyghur Men"
   },
   {
     "name": "7051312_WaterKing25",
     "cap_zh": "木屋村落",
-    "cap_en": "Wooden Cabin Village",
-    "src": "xinjiang-grassland/7051312_WaterKing25.jpg"
+    "cap_zh_tw": "木屋村落",
+    "cap_en": "Wooden Cabin Village"
   },
   {
     "name": "2728088_bou_dee",
     "cap_zh": "草原毡房",
-    "cap_en": "Grassland Yurt",
-    "src": "xinjiang-nomad/2728088_bou_dee.jpg"
+    "cap_zh_tw": "草原氈房",
+    "cap_en": "Grassland Yurt"
   },
   {
     "name": "7033350_Jerry明",
     "cap_zh": "秋色山村",
-    "cap_en": "Autumn Mountain Village",
-    "src": "baihaba/7033350_Jerry明.jpg"
+    "cap_zh_tw": "秋色山村",
+    "cap_en": "Autumn Mountain Village"
   },
   {
     "name": "2242457_jingsongyan123",
     "cap_zh": "草原湖泊",
-    "cap_en": "Grassland Lake",
-    "src": "bayanbulak/2242457_jingsongyan123.jpg"
+    "cap_zh_tw": "草原湖泊",
+    "cap_en": "Grassland Lake"
   },
   {
     "name": "1983579_jiankangbidu",
     "cap_zh": "五彩滩",
-    "cap_en": "Five-Colored Beach",
-    "src": "burqin/1983579_jiankangbidu.jpg"
+    "cap_zh_tw": "五彩灘",
+    "cap_en": "Five-Colored Beach"
   },
   {
     "name": "2551046_nhluoj",
     "cap_zh": "高山湖泊",
-    "cap_en": "Alpine Lake",
-    "src": "kanas/2551046_nhluoj.jpg"
+    "cap_zh_tw": "高山湖泊",
+    "cap_en": "Alpine Lake"
   },
   {
     "name": "4618416_Makalu",
     "cap_zh": "高原山路",
-    "cap_en": "Highland Mountain Road",
-    "src": "pamir/4618416_Makalu.jpg"
+    "cap_zh_tw": "高原山路",
+    "cap_en": "Highland Mountain Road"
   },
   {
     "name": "7559993_Barni1",
     "cap_zh": "沙漠沙丘",
-    "cap_en": "Desert Dunes",
-    "src": "taklamakan/7559993_Barni1.jpg"
+    "cap_zh_tw": "沙漠沙丘",
+    "cap_en": "Desert Dunes"
   },
   {
     "name": "680716_cowins",
     "cap_zh": "秋色木屋村",
-    "cap_en": "Autumn Wooden Village",
-    "src": "xinjiang-autumn/680716_cowins.jpg"
+    "cap_zh_tw": "秋色木屋村",
+    "cap_en": "Autumn Wooden Village"
   },
   {
     "name": "4652099_Makalu",
     "cap_zh": "草原雪山",
-    "cap_en": "Grassland & Snow Mountains",
-    "src": "xinjiang-nomad/4652099_Makalu.jpg"
+    "cap_zh_tw": "草原雪山",
+    "cap_en": "Grassland & Snow Mountains"
   },
   {
     "name": "7573987_It_was_a_pleasure",
     "cap_zh": "红岩干河谷",
-    "cap_en": "Red rock dry river valley",
-    "src": "baihaba/7573987_It_was_a_pleasure.jpg"
+    "cap_zh_tw": "紅岩乾河谷",
+    "cap_en": "Red rock dry river valley"
   },
   {
     "name": "2397926_AilsaPeng85",
     "cap_zh": "湖畔骆驼",
-    "cap_en": "Camel by the lake",
-    "src": "bayanbulak/2397926_AilsaPeng85.jpg"
+    "cap_zh_tw": "湖畔駱駝",
+    "cap_en": "Camel by the lake"
   },
   {
     "name": "6559397_liuguangxi",
     "cap_zh": "民族聚会",
-    "cap_en": "Local festive gathering",
-    "src": "burqin/6559397_liuguangxi.jpg"
+    "cap_zh_tw": "民族聚會",
+    "cap_en": "Local festive gathering"
   },
   {
     "name": "3778367_emirzhang2018",
     "cap_zh": "湖映雪山",
-    "cap_en": "Lake reflecting snow mountains",
-    "src": "kanas/3778367_emirzhang2018.jpg"
+    "cap_zh_tw": "湖映雪山",
+    "cap_en": "Lake reflecting snow mountains"
   },
   {
     "name": "4618420_Makalu",
     "cap_zh": "雪山荒漠",
-    "cap_en": "Snow mountains and desert",
-    "src": "pamir/4618420_Makalu.jpg"
+    "cap_zh_tw": "雪山荒漠",
+    "cap_en": "Snow mountains and desert"
   },
   {
     "name": "9746119_Dragon_XXC",
     "cap_zh": "沙漠沙丘",
-    "cap_en": "Desert sand dunes",
-    "src": "taklamakan/9746119_Dragon_XXC.jpg"
+    "cap_zh_tw": "沙漠沙丘",
+    "cap_en": "Desert sand dunes"
   },
   {
     "name": "4652109_Makalu",
     "cap_zh": "草原牧营地",
-    "cap_en": "Nomad camp on grassland",
-    "src": "xinjiang-nomad/4652109_Makalu.jpg"
+    "cap_zh_tw": "草原牧營地",
+    "cap_en": "Nomad camp on grassland"
   },
   {
     "name": "9883658_Dragon_XXC",
     "cap_zh": "雪山湿地",
-    "cap_en": "Snow mountains and wetland",
-    "src": "baihaba/9883658_Dragon_XXC.jpg"
+    "cap_zh_tw": "雪山濕地",
+    "cap_en": "Snow mountains and wetland"
   },
   {
     "name": "2685983_Y_C_LO",
     "cap_zh": "湖畔栈道",
-    "cap_en": "Lakeside boardwalk",
-    "src": "bayanbulak/2685983_Y_C_LO.jpg"
+    "cap_zh_tw": "湖畔棧道",
+    "cap_en": "Lakeside boardwalk"
   },
   {
     "name": "5127137_It_was_a_pleasure",
     "cap_zh": "雪山牦牛",
-    "cap_en": "Yak before snow mountain",
-    "src": "burqin/5127137_It_was_a_pleasure.jpg"
+    "cap_zh_tw": "雪山犛牛",
+    "cap_en": "Yak before snow mountain"
   },
   {
     "name": "6625836_nikocheng",
     "cap_zh": "湖上帆船",
-    "cap_en": "Sailboats on the lake",
-    "src": "kanas/6625836_nikocheng.jpg"
+    "cap_zh_tw": "湖上帆船",
+    "cap_en": "Sailboats on the lake"
   },
   {
     "name": "4620703_Makalu",
     "cap_zh": "雪山垭口路",
-    "cap_en": "Road at snow mountain pass",
-    "src": "pamir/4620703_Makalu.jpg"
+    "cap_zh_tw": "雪山埡口路",
+    "cap_en": "Road at snow mountain pass"
   },
   {
     "name": "4659178_Makalu",
     "cap_zh": "草原牧营地",
-    "cap_en": "Nomad camp on grassland",
-    "src": "xinjiang-nomad/4659178_Makalu.jpg"
+    "cap_zh_tw": "草原牧營地",
+    "cap_en": "Nomad camp on grassland"
   },
   {
     "name": "9883666_Dragon_XXC",
     "cap_zh": "高原雪山",
-    "cap_en": "High-plateau snow mountains",
-    "src": "baihaba/9883666_Dragon_XXC.jpg"
+    "cap_zh_tw": "高原雪山",
+    "cap_en": "High-plateau snow mountains"
   },
   {
     "name": "3778365_emirzhang2018",
     "cap_zh": "湖畔黄昏",
-    "cap_en": "Lakeside at dusk",
-    "src": "bayanbulak/3778365_emirzhang2018.jpg"
+    "cap_zh_tw": "湖畔黃昏",
+    "cap_en": "Lakeside at dusk"
   },
   {
     "name": "6530541_XJaiwanke",
     "cap_zh": "雪山清真寺",
-    "cap_en": "Mosque below snow mountains",
-    "src": "burqin/6530541_XJaiwanke.jpg"
+    "cap_zh_tw": "雪山清真寺",
+    "cap_en": "Mosque below snow mountains"
   },
   {
     "name": "5006537_zhugher",
     "cap_zh": "秋色林谷",
-    "cap_en": "Autumn river valley",
-    "src": "kanas/5006537_zhugher.jpg"
+    "cap_zh_tw": "秋色林谷",
+    "cap_en": "Autumn river valley"
   },
   {
     "name": "4620903_Makalu",
     "cap_zh": "高原牧场镇",
-    "cap_en": "Highland town and pasture",
-    "src": "pamir/4620903_Makalu.jpg"
+    "cap_zh_tw": "高原牧場鎮",
+    "cap_en": "Highland town and pasture"
   },
   {
     "name": "4659179_Makalu",
     "cap_zh": "草原牧营地",
-    "cap_en": "Nomad camp on grassland",
-    "src": "xinjiang-nomad/4659179_Makalu.jpg"
+    "cap_zh_tw": "草原牧營地",
+    "cap_en": "Nomad camp on grassland"
   },
   {
     "name": "9883667_Dragon_XXC",
     "cap_zh": "雪山牧场",
-    "cap_en": "Snow mountain pasture",
-    "src": "baihaba/9883667_Dragon_XXC.jpg"
+    "cap_zh_tw": "雪山牧場",
+    "cap_en": "Snow mountain pasture"
   },
   {
     "name": "9825732_mr_qiuqiu",
     "cap_zh": "湖畔草原",
-    "cap_en": "Lakeside grassland",
-    "src": "bayanbulak/9825732_mr_qiuqiu.jpg"
+    "cap_zh_tw": "湖畔草原",
+    "cap_en": "Lakeside grassland"
   },
   {
     "name": "2259538_naomiafy",
     "cap_zh": "冬日雪林",
-    "cap_en": "Winter snowy woods",
-    "src": "burqin/2259538_naomiafy.jpg"
+    "cap_zh_tw": "冬日雪林",
+    "cap_en": "Winter snowy woods"
   },
   {
     "name": "5093271_larcomar",
     "cap_zh": "林间碧河",
-    "cap_en": "River winding through forest",
-    "src": "kanas/5093271_larcomar.jpg"
+    "cap_zh_tw": "林間碧河",
+    "cap_en": "River winding through forest"
   }
 ]

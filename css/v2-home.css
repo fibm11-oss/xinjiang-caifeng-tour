@@ -187,7 +187,6 @@ body {
     color: #fff;
     margin: 0 auto 22px;
     max-width: 1120px;
-    -webkit-text-stroke: 0.5px rgba(0, 0, 0, .9);
     text-shadow: 0 4px 30px rgba(0, 0, 0, .35);
 }
 

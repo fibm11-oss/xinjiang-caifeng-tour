@@ -638,7 +638,6 @@ img[loading="lazy"] {
     font-size: var(--font-size-3xl);
     font-weight: 800;
     margin-bottom: 12px;
-    -webkit-text-stroke: 0.5px rgba(0,0,0,0.9);
     text-shadow: 0 2px 16px rgba(0,0,0,0.35);
     letter-spacing: -0.5px;
 }

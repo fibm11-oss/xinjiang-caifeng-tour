@@ -647,6 +647,20 @@ img[loading="lazy"] {
     opacity: 0.92;
 }
 
+/* 中英版同款小標 / 副標 / 麵包屑（置中，金色小標） */
+.page-hero .page-hero__eyebrow {
+    display: inline-block;
+    font-size: 13px; font-weight: 800; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 18px;
+}
+.page-hero .page-hero__desc {
+    font-size: 17px; line-height: 1.8; color: rgba(255,255,255,.92);
+    max-width: 720px; margin: 4px auto 0;
+}
+.page-hero .breadcrumb { font-size: 13px; color: rgba(255,255,255,.82); margin-bottom: 18px; }
+.page-hero .breadcrumb a { color: rgba(255,255,255,.82); }
+.page-hero .breadcrumb a:hover { color: #fff; text-decoration: underline; }
+
 /* ========== 服務特色 ========== */
 .features {
     padding: 88px 0;
@@ -1590,6 +1604,8 @@ tbody tr:last-child {
 /* 手機 / 平板：取消漢堡按鈕，改由「新疆采風」logo 觸發下拉選單 */
 .mobile-home-link { display: none !important; }
 @media (max-width: 1024px) {
+    /* 手機 / 平板：隱藏漢堡按鈕，改由「新疆采風」logo（.logo-css-toggle）觸發下拉選單；
+       與本塊頂部註釋一致，不可在此對 ≤1024px 顯示漢堡，否則手機端會出現「logo 箭頭 + 漢堡」雙觸發。 */
     .mobile-menu-btn { display: none !important; }
     .logo {
         cursor: pointer;
@@ -1667,7 +1683,8 @@ tbody tr:last-child {
         max-width: 280px;
     }
     .page-hero {
-        height: 200px;
+        /* 手機版：頁首大圖佔滿螢幕（與首頁手機版 .v2-hero 一致），向下捲動才見內容 */
+        min-height: 88vh;
         padding-top: 58px;
     }
     /* 手機版標題收斂到與「新疆采風」logo 同級（24px，logo 因 !important 恆為 24px） */
@@ -2695,12 +2712,12 @@ body.page-routes {
     --xr-pad: 56px;
 }
 
-/* 頁首：沿用原版背景圖與雙層漸層遮罩，改為左對齊、內層抬到遮罩之上 */
-body.page-routes .page-hero { height: auto; min-height: 340px; text-align: left; }
+/* 頁首：沿用原版背景圖與雙層漸層遮罩，置中對齊、內層抬到遮罩之上 */
+body.page-routes .page-hero { height: auto; min-height: 340px; text-align: center; }
 body.page-routes .page-hero__inner {
     position: relative; z-index: 1;
     width: 100%; max-width: var(--xr-shell);
-    margin: 0 auto; padding: 0 var(--xr-pad); text-align: left;
+    margin: 0 auto; padding: 0 var(--xr-pad); text-align: center;
 }
 body.page-routes .page-hero__eyebrow {
     display: inline-block; font-size: 13px; font-weight: 800;
@@ -2714,7 +2731,7 @@ body.page-routes .page-hero h1 {
 }
 body.page-routes .page-hero__desc {
     font-size: 17px; line-height: 1.8; color: var(--xr-sand);
-    max-width: 720px; margin: 0;
+    max-width: 720px; margin: 0 auto;
 }
 body.page-routes .breadcrumb { font-size: 13px; color: var(--xr-sand); margin: 0 0 20px; }
 body.page-routes .breadcrumb a { opacity: .82; color: #fff; text-decoration: none; }

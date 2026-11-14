@@ -61,6 +61,10 @@ PAGES = (
     "blog/xinjiang-four-seasons.html",
     "blog/xinjiang-travel-guide.html",
     "blog/yining-citywalk.html",
+    "blog/kashgar-citywalk.html",
+    "blog/tashkurgan-citywalk.html",
+    "blog/hotan-citywalk.html",
+    "blog/kuqa-citywalk.html",
     "admin.html",
     "member.html",
 )

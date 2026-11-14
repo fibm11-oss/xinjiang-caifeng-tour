@@ -52,7 +52,11 @@
           { t: '布尔津 City Walk', p: 'blog/burqin-citywalk.html' },
           { t: '禾木村 City Walk', p: 'blog/hemucun-citywalk.html' },
           { t: '奎屯市 City Walk', p: 'blog/kuitun-citywalk.html' },
-          { t: '吐鲁番市 City Walk', p: 'blog/turpan-citywalk.html' }
+          { t: '吐鲁番市 City Walk', p: 'blog/turpan-citywalk.html' },
+          { t: '喀什 City Walk', p: 'blog/kashgar-citywalk.html' },
+          { t: '塔什库尔干 City Walk', p: 'blog/tashkurgan-citywalk.html' },
+          { t: '和田 City Walk', p: 'blog/hotan-citywalk.html' },
+          { t: '库车 City Walk', p: 'blog/kuqa-citywalk.html' }
         ]},
         { t: '联络我们', p: 'contact.html', children: [
           { t: '咨询表单', p: 'contact.html' },
@@ -104,7 +108,11 @@
           { t: 'Burqin City Walk', p: 'blog/burqin-citywalk.html' },
           { t: 'Hemu Village City Walk', p: 'blog/hemucun-citywalk.html' },
           { t: 'Kuitun City Walk', p: 'blog/kuitun-citywalk.html' },
-          { t: 'Turpan City Walk', p: 'blog/turpan-citywalk.html' }
+          { t: 'Turpan City Walk', p: 'blog/turpan-citywalk.html' },
+          { t: 'Kashgar City Walk', p: 'blog/kashgar-citywalk.html' },
+          { t: 'Tashkurgan City Walk', p: 'blog/tashkurgan-citywalk.html' },
+          { t: 'Hotan City Walk', p: 'blog/hotan-citywalk.html' },
+          { t: 'Kuqa City Walk', p: 'blog/kuqa-citywalk.html' }
         ]},
         { t: 'Contact', p: 'contact.html', children: [
           { t: 'Enquiry Form', p: 'contact.html' },

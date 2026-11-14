@@ -3,7 +3,7 @@
 //    在線時順手把新版本寫回快取，離線瀏覽仍可用，不會再被舊快取卡住。
 //    改動 css/*.css 或 js/*.js 仍建議 bump CACHE_NAME：activate 會清掉舊版本
 //    快取桶、避免磁碟上堆積歷代舊檔；但已不影響使用者能否看到新內容。
-const CACHE_NAME = 'xjcaifeng-v1.2.31';
+const CACHE_NAME = 'xjcaifeng-v1.2.32';
 const urlsToCache = [
     '/',
     '/index.html',

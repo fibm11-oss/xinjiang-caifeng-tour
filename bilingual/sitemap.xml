@@ -142,6 +142,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/blog/kuqa-citywalk.html"/>
   </url>
   <url>
+    <loc>https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/blog/xinjiang-food-guide.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/blog/xinjiang-food-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/en/blog/xinjiang-food-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/blog/xinjiang-food-guide.html"/>
+  </url>
+  <url>
+    <loc>https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/blog/xinjiang-photography-guide.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/blog/xinjiang-photography-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/en/blog/xinjiang-photography-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/blog/xinjiang-photography-guide.html"/>
+  </url>
+  <url>
     <loc>https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/en/index.html</loc>
     <lastmod>2026-11-14</lastmod>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/index.html"/>
@@ -280,5 +294,19 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/blog/kuqa-citywalk.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/en/blog/kuqa-citywalk.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/blog/kuqa-citywalk.html"/>
+  </url>
+  <url>
+    <loc>https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/en/blog/xinjiang-food-guide.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/blog/xinjiang-food-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/en/blog/xinjiang-food-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/blog/xinjiang-food-guide.html"/>
+  </url>
+  <url>
+    <loc>https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/en/blog/xinjiang-photography-guide.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/blog/xinjiang-photography-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/en/blog/xinjiang-photography-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fibm11-oss.github.io/xinjiang-caifeng-tour/bilingual/blog/xinjiang-photography-guide.html"/>
   </url>
 </urlset>

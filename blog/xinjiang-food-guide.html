@@ -17,7 +17,7 @@
 
     <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../images/favicon-32.png" type="image/png" sizes="32x32">
-    <link rel="icon" href="../images/favicon-16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="../images/ficon-16.png" type="image/png" sizes="16x16">
     <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#c8102e">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -52,10 +52,20 @@
         .month-best { background: #c8102e; color: #fff; }
         .month-good { background: #ffcdd2; color: #c62828; }
         .month-ok { background: #f5f5f5; color: #999; }
+        .blog-post .food-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 22px 0; }
+        .blog-post .food-gallery figure { margin: 0; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,.10); }
+        .blog-post .food-gallery img { width: 100%; height: 230px; object-fit: cover; display: block; }
+        .blog-post .food-gallery figcaption { padding: 10px 12px; font-size: 13px; color: #666; line-height: 1.6; text-align: center; }
+        .blog-post figure.food-single { margin: 22px 0; }
+        .blog-post figure.food-single img { width: 100%; height: 380px; object-fit: cover; border-radius: 14px; display: block; box-shadow: 0 4px 18px rgba(0,0,0,.10); }
+        .blog-post figure.food-single figcaption { padding: 10px 4px; font-size: 13px; color: #666; text-align: center; }
+        .blog-post .photo-credit { font-size: 12px; color: #aaa; text-align: center; margin: 28px 0 0; line-height: 1.8; }
         @media (max-width: 768px) {
             .blog-post { padding: 80px 16px 40px; }
             .blog-post h1 { font-size: 26px; }
             .food-cat { padding: 16px; }
+            .blog-post .food-gallery { grid-template-columns: 1fr; }
+            .blog-post figure.food-single img { height: 260px; }
         }
     </style>
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -140,7 +150,7 @@
 
 <article class="blog-post" id="main-content" tabindex="-1">
     <div class="blog-hero" style="margin:0 0 32px;border-radius:16px;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,0.14);">
-        <img src="../images/tours/tour7-kashgar.webp" alt="喀什老城巴扎街邊美食實景照" style="width:100%;height:360px;object-fit:cover;display:block;">
+        <img src="../images/food/food-dapanji.jpg" alt="新疆大盤雞：雞塊、馬鈴薯與吸飽湯汁的皮帶麵" style="width:100%;height:400px;object-fit:cover;display:block;">
     </div>
 
     <h1>新疆美食圖鑑：從烤包子到大盤雞，什麼真的該吃</h1>
@@ -175,6 +185,13 @@
         </ul>
     </div>
 
+    <div class="food-gallery">
+        <figure><img src="../images/food/food-naan.jpg" alt="新疆饢：撒芝麻的烤餅"><figcaption>饢：新疆的國民麵包，芝麻饢、油饢各有性格</figcaption></figure>
+        <figure><img src="../images/food/food-samsa.jpg" alt="剛出坑的烤包子，金黃三角酥皮"><figcaption>烤包子（薄皮包子）：皮薄餡大、剛出坑最香</figcaption></figure>
+        <figure><img src="../images/food/food-laghman.jpg" alt="師傅手工拉製的寬麵條"><figcaption>拉條子（拌麵）：師傅當場手工拉麵</figcaption></figure>
+        <figure><img src="../images/food/food-pilaf.jpg" alt="新疆抓飯：羊肉胡蘿蔔油亮米飯"><figcaption>抓飯：羊肉、胡蘿蔔、洋蔥悶出的油亮米飯</figcaption></figure>
+    </div>
+
     <h2>三、烤肉類：紅柳、羊肉串、缸肉、烤魚</h2>
     <div class="food-cat">
         <h3><span class="must">✅ 必吃</span></h3>
@@ -190,6 +207,11 @@
             <li>非沿海城市的「海鮮燒烤」儘量避開，新鮮度難保證。</li>
         </ul>
     </div>
+
+    <figure class="food-single">
+        <img src="../images/food/food-kebab.jpg" alt="炭烤羊肉串與紅柳枝烤肉">
+        <figcaption>紅柳枝烤肉與炭烤羊肉串：肥瘦相間、孜然辣椒到位</figcaption>
+    </figure>
 
     <h2>四、湯飯類：曲曲、湯飯、粉湯</h2>
     <div class="food-cat">
@@ -221,6 +243,11 @@
         </ul>
     </div>
 
+    <figure class="food-single">
+        <img src="../images/food/food-yogurt.jpg" alt="新疆手工酸奶，濃稠冰鎮">
+        <figcaption>手工酸奶：濃稠帶酸，加糖或蜂蜜冰鎮最解膩</figcaption>
+    </figure>
+
     <h2>六、瓜果：什麼季節吃什麼</h2>
     <div class="food-cat">
         <h3><span class="must">✅ 必吃</span></h3>
@@ -229,11 +256,19 @@
             <li><strong>哈密瓜（7–9月）：</strong>網紋蜜瓜，香氣濃。</li>
             <li><strong>庫爾勒香梨（9–10月）：</strong>皮薄汁多、落地即碎。</li>
             <li><strong>阿克蘇蘋果、西瓜、甜瓜：</strong>秋季一路吃到。</li>
+            <li><strong>南疆杏與杏乾、各式乾果：</strong>曬製的甜、當零嘴或伴手禮都合適。</li>
         </ul>
         <h3><span class="warn">⚠️ 地雷與提醒</span></h3>
         <ul>
             <li>瓜果極甜，糖尿病人留意；路邊切開的瓜果注意攤子衛生。</li>
         </ul>
+    </div>
+
+    <div class="food-gallery">
+        <figure><img src="../images/food/food-grapes.jpg" alt="吐魯番葡萄串"><figcaption>吐魯番葡萄：無核白、馬奶子甜度高</figcaption></figure>
+        <figure><img src="../images/food/food-melon.jpg" alt="切開的哈密瓜"><figcaption>哈密瓜：網紋蜜瓜香氣濃</figcaption></figure>
+        <figure><img src="../images/food/food-apricot.jpg" alt="新疆杏果"><figcaption>南疆杏：曬製的甜，鮮果與杏乾都值得帶</figcaption></figure>
+        <figure><img src="../images/food/food-driedfruit.jpg" alt="新疆乾果：核桃葡萄乾巴旦木"><figcaption>乾果零嘴：核桃、葡萄乾、巴旦木</figcaption></figure>
     </div>
 
     <h2>七、點菜實戰守則</h2>
@@ -254,7 +289,9 @@
         <a href="../contact.html">聯絡我們安排行程 →</a>
     </div>
 
-    <p style="text-align:center;color:#888;margin-top:48px;font-size:14px;">相關閱讀：<a href="urumqi-citywalk.html">烏魯木齊 City Walk</a> ｜ <a href="kashgar-citywalk.html">喀什 City Walk</a> ｜ <a href="xinjiang-four-seasons.html">新疆四季旅遊攻略</a></p>
+    <p class="photo-credit">📷 圖片來源：部分食物實拍示意圖來自 Pixabay 免費授權素材，以及網絡公開的新疆美食實拍（僅作示意，如有版權疑慮請聯絡我們移除）。</p>
+
+    <p style="text-align:center;color:#888;margin-top:24px;font-size:14px;">相關閱讀：<a href="urumqi-citywalk.html">烏魯木齊 City Walk</a> ｜ <a href="kashgar-citywalk.html">喀什 City Walk</a> ｜ <a href="xinjiang-four-seasons.html">新疆四季旅遊攻略</a></p>
 
 </article>
 

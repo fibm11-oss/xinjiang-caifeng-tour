@@ -65,6 +65,8 @@ PAGES = (
     "blog/tashkurgan-citywalk.html",
     "blog/hotan-citywalk.html",
     "blog/kuqa-citywalk.html",
+    "blog/xinjiang-food-guide.html",
+    "blog/xinjiang-photography-guide.html",
     "admin.html",
     "member.html",
 )

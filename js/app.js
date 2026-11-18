@@ -372,82 +372,16 @@ const XJ = (function() {
         init();
     }
 
-    /* ---------- 密碼雜湊 SHA-256 ---------- */
-    function legacySha256(msg) {
-        function rotateRight(value, amount) { return (value >>> amount) | (value << (32 - amount)); }
-        const mathPow = Math.pow;
-        const maxWord = mathPow(2, 32);
-        const lengthProperty = 'length';
-        let i, j;
-        let result = '';
-        const words = [];
-        const asciiBitLength = msg[lengthProperty] * 8;
-        const hash = legacySha256.h = legacySha256.h || [];
-        const k = legacySha256.k = legacySha256.k || [];
-        let primeCounter = k[lengthProperty];
-        const isComposite = {};
-        for (let candidate = 2; primeCounter < 64; candidate++) {
-            if (!isComposite[candidate]) {
-                for (i = 0; i < 313; i += candidate) { isComposite[i] = candidate; }
-                hash[primeCounter] = (mathPow(candidate, .5) * maxWord) | 0;
-                k[primeCounter++] = (mathPow(candidate, 1 / 3) * maxWord) | 0;
-            }
-        }
-        msg += String.fromCharCode(128);
-        while (msg[lengthProperty] % 64 !== 56) msg += String.fromCharCode(0);
-        for (i = 0; i < msg[lengthProperty]; i++) {
-            j = msg.charCodeAt(i);
-            if (j >> 8) return;
-            words[i >> 2] |= j << ((3 - i) % 4) * 8;
-        }
-        words[words[lengthProperty]] = ((asciiBitLength / maxWord) | 0);
-        words[words[lengthProperty]] = (asciiBitLength);
-        for (j = 0; j < words[lengthProperty];) {
-            const w = words.slice(j, j += 16);
-            const oldHash = hash;
-            hash = hash.slice(0, 8);
-            for (i = 0; i < 64; i++) {
-                const w15 = w[i - 15], w2 = w[i - 2];
-                const a = hash[0], e = hash[4];
-                const temp1 = hash[7]
-                    + (rotateRight(e, 6) ^ rotateRight(e, 11) ^ rotateRight(e, 25))
-                    + ((e & hash[5]) ^ ((~e) & hash[6]))
-                    + k[i]
-                    + (w[i] = (i < 16) ? w[i] : (
-                        w[i - 16]
-                        + (rotateRight(w15, 7) ^ rotateRight(w15, 18) ^ (w15 >>> 3))
-                        + w[i - 7]
-                        + (rotateRight(w2, 17) ^ rotateRight(w2, 19) ^ (w2 >>> 10))
-                    ) | 0);
-                const temp2 = (rotateRight(a, 2) ^ rotateRight(a, 13) ^ rotateRight(a, 22))
-                    + ((a & hash[1]) ^ (a & hash[2]) ^ (a & hash[3]));
-                hash = [(temp1 + temp2) | 0].concat(hash);
-                hash[4] = (hash[4] + temp1) | 0;
-            }
-            for (i = 0; i < 8; i++) { hash[i] = (hash[i] + oldHash[i]) | 0; }
-        }
-        for (i = 0; i < 8; i++) {
-            for (j = 3; j + 1; j--) {
-                const b = (hash[i] >> (j * 8)) & 255;
-                result += ((b < 16) ? 0 : '') + b.toString(16);
-            }
-        }
-        return result;
-    }
+    /* ---------- 密碼雜湊 SHA-256（僅用 Web Crypto，PWA/HTTPS 必備） ---------- */
     async function sha256str(str) {
-        if (window.crypto && crypto.subtle) {
-            try {
-                const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-                return Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
-            } catch (e) { /* fall through */ }
-        }
-        return legacySha256(str);
+        const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+        return Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
     }
 
     /* ---------- 使用者認證 (Auth) ---------- */
     const SESSION_KEY = 'xjcf:session';
     function getSession() {
-        try { return JSON.parse(localStorage.getItem(SESSION_KEY) || 'null'); } catch (e) { return null; }
+        try { return JSON.parse(localStorage.getItem(SESSION_KEY)); } catch (e) { return null; }
     }
     function setSession(u) {
         localStorage.setItem(SESSION_KEY, JSON.stringify({

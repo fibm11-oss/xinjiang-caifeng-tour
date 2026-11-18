@@ -18,7 +18,7 @@
     <link rel="apple-touch-icon" href="../images/favicon-192.png" sizes="192x192">
     <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#c8102e">
-    <link rel="stylesheet" href="../css/style.css?v=20261115b">
+    <link rel="stylesheet" href="../css/style.css?v=20261118a">
     <style>
         .blog-post { max-width: 820px; margin: 0 auto; padding: 100px 24px 60px; }
         .blog-post h1 { font-size: 34px; color: var(--secondary); margin-bottom: 12px; line-height: 1.4; }
@@ -41,7 +41,7 @@
     </style>
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
-<body data-analytics data-baidu-id="YOUR_BAIDU_ID" data-ga-id="YOUR_GA_ID">
+<body data-analytics data-baidu-id="" data-ga-id="">
     <!-- 載入動畫 -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
@@ -279,20 +279,9 @@
 </footer>
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到頂部">↑</button>
 <script src="../js/app.js"></script>
-<script src="../js/promotion.js?v=20261113c"></script>
+<script src="../js/promotion.js?v=20261118a"></script>
 <script src="../js/nav.js"></script>
 <script src="../js/sitemap.js"></script>
 
-<script>
-    window.addEventListener('load', function(){
-        setTimeout(function(){
-            var o = document.getElementById('loadingOverlay');
-            if(o){ o.classList.add('hidden'); setTimeout(function(){ o.style.display='none'; }, 300); }
-        }, 500);
-    });
-    window.addEventListener('error', function(e){ console.error('JavaScript 錯誤:', e.error); });
-    window.addEventListener('online', function(){ console.log('網路連線恢復'); });
-    window.addEventListener('offline', function(){ console.log('網路連線中斷'); });
-</script>
 </body>
 </html>

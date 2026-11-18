@@ -3,7 +3,7 @@
 //    在線時順手把新版本寫回快取，離線瀏覽仍可用，不會再被舊快取卡住。
 //    改動 css/*.css 或 js/*.js 仍建議 bump CACHE_NAME：activate 會清掉舊版本
 //    快取桶、避免磁碟上堆積歷代舊檔；但已不影響使用者能否看到新內容。
-const CACHE_NAME = 'xjcaifeng-v1.2.35';
+const CACHE_NAME = 'xjcaifeng-v1.2.37';
 const urlsToCache = [
     '/',
     '/index.html',
@@ -15,7 +15,6 @@ const urlsToCache = [
     '/css/style.css',
     '/js/app.js',
     '/js/promotion.js',
-    '/js/booking.js',
     '/js/sitemap.js',
     '/js/nav.js',
     '/images/favicon.svg',
@@ -23,23 +22,8 @@ const urlsToCache = [
     '/images/favicon-512.png',
     '/images/icon-192.png',
     '/images/icon-512.png',
-    '/images/hero-xinjiang.svg',
-    '/images/hero-car.svg',
-    '/images/hero-routes.svg',
     '/images/logo.svg',
     '/images/og-image.svg',
-    '/images/scenic/sayram-lake.svg',
-    '/images/scenic/nalati.svg',
-    '/images/scenic/kashgar.svg',
-    '/images/scenic/tianchi.svg',
-    '/images/scenic/duku.svg',
-    '/images/scenic/karakul.svg',
-    '/images/scenic/taklamakan.svg',
-    '/images/scenic/bazaar.svg',
-    '/images/tours/tour1-ili-10days.svg',
-    '/images/tours/tour2-grassland.svg',
-    '/images/tours/tour3-south-xj.svg',
-    '/images/tours/tour4-kanas.svg',
     '/blog/index.html',
     '/blog/xinjiang-four-seasons.html',
     '/blog/xinjiang-travel-guide.html',
@@ -71,33 +55,32 @@ self.addEventListener('install', function(event) {
 // 其餘靜態資源（CSS/JS/圖片）同樣改為「網路優先、失敗回快取」：
 // 已註冊舊 SW 的瀏覽器（尤其本機預覽）不會再長期吃到數月前的舊 JS/CSS，
 // 連線時順手把新版本寫回快取，離線瀏覽仍完全可用。
+// 離線統一降級：從快取取，取不到才回 Response.error()（單一實作，導航與靜態資源共用）
+function fromCache(request) {
+    return caches.match(request).then(function(r) {
+        return r || Response.error();
+    });
+}
+
 self.addEventListener('fetch', function(event) {
-    if (event.request.mode === 'navigate') {
-        event.respondWith(
-            fetch(event.request).catch(function() {
-                return caches.match('/').then(function(r) {
-                    return r || Response.error();
-                });
-            })
-        );
+    var req = event.request;
+    if (req.mode === 'navigate') {
+        // 導航失敗一律回快取首頁
+        event.respondWith(fetch(req).catch(function() { return fromCache('/'); }));
         return;
     }
     event.respondWith(
-        fetch(event.request)
+        fetch(req)
             .then(function(response) {
                 if (response && response.ok && response.type === 'basic') {
                     var copy = response.clone();
                     caches.open(CACHE_NAME).then(function(cache) {
-                        return cache.put(event.request, copy);
+                        return cache.put(req, copy);
                     }).catch(function() {});
                 }
                 return response;
             })
-            .catch(function() {
-                return caches.match(event.request).then(function(r) {
-                    return r || Response.error();
-                });
-            })
+            .catch(function() { return fromCache(req); })
     );
 });
 

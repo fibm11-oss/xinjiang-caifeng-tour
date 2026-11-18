@@ -66,6 +66,8 @@ document.addEventListener('keydown', function(e) {
             }
             var cb = document.getElementById('navMenuToggle');
             if (cb) cb.checked = false;
+            var logo = document.querySelector('.logo');
+            if (logo) logo.setAttribute('aria-expanded', 'false');
         }
     }
 });
@@ -123,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 捲動淡入動畫
 (function() {
-    var fadeEls = document.querySelectorAll('.feature-card, .tour-card, .faq-item, .highlight-item, .section-title, .testimonial-card, .badge-item');
+    var fadeEls = document.querySelectorAll('.feature-card, .tour-card, .faq-item, .highlight-item, .section-title, .testimonial-card');
     if ('IntersectionObserver' in window && fadeEls.length > 0) {
         var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (!prefersReducedMotion) {

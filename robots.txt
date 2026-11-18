@@ -18,5 +18,4 @@ Disallow: /*.backup
 Disallow: /*.bak
 
 # 網站地圖
-Sitemap: https://xjcaifeng.com/sitemap.xml</content>
-<parameter name="filePath">c:\Users\tivol\Desktop\旅遊網站\robots.txt
+Sitemap: https://xjcaifeng.com/sitemap.xml

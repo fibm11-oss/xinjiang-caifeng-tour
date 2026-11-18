@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+# ⚠️ 注意：本腳本為一次性初產生工具，請勿在已完成頁面後直接重跑。
+# 重跑會從 urumqi 模板重新插入導覽（造成重複）、把 page-hero 換回烏魯木齊、
+# 並把「茶館」改回簡體「茶馆」。4 個南疆 citywalk 已手動定稿並由
+# tools/sync_config.py 統一同步設定，應以現有檔案為準。
 import re, io
 
 BASE = "C:/Users/tivol/Desktop/旅遊網站"

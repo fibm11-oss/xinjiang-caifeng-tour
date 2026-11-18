@@ -1,0 +1,35 @@
+{
+  "_readme": "全站唯一設定來源。改設定只改這個檔，然後執行 python tools/sync_config.py（加 --check 可先乾跑預覽）。static SEO / JSON-LD / 版權年 / 快取版本 / 分析 ID 會由腳本同步到各頁。",
+  "_null_note": "值為 null 的欄位代表尚未設定：腳本會清除頁面上的舊佔位符（例如 +86- / YOUR_BAIDU_ID），不會寫入假資料。填入真值後重跑即可生效。",
+
+  "site": {
+    "name": "新疆采風",
+    "nameEn": "Xinjiang Caifeng",
+    "rootUrl": "https://xjcaifeng.com",
+    "bilingualUrl": "https://fibm11-oss.github.io/xinjiang-caifeng-tour",
+    "bilingualPrefix": "/bilingual",
+    "ogImage": "images/og-image.svg",
+    "logo": "images/logo.svg",
+    "themeColor": "#c8102e",
+    "homeThemeColor": "#FBF4E6"
+  },
+
+  "contact": {
+    "telephone": null,
+    "email": "zmmv9577@agent.qq.com",
+    "formspree": "https://formspree.io/f/mjyydlwa"
+  },
+
+  "analytics": {
+    "baiduId": null,
+    "gaId": null
+  },
+
+  "social": {
+    "sameAs": []
+  },
+
+  "cache": {
+    "version": "20261118a"
+  }
+}

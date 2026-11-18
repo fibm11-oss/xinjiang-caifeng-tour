@@ -24,7 +24,7 @@
     <meta property="twitter:image" content="https://xjcaifeng.com/images/og-image.svg">
 
     <!-- 預載入關鍵資源 -->
-    <link rel="preload" href="css/style.css?v=20261115a" as="style">
+    <link rel="preload" href="css/style.css?v=20261118a" as="style">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
@@ -39,7 +39,7 @@
     <link rel="apple-touch-icon" href="images/favicon-192.png" sizes="192x192">
     <link rel="apple-touch-icon" href="images/favicon-512.png" sizes="512x512">
 
-    <link rel="stylesheet" href="css/style.css?v=20261115a">
+    <link rel="stylesheet" href="css/style.css?v=20261118a">
 
     <!-- 結構化數據 -->
     <script type="application/ld+json">
@@ -84,7 +84,7 @@
         }
     </style>
 </head>
-<body class="page-routes" data-analytics data-baidu-id="YOUR_BAIDU_ID" data-ga-id="YOUR_GA_ID">
+<body class="page-routes" data-analytics data-baidu-id="" data-ga-id="">
     <!-- 載入動畫 -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
@@ -290,78 +290,7 @@
 <!-- 回到頂部按鈕 -->
 <button id="backToTop" aria-label="回到頁面頂部">↑</button>
 <script>
-// 載入完成後隱藏載入動畫
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        var overlay = document.getElementById('loadingOverlay');
-        if (overlay) {
-            overlay.classList.add('hidden');
-            setTimeout(function() {
-                overlay.style.display = 'none';
-            }, 300);
-        }
-    }, 500);
-});
-
-// 手機版選單切換（支援無障礙性）
-function toggleMenu() {
-    var menu = document.getElementById('navMenu');
-    var btn = document.querySelector('.mobile-menu-btn');
-    if (menu && btn) {
-        var isExpanded = menu.classList.contains('active');
-        menu.classList.toggle('active');
-        btn.classList.toggle('active');
-        btn.setAttribute('aria-expanded', !isExpanded);
-    }
-}
-
-// 鍵盤導航支援
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        var menu = document.getElementById('navMenu');
-        var btn = document.querySelector('.mobile-menu-btn');
-        if (menu && menu.classList.contains('active')) {
-            menu.classList.remove('active');
-            if (btn) {
-                btn.classList.remove('active');
-                btn.setAttribute('aria-expanded', 'false');
-            }
-        }
-    }
-});
-
-// 點擊選單連結後自動關閉選單
-document.addEventListener('DOMContentLoaded', function() {
-    var menu = document.getElementById('navMenu');
-    if (menu) {
-        var links = menu.querySelectorAll('a');
-        links.forEach(function(link) {
-            link.addEventListener('click', function() {
-                menu.classList.remove('active');
-                var btn = document.querySelector('.mobile-menu-btn');
-                if (btn) {
-                    btn.classList.remove('active');
-                    btn.setAttribute('aria-expanded', 'false');
-                }
-            });
-        });
-    }
-
-    // 添加錯誤處理
-    window.addEventListener('error', function(e) {
-        console.error('JavaScript 錯誤:', e.error);
-    });
-
-    // 添加離線檢測
-    window.addEventListener('online', function() {
-        console.log('網路連線恢復');
-    });
-
-    window.addEventListener('offline', function() {
-        console.log('網路連線中斷');
-    });
-});
-
+// 載入動畫、手機選單、error/online/offline 監聽統一由 app.js + nav.js 處理。
 // 捲動淡入動畫（支援 prefers-reduced-motion）
 var fadeEls = document.querySelectorAll('.card, .route-item');
 if ('IntersectionObserver' in window && fadeEls.length > 0) {
@@ -448,7 +377,7 @@ if ('serviceWorker' in navigator) {
 </script>
 
 <script src="js/app.js"></script>
-<script src="js/promotion.js?v=20261115a"></script>
+<script src="js/promotion.js?v=20261118a"></script>
 <script src="js/nav.js"></script>
 <script src="js/sitemap.js"></script>
 

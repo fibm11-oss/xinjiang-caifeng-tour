@@ -24,7 +24,7 @@
     <meta property="twitter:image" content="https://xjcaifeng.com/images/og-image.svg">
 
     <!-- 預載入關鍵資源 -->
-    <link rel="preload" href="css/style.css?v=20261115b" as="style">
+    <link rel="preload" href="css/style.css?v=20261118a" as="style">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
@@ -39,7 +39,7 @@
     <link rel="apple-touch-icon" href="images/favicon-192.png" sizes="192x192">
     <link rel="apple-touch-icon" href="images/favicon-512.png" sizes="512x512">
 
-    <link rel="stylesheet" href="css/style.css?v=20261115b">
+    <link rel="stylesheet" href="css/style.css?v=20261118a">
 
     <!-- 結構化數據 -->
     <script type="application/ld+json">
@@ -54,12 +54,10 @@
             "name": "新疆采風",
             "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+86-",
                 "contactType": "customer service",
                 "availableLanguage": "Chinese"
             }
         },
-        "telephone": "+86-"
     }
     </script>
 
@@ -95,7 +93,7 @@
         }
     </style>
 </head>
-<body class="page-contact" data-analytics data-baidu-id="YOUR_BAIDU_ID" data-ga-id="YOUR_GA_ID">
+<body class="page-contact" data-analytics data-baidu-id="" data-ga-id="">
     <!-- 載入動畫 -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
@@ -386,110 +384,42 @@ function copyEmail() {
 </script>
 
 <script>
-// 載入完成後隱藏載入動畫
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        var overlay = document.getElementById('loadingOverlay');
-        if (overlay) {
-            overlay.classList.add('hidden');
-            setTimeout(function() {
-                overlay.style.display = 'none';
-            }, 300);
-        }
-    }, 500);
-});
-
-// 手機版選單切換（支援無障礙性）
-function toggleMenu() {
-    var menu = document.getElementById('navMenu');
-    var btn = document.querySelector('.mobile-menu-btn');
-    if (menu && btn) {
-        var isExpanded = menu.classList.contains('active');
-        menu.classList.toggle('active');
-        btn.classList.toggle('active');
-        btn.setAttribute('aria-expanded', !isExpanded);
-    }
-}
-
-// 鍵盤導航支援
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        var menu = document.getElementById('navMenu');
-        var btn = document.querySelector('.mobile-menu-btn');
-        if (menu && menu.classList.contains('active')) {
-            menu.classList.remove('active');
-            if (btn) {
-                btn.classList.remove('active');
-                btn.setAttribute('aria-expanded', 'false');
-            }
-        }
-    }
-});
-
-// 點擊選單連結後自動關閉選單
+// 載入動畫、手機選單、error/online/offline 監聽統一由 app.js + nav.js 處理。
+// 回到頂部按鈕（支援無障礙性）
+// 修正：按鈕本體在本 script 之後才出現，必須等 DOM 就緒再綁定，否則 getElementById 取得 null。
 document.addEventListener('DOMContentLoaded', function() {
-    var menu = document.getElementById('navMenu');
-    if (menu) {
-        var links = menu.querySelectorAll('a');
-        links.forEach(function(link) {
-            link.addEventListener('click', function() {
-                menu.classList.remove('active');
-                var btn = document.querySelector('.mobile-menu-btn');
-                if (btn) {
-                    btn.classList.remove('active');
-                    btn.setAttribute('aria-expanded', 'false');
-                }
-            });
+    var backBtn = document.getElementById('backToTop');
+    if (backBtn) {
+        backBtn.style.cssText = 'position:fixed;bottom:32px;right:32px;z-index:9999;background:#c8102e;color:#fff;border:none;border-radius:50%;width:52px;height:52px;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(200,16,46,0.35);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;display:flex;align-items:center;justify-content:center;';
+        backBtn.setAttribute('aria-label', '回到頁面頂部');
+        backBtn.innerHTML = '↑';
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                backBtn.style.opacity = '1';
+                backBtn.style.pointerEvents = 'auto';
+            } else {
+                backBtn.style.opacity = '0';
+                backBtn.style.pointerEvents = 'none';
+            }
+        });
+
+        backBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        backBtn.addEventListener('mouseenter', function() { this.style.transform = 'scale(1.1)'; });
+        backBtn.addEventListener('mouseleave', function() { this.style.transform = 'scale(1)'; });
+
+        // 鍵盤支援
+        backBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
         });
     }
-
-    // 添加錯誤處理
-    window.addEventListener('error', function(e) {
-        console.error('JavaScript 錯誤:', e.error);
-    });
-
-    // 添加離線檢測
-    window.addEventListener('online', function() {
-        console.log('網路連線恢復');
-    });
-
-    window.addEventListener('offline', function() {
-        console.log('網路連線中斷');
-    });
 });
-
-// 回到頂部按鈕（支援無障礙性）
-var backBtn = document.getElementById('backToTop');
-if (backBtn) {
-    backBtn.style.cssText = 'position:fixed;bottom:32px;right:32px;z-index:9999;background:#c8102e;color:#fff;border:none;border-radius:50%;width:52px;height:52px;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(200,16,46,0.35);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;display:flex;align-items:center;justify-content:center;';
-    backBtn.setAttribute('aria-label', '回到頁面頂部');
-    backBtn.innerHTML = '↑';
-
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 400) {
-            backBtn.style.opacity = '1';
-            backBtn.style.pointerEvents = 'auto';
-        } else {
-            backBtn.style.opacity = '0';
-            backBtn.style.pointerEvents = 'none';
-        }
-    });
-
-    backBtn.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    backBtn.addEventListener('mouseenter', function() { this.style.transform = 'scale(1.1)'; });
-    backBtn.addEventListener('mouseleave', function() { this.style.transform = 'scale(1)'; });
-
-    // 鍵盤支援
-    backBtn.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            this.click();
-        }
-    });
-}
 
 // 性能監控
 if ('performance' in window && 'PerformanceObserver' in window) {
@@ -522,15 +452,9 @@ if ('serviceWorker' in navigator) {
 </script>
 
 <script src="js/app.js"></script>
-<script src="js/promotion.js?v=20261114a"></script>
-<script src="js/booking.js"></script>
+<script src="js/promotion.js?v=20261118a"></script>
 <script src="js/nav.js"></script>
 <script src="js/sitemap.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // XJBooking.bind('contactForm'); // 2026-11-08 停用：原只存本地 IndexedDB（不會上傳），已改由 Formspree 接收（見 handleSubmit）
-});
-</script>
 
 <!-- 回到頂部按鈕 -->
 <button id="backToTop" aria-label="回到頁面頂部">↑</button>

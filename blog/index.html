@@ -23,7 +23,7 @@
     <meta name="apple-mobile-web-app-title" content="新疆采風">
     <link rel="apple-touch-icon" href="../images/favicon-192.png" sizes="192x192">
 
-    <link rel="stylesheet" href="../css/style.css?v=20261115b">
+    <link rel="stylesheet" href="../css/style.css?v=20261118a">
 
     <style>
         html { scroll-behavior: smooth; }
@@ -157,7 +157,7 @@
     </style>
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
-<body data-analytics data-baidu-id="YOUR_BAIDU_ID" data-ga-id="YOUR_GA_ID">
+<body data-analytics data-baidu-id="" data-ga-id="">
     <!-- 載入動畫 -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
@@ -489,19 +489,9 @@
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到頂部">↑</button>
 
 <script src="../js/app.js"></script>
-<script src="../js/promotion.js?v=20261113c"></script>
+<script src="../js/promotion.js?v=20261118a"></script>
 <script src="../js/nav.js"></script>
 <script src="../js/sitemap.js"></script>
 
-<script>
-    /* 遮罩移除不依賴 window.load（避免受限網路下外鏈 pending 導致 load 不觸發、遮罩永久擋住點擊） */
-    setTimeout(function(){
-        var o = document.getElementById('loadingOverlay');
-        if(o){ o.classList.add('hidden'); setTimeout(function(){ o.style.display='none'; }, 300); }
-    }, 600);
-    window.addEventListener('error', function(e){ console.error('JavaScript 錯誤:', e.error); });
-    window.addEventListener('online', function(){ console.log('網路連線恢復'); });
-    window.addEventListener('offline', function(){ console.log('網路連線中斷'); });
-</script>
 </body>
 </html>
